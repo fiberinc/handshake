@@ -1,0 +1,60 @@
+{
+  "name": "fiber-link",
+  "description": "Utility functions for acquiring OAuth credentials for popular APIs.",
+  "version": "0.0.1",
+  "license": "MIT",
+  "sideEffects": false,
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist/**"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "lint": "eslint src/",
+    "dev": "tsup --watch",
+    "check-types": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "next": "13.5.4",
+    "react": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/cookie": "^0.6.0",
+    "@types/http-errors": "^2.0.4",
+    "@types/ms": "^0.7.31",
+    "@types/node": "18.11.9",
+    "@types/react": "^18.2.5",
+    "next": "13.5.4",
+    "react": "^18.2.0",
+    "tsup": "^6.1.3",
+    "typescript": "^5.1.6"
+  },
+  "dependencies": {
+    "@auth/core": "^0.24.0",
+    "@sindresorhus/slugify": "^2.2.1",
+    "clsx": "^1.2.1",
+    "cookie": "^0.6.0",
+    "http-errors": "^2.0.0",
+    "ms": "^2.1.3",
+    "nanoid": "^5.0.1",
+    "tailwind-merge": "^1.13.2",
+    "zod": "^3.22.4"
+  },
+  "homepage": "https://fiber.dev/link",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fiberinc/link.git"
+  },
+  "bugs": {
+    "url": "https://github.com/fiberinc/link/issues"
+  },
+  "keywords": [
+    "oauth",
+    "integrations"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

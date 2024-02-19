@@ -1,12 +1,7 @@
 import assert from "assert";
 import crypto from "crypto";
-import { NextApiRequest } from "next";
 import { z } from "zod";
-import {
-  InvalidRequest,
-  NextApiRequestWithQuery,
-  Provider,
-} from "./lib/Provider";
+import { InvalidRequest, Provider } from "./lib/Provider";
 
 export const GoogleCredentialSchema = z.object({
   email: z.string(),
@@ -21,11 +16,11 @@ export type GoogleCredential = z.infer<typeof GoogleCredentialSchema>;
 const WEBSITE_URL = process.env.WEBSITE_URL ?? "";
 assert(WEBSITE_URL, "WEBSITE_URL is not set");
 
-const querySchema = z.object({
+const QueryParamStruct = z.object({
   code: z.string(),
 });
 
-type CallbackParams = z.infer<typeof querySchema>;
+type CallbackParams = z.infer<typeof QueryParamStruct>;
 
 export interface GoogleConfig {
   clientId: string;
@@ -55,7 +50,7 @@ export function GoogleProvider({
       logo: "",
     },
     config,
-    getAuthorizationUrl(callbackHandlerUrl: string): URL {
+    getAuthorizationUrl(callbackHandlerUrl: string) {
       const nonce = crypto.randomBytes(16).toString("hex");
       const authUrl = new URL("https://accounts.google.com/o/oauth2/v2/auth");
       authUrl.searchParams.append(
@@ -73,25 +68,26 @@ export function GoogleProvider({
       authUrl.searchParams.append("state", nonce);
       authUrl.searchParams.append("redirect_uri", callbackHandlerUrl);
       authUrl.searchParams.append("client_id", config.clientId);
-      return authUrl;
+      return { url: authUrl.toString() };
     },
-    parseQueryParams(req: NextApiRequest) {
-      return querySchema.parse(req.query);
+    validateQueryParams(params: URLSearchParams) {
+      return QueryParamStruct.parse(Object.fromEntries(params.entries()));
     },
     async exchange(
-      req: NextApiRequestWithQuery<CallbackParams>,
+      searchParams: CallbackParams,
+      req: Request,
       callbackHandlerUrl: string,
     ) {
       // console.log("req.url", req.url);
       console.log("callbackHandlerUrl FUCK THIS 444", callbackHandlerUrl);
-      console.log("req.headers.origin", req.headers.origin);
+      console.log("req.headers.origin", req.headers.get("origin"));
 
       const { accessToken, refreshToken, expiresAt, email, scopes } =
         await exchangeGoogleAccessTokenAndReadStoreData(
           callbackHandlerUrl,
           config.clientId,
           config.clientSecret,
-          req.query.code,
+          searchParams.code,
         );
 
       return {
@@ -105,6 +101,15 @@ export function GoogleProvider({
   };
 }
 
+/**
+ *
+ * @param redirectUri - Same as the value we included as `redirect_uri` when
+ * sending the user to Google to obtain the code.
+ * @param clientId
+ * @param clientSecret
+ * @param code
+ * @returns
+ */
 export async function exchangeGoogleAccessTokenAndReadStoreData(
   redirectUri: string,
   clientId: string,

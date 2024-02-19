@@ -1,10 +1,10 @@
 // @ts-nocheck
 
-import { getProjectInfo } from "fiber-link";
-import { ProjectInfo, ProviderInfo } from "fiber-link/src/types";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import { FormEvent, PropsWithChildren, useEffect } from "react";
+import { getProjectInfo } from "../../../handshake/dist";
+import { ProjectInfo, ProviderInfo } from "../../../handshake/src/types";
 import { linkOptions } from "../../link-config";
 import { LinkPage } from "./lib/LinkPage";
 import { startProviderAuthFlow } from "./lib/startFlow";

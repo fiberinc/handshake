@@ -1,6 +1,6 @@
 packages:
   - "app"
-  - "link"
+  - "handshake"
   # all packages in direct subdirs of packages/
   # - 'packages/*'
   # # all packages in subdirs of components/

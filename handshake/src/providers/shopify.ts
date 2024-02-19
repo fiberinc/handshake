@@ -5,16 +5,11 @@ import * as Sentry from "@sentry/node";
 import assert from "assert";
 import crypto from "crypto";
 import { Forbidden } from "http-errors";
-import { NextApiRequest } from "next";
 import querystring from "querystring";
 import { z } from "zod";
-import {
-  InvalidRequest,
-  NextApiRequestWithQuery,
-  Provider,
-} from "./lib/Provider";
+import { InvalidRequest, Provider } from "./lib/Provider";
 
-export const DEFAULT_SHOPIFY_SCOPES = [
+const DEFAULT_SHOPIFY_SCOPES = [
   "read_themes",
   "read_orders",
   // 'read_all_orders', // Will need extra permissions for this.
@@ -36,7 +31,7 @@ export const DEFAULT_SHOPIFY_SCOPES = [
   "write_orders",
 ];
 
-export interface SessionShopData {
+interface SessionShopData {
   id: number;
   name: string;
   email: string;
@@ -46,20 +41,23 @@ export interface SessionShopData {
   city: string | null;
 }
 
-export const ShopifyCredentialSchema = z.object({
+const ShopifyCredentialSchema = z.object({
   accessToken: z.string(),
   myShopifyDomain: z.string(),
 });
 
-export type ShopifyCredential = z.infer<typeof ShopifyCredentialSchema>;
+type ShopifyCredential = z.infer<typeof ShopifyCredentialSchema>;
 
 const WEBSITE_URL = process.env.WEBSITE_URL ?? "";
 assert(WEBSITE_URL, "WEBSITE_URL is not set");
 
 const querySchema = z.object({
-  spapi_oauth_code: z.string(),
   state: z.string(),
-  selling_partner_id: z.string(),
+  shop: z.string(),
+  code: z.string(),
+  // spapi_oauth_code: z.string(),
+  // state: z.string(),
+  // selling_partner_id: z.string(),
   // mws_auth_token: z.string(),
 });
 
@@ -78,30 +76,34 @@ export const ShopifyProviderId = "shopify";
 export function ShopifyProvider({
   id,
   ...config
-}: FindAName<ShopifyConfig>): Provider<
+}: FindAName<Partial<ShopifyConfig>>): Provider<
   ShopifyConfig,
   CallbackParams,
   ShopifyCredential
 > {
   const providerId = id ?? ShopifyProviderId;
 
+  const scopes = config?.scopes || DEFAULT_SHOPIFY_SCOPES;
+
   return {
     id: providerId,
     type: ShopifyProviderId,
-    config,
+    config: {
+      clientId: config.clientId!,
+      clientSecret: config.clientSecret!,
+      scopes,
+    },
     metadata: {
       title: "Shopify",
       logo: "/images/providers/shopify.svg",
     },
-    getAuthorizationUrl(callbackHandlerUrl, extras): URL {
+    getAuthorizationUrl(callbackHandlerUrl, extras) {
       if (!extras?.shop) {
         throw Error("Shop value missing from query string.");
       }
 
-      const { clientId, scopes } = config;
-
       const authUrl = new URL(`https://${extras.shop}/admin/oauth/authorize`);
-      authUrl.searchParams.set("client_id", clientId);
+      authUrl.searchParams.set("client_id", config.clientId!);
       authUrl.searchParams.set("scope", scopes.join(","));
       authUrl.searchParams.set("redirect_uri", callbackHandlerUrl);
 
@@ -109,20 +111,21 @@ export function ShopifyProvider({
       const nonce = crypto.randomBytes(16).toString("hex");
       authUrl.searchParams.set("state", nonce);
 
-      return authUrl;
+      return { url: authUrl.toString() };
     },
-    parseQueryParams(req: NextApiRequest) {
-      return querySchema.parse(req.query);
+    validateQueryParams(params: URLSearchParams) {
+      return querySchema.parse(Object.fromEntries(params.entries()));
     },
-    async exchange(req: NextApiRequestWithQuery<CallbackParams>) {
+    async exchange(params: CallbackParams, req: Request) {
       let accessToken: string;
       let myShopifyDomain: string;
       let scopes: string[];
       try {
         const objs = await getAccessTokenAndShopInfo(
           req,
-          config.clientId,
-          config.clientSecret,
+          params,
+          config.clientId!,
+          config.clientSecret!,
         );
         accessToken = objs.accessToken;
         myShopifyDomain = objs.myShopifyDomain;
@@ -151,21 +154,22 @@ export function ShopifyProvider({
 }
 export type NonceValidator = (args: {
   nonce: string | undefined;
-  req: NextApiRequest;
+  req: Request;
   shopName: string;
 }) => Promise<boolean>;
 
 export async function getAccessTokenAndShopInfo(
-  req: NextApiRequest,
+  req: Request,
+  searchParams: CallbackParams,
   shopifyClientId: string,
   shopifyClientSecret: string,
   options?: { validateNonce: NonceValidator },
 ) {
   // verifyHmac is supposed to use the entire query params of the redirected
   // URL, but Next.js modifies that object to add `projectAlias` and others.
-  const { projectAlias, ...queryMinusNextjs } = req.query;
+  const { ...queryMinusNextjs } = searchParams;
   const valid = verifyHmac(queryMinusNextjs, shopifyClientSecret);
-  const shopName = (req.query.shop as string) ?? "";
+  const shopName = (searchParams.shop as string) ?? "";
   assert(shopName);
 
   if (!valid) {
@@ -175,7 +179,7 @@ export async function getAccessTokenAndShopInfo(
   const validateNonce = options && options.validateNonce;
   const validNonce = validateNonce
     ? await validateNonce({
-        nonce: req.query.state as string | undefined,
+        nonce: searchParams.state as string | undefined,
         req,
         shopName,
       })
@@ -185,7 +189,7 @@ export async function getAccessTokenAndShopInfo(
   }
 
   const accessTokenQuery = querystring.stringify({
-    code: req.query.code,
+    code: searchParams.code,
     client_id: shopifyClientId,
     client_secret: shopifyClientSecret,
   });
@@ -268,7 +272,7 @@ export async function getShopifyShopInformation(
  * Use the shopify API SECRET to verify that this request truly came from
  * Shopify.
  */
-export default function verifyHmac(query: any, shopifyApiSecretKey: string) {
+function verifyHmac(query: any, shopifyApiSecretKey: string) {
   assert(shopifyApiSecretKey);
 
   const { hmac, signature: _signature, ...map } = query;

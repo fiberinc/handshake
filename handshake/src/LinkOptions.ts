@@ -4,8 +4,8 @@ interface LinkOptionsInner {
   project: {
     id: string;
     title: string;
-    logo: string;
-    supportEmail: string;
+    logo?: string;
+    supportEmail?: string;
   };
   providers: Provider[];
   /**
@@ -23,15 +23,22 @@ interface LinkOptionsInner {
   ): Promise<Record<string, string>> | undefined;
 }
 
-export interface LinkOptions extends LinkOptionsInner {
+export interface HandshakeOptions extends LinkOptionsInner {
   secret: string;
   getProvider(id: string): Provider | null;
+  // abc
+  callbackUriParam: string;
+  sessionCookie: string;
 }
 
-export function LinkConfig(args: LinkOptionsInner): LinkOptions {
+export function Handshake(args: LinkOptionsInner): HandshakeOptions {
   return {
     secret: "1234",
     ...args,
+    callbackUriParam: "callback_uri",
+    // Name of the cookie where to store information such as account IDs, before
+    // sending the user to the third-party service.
+    sessionCookie: "session",
     getProvider(id: string): Provider | null {
       return args.providers.find((provider) => provider.id === id) ?? null;
     },

@@ -3,10 +3,10 @@
 <p align="center">
   <img src="https://media1.giphy.com/media/750o1RprTNj8ldkwak/200.gif?cid=5a38a5a2julf1ukb89781yu88pth7ol9sm22s52gc88gc0hs&ep=v1_gifs_search&rid=300.gif&ct=g" width="300"/>
 
-  <h1 align="center">OAuth Link</h1>
+  <h1 align="center">Handshake</h1>
 
   <p align="center">
-    Self-hosted solution for authentication against third-party APIs.
+    Self-hosted solution for OAuth authentication against third-party APIs.
   </p>
 
   <p align="center" style="align: center;">
@@ -19,10 +19,9 @@
 
 ## Introduction
 
-Link (name TBD) is a self-hosted Next.js app that handles OAuth with popular
-tools and APIs. We are built over
-[next-auth](https://github.com/nextauthjs/next-auth), which lets us support
-authentication with 60+ providers out of the box.
+Handshake is a self-hosted Next.js app that handles OAuth with popular tools and
+APIs. We are built over [next-auth](https://github.com/nextauthjs/next-auth),
+which lets us support authentication with 60+ providers out of the box.
 
 ## How it works
 

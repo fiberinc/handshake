@@ -1,13 +1,7 @@
-import * as Sentry from "@sentry/node";
 import assert from "assert";
 import crypto from "crypto";
-import { NextApiRequest } from "next";
 import { z } from "zod";
-import {
-  InvalidRequest,
-  NextApiRequestWithQuery,
-  Provider,
-} from "./lib/Provider";
+import { InvalidRequest, Provider } from "./lib/Provider";
 
 export const AmazonSellerCredentialSchema = z.object({
   accessToken: z.string(),
@@ -108,7 +102,7 @@ export function AmazonSellerProvider({
       title: "Amazon Seller Central",
       logo: "/images/providers/amazon-a.svg",
     },
-    getAuthorizationUrl(callbackHandlerUrl: string): URL {
+    getAuthorizationUrl(callbackHandlerUrl: string) {
       const { appId, isDraftApp } = config;
       assert(appId, "AmazonConfig.appId is not set");
 
@@ -137,22 +131,23 @@ export function AmazonSellerProvider({
 
       authUrl.searchParams.append("redirect_uri", callbackHandlerUrl);
 
-      return authUrl;
+      return { url: authUrl.toString() };
     },
-    parseQueryParams(req: NextApiRequest) {
-      return querySchema.parse(req.query);
+    validateQueryParams(params: URLSearchParams) {
+      return querySchema.parse(Object.fromEntries(params.entries()));
     },
-    async exchange(req: NextApiRequestWithQuery<CallbackParams>) {
+    async exchange(params: CallbackParams) {
       // 	projectAlias: string,
       // 	clientId: string,
       // 	clientSecret: string,
       // 	oAuthCode: string
       // ) {
+
       // Docs at
       // https://developer-docs.amazon.com/sp-api/docs/website-authorization-workflow#step-4-your-application-exchanges-the-lwa-authorization-code-for-a-lwa-refresh-token
       const body = {
         grant_type: "authorization_code",
-        code: req.query.spapi_oauth_code,
+        code: params.spapi_oauth_code,
         client_id: config.clientId,
         client_secret: config.clientSecret,
       };
@@ -168,14 +163,6 @@ export function AmazonSellerProvider({
 
       const json = await res.json();
       console.log("json", body, json);
-
-      Sentry.captureMessage("Params are", {
-        extra: {
-          res,
-          json,
-          body,
-        },
-      });
 
       if (json.error) {
         if (json.error === "invalid_request") {

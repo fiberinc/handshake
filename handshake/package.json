@@ -1,5 +1,5 @@
 {
-  "name": "fiber-link",
+  "name": "fiber-handshake",
   "description": "Utility functions for acquiring OAuth credentials for popular APIs.",
   "version": "0.0.1",
   "license": "MIT",
@@ -39,16 +39,18 @@
     "http-errors": "^2.0.0",
     "ms": "^2.1.3",
     "nanoid": "^5.0.1",
+    "next-auth": "^4.24.6",
+    "oauth4webapi": "^2.10.3",
     "tailwind-merge": "^1.13.2",
     "zod": "^3.22.4"
   },
-  "homepage": "https://fiber.dev/link",
+  "homepage": "https://fiber.dev/handshake",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/fiberinc/link.git"
+    "url": "git+https://github.com/fiberinc/handshake.git"
   },
   "bugs": {
-    "url": "https://github.com/fiberinc/link/issues"
+    "url": "https://github.com/fiberinc/handshake/issues"
   },
   "keywords": [
     "oauth",

@@ -1,8 +1,8 @@
 // @ts-nocheck
 
-import { ProjectInfo, ProviderInfo } from "fiber-link";
 import Head from "next/head";
 import pckg from "../../../../../package.json";
+import { ProjectInfo, ProviderInfo } from "../../../../handshake/dist";
 
 interface Props {
   project: ProjectInfo;

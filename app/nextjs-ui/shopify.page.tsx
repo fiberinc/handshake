@@ -2,12 +2,12 @@
 
 import { Tooltip } from "@/components/Tooltip";
 import { InfoCircledIcon } from "@radix-ui/react-icons";
-import { ProjectInfo } from "fiber-link/src/types";
 import { useRouter } from "next/router";
 import { FormEvent, useState } from "react";
 import toast from "react-hot-toast";
 import { useLocalStorage } from "react-use";
 import { twMerge } from "tailwind-merge";
+import { ProjectInfo } from "../../handshake/src/types";
 import {
   Props,
   getServerSideProps,

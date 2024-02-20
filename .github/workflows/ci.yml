@@ -17,7 +17,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: npm
+          cache: pnpm
       - run: pnpm i
       - run: pnpm run lint
 
@@ -28,7 +28,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: npm
+          cache: pnpm
       - run: pnpm i
       - run: pnpm test
       - uses: codecov/codecov-action@v3

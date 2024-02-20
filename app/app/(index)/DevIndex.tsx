@@ -12,6 +12,8 @@ export async function DevIndex() {
     let args =
       "state=111&account_id=222&callback_uri=http://localhost:3000/done";
 
+    // Shopify redirection consumes a 'shop' field to identify the shop for its
+    // own redirection.
     if (provider.id === "shopify") {
       args += "&extras.shop=hahvaleu.myshopify.com";
     }

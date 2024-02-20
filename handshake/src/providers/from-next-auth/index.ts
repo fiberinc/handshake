@@ -79,7 +79,7 @@ const Google = require("next-auth/providers/google").default;
 export const GoogleProvider = makeFromNextAuth(Google);
 
 const Hubspot = require("next-auth/providers/hubspot").default;
-// export const HubspotProvider = makeFromNextAuth(Hubspot);
+export const HubspotProvider = makeFromNextAuth(Hubspot);
 
 const IdentityServer4 = require("next-auth/providers/identity-server4").default;
 export const IdentityServer4Provider = makeFromNextAuth(IdentityServer4);

@@ -20,6 +20,7 @@ export type ProviderFactory<Config extends TypicalOAuthConfig> = (
 export type TypicalOAuthConfig = {
   clientId: string;
   clientSecret: string;
+  scopes?: string[];
 };
 
 /**
@@ -36,11 +37,7 @@ export function OAuthProvider<Config extends TypicalOAuthConfig>(
       metadata: {
         title: providerInfo.name,
       },
-      validateQueryParams(params, req) {
-        return {};
-      },
-
-      async getAuthorizationUrl(callbackHandlerUrl, session) {
+      async getAuthorizationUrl(callbackHandlerUrl) {
         // Handle OAuth v1.x
         if (providerInfo.version?.startsWith("1.")) {
           throw new TypeError("Not implemented");
@@ -48,9 +45,6 @@ export function OAuthProvider<Config extends TypicalOAuthConfig>(
 
         // We'll return whatever is set here to the parent.
         const persist: Record<string, string> = {};
-
-        // In next-auth, this is handled by
-        // next-auth/packages/next-auth/src/core/lib/oauth/authorization-url.ts
 
         const client = await getOpenIdClient(
           providerInfo,
@@ -61,42 +55,29 @@ export function OAuthProvider<Config extends TypicalOAuthConfig>(
 
         const params: AuthorizationParameters = {};
 
-        const paramsFromTheUrl =
-          typeof providerInfo.authorization === "string"
-            ? Object.fromEntries(
-                new URL(providerInfo.authorization).searchParams,
-              )
-            : providerInfo.authorization?.params;
-        for (const key in paramsFromTheUrl) {
-          params[key] = paramsFromTheUrl[key] as string;
-        }
-
-        // let url: URL;
-        // if (providerInfo.authorization) {
-        //  url = new URL(providerInfo.authorization);
-        // } else {
-        //   console.log("providerInfo.issuer", providerInfo.issuer);
-        //   url = await getUrlFromIssuer(providerInfo.issuer!);
-        // }
-
-        // Replace
         params.response_type = "code";
         // @felipap: from next-auth: clientId can technically be undefined,
         // should we check this in assert.ts or rely on the Authorization Server
         // to do it?
         params.client_id = args.clientId;
         params.redirect_uri = callbackHandlerUrl;
-        // Incorporate from `authorization.params`:
-        if (
-          providerInfo.authorization &&
-          typeof providerInfo.authorization === "object" &&
-          providerInfo.authorization.params
-        ) {
-          for (const key in providerInfo.authorization.params ?? {}) {
-            params[key] = providerInfo.authorization.params[key] as string;
-          }
+
+        const paramsFromProviderInfo =
+          typeof providerInfo.authorization === "string"
+            ? Object.fromEntries(
+                new URL(providerInfo.authorization).searchParams,
+              )
+            : providerInfo.authorization?.params;
+        for (const key in paramsFromProviderInfo) {
+          params[key] = paramsFromProviderInfo[key] as string;
+        }
+        console.log("args.scopes", args.scopes);
+
+        if (args.scopes) {
+          params.scope = args.scopes.join(" ");
         }
 
+        // Generate a code verifier if the provider requires it.
         if (providerInfo.checks?.includes("pkce")) {
           const code_verifier = generators.codeVerifier();
           const value = generators.codeChallenge(code_verifier);
@@ -206,177 +187,6 @@ export function OAuthProvider<Config extends TypicalOAuthConfig>(
 
         console.log("tokens", tokens);
 
-        // // @ts-ignore
-        // if (!token?.url && !userinfo?.url) {
-        //   // We assume that issuer is always defined as this has been asserted earlier
-        //   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        //   const issuer = new URL(providerInfo.issuer!);
-        //   const discoveryResponse = await oauth4.discoveryRequest(issuer);
-        //   const discoveredAs = await oauth4.processDiscoveryResponse(
-        //     issuer,
-        //     discoveryResponse,
-        //   );
-
-        //   if (!discoveredAs.token_endpoint)
-        //     throw new TypeError(
-        //       "TODO: Authorization server did not provide a token endpoint.",
-        //     );
-
-        //   if (!discoveredAs.userinfo_endpoint)
-        //     throw new TypeError(
-        //       "TODO: Authorization server did not provide a userinfo endpoint.",
-        //     );
-
-        //   authServer = discoveredAs;
-        // } else {
-        //   assert("nextAuthProvider.issuer", providerInfo.issuer);
-        //   console.log("token?.url.toString", token, userinfo);
-
-        //   authServer = {
-        //     issuer: providerInfo.issuer!, // TODO: review fallback issuer
-        //     token_endpoint: token?.url.toString(),
-        //     userinfo_endpoint: userinfo?.url.toString(),
-        //   };
-        // }
-
-        // assert(providerInfo.clientId, "clientId");
-
-        // const client: oauth4.Client = {
-        //   client_id: providerInfo.clientId,
-        //   client_secret: providerInfo.clientSecret,
-        //   ...providerInfo.client,
-        // };
-
-        // if (providerInfo.checks?.includes("state")) {
-        //   throw Error("Not implemented");
-        // }
-
-        // // https://github.com/panva/oauth4webapi/blob/main/docs/functions/validateAuthResponse.md
-        // const codeGrantParams = oauth4.validateAuthResponse(
-        //   authServer,
-        //   client,
-        //   new URLSearchParams(searchParams),
-        //   // nextAuthProvider.checks?.includes("state") ? "" :
-        //   oauth4.skipStateCheck,
-        // );
-
-        // /** https://www.rfc-editor.org/rfc/rfc6749#section-4.1.2.1 */
-        // if (oauth4.isOAuth2Error(codeGrantParams)) {
-        //   const cause = {
-        //     providerId: providerInfo.id,
-        //     ...codeGrantParams,
-        //   };
-        //   console.log("OAuthCallbackError", cause);
-        //   throw new OAuthCallbackError(
-        //     "OAuth Provider returned an error",
-        //     // cause,
-        //   );
-        // }
-
-        // let codeVerifier: string | null = null;
-        // if (providerInfo.checks?.includes("pkce")) {
-        //   if (!session.codeVerifier) {
-        //     throw new InvalidCheck(
-        //       "PKCE code_verifier value could not be parsed.",
-        //     );
-        //   }
-        //   codeVerifier = session.codeVerifier;
-        // }
-        // // await checks.pkce.getCodeVerifierFromCookie(
-        // //   cookies,
-        // //   resCookies,
-        // //   options,
-        // // );
-
-        // let codeGrantResponse = await oauth4.authorizationCodeGrantRequest(
-        //   authServer,
-        //   client,
-        //   codeGrantParams,
-        //   callbackHandlerUrl,
-        //   codeVerifier ?? "auth", // TODO: review fallback code verifier
-        // );
-
-        // if (providerInfo.token?.conform) {
-        //   codeGrantResponse =
-        //     (await providerInfo.token.conform(codeGrantResponse.clone())) ??
-        //     codeGrantResponse;
-        // }
-
-        // let challenges: oauth4.WWWAuthenticateChallenge[] | undefined;
-        // if (
-        //   (challenges =
-        //     oauth4.parseWwwAuthenticateChallenges(codeGrantResponse))
-        // ) {
-        //   for (const challenge of challenges) {
-        //     console.log("challenge", challenge);
-        //   }
-        //   throw new Error("TODO: Handle www-authenticate challenges as needed");
-        // }
-
-        // let profile: Profile = {};
-        // let tokens: TokenSet & Pick<Account, "expires_at">;
-
-        // if (providerInfo.type === "oidc") {
-        //   let nonce: string | null = null;
-        //   if (providerInfo.checks?.includes("nonce")) {
-        //     if (session.nonce) {
-        //       nonce = session.nonce;
-        //     } else {
-        //       throw new InvalidCheck("Nonce cookie was missing.");
-        //     }
-        //   }
-
-        //   const result = await oauth4.processAuthorizationCodeOpenIDResponse(
-        //     authServer,
-        //     client,
-        //     codeGrantResponse,
-        //     nonce ?? oauth4.expectNoNonce,
-        //   );
-
-        //   if (oauth4.isOAuth2Error(result)) {
-        //     console.log("error", result);
-        //     throw new Error("TODO: Handle OIDC response body error");
-        //   }
-
-        //   profile = oauth4.getValidatedIdTokenClaims(result);
-        //   tokens = result;
-        // } else {
-        //   tokens = await oauth4.processAuthorizationCodeOAuth2Response(
-        //     authServer,
-        //     client,
-        //     codeGrantResponse,
-        //   );
-        //   if (oauth4.isOAuth2Error(tokens as any)) {
-        //     console.log("error", tokens);
-        //     throw new Error("TODO: Handle OAuth 2.0 response body error");
-        //   }
-
-        //   if (typeof userinfo === "object" && userinfo.request) {
-        //     const _profile = await userinfo.request({
-        //       tokens,
-        //       provider: providerInfo,
-        //       // client: nextAuthProvider,
-        //     });
-        //     if (_profile instanceof Object) {
-        //       profile = _profile;
-        //     }
-        //   } else if (userinfo?.url) {
-        //     const userinfoResponse = await oauth4.userInfoRequest(
-        //       authServer,
-        //       client,
-        //       (tokens as any).access_token,
-        //     );
-        //     profile = await userinfoResponse.json();
-        //   } else {
-        //     throw new TypeError("No userinfo endpoint configured");
-        //   }
-        // }
-
-        // if (tokens.expires_in) {
-        //   tokens.expires_at =
-        //     Math.floor(Date.now() / 1000) + Number(tokens.expires_in);
-        // }
-
         return {
           tokens,
         };
@@ -385,24 +195,20 @@ export function OAuthProvider<Config extends TypicalOAuthConfig>(
   };
 }
 
-async function getUrlFromIssuer(issuer: string) {
-  let issuerUrl: URL;
-  try {
-    issuerUrl = new URL(issuer);
-  } catch (e) {
-    throw new TypeError(
-      "The 'issuer' provided in the provider config contains an invalid URL.",
-    );
-  }
-  const discoveryResponse = await oauth4.discoveryRequest(issuerUrl);
-  const as = await oauth4.processDiscoveryResponse(
-    issuerUrl,
-    discoveryResponse,
-  );
-  if (!as.authorization_endpoint) {
-    throw new TypeError(
-      "Authorization server did not provide an authorization endpoint.",
-    );
-  }
-  return new URL(as.authorization_endpoint);
-}
+// This is from next-auth@5. Will we need it later or is the current use of
+// `wellKnown` all we need?
+//
+// async function getUrlFromIssuer(issuer: string) { let issuerUrl: URL; try {
+//   issuerUrl = new URL(issuer); } catch (e) { throw new TypeError( "The
+//   'issuer' provided in the provider config contains an invalid URL.",
+//     );
+//   }
+//   const discoveryResponse = await oauth4.discoveryRequest(issuerUrl); const
+//   as = await oauth4.processDiscoveryResponse( issuerUrl, discoveryResponse,
+//   );
+//   if (!as.authorization_endpoint) { throw new TypeError( "Authorization
+//     server did not provide an authorization endpoint.",
+//     );
+//   }
+//   return new URL(as.authorization_endpoint);
+// }

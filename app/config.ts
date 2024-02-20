@@ -4,6 +4,7 @@ import {
   GitHubProvider,
   GoogleProvider,
   Handshake,
+  HubspotProvider,
   ShopifyProvider,
 } from "fiber-handshake";
 
@@ -20,6 +21,16 @@ export const config = Handshake({
     GitHubProvider({
       clientId: process.env.GITHUB_CLIENT_ID!,
       clientSecret: process.env.GITHUB_CLIENT_SECRET!,
+    }),
+    HubspotProvider({
+      clientId: process.env.HUBSPOT_CLIENT_ID!,
+      clientSecret: process.env.HUBSPOT_CLIENT_SECRET!,
+      scopes: [
+        "oauth",
+        "e-commerce",
+        "crm.schemas.contacts.read",
+        "crm.objects.contacts.read",
+      ],
     }),
     ShopifyProvider({
       clientId: process.env.SHOPIFY_CLIENT_ID!,

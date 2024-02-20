@@ -37,7 +37,7 @@ export interface Provider<
    *
    * @throws
    */
-  validateQueryParams(
+  validateQueryParams?(
     params: URLSearchParams,
     req: Request,
   ): QueryParams & {

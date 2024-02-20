@@ -44,6 +44,9 @@ export async function getOpenIdClient(
     // info.jwks,
   );
 
+  console.log("clientId", clientId);
+  console.log("clientSecret", clientSecret);
+
   // allow a 10 second skew
   // See https://github.com/nextauthjs/next-auth/issues/3032
   // and https://github.com/nextauthjs/next-auth/issues/3067

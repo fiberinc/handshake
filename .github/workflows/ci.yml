@@ -14,11 +14,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - name: Set up pnpm 8.x
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
       - uses: actions/setup-node@v3
         with:
           node-version: 18
           cache: pnpm
-      - run: pnpm i
+      - run: pnpm install --ignore-scripts
       - run: pnpm run lint
 
   test:

@@ -3,9 +3,9 @@ import { HttpError } from "http-errors";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { NextRequest, NextResponse } from "next/server";
-import { InternalOptions } from "../LinkOptions";
 import { parseSessionFromCookieValue } from "../cookies";
-import { Provider } from "../providers/lib/Provider";
+import { Provider } from "../core/Provider";
+import { InternalOptions } from "../core/options";
 
 export async function handleCallback(
   options: InternalOptions,

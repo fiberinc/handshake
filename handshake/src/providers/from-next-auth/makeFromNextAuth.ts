@@ -1,5 +1,5 @@
 import { OAuthConfig, OAuthUserConfig } from "next-auth/providers";
-import { Provider } from "../lib/Provider";
+import { Provider } from "../../core/Provider";
 import {
   OAuthProvider,
   ProviderFactory,

@@ -1,5 +1,5 @@
 import { NextRequest } from "next/server";
-import { SessionValue } from "../../cookies";
+import { SessionValue } from "../cookies";
 
 export type RequestWithParams<P = any> = NextRequest & {
   // query: P;

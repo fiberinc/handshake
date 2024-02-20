@@ -6,7 +6,7 @@ import crypto from "crypto";
 import { Forbidden } from "http-errors";
 import querystring from "querystring";
 import { z } from "zod";
-import { InvalidRequest, Provider } from "./lib/Provider";
+import { InvalidRequest, Provider } from "../core/Provider";
 
 const DEFAULT_SHOPIFY_SCOPES = [
   "read_themes",

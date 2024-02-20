@@ -1,7 +1,7 @@
 import assert from "assert";
 import crypto from "crypto";
 import { z } from "zod";
-import { InvalidRequest, Provider } from "./lib/Provider";
+import { InvalidRequest, Provider } from "../core/Provider";
 
 export const AmazonSellerCredentialSchema = z.object({
   accessToken: z.string(),

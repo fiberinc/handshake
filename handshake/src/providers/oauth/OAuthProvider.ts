@@ -8,8 +8,8 @@ import {
   generators,
 } from "openid-client";
 import { SessionValue } from "~/cookies";
-import { InvalidCheck } from "~/errors";
-import { Provider } from "../lib/Provider";
+import { InvalidCheck } from "~/core/errors";
+import { Provider } from "../../core/Provider";
 import { getOpenIdClient } from "./client";
 import { OAuthProviderInfo } from "./types";
 

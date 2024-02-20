@@ -1,6 +1,6 @@
 import { HttpError } from "http-errors";
 import { NextRequest, NextResponse } from "next/server";
-import { InternalOptions } from "../LinkOptions";
+import { InternalOptions } from "../core/options";
 import { handleCallback } from "./handle-callback";
 import { handleRedirect } from "./handle-redirect";
 

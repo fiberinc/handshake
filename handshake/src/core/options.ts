@@ -1,4 +1,4 @@
-import { Provider } from "./providers/lib/Provider";
+import { Provider } from "./Provider";
 
 interface Options {
   project: {

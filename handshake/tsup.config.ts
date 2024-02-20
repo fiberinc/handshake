@@ -6,8 +6,8 @@ export default defineConfig((options: Options) => ({
   entry: ["src/**/*.ts"],
   format: ["esm"],
   dts: true,
-  sourcemap: true,
-  // minify: true,
+  minify: true,
+  // sourcemap: true,
   external: ["react"],
   ...options,
 }));

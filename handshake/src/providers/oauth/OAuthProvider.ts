@@ -1,4 +1,3 @@
-import * as oauth4 from "oauth4webapi";
 import {
   AuthorizationParameters,
   CallbackParamsType,
@@ -84,14 +83,14 @@ export function OAuthProvider<Config extends TypicalOAuthConfig>(
 
         // Generate a nonce if the provider requires it.
         if (providerInfo.checks?.includes("nonce")) {
-          const value = oauth4.generateRandomNonce();
+          const value = generators.nonce();
           params.nonce = value;
           persist.nonce = value;
         }
 
         // Generate a state if the provider requires it.
         if (providerInfo.checks?.includes("state")) {
-          const value = oauth4.generateRandomState();
+          const value = generators.state();
           params.state = value;
           persist.state = value;
         }

@@ -55,13 +55,6 @@ export function OAuthProvider<Config extends TypicalOAuthConfig>(
 
         const params: AuthorizationParameters = {};
 
-        params.response_type = "code";
-        // @felipap: from next-auth: clientId can technically be undefined,
-        // should we check this in assert.ts or rely on the Authorization Server
-        // to do it?
-        params.client_id = args.clientId;
-        params.redirect_uri = callbackHandlerUrl;
-
         const paramsFromProviderInfo =
           typeof providerInfo.authorization === "string"
             ? Object.fromEntries(
@@ -71,7 +64,6 @@ export function OAuthProvider<Config extends TypicalOAuthConfig>(
         for (const key in paramsFromProviderInfo) {
           params[key] = paramsFromProviderInfo[key] as string;
         }
-        console.log("args.scopes", args.scopes);
 
         if (args.scopes) {
           params.scope = args.scopes.join(" ");

@@ -88,7 +88,7 @@ export function Handshake<Credential>(
   args: Options<Credential>,
 ): InternalOptions<Credential> {
   if (!args.secret) {
-    throw Error("Specify a environment variable was not provided.");
+    throw Error("Specify a valid `secret` attribute.");
   }
 
   return {

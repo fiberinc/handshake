@@ -1,11 +1,53 @@
 import { z } from "zod";
 
-const API_HOST =
-  process.env.NODE_ENV === "production"
-    ? "https://api.fiber.dev"
-    : "http://0.0.0.0:3001";
+const FIBER_SOURCES = {
+  "amazon-seller": "amazon",
+};
 
-const SLACK_INTERNAL_SIGNUP_CHANNEL_ID = "replace";
+// let fiberCredential;
+// let customExternalId = null;
+// if (providerId === ShopifyProviderId) {
+// } else if (providerId === GoogleProviderId) {
+//   fiberCredential = { ...(credential as any) };
+// } else if (providerId === AmazonSellerProviderId) {
+//   if (!account_id) {
+//     throw Error(`AmazonSeller needs 'account_id' query param`);
+//   }
+//   // Use the `account_id` parameter that we received from the client
+//   // application to set the account's "external id" in Fiber.
+//   customExternalId = account_id;
+//   // Send an AmazonSp credential the way Fiber expects it.
+//   fiberCredential = {
+//     refreshToken: (credential as any).refreshToken,
+//     sellerId: account_id,
+//   };
+// } else {
+//   throw Error(`unexpected provider ${providerId}`);
+// }
+
+// console.log("fiberCredential", fiberCredential);
+
+// // Map the provider ID to the name of the source on Fiber that we want to
+// // register this account into.
+// const FIBER_SOURCES = {
+// 	[AmazonSellerProviderId]: 'amazon',
+// };
+
+// let externalId: string;
+// try {
+// 	({ externalId } = await registerFiberAccount(
+// 		'',
+// 		'',
+// 		customExternalId,
+// 		(FIBER_SOURCES as any)[providerId],
+// 		fiberCredential
+// 	));
+// } catch (e: any) {
+// 	Sentry.captureException(e);
+// 	throw Error(`Failed to register Fiber account: ${e.message}`);
+// }
+
+const API_HOST = "https://api.fiber.dev";
 
 /**
  *

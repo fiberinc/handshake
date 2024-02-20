@@ -5,7 +5,18 @@ import { handleCallback } from "./handle-callback";
 import { handleRedirect } from "./handle-redirect";
 
 // https://nextjs.org/docs/app/building-your-application/routing/route-handlers
-export function NextLink(options: InternalOptions) {
+export function NextHandshake(options: InternalOptions) {
+  // for (const provider of options.providers) {
+  //   console.log(
+  //     chalk.blue(`/api/auth/${provider.id}/redirect`),
+  //     `– ${chalk.yellow("redirect")} for provider type ${provider.type}`,
+  //   );
+  //   console.log(
+  //     chalk.blue(`/api/auth/${provider.id}/callback`),
+  //     `– ${chalk.yellow("callback")} for provider type ${provider.type}`,
+  //   );
+  // }
+
   const handler = async (req: NextRequest) => {
     // FIXME refactor
     const pathname = new URL(req.url).pathname;

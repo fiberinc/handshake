@@ -28,6 +28,6 @@
   },
   "plugins": [
     "@typescript-eslint",
-    "plugin:prettier/recommended"
+    "prettier/recommended"
   ]
 }

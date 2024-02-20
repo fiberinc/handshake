@@ -3,13 +3,13 @@ import { BadRequest, HttpError, InternalServerError } from "http-errors";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { NextRequest, NextResponse } from "next/server";
-import { HandshakeOptions } from "../LinkOptions";
+import { InternalOptions } from "../LinkOptions";
 import { getSessionValueToSave } from "../cookies";
 import { Provider } from "../providers/lib/Provider";
 import { getNextHost } from "./handle-callback";
 
 export async function handleRedirect(
-  options: HandshakeOptions,
+  options: InternalOptions,
   projectId: string,
   provider: Provider,
   req: NextRequest,

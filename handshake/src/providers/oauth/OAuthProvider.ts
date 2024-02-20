@@ -68,6 +68,10 @@ export function OAuthProvider<Config extends TypicalOAuthConfig>(
         if (args.scopes) {
           params.scope = args.scopes.join(" ");
         }
+        // @felipap: for later
+        // if (inner.type === "oidc" && !params.has("scope")) {
+        //   params.scope = "openid profile email"
+        // }
 
         // Generate a code verifier if the provider requires it.
         if (providerInfo.checks?.includes("pkce")) {
@@ -91,11 +95,6 @@ export function OAuthProvider<Config extends TypicalOAuthConfig>(
           params.state = value;
           persist.state = value;
         }
-
-        // @felipap: for later
-        // if (inner.type === "oidc" && !params.has("scope")) {
-        //   params.scope = "openid profile email"
-        // }
 
         const url = client.authorizationUrl(params);
 

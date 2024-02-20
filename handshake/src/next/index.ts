@@ -1,11 +1,11 @@
 import { HttpError } from "http-errors";
 import { NextRequest, NextResponse } from "next/server";
-import { HandshakeOptions } from "../LinkOptions";
+import { InternalOptions } from "../LinkOptions";
 import { handleCallback } from "./handle-callback";
 import { handleRedirect } from "./handle-redirect";
 
 // https://nextjs.org/docs/app/building-your-application/routing/route-handlers
-export function NextLink(options: HandshakeOptions) {
+export function NextLink(options: InternalOptions) {
   const handler = async (req: NextRequest, res: NextResponse) => {
     // FIXME refactor
     const pathname = new URL(req.url).pathname;

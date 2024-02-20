@@ -1,18 +1,23 @@
 import { Provider } from "./providers/lib/Provider";
 
-interface LinkOptionsInner {
+interface Options {
   project: {
     id: string;
     title: string;
     logo?: string;
     supportEmail?: string;
   };
+
   providers: Provider[];
+
   /**
    * A list of hosts that we are allowed to redirect users back to.
    */
   redirectUris: string[];
+
   /**
+   * Callback on successful login.
+   *
    * @param linkParams - Query params we received from the client.
    * @returns Returns a list of params to send back to the redirect URL.
    */
@@ -23,7 +28,7 @@ interface LinkOptionsInner {
   ): Promise<Record<string, string>> | undefined;
 }
 
-export interface HandshakeOptions extends LinkOptionsInner {
+export interface InternalOptions extends Options {
   secret: string;
   getProvider(id: string): Provider | null;
   // abc
@@ -31,7 +36,7 @@ export interface HandshakeOptions extends LinkOptionsInner {
   callbackUriParam: string;
 }
 
-export function Handshake(args: LinkOptionsInner): HandshakeOptions {
+export function Handshake(args: Options): InternalOptions {
   const secret = process.env.SESSION_SECRET;
   if (!secret) {
     throw Error(

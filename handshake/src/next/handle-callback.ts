@@ -3,12 +3,12 @@ import { HttpError } from "http-errors";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { NextRequest, NextResponse } from "next/server";
-import { HandshakeOptions } from "../LinkOptions";
+import { InternalOptions } from "../LinkOptions";
 import { parseSessionFromCookieValue } from "../cookies";
 import { Provider } from "../providers/lib/Provider";
 
 export async function handleCallback(
-  options: HandshakeOptions,
+  options: InternalOptions,
   projectId: string,
   provider: Provider,
   req: NextRequest,
@@ -163,7 +163,7 @@ export async function handleCallback(
  */
 export function isValidDeveloperCallbackUri(
   value: string,
-  options: HandshakeOptions,
+  options: InternalOptions,
   req: NextRequest,
 ): boolean {
   // If a callback cookie is set, use it. Make sure it agrees with one of the

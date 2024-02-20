@@ -1,7 +1,6 @@
 // Code here is from https://github.com/bluebeel/nextjs-shopify-auth, modified
 // to change the environmental keys it looks for.
 
-import * as Sentry from "@sentry/node";
 import assert from "assert";
 import crypto from "crypto";
 import { Forbidden } from "http-errors";
@@ -136,7 +135,6 @@ export function ShopifyProvider({
         // if (e instanceof HttpError) {
         // 	throw e
         // }
-        Sentry.captureException(e);
 
         // TODO handle
         throw e;

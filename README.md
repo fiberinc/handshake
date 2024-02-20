@@ -32,13 +32,11 @@ This repo is a Next.js app that you can self host using Vercel.
 Modify the `config.ts` file with your credentials.
 
 ```js
-export nextOptions = NextLink({
+export nextOptions = Handshake({
   providers: [
     GoogleProvider({
-      clientId: "",
-      clientSecret: "",
-      accessToken: true,
-      refreshToken: true,
+      clientId: process.env.GOOGLE_CLIENT_ID!,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
     }),
   ],
 });
@@ -66,6 +64,10 @@ In case of success, users will be redirected back to you with the following para
 | state        | The state parameter. You can use this to associate.                   | Required    |
 
 ## Deploying
+
+Deploy this app to Vercel in a few simple steps.
+
+`vercel login`
 
 `vercel deploy`
 

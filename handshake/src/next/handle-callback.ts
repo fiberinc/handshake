@@ -2,17 +2,16 @@ import chalk from "chalk";
 import { HttpError } from "http-errors";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { NextRequest, NextResponse } from "next/server";
-import { parseSessionFromCookieValue } from "../cookies";
-import { Provider } from "../core/Provider";
-import { InternalOptions } from "../core/options";
+import { NextRequest } from "next/server";
+import { Provider } from "~/core/Provider";
+import { InternalOptions } from "~/core/options";
+import { parseSessionFromStringValue } from "~/core/session";
 
 export async function handleCallback(
   options: InternalOptions,
-  projectId: string,
+  tenantId: string,
   provider: Provider,
   req: NextRequest,
-  res: NextResponse,
 ) {
   if (req.method !== "GET") {
     return new Response(
@@ -43,16 +42,16 @@ export async function handleCallback(
 
   // Get session valued we saved in a cookie.
   const cookieStore = cookies();
-  const savedCookie = cookieStore.get(options.sessionCookie);
+  const savedCookie = cookieStore.get(options.sessionCookieName);
   if (!savedCookie) {
     return new Response(
-      `Session cookie not found ("${options.sessionCookie}"). Authentication might have taken too long or you arrived from a bad link.`,
+      `Session cookie not found ("${options.sessionCookieName}"). Authentication might have taken too long or you arrived from a bad link.`,
       {
         status: 400,
       },
     );
   }
-  const session = parseSessionFromCookieValue(savedCookie.value);
+  const session = parseSessionFromStringValue(savedCookie.value);
   console.log("Found session stored in cookie.", session);
 
   // TODO QUESTION should we clear the cookie here?
@@ -153,8 +152,12 @@ export async function handleCallback(
     }
   }
 
+  console.log("Will clear session cookie.");
+  cookies().set(options.sessionCookieName, "", { expires: new Date(0) });
+
   console.log(`Redirecting user to ${url.href}`);
   redirect(url.href);
+
   return;
 }
 

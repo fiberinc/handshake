@@ -6,8 +6,8 @@ import {
   TokenSet,
   generators,
 } from "openid-client";
-import { SessionValue } from "~/cookies";
 import { InvalidCheck } from "~/core/errors";
+import { SessionValue } from "~/core/session";
 import { Provider } from "../../core/Provider";
 import { getOpenIdClient } from "./client";
 import { OAuthProviderInfo } from "./types";

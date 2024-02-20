@@ -1,6 +1,6 @@
 import { BadRequest } from "http-errors";
 import { z } from "zod";
-import { InternalOptions } from "./core/options";
+import { InternalOptions } from "./options";
 
 // ATTENTION I'm scared of using these static cookie names here because they may
 // cause conflicts between different concurrent linking attempts. Example: a
@@ -61,34 +61,35 @@ export function getSessionValueToSave(
 
   // 1.
   // Get callback URI (mandatory).
-  const callbackUri = searchParams.get(options.callbackUriParam);
+  const callbackUri = searchParams.get(
+    options.developerCallbackUrlQueryParameter,
+  );
   // If callback_uri is not passed, that's OK, we'll just use the project
   // default.
   if (!callbackUri) {
     console.warn(
-      `No ${options.callbackUriParam} param passed. Won't save cookie.`,
+      `No ${options.developerCallbackUrlQueryParameter} param passed. Won't save cookie.`,
     );
-    throw new BadRequest(`Expected ${options.callbackUriParam} parameter.`);
+    throw new BadRequest(
+      `Expected ${options.developerCallbackUrlQueryParameter} parameter.`,
+    );
   }
   // Sanity-check the URI is valid.
   if (!callbackUri.match(/^https?:\/\/.+/)) {
     throw new BadRequest(
-      `Value for ${options.callbackUriParam} isn't a valid URI: ${callbackUri}.`,
+      `Value for ${options.developerCallbackUrlQueryParameter} isn't a valid URI: ${callbackUri}.`,
     );
   }
 
   // 2.
   // Get account id, if present.
-  const accountId = searchParams.get(STATE_PARAM);
-  if (!accountId) {
-    throw new BadRequest(`Expected ${ACCOUNT_ID_PARAM} parameter`);
-  }
+  const accountId = searchParams.get(ACCOUNT_ID_PARAM) ?? undefined;
 
   // 3.
   // Get state parameter.
-  const state = searchParams.get(STATE_PARAM);
+  const state = searchParams.get("state");
   if (!state) {
-    throw new BadRequest(`Expected ${STATE_PARAM} parameter`);
+    throw new BadRequest(`Expected state parameter`);
   }
 
   return {
@@ -99,19 +100,19 @@ export function getSessionValueToSave(
   };
 }
 
-export function parseSessionFromCookieValue(value: string): SessionValue {
+export function parseSessionFromStringValue(value: string): SessionValue {
   let parsed: any;
   try {
     parsed = JSON.parse(value);
   } catch (e) {
-    console.warn("Session cookie value:", value);
-    throw new BadRequest("Session cookie does not contain valid JSON.");
+    console.warn("Session string value:", value);
+    throw new BadRequest("Session string does not contain valid JSON.");
   }
 
   const result = SessionValueStruct.safeParse(parsed);
   if (!result.success) {
-    console.warn("Session cookie value:", value);
-    throw new BadRequest("Session cookie has unexpected format.");
+    console.warn("Session string value:", value);
+    throw new BadRequest("Session string has unexpected format.");
   }
 
   return result.data;

@@ -47,17 +47,11 @@ const ShopifyCredentialSchema = z.object({
 
 type ShopifyCredential = z.infer<typeof ShopifyCredentialSchema>;
 
-const WEBSITE_URL = process.env.WEBSITE_URL ?? "";
-assert(WEBSITE_URL, "WEBSITE_URL is not set");
 
 const querySchema = z.object({
   state: z.string(),
   shop: z.string(),
   code: z.string(),
-  // spapi_oauth_code: z.string(),
-  // state: z.string(),
-  // selling_partner_id: z.string(),
-  // mws_auth_token: z.string(),
 });
 
 type CallbackParams = z.infer<typeof querySchema>;

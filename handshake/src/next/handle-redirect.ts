@@ -2,10 +2,10 @@ import chalk from "chalk";
 import { BadRequest, HttpError, InternalServerError } from "http-errors";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { NextRequest, NextResponse } from "next/server";
-import { getSessionValueToSave } from "../cookies";
-import { Provider } from "../core/Provider";
-import { InternalOptions } from "../core/options";
+import { NextRequest } from "next/server";
+import { Provider } from "~/core/Provider";
+import { InternalOptions } from "~/core/options";
+import { getSessionValueToSave } from "~/core/session";
 import { getNextHost } from "./handle-callback";
 
 export async function handleRedirect(
@@ -13,7 +13,6 @@ export async function handleRedirect(
   projectId: string,
   provider: Provider,
   req: NextRequest,
-  _: NextResponse,
 ) {
   if (req.method !== "GET") {
     return new Response(`Expected method GET, not ${req.method}.`, {
@@ -80,9 +79,9 @@ export async function handleRedirect(
   }
 
   const cookieStore = cookies();
-  cookieStore.set(options.sessionCookie, JSON.stringify(cookieValue), {
+  cookieStore.set(options.sessionCookieName, JSON.stringify(cookieValue), {
     path: "/",
-    maxAge: 60 * 2,
+    maxAge: options.sessionCookieMaxSecs,
   });
 
   console.log(chalk.green(`Sending user to ${url}`));

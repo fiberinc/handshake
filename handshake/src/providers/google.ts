@@ -13,9 +13,6 @@ export const GoogleCredentialSchema = z.object({
 
 export type GoogleCredential = z.infer<typeof GoogleCredentialSchema>;
 
-const WEBSITE_URL = process.env.WEBSITE_URL ?? "";
-assert(WEBSITE_URL, "WEBSITE_URL is not set");
-
 const QueryParamStruct = z.object({
   code: z.string(),
 });

@@ -13,9 +13,6 @@ export type AmazonSellerCredential = z.infer<
   typeof AmazonSellerCredentialSchema
 >;
 
-const WEBSITE_URL = process.env.WEBSITE_URL ?? "";
-assert(WEBSITE_URL, "WEBSITE_URL is not set");
-
 const querySchema = z.object({
   spapi_oauth_code: z.string(),
   state: z.string(),

@@ -8,15 +8,12 @@ import {
   ShopifyProvider,
 } from "fiber-handshake";
 
-const WEBSITE_URL = process.env.WEBSITE_URL || "";
-assert(WEBSITE_URL);
+const REDIRECT_URL = process.env.REDIRECT_URL || "";
+assert(REDIRECT_URL, "Specify a URL at REDIRECT_URL.");
 
 export const config = Handshake({
-  project: {
-    id: "app",
-    title: "My App Name",
-  },
-  redirectUris: [WEBSITE_URL],
+  secret: process.env.SESSION_SECRET!,
+  redirectUris: [REDIRECT_URL],
   providers: [
     GitHubProvider({
       clientId: process.env.GITHUB_CLIENT_ID!,
@@ -48,7 +45,9 @@ export const config = Handshake({
       // requiredScopes: ["https://www.googleapis.com/auth/gmail.readonly"],
     }),
   ],
-  async onSuccess(providerId, credential, { account_id }) {
+  async onSuccess(providerId: string, credential: any) {
+    console.log("credential", credential);
+
     // let fiberCredential;
     // let customExternalId = null;
     // if (providerId === ShopifyProviderId) {

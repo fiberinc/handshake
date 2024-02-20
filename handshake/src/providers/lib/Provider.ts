@@ -1,4 +1,5 @@
 import { NextRequest } from "next/server";
+import { SessionValue } from "../../cookies";
 
 export type RequestWithParams<P = any> = NextRequest & {
   // query: P;
@@ -41,12 +42,13 @@ export interface Provider<Config = unknown, QueryParams = any, CR = unknown> {
   /**
    *
    * @param req - With search params = QP
-   * @param callbackHandlerUrl
+   * @param thisCallbackUrl
    */
   exchange(
     searchParams: QueryParams,
     req: Request,
-    callbackHandlerUrl: string,
+    thisCallbackUrl: string,
+    session: SessionValue,
   ): Promise<CR>;
 }
 

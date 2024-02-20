@@ -7,8 +7,6 @@ import { handleRedirect } from "./handle-redirect";
 // https://nextjs.org/docs/app/building-your-application/routing/route-handlers
 export function NextLink(options: HandshakeOptions) {
   const handler = async (req: NextRequest, res: NextResponse) => {
-    console.log("bro what!");
-
     // FIXME refactor
     const pathname = new URL(req.url).pathname;
     let action: "redirect" | "callback";
@@ -23,7 +21,6 @@ export function NextLink(options: HandshakeOptions) {
         { status: 400 },
       );
     }
-    console.log("action is", action);
 
     // FIXME refactor
     const matches = pathname.match("^/api/([^/]+)/([^/]+)/")!;

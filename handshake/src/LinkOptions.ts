@@ -27,13 +27,20 @@ export interface HandshakeOptions extends LinkOptionsInner {
   secret: string;
   getProvider(id: string): Provider | null;
   // abc
-  callbackUriParam: string;
   sessionCookie: string;
+  callbackUriParam: string;
 }
 
 export function Handshake(args: LinkOptionsInner): HandshakeOptions {
+  const secret = process.env.SESSION_SECRET;
+  if (!secret) {
+    throw Error(
+      'Expected "SESSION_SECRET" environment variable was not provided.',
+    );
+  }
+
   return {
-    secret: "1234",
+    secret,
     ...args,
     callbackUriParam: "callback_uri",
     // Name of the cookie where to store information such as account IDs, before

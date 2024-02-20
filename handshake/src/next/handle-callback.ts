@@ -3,8 +3,8 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { NextRequest, NextResponse } from "next/server";
 import { HandshakeOptions } from "../LinkOptions";
+import { parseSessionFromCookieValue } from "../cookies";
 import { Provider } from "../providers/lib/Provider";
-import { parseSessionFromCookieValue } from "./cookies";
 
 export async function handleCallback(
   options: HandshakeOptions,
@@ -68,7 +68,9 @@ export async function handleCallback(
       },
     );
   }
-  console.log(`Will redirect users back to ${session.developerCallbackUri}...`);
+  console.log(
+    `Will redirect users back to ${session.developerCallbackUri} if successful`,
+  );
 
   // Exchange search parameters for account credentials.
   let credentials;
@@ -77,6 +79,7 @@ export async function handleCallback(
       Object.fromEntries(new URL(req.url).searchParams.entries()),
       req,
       session.handshakeCallbackUrl,
+      session,
     );
   } catch (e: any) {
     // Convert any HttpError thrown by the handler into a JSON response with the

@@ -19,6 +19,11 @@
 			"ES2015",
 			"DOM"
 		],
+		"paths": {
+			"~/*": [
+				"./src/*"
+			]
+		},
 		"module": "ESNext",
 		"target": "ES6",
 		"jsx": "react-jsx",

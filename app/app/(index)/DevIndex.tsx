@@ -10,7 +10,7 @@ export async function DevIndex() {
   const els = providers.map((provider) => {
     const base = `/api/auth/${provider.id}/redirect`;
     let args =
-      "state=111&account_id=222&callback_uri=http://localhost:3000/success";
+      "state=111&account_id=222&callback_uri=http://localhost:3000/done";
 
     if (provider.id === "shopify") {
       args += "&extras.shop=hahvaleu.myshopify.com";

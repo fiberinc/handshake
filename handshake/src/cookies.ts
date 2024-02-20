@@ -1,6 +1,6 @@
 import { BadRequest } from "http-errors";
 import { z } from "zod";
-import { HandshakeOptions } from "../LinkOptions";
+import { HandshakeOptions } from "./LinkOptions";
 
 // ATTENTION I'm scared of using these static cookie names here because they may
 // cause conflicts between different concurrent linking attempts. Example: a
@@ -11,7 +11,7 @@ import { HandshakeOptions } from "../LinkOptions";
 const ACCOUNT_ID_PARAM = "account_id";
 const STATE_PARAM = "state";
 
-export const CookieValueStruct = z.object({
+export const SessionValueStruct = z.object({
   // The URI to send users back to once the OAuth is completed.
 
   // QUESTION Should we make this optional?
@@ -29,9 +29,27 @@ export const CookieValueStruct = z.object({
   // URL on the other side, to exchange the code for the access tokens.
   handshakeCallbackUrl: z.string(),
   valuesFromProvider: z.record(z.string()).optional(),
+
+  // The saved
+  nonce: z.string().optional(),
+  // The saved
+  codeVerifier: z.string().optional(),
 });
 
-export type CookieValue = z.infer<typeof CookieValueStruct>;
+export type SessionValue = z.infer<typeof SessionValueStruct>;
+
+// export class Session {
+//   constructor(value: any) {
+//     const result = SessionValueStruct.safeParse(value);
+//     if (!result.success) {
+//       throw new Error("Invalid session value: " + result.error);
+//     }
+
+//     this.value = result.data;
+//   }
+
+//   value: SessionValue;
+// }
 
 /**
  *
@@ -40,7 +58,7 @@ export function getSessionValueToSave(
   options: HandshakeOptions,
   req: Request,
   handshakeCallbackUrl: string,
-): CookieValue {
+): SessionValue {
   const searchParams = new URL(req.url).searchParams;
 
   // 1.
@@ -83,7 +101,7 @@ export function getSessionValueToSave(
   };
 }
 
-export function parseSessionFromCookieValue(value: string): CookieValue {
+export function parseSessionFromCookieValue(value: string): SessionValue {
   let parsed: any;
   try {
     parsed = JSON.parse(value);
@@ -92,7 +110,7 @@ export function parseSessionFromCookieValue(value: string): CookieValue {
     throw new BadRequest("Session cookie does not contain valid JSON.");
   }
 
-  const result = CookieValueStruct.safeParse(parsed);
+  const result = SessionValueStruct.safeParse(parsed);
   if (!result.success) {
     console.warn("Session cookie value:", value);
     throw new BadRequest("Session cookie has unexpected format.");

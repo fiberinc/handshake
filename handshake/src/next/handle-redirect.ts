@@ -3,8 +3,8 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { NextRequest, NextResponse } from "next/server";
 import { HandshakeOptions } from "../LinkOptions";
+import { getSessionValueToSave } from "../cookies";
 import { Provider } from "../providers/lib/Provider";
-import { getSessionValueToSave } from "./cookies";
 import { getNextHost } from "./handle-callback";
 
 export async function handleRedirect(

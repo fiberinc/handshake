@@ -1,3 +1,4 @@
+import chalk from "chalk";
 import { HttpError } from "http-errors";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
@@ -19,6 +20,11 @@ export async function handleCallback(
       { status: 400 },
     );
   }
+
+  console.log(
+    chalk.green("Received user at callback"),
+    req.nextUrl.searchParams,
+  );
 
   // Validate the query params returned by the provider, if
   // `validateQueryParams` is defined.
@@ -76,20 +82,20 @@ export async function handleCallback(
   let credentials;
   try {
     credentials = await provider.exchange(
-      Object.fromEntries(new URL(req.url).searchParams.entries()),
+      new URL(req.url).searchParams,
       req,
       session.handshakeCallbackUrl,
       session,
     );
   } catch (e: any) {
+    console.log(chalk.red("Failed to exchange credentials"), e);
+
     // Convert any HttpError thrown by the handler into a JSON response with the
     // error message. This is useful to simplify program logic.
     if (e instanceof HttpError) {
       console.warn("provider.exchange threw http error", e);
       return Response.json({ message: e.message }, { status: e.statusCode });
     }
-
-    console.log("Failed to exchange credentials", e);
 
     const url = new URL(session.developerCallbackUri);
     url.searchParams.set("state", session.developerState);

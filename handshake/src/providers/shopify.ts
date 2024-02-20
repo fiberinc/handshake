@@ -116,7 +116,9 @@ export function ShopifyProvider({
     validateQueryParams(params: URLSearchParams) {
       return querySchema.parse(Object.fromEntries(params.entries()));
     },
-    async exchange(params: CallbackParams, req: Request) {
+    async exchange(searchParams, req) {
+      const params = Object.fromEntries(searchParams) as CallbackParams;
+
       let accessToken: string;
       let myShopifyDomain: string;
       let scopes: string[];

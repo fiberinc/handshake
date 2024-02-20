@@ -36,8 +36,8 @@ export async function DevIndex() {
         <h2 className="text-lg font-semibold">Handshake is running</h2>
         <p>But this root page has nothing to do.</p>
       </section>
-      <section>
-        <p>Try navigating to:</p>
+      <section className="flex flex-col gap-4">
+        <p>The following projects are configured: (click to start auth)</p>
         <ul>{els}</ul>
       </section>
       <p>

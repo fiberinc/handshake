@@ -136,7 +136,9 @@ export function AmazonSellerProvider({
     validateQueryParams(params: URLSearchParams) {
       return querySchema.parse(Object.fromEntries(params.entries()));
     },
-    async exchange(params: CallbackParams) {
+    async exchange(searchParams) {
+      const params = Object.fromEntries(searchParams) as CallbackParams;
+
       // 	projectAlias: string,
       // 	clientId: string,
       // 	clientSecret: string,

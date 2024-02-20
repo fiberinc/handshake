@@ -73,11 +73,9 @@ export function GoogleProvider({
     validateQueryParams(params: URLSearchParams) {
       return QueryParamStruct.parse(Object.fromEntries(params.entries()));
     },
-    async exchange(
-      searchParams: CallbackParams,
-      req: Request,
-      callbackHandlerUrl: string,
-    ) {
+    async exchange(searchParams, req, callbackHandlerUrl) {
+      const params = Object.fromEntries(searchParams) as CallbackParams;
+
       // console.log("req.url", req.url);
       console.log("callbackHandlerUrl FUCK THIS 444", callbackHandlerUrl);
       console.log("req.headers.origin", req.headers.get("origin"));
@@ -87,7 +85,7 @@ export function GoogleProvider({
           callbackHandlerUrl,
           config.clientId,
           config.clientSecret,
-          searchParams.code,
+          params.code,
         );
 
       return {

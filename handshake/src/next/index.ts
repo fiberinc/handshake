@@ -45,7 +45,10 @@ export function NextLink(options: HandshakeOptions) {
         if (req.headers.get("accept")?.includes("application/json")) {
           return Response.json({ error: e.message }, { status: e.statusCode });
         } else {
-          return new Response(`Error: ${e.message}`, { status: e.statusCode });
+          const message = e.message.replace(/^Error: /g, "");
+          return new Response(`Error: ${message}`, {
+            status: e.statusCode,
+          });
         }
       }
       throw e;

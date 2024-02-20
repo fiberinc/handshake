@@ -1,3 +1,4 @@
+import chalk from "chalk";
 import { BadRequest, HttpError, InternalServerError } from "http-errors";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
@@ -38,8 +39,8 @@ export async function handleRedirect(
     );
     url = result.url;
 
-    if (result.cookies && Object.keys(result.cookies).length > 0) {
-      cookiesToSave = result.cookies;
+    if (result.persist && Object.keys(result.persist).length > 0) {
+      cookiesToSave = result.persist;
     }
   } catch (e: any) {
     // Convert any HttpError thrown by the handler into a JSON response with the
@@ -83,6 +84,8 @@ export async function handleRedirect(
     path: "/",
     maxAge: 60 * 2,
   });
+
+  console.log(chalk.green(`Sending user to ${url}`));
 
   redirect(url.toString());
 }

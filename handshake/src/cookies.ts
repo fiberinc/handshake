@@ -28,12 +28,10 @@ export const SessionValueStruct = z.object({
   // authorize the app. We save this because certain OAuth flows require this
   // URL on the other side, to exchange the code for the access tokens.
   handshakeCallbackUrl: z.string(),
-  valuesFromProvider: z.record(z.string()).optional(),
 
-  // The saved
-  nonce: z.string().optional(),
-  // The saved
-  codeVerifier: z.string().optional(),
+  // Provider-specific data like { state: string, nonce: string, codeVerifier:
+  // string } etc.
+  valuesFromProvider: z.record(z.string()).optional(),
 });
 
 export type SessionValue = z.infer<typeof SessionValueStruct>;

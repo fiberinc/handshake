@@ -5,12 +5,16 @@ export type RequestWithParams<P = any> = NextRequest & {
   // query: P;
 };
 
-export interface Provider<Config = unknown, QueryParams = any, CR = unknown> {
+export interface Provider<
+  Config = unknown,
+  QueryParams = unknown,
+  CR = unknown,
+> {
   id: string;
   type: string;
   metadata: {
     title: string;
-    logo: string;
+    logo?: string;
   };
   config: Config;
   /**
@@ -25,8 +29,8 @@ export interface Provider<Config = unknown, QueryParams = any, CR = unknown> {
     callbackHandlerUrl: string,
     extras?: any | undefined,
   ):
-    | Promise<{ url: string; cookies?: Record<string, string> }>
-    | { url: string; cookies?: Record<string, string> };
+    | Promise<{ url: string; persist?: Record<string, string> }>
+    | { url: string; persist?: Record<string, string> };
   /**
    * Allows the provider to check that the query params returned by the provider
    * match the expected shape.
@@ -45,7 +49,7 @@ export interface Provider<Config = unknown, QueryParams = any, CR = unknown> {
    * @param thisCallbackUrl
    */
   exchange(
-    searchParams: QueryParams,
+    params: URLSearchParams,
     req: Request,
     thisCallbackUrl: string,
     session: SessionValue,

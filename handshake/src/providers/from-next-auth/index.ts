@@ -1,192 +1,193 @@
 import { makeFromNextAuth } from "./makeFromNextAuth";
 
-import F42chool from "next-auth/providers/42-school";
+const F42chool = require("next-auth/providers/42-school").default;
 export const F42choolProvider = makeFromNextAuth(F42chool);
 
-import Apple from "next-auth/providers/apple";
+const Apple = require("next-auth/providers/apple").default;
 export const AppleProvider = makeFromNextAuth(Apple);
 
-// import Atlassian from "next-auth/providers/atlassian";
-// export const AtlassianProvider = makeFromNextAuth(Atlassian);
+const Atlassian = require("next-auth/providers/atlassian").default;
+export const AtlassianProvider = makeFromNextAuth(Atlassian);
 
-import Auth0 from "next-auth/providers/auth0";
+const Auth0 = require("next-auth/providers/auth0").default;
 export const Auth0Provider = makeFromNextAuth(Auth0);
 
-import Authentik from "next-auth/providers/authentik";
+const Authentik = require("next-auth/providers/authentik").default;
 export const AuthentikProvider = makeFromNextAuth(Authentik);
 
-import AzureAdB2c from "next-auth/providers/azure-ad-b2c";
+const AzureAdB2c = require("next-auth/providers/azure-ad-b2c").default;
 export const AzureAdB2cProvider = makeFromNextAuth(AzureAdB2c);
 
-import AzureAd from "next-auth/providers/azure-ad";
+const AzureAd = require("next-auth/providers/azure-ad").default;
 export const AzureAdProvider = makeFromNextAuth(AzureAd);
 
-// import Battlenet from "next-auth/providers/battlenet";
-// export const BattlenetProvider = makeFromNextAuth(Battlenet);
+const Battlenet = require("next-auth/providers/battlenet").default;
+export const BattlenetProvider = makeFromNextAuth(Battlenet);
 
-import Box from "next-auth/providers/box";
+const Box = require("next-auth/providers/box").default;
 export const BoxProvider = makeFromNextAuth(Box);
 
-import BoxyhqSaml from "next-auth/providers/boxyhq-saml";
+const BoxyhqSaml = require("next-auth/providers/boxyhq-saml").default;
 export const BoxyhqSamlProvider = makeFromNextAuth(BoxyhqSaml);
 
-import Bungie from "next-auth/providers/bungie";
+const Bungie = require("next-auth/providers/bungie").default;
 export const BungieProvider = makeFromNextAuth(Bungie);
 
-import Cognito from "next-auth/providers/cognito";
+const Cognito = require("next-auth/providers/cognito").default;
 export const CognitoProvider = makeFromNextAuth(Cognito);
 
-import Coinbase from "next-auth/providers/coinbase";
+const Coinbase = require("next-auth/providers/coinbase").default;
 export const CoinbaseProvider = makeFromNextAuth(Coinbase);
 
-import Discord from "next-auth/providers/discord";
+const Discord = require("next-auth/providers/discord").default;
 export const DiscordProvider = makeFromNextAuth(Discord);
 
-import Dropbox from "next-auth/providers/dropbox";
+const Dropbox = require("next-auth/providers/dropbox").default;
 export const DropboxProvider = makeFromNextAuth(Dropbox);
 
-import DuendeIdentityServer6 from "next-auth/providers/duende-identity-server6";
+const DuendeIdentityServer6 =
+  require("next-auth/providers/duende-identity-server6").default;
 export const DuendeIdentityServer6Provider = makeFromNextAuth(
   DuendeIdentityServer6,
 );
 
-import Eveonline from "next-auth/providers/eveonline";
+const Eveonline = require("next-auth/providers/eveonline").default;
 export const EveonlineProvider = makeFromNextAuth(Eveonline);
 
-import Facebook from "next-auth/providers/facebook";
+const Facebook = require("next-auth/providers/facebook").default;
 export const FacebookProvider = makeFromNextAuth(Facebook);
 
-import Faceit from "next-auth/providers/faceit";
+const Faceit = require("next-auth/providers/faceit").default;
 export const FaceitProvider = makeFromNextAuth(Faceit);
 
-import Foursquare from "next-auth/providers/foursquare";
+const Foursquare = require("next-auth/providers/foursquare").default;
 export const FoursquareProvider = makeFromNextAuth(Foursquare);
 
-import Freshbooks from "next-auth/providers/freshbooks";
+const Freshbooks = require("next-auth/providers/freshbooks").default;
 export const FreshbooksProvider = makeFromNextAuth(Freshbooks);
 
-import Fusionauth from "next-auth/providers/fusionauth";
+const Fusionauth = require("next-auth/providers/fusionauth").default;
 export const FusionauthProvider = makeFromNextAuth(Fusionauth);
 
-import Github from "next-auth/providers/github";
-export const GithubProvider = makeFromNextAuth(Github);
+const GitHub = require("next-auth/providers/github").default;
+export const GitHubProvider = makeFromNextAuth(GitHub);
 
-import Gitlab from "next-auth/providers/gitlab";
+const Gitlab = require("next-auth/providers/gitlab").default;
 export const GitlabProvider = makeFromNextAuth(Gitlab);
 
-import Google from "next-auth/providers/google";
+const Google = require("next-auth/providers/google").default;
 export const GoogleProvider = makeFromNextAuth(Google);
 
-// import Hubspot from "next-auth/providers/hubspot";
+const Hubspot = require("next-auth/providers/hubspot").default;
 // export const HubspotProvider = makeFromNextAuth(Hubspot);
 
-import IdentityServer4 from "next-auth/providers/identity-server4";
+const IdentityServer4 = require("next-auth/providers/identity-server4").default;
 export const IdentityServer4Provider = makeFromNextAuth(IdentityServer4);
 
-import Instagram from "next-auth/providers/instagram";
+const Instagram = require("next-auth/providers/instagram").default;
 export const InstagramProvider = makeFromNextAuth(Instagram);
 
-import Kakao from "next-auth/providers/kakao";
+const Kakao = require("next-auth/providers/kakao").default;
 export const KakaoProvider = makeFromNextAuth(Kakao);
 
-import Keycloak from "next-auth/providers/keycloak";
+const Keycloak = require("next-auth/providers/keycloak").default;
 export const KeycloakProvider = makeFromNextAuth(Keycloak);
 
-import Line from "next-auth/providers/line";
+const Line = require("next-auth/providers/line").default;
 export const LineProvider = makeFromNextAuth(Line);
 
-import Linkedin from "next-auth/providers/linkedin";
+const Linkedin = require("next-auth/providers/linkedin").default;
 export const LinkedinProvider = makeFromNextAuth(Linkedin);
 
-import Mailchimp from "next-auth/providers/mailchimp";
+const Mailchimp = require("next-auth/providers/mailchimp").default;
 export const MailchimpProvider = makeFromNextAuth(Mailchimp);
 
-import Mailru from "next-auth/providers/mailru";
+const Mailru = require("next-auth/providers/mailru").default;
 export const MailruProvider = makeFromNextAuth(Mailru);
 
-import Medium from "next-auth/providers/medium";
+const Medium = require("next-auth/providers/medium").default;
 export const MediumProvider = makeFromNextAuth(Medium);
 
-import Naver from "next-auth/providers/naver";
+const Naver = require("next-auth/providers/naver").default;
 export const NaverProvider = makeFromNextAuth(Naver);
 
-import Netlify from "next-auth/providers/netlify";
+const Netlify = require("next-auth/providers/netlify").default;
 export const NetlifyProvider = makeFromNextAuth(Netlify);
 
-import Okta from "next-auth/providers/okta";
+const Okta = require("next-auth/providers/okta").default;
 export const OktaProvider = makeFromNextAuth(Okta);
 
-import Onelogin from "next-auth/providers/onelogin";
+const Onelogin = require("next-auth/providers/onelogin").default;
 export const OneloginProvider = makeFromNextAuth(Onelogin);
 
-import Osso from "next-auth/providers/osso";
+const Osso = require("next-auth/providers/osso").default;
 export const OssoProvider = makeFromNextAuth(Osso);
 
-import Osu from "next-auth/providers/osu";
+const Osu = require("next-auth/providers/osu").default;
 export const OsuProvider = makeFromNextAuth(Osu);
 
-import Passage from "next-auth/providers/passage";
+const Passage = require("next-auth/providers/passage").default;
 export const PassageProvider = makeFromNextAuth(Passage);
 
-import Patreon from "next-auth/providers/patreon";
+const Patreon = require("next-auth/providers/patreon").default;
 export const PatreonProvider = makeFromNextAuth(Patreon);
 
-import Pinterest from "next-auth/providers/pinterest";
+const Pinterest = require("next-auth/providers/pinterest").default;
 export const PinterestProvider = makeFromNextAuth(Pinterest);
 
-import Pipedrive from "next-auth/providers/pipedrive";
+const Pipedrive = require("next-auth/providers/pipedrive").default;
 export const PipedriveProvider = makeFromNextAuth(Pipedrive);
 
-import Reddit from "next-auth/providers/reddit";
+const Reddit = require("next-auth/providers/reddit").default;
 export const RedditProvider = makeFromNextAuth(Reddit);
 
-import Salesforce from "next-auth/providers/salesforce";
+const Salesforce = require("next-auth/providers/salesforce").default;
 export const SalesforceProvider = makeFromNextAuth(Salesforce);
 
-import Slack from "next-auth/providers/slack";
+const Slack = require("next-auth/providers/slack").default;
 export const SlackProvider = makeFromNextAuth(Slack);
 
-import Spotify from "next-auth/providers/spotify";
+const Spotify = require("next-auth/providers/spotify").default;
 export const SpotifyProvider = makeFromNextAuth(Spotify);
 
-import Strava from "next-auth/providers/strava";
+const Strava = require("next-auth/providers/strava").default;
 export const StravaProvider = makeFromNextAuth(Strava);
 
-// import Todoist from "next-auth/providers/todoist";
-// export const TodoistProvider = makeFromNextAuth(Todoist);
+const Todoist = require("next-auth/providers/todoist").default;
+export const TodoistProvider = makeFromNextAuth(Todoist);
 
-import Trakt from "next-auth/providers/trakt";
+const Trakt = require("next-auth/providers/trakt").default;
 export const TraktProvider = makeFromNextAuth(Trakt);
 
-import Twitch from "next-auth/providers/twitch";
+const Twitch = require("next-auth/providers/twitch").default;
 export const TwitchProvider = makeFromNextAuth(Twitch);
 
-import Twitter from "next-auth/providers/twitter";
+const Twitter = require("next-auth/providers/twitter").default;
 export const TwitterProvider = makeFromNextAuth(Twitter);
 
-// import UnitedEffects from "next-auth/providers/united-effects";
-// export const UnitedEffectsProvider = makeFromNextAuth(UnitedEffects);
+const UnitedEffects = require("next-auth/providers/united-effects").default;
+export const UnitedEffectsProvider = makeFromNextAuth(UnitedEffects);
 
-import Vk from "next-auth/providers/vk";
+const Vk = require("next-auth/providers/vk").default;
 export const VkProvider = makeFromNextAuth(Vk);
 
-import Wikimedia from "next-auth/providers/wikimedia";
+const Wikimedia = require("next-auth/providers/wikimedia").default;
 export const WikimediaProvider = makeFromNextAuth(Wikimedia);
 
-import Wordpress from "next-auth/providers/wordpress";
+const Wordpress = require("next-auth/providers/wordpress").default;
 export const WordpressProvider = makeFromNextAuth(Wordpress);
 
-import Workos from "next-auth/providers/workos";
+const Workos = require("next-auth/providers/workos").default;
 export const WorkosProvider = makeFromNextAuth(Workos);
 
-import Yandex from "next-auth/providers/yandex";
+const Yandex = require("next-auth/providers/yandex").default;
 export const YandexProvider = makeFromNextAuth(Yandex);
 
-import Zitadel from "next-auth/providers/zitadel";
+const Zitadel = require("next-auth/providers/zitadel").default;
 export const ZitadelProvider = makeFromNextAuth(Zitadel);
 
-import Zoho from "next-auth/providers/zoho";
+const Zoho = require("next-auth/providers/zoho").default;
 export const ZohoProvider = makeFromNextAuth(Zoho);
 
-import Zoom from "next-auth/providers/zoom";
+const Zoom = require("next-auth/providers/zoom").default;
 export const ZoomProvider = makeFromNextAuth(Zoom);

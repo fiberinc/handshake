@@ -32,6 +32,7 @@ export const config = Handshake({
     ShopifyProvider({
       clientId: process.env.SHOPIFY_CLIENT_ID!,
       clientSecret: process.env.SHOPIFY_CLIENT_SECRET!,
+      scopes: ["read_orders", "read_products"],
     }),
     AmazonSellerProvider({
       appId: "asdf",

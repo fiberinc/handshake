@@ -23,6 +23,8 @@ Handshake is a Next.js app that handles OAuth flow against 60+ third-party apps
 and APIs. We use parts of `next-auth` under the hood, to extend our coverage of
 providers.
 
+See the [full list of providers](./PROVIDERS.md).
+
 ## How it works
 
 Suppose you want to access your users' Salesforce data. You will need to your
@@ -66,7 +68,7 @@ Build the project:
 pnpm build
 ```
 
-### Create `app/.env`
+### Set environment variables
 
 Duplicate the `.env.example` file within the app folder:
 
@@ -76,7 +78,7 @@ cp app/.env.example app/.env
 
 In the new file, replace the values for `REDIRECT_URL` and `SESSION_SECRET`.
 
-### Modify `app/config.ts`
+### Configure your providers
 
 Modify the `app/config.ts` file to include the providers you want to use:
 
@@ -99,7 +101,7 @@ export const config = Handshake({
 });
 ```
 
-You can finally run your app:
+You can now run your app:
 
 ```bash
 cd app
@@ -143,9 +145,9 @@ CLI](https://vercel.com/docs/cli/env).
 
 ## FAQ
 
-### Can you add support for X?
+### Can you add support for X provider?
 
-Probably yes! Please open an issue or reach out to us at
+Yes! Please open an issue or reach out to us at
 [team@fiber.dev](mailto:team@fiber.dev).
 
 ### How is this different from next-auth or passport?

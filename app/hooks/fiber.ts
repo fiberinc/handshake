@@ -1,4 +1,3 @@
-import * as Sentry from "@sentry/nextjs";
 import { z } from "zod";
 
 const API_HOST =
@@ -37,13 +36,13 @@ export async function registerFiberAccount(
       credential,
     ));
   } catch (err) {
-    // Log the error to the function logs and Sentry.
     console.log("registerAccount failed with error", err);
 
-    Sentry.captureMessage(
-      `Failed to register account with Fiber ${identifierStringForDebugging}`,
-    );
-    Sentry.captureException(err);
+    // import * as Sentry from "@sentry/nextjs";
+    // Sentry.captureMessage(
+    //   `Failed to register account with Fiber ${identifierStringForDebugging}`,
+    // );
+    // Sentry.captureException(err);
 
     // await postToSlack(
     // 	`Failed to register account for ${identifierStringForDebugging}`,

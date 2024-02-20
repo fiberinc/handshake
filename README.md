@@ -23,16 +23,70 @@ Handshake is a self-hosted Next.js app that handles OAuth with popular tools and
 APIs. We are built over [next-auth](https://github.com/nextauthjs/next-auth),
 which lets us support authentication with 60+ providers out of the box.
 
-## Getting started
-
 This repo is a Next.js app that you can self host using Vercel.
 
-### Configuration
+## How it works
 
-Modify the `config.ts` file with your credentials.
+Suppose you want to access your users' Salesforce data. You will need to your
+users for a Salesforce access token to communicate with the Salesforce API on
+their behalf. Handshake can help with you.
+
+So you decide to host Handshake at `https://handshake.example.com`.
+
+To acquire Salesforce credentials for a user, redirect them to:
+
+```ts
+https://handshake.example.com/api/auth/stripe/redirect
+  ?state=123456&
+  &callback_uri=https://app.example.com/integrations
+```
+
+Handshake will then redirect the user to Salesforce, where they can authorize
+your app to access their data. Salesforce will then redirect the user back to
+Handshake, which will obtain the require credentials and send them back to you
+at `callback_uri`.
+
+## Setup
+
+Clone the project to your machine:
+
+```bash
+git clone https://github.com/fiberinc/handshake.git
+```
+
+Install dependencies:
+
+```bash
+cd handshake
+pnpm i
+```
+
+Build the project:
+
+```bash
+pnpm build
+```
+
+### Create `app/.env`
+
+Duplicate the `.env.example` file within the app folder:
+
+```bash
+cp app/.env.example app/.env
+```
+
+In the new file, replace the values for `REDIRECT_URL` and `SESSION_SECRET`.
+
+### Modify `app/config.ts`
+
+Now we are ready to configure Handshake to use the providers you want to use.
+
+Modify the `app/config.ts` file with your credentials:
 
 ```js
-export nextOptions = Handshake({
+export const config = Handshake({
+  secret: process.env.SESSION_SECRET!,
+  redirectUris: [REDIRECT_URL],
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
@@ -42,34 +96,29 @@ export nextOptions = Handshake({
 });
 ```
 
-### Use
+Once this is done, navigate to `localhost:3000` (or wherever else your app is being served). You should now see a list of all the configured providers:
 
-Once deployed, send your users to the `/api/foo/redirect`, adding the following parameters:
-
-| Name         | Description                                           | Observation |
-| ------------ | ----------------------------------------------------- | ----------- |
-| redirect_uri | Where to send users back to after success or failure. | Required    |
-| state        |                                                       | Required    |
-
-Example:
-
-`https://EXAMPLE/api/redirect?redirect_uri=http1231234&account_id=123456&state=85657&`
-
-In case of success, users will be redirected back to you with the following parameters:
-
-| Name         | Description                                                           | Observation |
-| ------------ | --------------------------------------------------------------------- | ----------- |
-| authorized   | `true` if the authorization went well, `false` if something happened. | Required    |
-| access_token | Authorization token.                                                  | Required    |
-| state        | The state parameter. You can use this to associate.                   | Required    |
+![](/docs/public/images/readme-landing.png)
 
 ## Deploying
 
-Deploy this app to Vercel in a few simple steps.
+You can deploy this app to Vercel in a few simple steps. Just follow the interactive prompts at:
 
-`vercel login`
+```bash
+vercel deploy
+```
 
-`vercel deploy`
+Although the app code lives inside the `app` folder, **you must deploy the root folder**. Otherwise the code in the `handshake` folder won't be available, which will cause the build to fail.
+
+### Fix project root and framework preset in Vercel
+
+Once your project exists within Vercel, go to Settings > General and set the "Root Directory" to `app`. This will tell Vercel to look for the actual Next.js code in the right folder.
+
+![](/docs/public/images/readme-vercel-setings-root.png)
+
+In the same page, also make sure that "Framework Preset" is set to Next.js.
+
+![](/docs/public/images/readme-vercel-setings-next.png)
 
 Go to [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
@@ -82,16 +131,14 @@ Libraries like [next-auth](https://github.com/nextauthjs/next-auth) and
 users into your app using third-party providers. In contrast, Handshake helps
 you **acquire** access tokens to access your users' accounts within other apps.
 
-We actually use next-auth's great catalog of providers under the hood, which
+We actually use next-auth's large catalog of providers under the hood, which
 greatly reduces our maintenance overhead.
 
 ## Contributing
 
-Whether it's big or small, we love contributions.
+Here's how you can contribute:
 
-We love our contributors! Here's how you can contribute:
-
-Open an [issue](https://github.com/fiberinc/handshake/issues) if you believe you've encountered a bug.
+Open an [issue](https://github.com/fiberinc/handshake/issues) if you believe you've encountered a bug. \
 Make a [pull request](https://github.com/fiberinc/handshake/pulls) to add new features/make quality-of-life improvements/fix bugs.
 
 ## License

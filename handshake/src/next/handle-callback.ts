@@ -67,7 +67,7 @@ export async function handleCallback(
     // FIXME this could be a React page.
 
     return new Response(
-      "Callback uri is not valid for this project's settings.",
+      `Callback URI ${session.developerCallbackUri} is not allowed by settings.`,
       {
         status: 400,
       },

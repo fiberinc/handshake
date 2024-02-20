@@ -6,7 +6,7 @@
   <h1 align="center">Handshake</h1>
 
   <p align="center">
-    Self-hosted solution for OAuth authentication against third-party APIs.
+    Self-hosted solution for OAuth authentication against 60+ APIs.
   </p>
 
   <p align="center" style="align: center;">
@@ -19,11 +19,7 @@
 
 ## Introduction
 
-Handshake is a self-hosted Next.js app that handles OAuth with popular tools and
-APIs. We are built over [next-auth](https://github.com/nextauthjs/next-auth),
-which lets us support authentication with 60+ providers out of the box.
-
-This repo is a Next.js app that you can self host using Vercel.
+Handshake is a Next.js app that handles OAuth flow against 60+ third-party apps and APIs. We use parts of `next-auth` under the hood, to extend our coverage of providers.
 
 ## How it works
 
@@ -31,20 +27,21 @@ Suppose you want to access your users' Salesforce data. You will need to your
 users for a Salesforce access token to communicate with the Salesforce API on
 their behalf. Handshake can help with you.
 
-So you decide to host Handshake at `https://handshake.example.com`.
-
 To acquire Salesforce credentials for a user, redirect them to:
 
 ```ts
-https://handshake.example.com/api/auth/stripe/redirect
+https://YOUR_HANDSHAKE_URL/api/auth/stripe/redirect
   ?state=123456&
   &callback_uri=https://app.example.com/integrations
 ```
 
-Handshake will then redirect the user to Salesforce, where they can authorize
-your app to access their data. Salesforce will then redirect the user back to
-Handshake, which will obtain the require credentials and send them back to you
-at `callback_uri`.
+Where `YOUR_HANDSHAKE_URL` is something like `https://handshake.example.com` or
+wherever you want to host this app.
+
+Handshake will then handle all the OAuth dance with Salesforce on your behalf.
+We will redirect the user to a Salesforce page where they can authorize your app
+to access their data. Salesforce will then redirect the user back to
+`YOUR_HANDSHAKE_URL`, from where we will redirect the user back to you.
 
 ## Setup
 
@@ -96,31 +93,47 @@ export const config = Handshake({
 });
 ```
 
-Once this is done, navigate to `localhost:3000` (or wherever else your app is being served). You should now see a list of all the configured providers:
+Now you can run your app:
+
+```bash
+cd app
+pnpm dev
+```
+
+If you navigate to `localhost:3000`, you should see a list of all the configured
+providers:
 
 ![](/docs/public/images/readme-landing.png)
 
-## Deploying
+## Deploy
 
-You can deploy this app to Vercel in a few simple steps. Just follow the interactive prompts at:
+Deploy the app to Vercel by running, from the root folder:
 
 ```bash
-vercel deploy
+vercel deploy --prod
 ```
 
-Although the app code lives inside the `app` folder, **you must deploy the root folder**. Otherwise the code in the `handshake` folder won't be available, which will cause the build to fail.
+You must deploy the project from the root folder, even though the Next.js app
+folder lives within `app/`. The Next.js code needs the `handshake/` folder,
+which otherwise won't be available.
 
 ### Fix project root and framework preset in Vercel
 
-Once your project exists within Vercel, go to Settings > General and set the "Root Directory" to `app`. This will tell Vercel to look for the actual Next.js code in the right folder.
+Once your project exists within Vercel, go to **Settings > General** and set the
+"Root Directory" to `app`. This will tell Vercel to look for the actual Next.js
+code in the right folder.
 
 ![](/docs/public/images/readme-vercel-setings-root.png)
 
-In the same page, also make sure that "Framework Preset" is set to Next.js.
+In the same page, make sure that "Framework Preset" setting is set to "Next.js".
 
 ![](/docs/public/images/readme-vercel-setings-next.png)
 
-Go to [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### Upload environment variables to Vercel
+
+Set `SESSION_SECRET`, `REDIRECT_URL` and any other secrets you're using by going
+to **Settings > Environment Variables**, or directly [via the Vercel
+CLI](https://vercel.com/docs/cli/env).
 
 ## FAQ
 
@@ -128,18 +141,15 @@ Go to [Next.js deployment documentation](https://nextjs.org/docs/deployment) for
 
 Libraries like [next-auth](https://github.com/nextauthjs/next-auth) and
 [passport](https://github.com/jaredhanson/passport) help you for authenticate
-users into your app using third-party providers. In contrast, Handshake helps
-you **acquire** access tokens to access your users' accounts within other apps.
+users _into your app_ through their third-party identities.
 
-We actually use next-auth's large catalog of providers under the hood, which
-greatly reduces our maintenance overhead.
+In contrast, Handshake helps you **acquire** access tokens to access your users'
+accounts within other apps. We actually use `next-auth`'s large catalog of
+providers under the hood, to increase our coverage.
 
 ## Contributing
 
-Here's how you can contribute:
-
-Open an [issue](https://github.com/fiberinc/handshake/issues) if you believe you've encountered a bug. \
-Make a [pull request](https://github.com/fiberinc/handshake/pulls) to add new features/make quality-of-life improvements/fix bugs.
+Thank you for considering contributing to Handshake! If you believe you found a bug, [open an issue](https://github.com/fiberinc/handshake/issues). To add new features or make improvements to the code, create a [pull request](https://github.com/fiberinc/handshake/pulls).
 
 ## License
 

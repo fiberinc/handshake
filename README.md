@@ -19,7 +19,9 @@
 
 ## Introduction
 
-Handshake is a Next.js app that handles OAuth flow against 60+ third-party apps and APIs. We use parts of `next-auth` under the hood, to extend our coverage of providers.
+Handshake is a Next.js app that handles OAuth flow against 60+ third-party apps
+and APIs. We use parts of `next-auth` under the hood, to extend our coverage of
+providers.
 
 ## How it works
 
@@ -76,24 +78,28 @@ In the new file, replace the values for `REDIRECT_URL` and `SESSION_SECRET`.
 
 ### Modify `app/config.ts`
 
-Now we are ready to configure Handshake to use the providers you want to use.
+Modify the `app/config.ts` file to include the providers you want to use:
 
-Modify the `app/config.ts` file with your credentials:
-
-```js
+```ts
 export const config = Handshake({
-  secret: process.env.SESSION_SECRET!,
-  redirectUris: [REDIRECT_URL],
+  // Register the providers you want to use, entering the
+  // required credentials for each of them.
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+      scopes: ["email"],
     }),
   ],
+  // Tell Handshake which URLs it can redirect users back to. This is a
+  // security measure to prevent malicious redirects.
+  allowedRedirectUris: [process.env.REDIRECT_URL],
+  // Set a unique secret to sign session cookies.
+  secret: process.env.SESSION_SECRET!,
 });
 ```
 
-Now you can run your app:
+You can finally run your app:
 
 ```bash
 cd app
@@ -136,6 +142,11 @@ to **Settings > Environment Variables**, or directly [via the Vercel
 CLI](https://vercel.com/docs/cli/env).
 
 ## FAQ
+
+### Can you add support for X?
+
+Probably yes! Please open an issue or reach out to us at
+[team@fiber.dev](mailto:team@fiber.dev).
 
 ### How is this different from next-auth or passport?
 

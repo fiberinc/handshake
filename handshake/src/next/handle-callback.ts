@@ -174,7 +174,7 @@ export function isValidDeveloperCallbackUri(
   // first registered URI.
   const url = new URL(value);
 
-  const allowedRedirectUris = options.redirectUris.map(
+  const allowedRedirectUris = options.allowedRedirectUris.map(
     (uri: any) => new URL(uri),
   );
 

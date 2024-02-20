@@ -4,7 +4,7 @@ interface Options<Credential> {
   /**
    * A list of hosts that we are allowed to redirect users back to.
    */
-  redirectUris: string[];
+  allowedRedirectUris: string[];
 
   /**
    * A list of casted Provider objects like

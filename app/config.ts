@@ -13,7 +13,7 @@ assert(REDIRECT_URL, "Specify a URL at REDIRECT_URL.");
 
 export const config = Handshake({
   secret: process.env.SESSION_SECRET!,
-  redirectUris: [REDIRECT_URL],
+  allowedRedirectUris: [REDIRECT_URL],
   providers: [
     GitHubProvider({
       clientId: process.env.GITHUB_CLIENT_ID!,
@@ -45,7 +45,7 @@ export const config = Handshake({
       // requiredScopes: ["https://www.googleapis.com/auth/gmail.readonly"],
     }),
   ],
-  async onSuccess(providerId: string, credential: any) {
+  async onSuccess(providerId: string, credential) {
     console.log("credential", credential);
 
     return {

@@ -23,7 +23,7 @@ Handshake is a self-hosted Next.js app that handles OAuth with popular tools and
 APIs. We are built over [next-auth](https://github.com/nextauthjs/next-auth),
 which lets us support authentication with 60+ providers out of the box.
 
-## How it works
+## Getting started
 
 This repo is a Next.js app that you can self host using Vercel.
 
@@ -37,7 +37,6 @@ export nextOptions = NextLink({
     GoogleProvider({
       clientId: "",
       clientSecret: "",
-      redirectUri: "",
       accessToken: true,
       refreshToken: true,
     }),
@@ -74,7 +73,24 @@ Go to [Next.js deployment documentation](https://nextjs.org/docs/deployment) for
 
 ## FAQ
 
+### How is this different from next-auth or passport?
+
+Libraries like [next-auth](https://github.com/nextauthjs/next-auth) and
+[passport](https://github.com/jaredhanson/passport) help you for authenticate
+users into your app using third-party providers. In contrast, Handshake helps
+you **acquire** access tokens to access your users' accounts within other apps.
+
+We actually use next-auth's great catalog of providers under the hood, which
+greatly reduces our maintenance overhead.
+
 ## Contributing
+
+Whether it's big or small, we love contributions.
+
+We love our contributors! Here's how you can contribute:
+
+Open an [issue](https://github.com/fiberinc/handshake/issues) if you believe you've encountered a bug.
+Make a [pull request](https://github.com/fiberinc/handshake/pulls) to add new features/make quality-of-life improvements/fix bugs.
 
 ## License
 

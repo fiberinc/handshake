@@ -27,9 +27,7 @@ export default function Home() {
           Handshake handles OAuth for you
         </h1>
         <p className="text-contrast text-2xl antialiased">
-          Handshake is a Next.js app that handles OAuth flow against 60+
-          third-party apps and APIs. We use parts of next-auth under the hood to
-          extend our coverage of providers.
+          Handshake handles OAuth authorization against 60+ APIs, so you .
         </p>
         <br />
         <section className="flex flex-wrap gap-5">

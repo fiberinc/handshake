@@ -5,13 +5,14 @@ import providers from "../providers.json";
 export interface ProviderInfo {
   id: string;
   name: string;
-  logoUrl: string;
   serialized: null | any;
 }
 
 export async function getProviderInfos(): Promise<ProviderInfo[]> {
   const filteredProviders =
-    process.env.NODE_ENV === "development" ? providers.slice(0, 10) : providers;
+    process.env.NODE_ENV === "development"
+      ? providers.slice(0, 100)
+      : providers;
 
   return Promise.all(
     filteredProviders.map(async (provider): Promise<ProviderInfo> => {
@@ -36,7 +37,6 @@ Adapted from [next-auth](https://github.com/nextauthjs/next-auth).`;
         // ...provider,
         id: provider.name.toLowerCase(),
         name: provider.name,
-        logoUrl: `/handshake/images/logos/${provider.name.toLocaleLowerCase()}.svg`,
         serialized: await getSerializedMarkdown(providerText),
       };
     }),

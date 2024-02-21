@@ -26,7 +26,8 @@ export default function RootLayout({
 
 function Nav() {
   return (
-    <nav className="bg-foreground">
+    <nav className="bg-foreground relative">
+      <div className="absolute left-6 top-2 text-[30px]">🫱🏻‍🫲🏽</div>
       <div className="m-auto flex h-[60px] flex-row items-center justify-between px-5 md:px-0 lg:w-[900px]">
         <Link href="/">
           <h1 className="text-contrast text-lg font-semibold">Handshake </h1>

@@ -37,12 +37,6 @@ const config = {
         background: "#000212",
         foreground: "rgb(var(--bg-secondary) / <alpha-value>)",
         link: "var(--color-link)",
-        // highlight: "var(--color-highlight)",
-        // primary: "rgb(var(--text-primary) / <alpha-value>)",
-        // "dark-foreground": "#222",
-        // "dark-background": "#111",
-        // secondary: "#ecc94b",
-        // lightbg: "#FAFAFA",
       },
       fontSize: {
         body: [

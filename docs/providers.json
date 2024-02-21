@@ -1,0 +1,262 @@
+[
+  {
+    "name": "AmazonSeller",
+    "text": "Docs: https://developer-docs.amazon.com/sp-api/docs/website-authorization-workflow\n\n## Configuration\n\n\n```js\n{\n  appId: string\n  clientId: string\n  clientSecret: string\n  // default: true\n  isAppDraft?: boolean\n}\n```\n\n\n## Notes\n\nNeed to \"set up your “Authorize” buttons so that selling partners are redirected\nto the Seller Central (for sellers) or Vendor Central (for vendors) sign-in page\nfor their own region.\"\n\n### No localhost redirect\n\nAmazon does not allow setting localhost as a redirect_uri. You may want to use\nNgrok or another service to provide a publicly addressable URL.\n\nhttps://github.com/amzn/selling-partner-api-docs/issues/26\n\n### Error Code: MD5101\n\nThis means unauthorized redirect URI. localhost URIs are allowed.\n\n### Developer Central – \"You do not have permissions to view this page\"\n\nFYI. Only the primary user of the Seller Central account is able to create and\nmodify apps via the \"Developer Central\" page.\n\nhttps://github.com/amzn/selling-partner-api-docs/issues/2191\n\n## Troubleshooting\n\n### Not setup for OAuth\n\n![Alt text](not-setup-oauth.png)"
+  },
+  {
+    "name": "Apple",
+    "text": null
+  },
+  {
+    "name": "Atlassian",
+    "text": null
+  },
+  {
+    "name": "Auth0",
+    "text": null
+  },
+  {
+    "name": "Authentik",
+    "text": null
+  },
+  {
+    "name": "AzureAd",
+    "text": null
+  },
+  {
+    "name": "AzureAdB2c",
+    "text": null
+  },
+  {
+    "name": "Battlenet",
+    "text": null
+  },
+  {
+    "name": "Box",
+    "text": null
+  },
+  {
+    "name": "BoxyhqSaml",
+    "text": null
+  },
+  {
+    "name": "Bungie",
+    "text": null
+  },
+  {
+    "name": "Cognito",
+    "text": null
+  },
+  {
+    "name": "Coinbase",
+    "text": null
+  },
+  {
+    "name": "Discord",
+    "text": null
+  },
+  {
+    "name": "Dropbox",
+    "text": null
+  },
+  {
+    "name": "DuendeIdentityServer6",
+    "text": null
+  },
+  {
+    "name": "Eveonline",
+    "text": null
+  },
+  {
+    "name": "Facebook",
+    "text": null
+  },
+  {
+    "name": "Faceit",
+    "text": null
+  },
+  {
+    "name": "FortyTwo",
+    "text": null
+  },
+  {
+    "name": "Foursquare",
+    "text": null
+  },
+  {
+    "name": "Freshbooks",
+    "text": null
+  },
+  {
+    "name": "Fusionauth",
+    "text": null
+  },
+  {
+    "name": "GitHub",
+    "text": null
+  },
+  {
+    "name": "Gitlab",
+    "text": null
+  },
+  {
+    "name": "Google",
+    "text": null
+  },
+  {
+    "name": "Hubspot",
+    "text": null
+  },
+  {
+    "name": "IdentityServer4",
+    "text": null
+  },
+  {
+    "name": "Instagram",
+    "text": null
+  },
+  {
+    "name": "Kakao",
+    "text": null
+  },
+  {
+    "name": "Keycloak",
+    "text": null
+  },
+  {
+    "name": "Line",
+    "text": null
+  },
+  {
+    "name": "Linkedin",
+    "text": null
+  },
+  {
+    "name": "Mailchimp",
+    "text": null
+  },
+  {
+    "name": "Mailru",
+    "text": null
+  },
+  {
+    "name": "Medium",
+    "text": null
+  },
+  {
+    "name": "Naver",
+    "text": null
+  },
+  {
+    "name": "Netlify",
+    "text": null
+  },
+  {
+    "name": "Okta",
+    "text": null
+  },
+  {
+    "name": "Onelogin",
+    "text": null
+  },
+  {
+    "name": "Osso",
+    "text": null
+  },
+  {
+    "name": "Osu",
+    "text": null
+  },
+  {
+    "name": "Passage",
+    "text": null
+  },
+  {
+    "name": "Patreon",
+    "text": null
+  },
+  {
+    "name": "Pinterest",
+    "text": null
+  },
+  {
+    "name": "Pipedrive",
+    "text": null
+  },
+  {
+    "name": "Reddit",
+    "text": null
+  },
+  {
+    "name": "Salesforce",
+    "text": null
+  },
+  {
+    "name": "Shopify",
+    "text": null
+  },
+  {
+    "name": "Slack",
+    "text": null
+  },
+  {
+    "name": "Spotify",
+    "text": null
+  },
+  {
+    "name": "Strava",
+    "text": null
+  },
+  {
+    "name": "Todoist",
+    "text": null
+  },
+  {
+    "name": "Trakt",
+    "text": null
+  },
+  {
+    "name": "Twitch",
+    "text": null
+  },
+  {
+    "name": "Twitter",
+    "text": null
+  },
+  {
+    "name": "UnitedEffects",
+    "text": null
+  },
+  {
+    "name": "Vk",
+    "text": null
+  },
+  {
+    "name": "Wikimedia",
+    "text": null
+  },
+  {
+    "name": "Wordpress",
+    "text": null
+  },
+  {
+    "name": "Workos",
+    "text": null
+  },
+  {
+    "name": "Yandex",
+    "text": null
+  },
+  {
+    "name": "Zitadel",
+    "text": null
+  },
+  {
+    "name": "Zoho",
+    "text": null
+  },
+  {
+    "name": "Zoom",
+    "text": null
+  }
+]

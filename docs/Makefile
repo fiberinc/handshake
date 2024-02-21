@@ -1,30 +1,28 @@
 # Inspired by Supabase's documenation spec Makefile.
 # Just run `make`.
 
-REPO_DIR=$(shell cd .. && pwd)
+PWD=$(shell pwd)
+LIB_DIR=$(shell cd ../handshake && pwd)
+ROOT_DIR=$(shell cd .. && pwd)
 
-run: download format
+run: typedoc-providers parse
 
 ###############################################################################
 # Init - prepare the environment
 ###############################################################################
 
 init:
-	cd $(REPO_DIR)/parser && npm install
+	echo "nothing"
 
 ###############################################################################
-# Download all the specs
+# Generate the PROVIDERS.md file
 ###############################################################################
-download: download.sources download.destinations download.api
+typedoc-providers:
+	cd $(LIB_DIR) && npx typedoc --json $(PWD)/bin/providers-typedoc.json $(LIB_DIR)/src/providers/index.ts --options $(PWD)/bin/typedoc.json
 
-download.api:
-	curl -sS http://localhost:3001/swagger > $(REPO_DIR)/docs/api_v1_openapi.json
-
-download.sources:
-	curl -sS http://localhost:3001/catalog/sources?abc=135456183495185 > $(REPO_DIR)/catalog/sources.json
-
-download.destinations:
-	curl -sS http://localhost:3001/catalog/destinations?abc=135456183495185 > $(REPO_DIR)/catalog/destinations.json
+parse:
+	bun run bin/parse-typedocs.ts
+	echo "done"
 
 ###############################################################################
 # Format everything - easier for git to track changes.

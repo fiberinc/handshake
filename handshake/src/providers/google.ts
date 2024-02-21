@@ -29,13 +29,13 @@ export interface Config {
   requiredScopes: string[];
 }
 
-export const GoogleProviderId = "google";
+export const PROVIDER_ID = "google";
 
 export function GoogleProvider({
   id,
   ...config
 }: Config): Provider<Config, CallbackParams, GoogleCredential> {
-  const providerId = id ?? GoogleProviderId;
+  const providerId = id ?? PROVIDER_ID;
 
   return {
     id: providerId,

@@ -106,6 +106,8 @@ const options: HandshakeOptions = {
 };
 ```
 
+Make sure to place sensitive information in your `.env` file.
+
 You can now run your app:
 
 ```bash

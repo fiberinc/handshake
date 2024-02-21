@@ -35,8 +35,10 @@ export async function DevIndex() {
       className={`justify-top flex min-h-screen flex-col items-start p-12 ${inter.className} gap-5`}
     >
       <section>
-        <h2 className="text-lg font-semibold">Handshake is running</h2>
-        <p>But this root page has nothing to do.</p>
+        <h2 className="text-lg font-semibold">
+          Your Handshake instance is running
+        </h2>
+        <p>But there is nothing to see in this root page.</p>
       </section>
       <section className="flex flex-col gap-4">
         <p>The following projects are configured: (click to start auth)</p>
@@ -49,6 +51,7 @@ export async function DevIndex() {
         </a>
         .
       </p>
+      <p>This page only appears in development mode.</p>
     </main>
   );
 }

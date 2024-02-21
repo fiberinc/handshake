@@ -23,7 +23,7 @@ Handshake is a Next.js app that handles OAuth flow against 60+ third-party apps
 and APIs. We use parts of `next-auth` under the hood to extend our coverage of
 providers.
 
-See the [full list of providers]([1]).
+See the [full list of providers][1]
 
 ### Features
 

@@ -1,4 +1,9 @@
+import { Metadata } from "next";
 import { ProviderList } from "./ProviderList";
+
+export const metadata: Metadata = {
+  title: "Handshake Documentation",
+};
 
 export default function Home() {
   return (

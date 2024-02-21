@@ -33,8 +33,9 @@ export const StyleWrapper = styled.div`
 
   a {
     text-decoration: underline;
-    text-decoration-style: dashed;
+    // text-decoration-style: dashed;
     text-underline-offset: 6px;
+    color: var(--color-link);
   }
 
   strong {

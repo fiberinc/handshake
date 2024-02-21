@@ -52,14 +52,17 @@ function Nav() {
 function Footer() {
   return (
     <footer className="bg-foreground">
-      <div className="text-mono text-md m-auto flex flex-row flex-wrap justify-between gap-10 px-5 py-10 md:px-0 lg:w-[900px]">
+      <div className="text-monospace text-md m-auto flex flex-row flex-wrap justify-between gap-10 px-5 py-10  font-medium md:px-0 lg:w-[900px]">
         <div>
-          This is a <a href="https://fiber.dev">Fiber</a> project.
+          A project by{" "}
+          <a href="https://fiber.dev" className="underline">
+            Fiber
+          </a>
         </div>
         <a href="https://twitter.com/fiber_dev" className="hover:text-link">
           @FIBER_dev
         </a>
-        <div>🫱🏻‍🫲🏽</div>
+        {/* <div>🫱🏻‍🫲🏽</div> */}
         <div>© 2024 Portalform Inc, Inc.</div>
       </div>
     </footer>

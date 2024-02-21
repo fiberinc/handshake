@@ -20,7 +20,8 @@ export interface Credential {
 export const PROVIDER_ID = "amazon-seller";
 
 /**
- * ["Website authorization workflow" documentation](https://developer-docs.amazon.com/sp-api/docs/website-authorization-workflow)
+ * ["Website authorization workflow"
+ * documentation](https://developer-docs.amazon.com/sp-api/docs/website-authorization-workflow)
  *
  * ## Usage
  *
@@ -46,7 +47,7 @@ export const PROVIDER_ID = "amazon-seller";
  *
  * ### No localhost redirect
  *
- * Amazon does not allow setting localhost as a redirect_uri. You may want to
+ * Amazon does not allow setting localhost as a `redirect_uri`. You may want to
  * use Ngrok or another service to provide a publicly addressable URL.
  *
  * [https://github.com/amzn/selling-partner-api-docs/issues/26](https://github.com/amzn/selling-partner-api-docs/issues/26)

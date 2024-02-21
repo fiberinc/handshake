@@ -17,31 +17,33 @@ export default function Home() {
           <Banner>🎉 New Stripe connector</Banner>
         </Link>
         <h1
-          className="text-contrast text-[30px] font-semibold leading-[1.1] lg:text-[80px]"
+          className="text-contrast text-[305px] font-semibold leading-[1.1] lg:text-[85px]"
           style={{
             // @ts-ignore
             textWrap: "balance",
           }}
         >
-          Handshake handles OAuth for you
+          Get third-party access tokens for 60+ APIs
         </h1>
-        <p className="text-contrast text-2xl antialiased">
-          Handshake handles OAuth authorization against 60+ APIs, so you .
+        <p className="text-contrast max-w-[760px] text-2xl antialiased">
+          Handshake handles the OAuth flow with popular APIs gives you
+          credentials to access user accounts in third-party services.
         </p>
         <br />
         <section className="flex flex-wrap gap-5">
           <a
             href={REPO_URL}
-            className="flex h-fit flex-row items-center gap-3 rounded-md border bg-white p-4 font-medium text-black"
+            className="flex h-[55px] flex-row items-center gap-3 rounded-md border bg-white p-4 px-5 font-medium text-black "
           >
-            <GithubLogoMark className="h-6 w-6" /> Github
+            <GithubLogoMark size={25} /> Github
           </a>
 
           <a
             href="https://github.com/fiberinc/handshake?tab=readme-ov-file#deploy"
-            className="flex h-fit flex-row items-center gap-3 rounded-md bg-black p-4 font-medium text-white"
+            className="flex h-[55px] flex-row items-center gap-3 rounded-md bg-black p-4 px-5 font-medium text-white antialiased"
           >
-            ▲&nbsp;&nbsp;Deploy to Vercel
+            <span className="text-[20px] leading-[0.5]">▲</span>
+            &nbsp;&nbsp;Deploy to Vercel
           </a>
         </section>
       </header>

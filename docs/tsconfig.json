@@ -31,7 +31,6 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "../handshake/src/**/*.ts",
     ".next/types/**/*.ts"
   ],
   "exclude": [

@@ -47,7 +47,6 @@ const config = {
         background: "#000212",
         grey: "#858699",
         "grey-dark": "#222326",
-        background: "rgb(var(--bg-primary) / <alpha-value>)",
         foreground: "rgb(var(--bg-secondary) / <alpha-value>)",
         link: "var(--color-link)",
         highlight: "var(--color-highlight)",
@@ -149,7 +148,6 @@ const config = {
         "default-font": "rgb(17, 24, 39)",
         "subtext-color": "rgb(107, 114, 128)",
         "neutral-border": "rgb(229, 231, 235)",
-        white: "rgb(255, 255, 255)",
         "default-background": "rgb(255, 255, 255)",
       },
       fontSize: {

@@ -7,10 +7,8 @@ export default function Home() {
     return <DevIndex />;
   }
 
-  // TODO: decide how to handle this.
   return (
     <main>
-      <h1>Success</h1>
       <p>Your OAuth redirection is now up.</p>
     </main>
   );

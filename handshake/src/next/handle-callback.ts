@@ -97,7 +97,7 @@ export async function handleCallback(
   }
 
   // Call onSuccess (eg. so the caller can register account with Fiber).
-  let successParams;
+  let forwardParams;
   try {
     const accountId = session.accountId;
     const linkParams: { account_id?: string } = {};
@@ -107,13 +107,10 @@ export async function handleCallback(
 
     console.log("linkParams", linkParams);
 
-    successParams = await options.onSuccess(
-      credentials,
-      handler.id,
-      linkParams,
-    );
+    const result = await options.onSuccess(credentials, handler.id, linkParams);
+    forwardParams = result?.forwardParams;
 
-    console.log("onSuccess returned", successParams);
+    console.log("onSuccess returned", forwardParams);
   } catch (err: unknown) {
     if (!(err instanceof Error)) {
       throw new TypeError("Not an error");
@@ -134,8 +131,8 @@ export async function handleCallback(
   url.searchParams.set("state", session.developerState);
 
   // Add the `successParams` we received from `onSuccess` to the URL.
-  if (successParams) {
-    for (const [key, value] of Object.entries(successParams)) {
+  if (forwardParams) {
+    for (const [key, value] of Object.entries(forwardParams)) {
       if (url.searchParams.has(key)) {
         throw new Error(`onSuccess handler returned a reserved param: ${key}`);
       }

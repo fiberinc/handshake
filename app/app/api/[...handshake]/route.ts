@@ -8,11 +8,12 @@ import {
   NextHandshake,
   Shopify,
 } from "handshake";
+import { FiberHook } from "~/hooks/fiber";
 
 const REDIRECT_URL = process.env.REDIRECT_URL || "";
 assert(REDIRECT_URL, "Specify a URL at REDIRECT_URL.");
 
-export const config: HandshakeConfig = {
+export const OPTIONS: HandshakeConfig = {
   secret: process.env.SESSION_SECRET!,
   allowedRedirectUris: [REDIRECT_URL],
   handlers: [
@@ -41,9 +42,9 @@ export const config: HandshakeConfig = {
       scopes: ["read_orders", "read_products"],
     }),
     AmazonSeller({
-      appId: "asdf",
-      clientId: "asdf",
-      clientSecret: "asdf",
+      appId: process.env.AMAZON_APP_ID!,
+      clientId: process.env.AMAZON_CLIENT_ID!,
+      clientSecret: process.env.AMAZON_CLIENT_SECRET!,
       isDraftApp: true,
     }),
     Google({
@@ -52,13 +53,35 @@ export const config: HandshakeConfig = {
       // requiredScopes: ["https://www.googleapis.com/auth/gmail.readonly"],
     }),
   ],
-  async onSuccess(credentials, handlerId) {
-    // This
+  /**
+   * This is where you'll handle forwarding the acquired credentials back to
+   * your own app. There are three main strategies for doing this securely:
+   *
+   * 1. **Encrypted URL params.** Encrypt the credentials using a secret shared
+   *    between Handshake and your app, and send it back by setting
+   *    `forwardParams`.
+   * 2. **API call.** Make an API call to your backend with the credentials.
+   * 2. **Cookies.** If you're hosting Handshake on the same domain as your app,
+   *    you can set by using `cookies` from `next/server`.
+   *
+   * @param handlerId - Identifies the provider that handled this handshake, eg:
+   * 'google', 'github', 'amazon-seller' etc.
+   */
+  async onSuccess(credentials: unknown, handlerId) {
+    const creds_ = JSON.stringify(credentials);
+    const creds = encodeURI(creds_);
+
+    await FiberHook({
+      clientId: process.env.FIBER_CLIENT_ID!,
+      clientSecret: process.env.FIBER_CLIENT_SECRET!,
+    })(credentials, handlerId, {});
 
     return {
-      // external_id: externalId,
+      forwardParams: {
+        creds,
+      },
     };
   },
 };
 
-export const { GET, POST } = NextHandshake(config);
+export const { GET, POST } = NextHandshake(OPTIONS);

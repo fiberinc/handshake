@@ -1,5 +1,5 @@
 import { Inter } from "next/font/google";
-import { config } from "../api/[...handshake]/route";
+import { OPTIONS } from "../api/[...handshake]/route";
 
 const REPO_HOST = "https://github.com/fiberinc/link";
 const inter = Inter({ subsets: ["latin"] });
@@ -54,7 +54,7 @@ export async function DevIndex() {
 }
 
 async function getSanitizedHandlerInfo() {
-  return config.handlers.map((handler) => {
+  return OPTIONS.handlers.map((handler) => {
     return {
       id: handler.id,
       providerType: handler.provider.id,

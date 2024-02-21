@@ -1,112 +1,101 @@
 import { z } from "zod";
 
-const FIBER_SOURCES = {
+/**
+ * Maps a handler ID to the name of the source on fiber.dev, that we want to
+ * register accounts to.
+ */
+const FIBER_SOURCES: Record<string, string> = {
   "amazon-seller": "amazon",
 };
 
 interface Args {
+  /**
+   * The client ID for a Fiber environment.
+   */
   clientId: string;
+  /**
+   * The client secret for a Fiber environment.
+   */
   clientSecret: string;
 }
 
-export function FiberHook({ clientId, clientSecret }: Args) {}
-
-// let fiberCredential;
-// let customExternalId = null;
-// if (providerId === ShopifyProviderId) {
-// } else if (providerId === GoogleProviderId) {
-//   fiberCredential = { ...(credential as any) };
-// } else if (providerId === AmazonSellerProviderId) {
-//   if (!account_id) {
-//     throw Error(`AmazonSeller needs 'account_id' query param`);
-//   }
-//   // Use the `account_id` parameter that we received from the client
-//   // application to set the account's "external id" in Fiber.
-//   customExternalId = account_id;
-//   // Send an AmazonSp credential the way Fiber expects it.
-//   fiberCredential = {
-//     refreshToken: (credential as any).refreshToken,
-//     sellerId: account_id,
-//   };
-// } else {
-//   throw Error(`unexpected provider ${providerId}`);
-// }
-
-// console.log("fiberCredential", fiberCredential);
-
-// // Map the provider ID to the name of the source on Fiber that we want to
-// // register this account into.
-// const FIBER_SOURCES = {
-// 	[AmazonSellerProviderId]: 'amazon',
-// };
-
-// let externalId: string;
-// try {
-// 	({ externalId } = await registerFiberAccount(
-// 		'',
-// 		'',
-// 		customExternalId,
-// 		(FIBER_SOURCES as any)[providerId],
-// 		fiberCredential
-// 	));
-// } catch (e: any) {
-// 	Sentry.captureException(e);
-// 	throw Error(`Failed to register Fiber account: ${e.message}`);
-// }
-
-const API_HOST = "https://api.fiber.dev";
-
 /**
- *
- * @param project
- * @param provider
- * @param credential
- * @param accountId
- * @param stateString The value of the original `?state=` query parameter used
- * by our clients when sending users our way.
- * @returns
+ * A hook that uses the newly obtained account credentials to register a new
+ * account inside a Fiber.dev source.
  */
-export async function registerFiberAccount(
-  fiberClientId: string,
-  fiberClientSecret: string,
-  accountId: string | null,
-  sourceName: string,
-  credential: any,
-): Promise<{ externalId: string }> {
-  const identifierStringForDebugging = `info=${JSON.stringify(credential)}`;
+export function FiberHook({ clientId, clientSecret }: Args) {
+  return async (credentials: unknown, handlerId: string, extras: any) => {
+    const sourceName = FIBER_SOURCES[handlerId];
+    if (!sourceName) {
+      console.warn(
+        `WARNING: Handler with id ${handlerId} not in "FIBER_SOURCES". Will skip.`,
+      );
+      return;
+    }
 
-  let externalId: string;
-  try {
-    ({ externalId } = await postSourceAccount(
-      fiberClientId,
-      fiberClientSecret,
-      sourceName,
-      accountId,
-      credential,
-    ));
-  } catch (err) {
-    console.log("registerAccount failed with error", err);
+    let fiberExternalId = "";
 
-    // import * as Sentry from "@sentry/nextjs";
-    // Sentry.captureMessage(
-    //   `Failed to register account with Fiber ${identifierStringForDebugging}`,
-    // );
-    // Sentry.captureException(err);
+    if (handlerId === "amazon-seller") {
+      const parsed = z
+        .object({
+          refreshToken: z.string(),
+        })
+        .parse(credentials);
+      if (!extras.accountId) {
+        throw Error(`AmazonSeller needs 'accountId' query param`);
+      }
+
+      // Use the `accountId` parameter that we received from the client
+      // application to set the account's "external id" in Fiber.
+      fiberExternalId = extras.accountId;
+      // Send an AmazonSp credential the way Fiber expects it.
+      credentials = {
+        refreshToken: parsed.refreshToken,
+        sellerId: extras.accountId,
+      };
+    }
+
+    console.log("fiberCredential", credentials);
+
+    let externalId: string;
+    try {
+      const result = await postSourceAccount(
+        clientId,
+        clientSecret,
+        fiberExternalId,
+        sourceName,
+        credentials,
+      );
+
+      console.log("postSourceAccount", result);
+      externalId = result.externalId;
+    } catch (e: unknown) {
+      if (!(e instanceof Error)) {
+        throw new TypeError("Not an Error");
+      }
+      // Sentry.captureException(e);
+
+      // import * as Sentry from "@sentry/nextjs";
+      // Sentry.captureMessage(
+      //   `Failed to register account with Fiber ${identifierStringForDebugging}`,
+      // );
+      // Sentry.captureException(err);
+
+      // await postToSlack(
+      // 	`Failed to register account for ${identifierStringForDebugging}`,
+      // 	SLACK_INTERNAL_SIGNUP_CHANNEL_ID
+      // );
+
+      throw Error(`Failed to register Fiber account: ${e.toString()}`);
+    }
 
     // await postToSlack(
-    // 	`Failed to register account for ${identifierStringForDebugging}`,
+    // 	`Client logged in with ${identifierStringForDebugging}`,
     // 	SLACK_INTERNAL_SIGNUP_CHANNEL_ID
     // );
 
-    throw err;
-  }
-
-  // await postToSlack(
-  // 	`Client logged in with ${identifierStringForDebugging}`,
-  // 	SLACK_INTERNAL_SIGNUP_CHANNEL_ID
-  // );
-
-  return { externalId };
+    return { externalId };
+  };
 }
 
 export async function postSourceAccount(
@@ -114,9 +103,10 @@ export async function postSourceAccount(
   fiberClientSecret: string,
   sourceName: string,
   externalId: string | null,
-  credentials: any,
+  credentials: unknown,
 ): Promise<{ externalId: string }> {
-  const url = `${API_HOST}/sources/${sourceName}/accounts`;
+  const host = process.env.FIBER_API_HOST ?? "https://api.fiber.dev";
+  const url = `${host}/sources/${sourceName}/accounts`;
 
   let res;
   try {
@@ -134,12 +124,12 @@ export async function postSourceAccount(
         externalId: externalId ?? undefined,
       }),
     });
-  } catch (e: any) {
+  } catch (e) {
     throw Error(`Failed to call API url=${url} ${e}`);
   }
 
   if (!res.ok) {
-    let text = await res.text();
+    const text = await res.text();
     throw Error("Register failed: " + text);
   }
 

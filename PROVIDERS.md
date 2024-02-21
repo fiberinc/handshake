@@ -3,7 +3,6 @@
 Can't find a provider here? Open a [GitHub Issue](https://github.com/fiberinc/handshake/issues) to let us know!
 
 - [Supported Providers](#supported-providers)
-  - [42chool](#42chool)
   - [Amazon](#amazon)
   - [Apple](#apple)
   - [Atlassian](#atlassian)
@@ -23,6 +22,7 @@ Can't find a provider here? Open a [GitHub Issue](https://github.com/fiberinc/ha
   - [Eveonline](#eveonline)
   - [Facebook](#facebook)
   - [Faceit](#faceit)
+  - [FortyTwo](#fortytwo)
   - [Foursquare](#foursquare)
   - [Freshbooks](#freshbooks)
   - [Fusionauth](#fusionauth)
@@ -71,29 +71,14 @@ Can't find a provider here? Open a [GitHub Issue](https://github.com/fiberinc/ha
   - [Zoho](#zoho)
   - [Zoom](#zoom)
 
-## 42chool
-
-```ts
-// Inside app/config.ts
-
-import { F42choolProvider } from "fiber-handshake";
-
-F42choolProvider({
-  clientId: "",
-  clientSecret: "",
-});
-```
-
-Adapted from [next-auth](https://github.com/nextauthjs/next-auth).
-
 ## Amazon
 
 ```ts
-// Inside app/config.ts
+// Inside app/handshake.ts
 
-import { AmazonProvider } from "fiber-handshake";
+import { Amazon } from "handshake";
 
-AmazonProvider({
+Amazon({
   appId: "",
   clientId: "",
   clientSecret: "",
@@ -104,11 +89,11 @@ AmazonProvider({
 ## Apple
 
 ```ts
-// Inside app/config.ts
+// Inside app/handshake.ts
 
-import { AppleProvider } from "fiber-handshake";
+import { Apple } from "handshake";
 
-AppleProvider({
+Apple({
   clientId: "",
   clientSecret: "",
 });
@@ -119,11 +104,11 @@ Adapted from [next-auth](https://github.com/nextauthjs/next-auth).
 ## Atlassian
 
 ```ts
-// Inside app/config.ts
+// Inside app/handshake.ts
 
-import { AtlassianProvider } from "fiber-handshake";
+import { Atlassian } from "handshake";
 
-AtlassianProvider({
+Atlassian({
   clientId: "",
   clientSecret: "",
 });
@@ -134,11 +119,11 @@ Adapted from [next-auth](https://github.com/nextauthjs/next-auth).
 ## Auth0
 
 ```ts
-// Inside app/config.ts
+// Inside app/handshake.ts
 
-import { Auth0Provider } from "fiber-handshake";
+import { Auth0 } from "handshake";
 
-Auth0Provider({
+Auth0({
   clientId: "",
   clientSecret: "",
 });
@@ -149,11 +134,11 @@ Adapted from [next-auth](https://github.com/nextauthjs/next-auth).
 ## Authentik
 
 ```ts
-// Inside app/config.ts
+// Inside app/handshake.ts
 
-import { AuthentikProvider } from "fiber-handshake";
+import { Authentik } from "handshake";
 
-AuthentikProvider({
+Authentik({
   clientId: "",
   clientSecret: "",
 });
@@ -164,11 +149,11 @@ Adapted from [next-auth](https://github.com/nextauthjs/next-auth).
 ## AzureAdB2c
 
 ```ts
-// Inside app/config.ts
+// Inside app/handshake.ts
 
-import { AzureAdB2cProvider } from "fiber-handshake";
+import { AzureAdB2c } from "handshake";
 
-AzureAdB2cProvider({
+AzureAdB2c({
   clientId: "",
   clientSecret: "",
 });
@@ -179,11 +164,11 @@ Adapted from [next-auth](https://github.com/nextauthjs/next-auth).
 ## AzureAd
 
 ```ts
-// Inside app/config.ts
+// Inside app/handshake.ts
 
-import { AzureAdProvider } from "fiber-handshake";
+import { AzureAd } from "handshake";
 
-AzureAdProvider({
+AzureAd({
   clientId: "",
   clientSecret: "",
 });
@@ -194,11 +179,11 @@ Adapted from [next-auth](https://github.com/nextauthjs/next-auth).
 ## Battlenet
 
 ```ts
-// Inside app/config.ts
+// Inside app/handshake.ts
 
-import { BattlenetProvider } from "fiber-handshake";
+import { Battlenet } from "handshake";
 
-BattlenetProvider({
+Battlenet({
   clientId: "",
   clientSecret: "",
 });
@@ -209,11 +194,11 @@ Adapted from [next-auth](https://github.com/nextauthjs/next-auth).
 ## Box
 
 ```ts
-// Inside app/config.ts
+// Inside app/handshake.ts
 
-import { BoxProvider } from "fiber-handshake";
+import { Box } from "handshake";
 
-BoxProvider({
+Box({
   clientId: "",
   clientSecret: "",
 });
@@ -224,11 +209,11 @@ Adapted from [next-auth](https://github.com/nextauthjs/next-auth).
 ## BoxyhqSaml
 
 ```ts
-// Inside app/config.ts
+// Inside app/handshake.ts
 
-import { BoxyhqSamlProvider } from "fiber-handshake";
+import { BoxyhqSaml } from "handshake";
 
-BoxyhqSamlProvider({
+BoxyhqSaml({
   clientId: "",
   clientSecret: "",
 });
@@ -239,11 +224,11 @@ Adapted from [next-auth](https://github.com/nextauthjs/next-auth).
 ## Bungie
 
 ```ts
-// Inside app/config.ts
+// Inside app/handshake.ts
 
-import { BungieProvider } from "fiber-handshake";
+import { Bungie } from "handshake";
 
-BungieProvider({
+Bungie({
   clientId: "",
   clientSecret: "",
 });
@@ -254,11 +239,11 @@ Adapted from [next-auth](https://github.com/nextauthjs/next-auth).
 ## Cognito
 
 ```ts
-// Inside app/config.ts
+// Inside app/handshake.ts
 
-import { CognitoProvider } from "fiber-handshake";
+import { Cognito } from "handshake";
 
-CognitoProvider({
+Cognito({
   clientId: "",
   clientSecret: "",
 });
@@ -269,11 +254,11 @@ Adapted from [next-auth](https://github.com/nextauthjs/next-auth).
 ## Coinbase
 
 ```ts
-// Inside app/config.ts
+// Inside app/handshake.ts
 
-import { CoinbaseProvider } from "fiber-handshake";
+import { Coinbase } from "handshake";
 
-CoinbaseProvider({
+Coinbase({
   clientId: "",
   clientSecret: "",
 });
@@ -284,11 +269,11 @@ Adapted from [next-auth](https://github.com/nextauthjs/next-auth).
 ## Discord
 
 ```ts
-// Inside app/config.ts
+// Inside app/handshake.ts
 
-import { DiscordProvider } from "fiber-handshake";
+import { Discord } from "handshake";
 
-DiscordProvider({
+Discord({
   clientId: "",
   clientSecret: "",
 });
@@ -299,11 +284,11 @@ Adapted from [next-auth](https://github.com/nextauthjs/next-auth).
 ## Dropbox
 
 ```ts
-// Inside app/config.ts
+// Inside app/handshake.ts
 
-import { DropboxProvider } from "fiber-handshake";
+import { Dropbox } from "handshake";
 
-DropboxProvider({
+Dropbox({
   clientId: "",
   clientSecret: "",
 });
@@ -320,11 +305,11 @@ DuendeIdentityServer6 = {};
 ## Eveonline
 
 ```ts
-// Inside app/config.ts
+// Inside app/handshake.ts
 
-import { EveonlineProvider } from "fiber-handshake";
+import { Eveonline } from "handshake";
 
-EveonlineProvider({
+Eveonline({
   clientId: "",
   clientSecret: "",
 });
@@ -335,11 +320,11 @@ Adapted from [next-auth](https://github.com/nextauthjs/next-auth).
 ## Facebook
 
 ```ts
-// Inside app/config.ts
+// Inside app/handshake.ts
 
-import { FacebookProvider } from "fiber-handshake";
+import { Facebook } from "handshake";
 
-FacebookProvider({
+Facebook({
   clientId: "",
   clientSecret: "",
 });
@@ -350,11 +335,26 @@ Adapted from [next-auth](https://github.com/nextauthjs/next-auth).
 ## Faceit
 
 ```ts
-// Inside app/config.ts
+// Inside app/handshake.ts
 
-import { FaceitProvider } from "fiber-handshake";
+import { Faceit } from "handshake";
 
-FaceitProvider({
+Faceit({
+  clientId: "",
+  clientSecret: "",
+});
+```
+
+Adapted from [next-auth](https://github.com/nextauthjs/next-auth).
+
+## FortyTwo
+
+```ts
+// Inside app/handshake.ts
+
+import { FFortyTwo } from "handshake";
+
+FortyTwo({
   clientId: "",
   clientSecret: "",
 });
@@ -365,11 +365,11 @@ Adapted from [next-auth](https://github.com/nextauthjs/next-auth).
 ## Foursquare
 
 ```ts
-// Inside app/config.ts
+// Inside app/handshake.ts
 
-import { FoursquareProvider } from "fiber-handshake";
+import { Foursquare } from "handshake";
 
-FoursquareProvider({
+Foursquare({
   clientId: "",
   clientSecret: "",
 });
@@ -380,11 +380,11 @@ Adapted from [next-auth](https://github.com/nextauthjs/next-auth).
 ## Freshbooks
 
 ```ts
-// Inside app/config.ts
+// Inside app/handshake.ts
 
-import { FreshbooksProvider } from "fiber-handshake";
+import { Freshbooks } from "handshake";
 
-FreshbooksProvider({
+Freshbooks({
   clientId: "",
   clientSecret: "",
 });
@@ -395,11 +395,11 @@ Adapted from [next-auth](https://github.com/nextauthjs/next-auth).
 ## Fusionauth
 
 ```ts
-// Inside app/config.ts
+// Inside app/handshake.ts
 
-import { FusionauthProvider } from "fiber-handshake";
+import { Fusionauth } from "handshake";
 
-FusionauthProvider({
+Fusionauth({
   clientId: "",
   clientSecret: "",
 });
@@ -410,11 +410,11 @@ Adapted from [next-auth](https://github.com/nextauthjs/next-auth).
 ## GitHub
 
 ```ts
-// Inside app/config.ts
+// Inside app/handshake.ts
 
-import { GitHubProvider } from "fiber-handshake";
+import { GitHub } from "handshake";
 
-GitHubProvider({
+GitHub({
   clientId: "",
   clientSecret: "",
 });
@@ -425,11 +425,11 @@ Adapted from [next-auth](https://github.com/nextauthjs/next-auth).
 ## Gitlab
 
 ```ts
-// Inside app/config.ts
+// Inside app/handshake.ts
 
-import { GitlabProvider } from "fiber-handshake";
+import { Gitlab } from "handshake";
 
-GitlabProvider({
+Gitlab({
   clientId: "",
   clientSecret: "",
 });
@@ -440,11 +440,11 @@ Adapted from [next-auth](https://github.com/nextauthjs/next-auth).
 ## Google
 
 ```ts
-// Inside app/config.ts
+// Inside app/handshake.ts
 
-import { GoogleProvider } from "fiber-handshake";
+import { Google } from "handshake";
 
-GoogleProvider({
+Google({
   clientId: "",
   clientSecret: "",
 });
@@ -455,11 +455,11 @@ Adapted from [next-auth](https://github.com/nextauthjs/next-auth).
 ## Hubspot
 
 ```ts
-// Inside app/config.ts
+// Inside app/handshake.ts
 
-import { HubspotProvider } from "fiber-handshake";
+import { Hubspot } from "handshake";
 
-HubspotProvider({
+Hubspot({
   clientId: "",
   clientSecret: "",
   scopes: [
@@ -483,11 +483,11 @@ Follow the format: `https://HANDSHAKE_URL/api/auth/hubspot/callback`
 ## IdentityServer4
 
 ```ts
-// Inside app/config.ts
+// Inside app/handshake.ts
 
-import { IdentityServer4Provider } from "fiber-handshake";
+import { IdentityServer4 } from "handshake";
 
-IdentityServer4Provider({
+IdentityServer4({
   clientId: "",
   clientSecret: "",
 });
@@ -498,11 +498,11 @@ Adapted from [next-auth](https://github.com/nextauthjs/next-auth).
 ## Instagram
 
 ```ts
-// Inside app/config.ts
+// Inside app/handshake.ts
 
-import { InstagramProvider } from "fiber-handshake";
+import { Instagram } from "handshake";
 
-InstagramProvider({
+Instagram({
   clientId: "",
   clientSecret: "",
 });
@@ -513,11 +513,11 @@ Adapted from [next-auth](https://github.com/nextauthjs/next-auth).
 ## Kakao
 
 ```ts
-// Inside app/config.ts
+// Inside app/handshake.ts
 
-import { KakaoProvider } from "fiber-handshake";
+import { Kakao } from "handshake";
 
-KakaoProvider({
+Kakao({
   clientId: "",
   clientSecret: "",
 });
@@ -528,11 +528,11 @@ Adapted from [next-auth](https://github.com/nextauthjs/next-auth).
 ## Keycloak
 
 ```ts
-// Inside app/config.ts
+// Inside app/handshake.ts
 
-import { KeycloakProvider } from "fiber-handshake";
+import { Keycloak } from "handshake";
 
-KeycloakProvider({
+Keycloak({
   clientId: "",
   clientSecret: "",
 });
@@ -543,11 +543,11 @@ Adapted from [next-auth](https://github.com/nextauthjs/next-auth).
 ## Line
 
 ```ts
-// Inside app/config.ts
+// Inside app/handshake.ts
 
-import { LineProvider } from "fiber-handshake";
+import { Line } from "handshake";
 
-LineProvider({
+Line({
   clientId: "",
   clientSecret: "",
 });
@@ -558,11 +558,11 @@ Adapted from [next-auth](https://github.com/nextauthjs/next-auth).
 ## Linkedin
 
 ```ts
-// Inside app/config.ts
+// Inside app/handshake.ts
 
-import { LinkedinProvider } from "fiber-handshake";
+import { Linkedin } from "handshake";
 
-LinkedinProvider({
+Linkedin({
   clientId: "",
   clientSecret: "",
 });
@@ -573,11 +573,11 @@ Adapted from [next-auth](https://github.com/nextauthjs/next-auth).
 ## Mailchimp
 
 ```ts
-// Inside app/config.ts
+// Inside app/handshake.ts
 
-import { MailchimpProvider } from "fiber-handshake";
+import { Mailchimp } from "handshake";
 
-MailchimpProvider({
+Mailchimp({
   clientId: "",
   clientSecret: "",
 });
@@ -588,11 +588,11 @@ Adapted from [next-auth](https://github.com/nextauthjs/next-auth).
 ## Mailru
 
 ```ts
-// Inside app/config.ts
+// Inside app/handshake.ts
 
-import { MailruProvider } from "fiber-handshake";
+import { Mailru } from "handshake";
 
-MailruProvider({
+Mailru({
   clientId: "",
   clientSecret: "",
 });
@@ -603,11 +603,11 @@ Adapted from [next-auth](https://github.com/nextauthjs/next-auth).
 ## Medium
 
 ```ts
-// Inside app/config.ts
+// Inside app/handshake.ts
 
-import { MediumProvider } from "fiber-handshake";
+import { Medium } from "handshake";
 
-MediumProvider({
+Medium({
   clientId: "",
   clientSecret: "",
 });
@@ -618,11 +618,11 @@ Adapted from [next-auth](https://github.com/nextauthjs/next-auth).
 ## Naver
 
 ```ts
-// Inside app/config.ts
+// Inside app/handshake.ts
 
-import { NaverProvider } from "fiber-handshake";
+import { Naver } from "handshake";
 
-NaverProvider({
+Naver({
   clientId: "",
   clientSecret: "",
 });
@@ -633,11 +633,11 @@ Adapted from [next-auth](https://github.com/nextauthjs/next-auth).
 ## Netlify
 
 ```ts
-// Inside app/config.ts
+// Inside app/handshake.ts
 
-import { NetlifyProvider } from "fiber-handshake";
+import { Netlify } from "handshake";
 
-NetlifyProvider({
+Netlify({
   clientId: "",
   clientSecret: "",
 });
@@ -648,11 +648,11 @@ Adapted from [next-auth](https://github.com/nextauthjs/next-auth).
 ## Okta
 
 ```ts
-// Inside app/config.ts
+// Inside app/handshake.ts
 
-import { OktaProvider } from "fiber-handshake";
+import { Okta } from "handshake";
 
-OktaProvider({
+Okta({
   clientId: "",
   clientSecret: "",
 });
@@ -663,11 +663,11 @@ Adapted from [next-auth](https://github.com/nextauthjs/next-auth).
 ## Onelogin
 
 ```ts
-// Inside app/config.ts
+// Inside app/handshake.ts
 
-import { OneloginProvider } from "fiber-handshake";
+import { Onelogin } from "handshake";
 
-OneloginProvider({
+Onelogin({
   clientId: "",
   clientSecret: "",
 });
@@ -678,11 +678,11 @@ Adapted from [next-auth](https://github.com/nextauthjs/next-auth).
 ## Osso
 
 ```ts
-// Inside app/config.ts
+// Inside app/handshake.ts
 
-import { OssoProvider } from "fiber-handshake";
+import { Osso } from "handshake";
 
-OssoProvider({
+Osso({
   clientId: "",
   clientSecret: "",
 });
@@ -693,11 +693,11 @@ Adapted from [next-auth](https://github.com/nextauthjs/next-auth).
 ## Osu
 
 ```ts
-// Inside app/config.ts
+// Inside app/handshake.ts
 
-import { OsuProvider } from "fiber-handshake";
+import { Osu } from "handshake";
 
-OsuProvider({
+Osu({
   clientId: "",
   clientSecret: "",
 });
@@ -708,11 +708,11 @@ Adapted from [next-auth](https://github.com/nextauthjs/next-auth).
 ## Passage
 
 ```ts
-// Inside app/config.ts
+// Inside app/handshake.ts
 
-import { PassageProvider } from "fiber-handshake";
+import { Passage } from "handshake";
 
-PassageProvider({
+Passage({
   clientId: "",
   clientSecret: "",
 });
@@ -723,11 +723,11 @@ Adapted from [next-auth](https://github.com/nextauthjs/next-auth).
 ## Patreon
 
 ```ts
-// Inside app/config.ts
+// Inside app/handshake.ts
 
-import { PatreonProvider } from "fiber-handshake";
+import { Patreon } from "handshake";
 
-PatreonProvider({
+Patreon({
   clientId: "",
   clientSecret: "",
 });
@@ -738,11 +738,11 @@ Adapted from [next-auth](https://github.com/nextauthjs/next-auth).
 ## Pinterest
 
 ```ts
-// Inside app/config.ts
+// Inside app/handshake.ts
 
-import { PinterestProvider } from "fiber-handshake";
+import { Pinterest } from "handshake";
 
-PinterestProvider({
+Pinterest({
   clientId: "",
   clientSecret: "",
 });
@@ -753,11 +753,11 @@ Adapted from [next-auth](https://github.com/nextauthjs/next-auth).
 ## Pipedrive
 
 ```ts
-// Inside app/config.ts
+// Inside app/handshake.ts
 
-import { PipedriveProvider } from "fiber-handshake";
+import { Pipedrive } from "handshake";
 
-PipedriveProvider({
+Pipedrive({
   clientId: "",
   clientSecret: "",
 });
@@ -768,11 +768,11 @@ Adapted from [next-auth](https://github.com/nextauthjs/next-auth).
 ## Reddit
 
 ```ts
-// Inside app/config.ts
+// Inside app/handshake.ts
 
-import { RedditProvider } from "fiber-handshake";
+import { Reddit } from "handshake";
 
-RedditProvider({
+Reddit({
   clientId: "",
   clientSecret: "",
 });
@@ -783,11 +783,11 @@ Adapted from [next-auth](https://github.com/nextauthjs/next-auth).
 ## Salesforce
 
 ```ts
-// Inside app/config.ts
+// Inside app/handshake.ts
 
-import { SalesforceProvider } from "fiber-handshake";
+import { Salesforce } from "handshake";
 
-SalesforceProvider({
+Salesforce({
   clientId: "",
   clientSecret: "",
 });
@@ -798,11 +798,11 @@ Adapted from [next-auth](https://github.com/nextauthjs/next-auth).
 ## Shopify
 
 ```ts
-// Inside app/config.ts
+// Inside app/handshake.ts
 
-import { ShopifyProvider } from "fiber-handshake";
+import { Shopify } from "handshake";
 
-ShopifyProvider({
+Shopify({
   clientId: "",
   clientSecret: "",
   scopes: ["read_orders", "read_products"],
@@ -820,11 +820,11 @@ Follow the format: `https://HANDSHAKE_URL/api/auth/shopify/callback`
 ## Slack
 
 ```ts
-// Inside app/config.ts
+// Inside app/handshake.ts
 
-import { SlackProvider } from "fiber-handshake";
+import { Slack } from "handshake";
 
-SlackProvider({
+Slack({
   clientId: "",
   clientSecret: "",
 });
@@ -835,11 +835,11 @@ Adapted from [next-auth](https://github.com/nextauthjs/next-auth).
 ## Spotify
 
 ```ts
-// Inside app/config.ts
+// Inside app/handshake.ts
 
-import { SpotifyProvider } from "fiber-handshake";
+import { Spotify } from "handshake";
 
-SpotifyProvider({
+Spotify({
   clientId: "",
   clientSecret: "",
 });
@@ -850,11 +850,11 @@ Adapted from [next-auth](https://github.com/nextauthjs/next-auth).
 ## Strava
 
 ```ts
-// Inside app/config.ts
+// Inside app/handshake.ts
 
-import { StravaProvider } from "fiber-handshake";
+import { Strava } from "handshake";
 
-StravaProvider({
+Strava({
   clientId: "",
   clientSecret: "",
 });
@@ -865,11 +865,11 @@ Adapted from [next-auth](https://github.com/nextauthjs/next-auth).
 ## Todoist
 
 ```ts
-// Inside app/config.ts
+// Inside app/handshake.ts
 
-import { TodoistProvider } from "fiber-handshake";
+import { Todoist } from "handshake";
 
-TodoistProvider({
+Todoist({
   clientId: "",
   clientSecret: "",
 });
@@ -880,11 +880,11 @@ Adapted from [next-auth](https://github.com/nextauthjs/next-auth).
 ## Trakt
 
 ```ts
-// Inside app/config.ts
+// Inside app/handshake.ts
 
-import { TraktProvider } from "fiber-handshake";
+import { Trakt } from "handshake";
 
-TraktProvider({
+Trakt({
   clientId: "",
   clientSecret: "",
 });
@@ -895,11 +895,11 @@ Adapted from [next-auth](https://github.com/nextauthjs/next-auth).
 ## Twitch
 
 ```ts
-// Inside app/config.ts
+// Inside app/handshake.ts
 
-import { TwitchProvider } from "fiber-handshake";
+import { Twitch } from "handshake";
 
-TwitchProvider({
+Twitch({
   clientId: "",
   clientSecret: "",
 });
@@ -910,11 +910,11 @@ Adapted from [next-auth](https://github.com/nextauthjs/next-auth).
 ## Twitter
 
 ```ts
-// Inside app/config.ts
+// Inside app/handshake.ts
 
-import { TwitterProvider } from "fiber-handshake";
+import { Twitter } from "handshake";
 
-TwitterProvider({
+Twitter({
   clientId: "",
   clientSecret: "",
 });
@@ -925,11 +925,11 @@ Adapted from [next-auth](https://github.com/nextauthjs/next-auth).
 ## UnitedEffects
 
 ```ts
-// Inside app/config.ts
+// Inside app/handshake.ts
 
-import { UnitedEffectsProvider } from "fiber-handshake";
+import { UnitedEffects } from "handshake";
 
-UnitedEffectsProvider({
+UnitedEffects({
   clientId: "",
   clientSecret: "",
 });
@@ -940,11 +940,11 @@ Adapted from [next-auth](https://github.com/nextauthjs/next-auth).
 ## Vk
 
 ```ts
-// Inside app/config.ts
+// Inside app/handshake.ts
 
-import { VkProvider } from "fiber-handshake";
+import { Vk } from "handshake";
 
-VkProvider({
+Vk({
   clientId: "",
   clientSecret: "",
 });
@@ -955,11 +955,11 @@ Adapted from [next-auth](https://github.com/nextauthjs/next-auth).
 ## Wikimedia
 
 ```ts
-// Inside app/config.ts
+// Inside app/handshake.ts
 
-import { WikimediaProvider } from "fiber-handshake";
+import { Wikimedia } from "handshake";
 
-WikimediaProvider({
+Wikimedia({
   clientId: "",
   clientSecret: "",
 });
@@ -970,11 +970,11 @@ Adapted from [next-auth](https://github.com/nextauthjs/next-auth).
 ## Wordpress
 
 ```ts
-// Inside app/config.ts
+// Inside app/handshake.ts
 
-import { WordpressProvider } from "fiber-handshake";
+import { Wordpress } from "handshake";
 
-WordpressProvider({
+Wordpress({
   clientId: "",
   clientSecret: "",
 });
@@ -985,11 +985,11 @@ Adapted from [next-auth](https://github.com/nextauthjs/next-auth).
 ## WorkOS
 
 ```ts
-// Inside app/config.ts
+// Inside app/handshake.ts
 
-import { WorkosProvider } from "fiber-handshake";
+import { Workos } from "handshake";
 
-WorkosProvider({
+Workos({
   clientId: "",
   clientSecret: "",
 });
@@ -1000,11 +1000,11 @@ Adapted from [next-auth](https://github.com/nextauthjs/next-auth).
 ## Yandex
 
 ```ts
-// Inside app/config.ts
+// Inside app/handshake.ts
 
-import { YandexProvider } from "fiber-handshake";
+import { Yandex } from "handshake";
 
-YandexProvider({
+Yandex({
   clientId: "",
   clientSecret: "",
 });
@@ -1015,11 +1015,11 @@ Adapted from [next-auth](https://github.com/nextauthjs/next-auth).
 ## Zitadel
 
 ```ts
-// Inside app/config.ts
+// Inside app/handshake.ts
 
-import { ZitadelProvider } from "fiber-handshake";
+import { Zitadel } from "handshake";
 
-ZitadelProvider({
+Zitadel({
   clientId: "",
   clientSecret: "",
 });
@@ -1030,11 +1030,11 @@ Adapted from [next-auth](https://github.com/nextauthjs/next-auth).
 ## Zoho
 
 ```ts
-// Inside app/config.ts
+// Inside app/handshake.ts
 
-import { ZohoProvider } from "fiber-handshake";
+import { Zoho } from "handshake";
 
-ZohoProvider({
+Zoho({
   clientId: "",
   clientSecret: "",
 });
@@ -1045,11 +1045,11 @@ Adapted from [next-auth](https://github.com/nextauthjs/next-auth).
 ## Zoom
 
 ```ts
-// Inside app/config.ts
+// Inside app/handshake.ts
 
-import { ZoomProvider } from "fiber-handshake";
+import { Zoom } from "handshake";
 
-ZoomProvider({
+Zoom({
   clientId: "",
   clientSecret: "",
 });

@@ -12,7 +12,6 @@ export default function Home() {
     <main>
       <h1>Success</h1>
       <p>Your OAuth redirection is now up.</p>
-      <p>To hide this message, ...!?</p>
     </main>
   );
 }

@@ -6,29 +6,8 @@ import crypto from "crypto";
 import { Forbidden } from "http-errors";
 import querystring from "querystring";
 import { z } from "zod";
-import { InvalidRequest, Provider } from "../core/Provider";
-
-const DEFAULT_SHOPIFY_SCOPES = [
-  "read_themes",
-  "read_orders",
-  // 'read_all_orders', // Will need extra permissions for this.
-  "read_assigned_fulfillment_orders",
-  "read_checkouts",
-  "read_content",
-  "read_customers",
-  "read_discounts",
-  "read_draft_orders",
-  "read_fulfillments",
-  "read_locales",
-  "read_locations",
-  "read_price_rules",
-  "read_products",
-  "read_product_listings",
-  "read_shopify_payments_payouts",
-  "write_customers",
-  "write_fulfillments",
-  "write_orders",
-];
+import { Handler } from "~/core/Handler";
+import { InvalidRequest } from "~/core/errors";
 
 interface SessionShopData {
   id: number;
@@ -47,7 +26,6 @@ const ShopifyCredentialSchema = z.object({
 
 type ShopifyCredential = z.infer<typeof ShopifyCredentialSchema>;
 
-
 const querySchema = z.object({
   state: z.string(),
   shop: z.string(),
@@ -56,7 +34,7 @@ const querySchema = z.object({
 
 type CallbackParams = z.infer<typeof querySchema>;
 
-export interface ShopifyConfig {
+interface Args {
   clientId: string;
   clientSecret: string;
   scopes: string[];
@@ -66,14 +44,10 @@ type FindAName<T> = T & { id?: string };
 
 export const ShopifyProviderId = "shopify";
 
-export function ShopifyProvider({
+export const Shopify: HandlerFactory<Args> = ({
   id,
   ...config
-}: FindAName<Partial<ShopifyConfig>>): Provider<
-  ShopifyConfig,
-  CallbackParams,
-  ShopifyCredential
-> {
+}: FindAName<Partial<Args>>): Handler<Args, ShopifyCredential> => {
   const providerId = id ?? ShopifyProviderId;
 
   const scopes = config?.scopes || DEFAULT_SHOPIFY_SCOPES;
@@ -106,11 +80,13 @@ export function ShopifyProvider({
 
       return { url: authUrl.toString() };
     },
-    validateQueryParams(params: URLSearchParams) {
-      return querySchema.parse(Object.fromEntries(params.entries()));
-    },
+
     async exchange(searchParams, req) {
-      const params = Object.fromEntries(searchParams) as CallbackParams;
+      const params = querySchema.parse(
+        Object.fromEntries(searchParams.entries()),
+      );
+
+      // const params = Object.fromEntries(searchParams) as CallbackParams;
 
       let accessToken: string;
       let myShopifyDomain: string;
@@ -129,6 +105,7 @@ export function ShopifyProvider({
         // if (e instanceof HttpError) {
         // 	throw e
         // }
+        1 + 1;
 
         // TODO handle
         throw e;
@@ -145,7 +122,7 @@ export function ShopifyProvider({
       };
     },
   };
-}
+};
 export type NonceValidator = (args: {
   nonce: string | undefined;
   req: Request;
@@ -305,3 +282,25 @@ function safeCompare(stringA: string, stringB: string) {
 
   return crypto.timingSafeEqual(buffA, buffB);
 }
+
+const DEFAULT_SHOPIFY_SCOPES = [
+  "read_themes",
+  "read_orders",
+  // 'read_all_orders', // Will need extra permissions for this.
+  "read_assigned_fulfillment_orders",
+  "read_checkouts",
+  "read_content",
+  "read_customers",
+  "read_discounts",
+  "read_draft_orders",
+  "read_fulfillments",
+  "read_locales",
+  "read_locations",
+  "read_price_rules",
+  "read_products",
+  "read_product_listings",
+  "read_shopify_payments_payouts",
+  "write_customers",
+  "write_fulfillments",
+  "write_orders",
+];

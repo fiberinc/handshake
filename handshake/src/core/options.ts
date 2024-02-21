@@ -1,3 +1,4 @@
+import { Handler } from "./Handler";
 import { Provider } from "./Provider";
 
 interface Options<Credential> {
@@ -7,39 +8,38 @@ interface Options<Credential> {
   allowedRedirectUris: string[];
 
   /**
-   * A list of casted Provider objects like
+   * A list of OAuth handlers like:
    *
    * ```ts
-   * providers: [
-   *  GitHubProvider({
+   * handlers: [
+   *  GitHub({
    *    clientId: process.env.GITHUB_CLIENT_ID!,
    *    clientSecret: process.env.GITHUB_CLIENT_SECRET!,
    *  }),
-   *  StripeProvider({
+   *  Stripe({
    *    id: "a-custom-id-for-this-provider",
    *    clientId: process.env.STRIPE_CLIENT_ID!,
    *    clientSecret: process.env.STRIPE_CLIENT_SECRET!,
    *  }),
-   *  // etc
    * ]
    * ```
    */
-  providers: Provider[];
+  handlers: Handler[];
 
   /**
    * A function called after the handshake occurs successfully.
    *
-   * @param providerId - Identifies the provider that handled this handshake,
+   * @param credential -
+   * @param handlerId - Identifies the provider that handled this handshake,
    * eg. "stripe". Normally the provider name in snake_case, or whatever you set
    * in the "id" field when you create the provider.
-   * @param credential -
    * @param linkParams - Query params we received from the client.
    *
    * @returns Returns a list of params to send back to the redirect URL.
    */
   onSuccess(
-    providerId: string,
     credential: Credential,
+    handlerId: string,
     linkParams: { account_id?: string },
   ): Promise<Record<string, string>> | undefined;
 
@@ -98,7 +98,7 @@ export function Handshake<Credential>(
     sessionCookieName: args.sessionCookieName ?? "session",
     sessionCookieMaxSecs: 60 * 2,
     getProvider(id: string): Provider | null {
-      return args.providers.find((provider) => provider.id === id) ?? null;
+      return args.handlers.find((provider) => provider.id === id) ?? null;
     },
   };
 }

@@ -1,5 +1,5 @@
 import { Inter } from "next/font/google";
-import { config } from "~/config";
+import { options } from "../api/[...link]/route";
 
 const REPO_HOST = "https://github.com/fiberinc/link";
 const inter = Inter({ subsets: ["latin"] });
@@ -54,7 +54,7 @@ export async function DevIndex() {
 }
 
 async function getSanitizedProviderConfigs() {
-  return config.providers.map((provider) => {
+  return options.handlers.map((provider) => {
     return {
       id: provider.id,
       metadata: provider.metadata,

@@ -4,6 +4,13 @@ const FIBER_SOURCES = {
   "amazon-seller": "amazon",
 };
 
+interface Args {
+  clientId: string;
+  clientSecret: string;
+}
+
+export function FiberHook({ clientId, clientSecret }: Args) {}
+
 // let fiberCredential;
 // let customExternalId = null;
 // if (providerId === ShopifyProviderId) {

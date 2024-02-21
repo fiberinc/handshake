@@ -1,193 +1,198 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+
 import { makeFromNextAuth } from "./makeFromNextAuth";
 
-const F42chool = require("next-auth/providers/42-school").default;
-export const F42choolProvider = makeFromNextAuth(F42chool);
+const FortyTwoNextAuth = require("next-auth/providers/42-school").default;
+export const FortyTwo = makeFromNextAuth(FortyTwoNextAuth);
 
-const Apple = require("next-auth/providers/apple").default;
-export const AppleProvider = makeFromNextAuth(Apple);
+const AppleNextAuth = require("next-auth/providers/apple").default;
+export const Apple = makeFromNextAuth(AppleNextAuth);
 
-const Atlassian = require("next-auth/providers/atlassian").default;
-export const AtlassianProvider = makeFromNextAuth(Atlassian);
+const AtlassianNextAuth = require("next-auth/providers/atlassian").default;
+export const Atlassian = makeFromNextAuth(AtlassianNextAuth);
 
-const Auth0 = require("next-auth/providers/auth0").default;
-export const Auth0Provider = makeFromNextAuth(Auth0);
+const Auth0NextAuth = require("next-auth/providers/auth0").default;
+export const Auth0 = makeFromNextAuth(Auth0NextAuth);
 
-const Authentik = require("next-auth/providers/authentik").default;
-export const AuthentikProvider = makeFromNextAuth(Authentik);
+const AuthentikNextAuth = require("next-auth/providers/authentik").default;
+export const Authentik = makeFromNextAuth(AuthentikNextAuth);
 
-const AzureAdB2c = require("next-auth/providers/azure-ad-b2c").default;
-export const AzureAdB2cProvider = makeFromNextAuth(AzureAdB2c);
+const AzureAdB2cNextAuth = require("next-auth/providers/azure-ad-b2c").default;
+export const AzureAdB2c = makeFromNextAuth(AzureAdB2cNextAuth);
 
-const AzureAd = require("next-auth/providers/azure-ad").default;
-export const AzureAdProvider = makeFromNextAuth(AzureAd);
+const AzureAdNextAuth = require("next-auth/providers/azure-ad").default;
+export const AzureAd = makeFromNextAuth(AzureAdNextAuth);
 
-const Battlenet = require("next-auth/providers/battlenet").default;
-export const BattlenetProvider = makeFromNextAuth(Battlenet);
+const BattlenetNextAuth = require("next-auth/providers/battlenet").default;
+export const Battlenet = makeFromNextAuth(BattlenetNextAuth);
 
-const Box = require("next-auth/providers/box").default;
-export const BoxProvider = makeFromNextAuth(Box);
+const BoxNextAuth = require("next-auth/providers/box").default;
+export const Box = makeFromNextAuth(BoxNextAuth);
 
-const BoxyhqSaml = require("next-auth/providers/boxyhq-saml").default;
-export const BoxyhqSamlProvider = makeFromNextAuth(BoxyhqSaml);
+const BoxyhqSamlNextAuth = require("next-auth/providers/boxyhq-saml").default;
+export const BoxyhqSaml = makeFromNextAuth(BoxyhqSamlNextAuth);
 
-const Bungie = require("next-auth/providers/bungie").default;
-export const BungieProvider = makeFromNextAuth(Bungie);
+const BungieNextAuth = require("next-auth/providers/bungie").default;
+export const Bungie = makeFromNextAuth(BungieNextAuth);
 
-const Cognito = require("next-auth/providers/cognito").default;
-export const CognitoProvider = makeFromNextAuth(Cognito);
+const CognitoNextAuth = require("next-auth/providers/cognito").default;
+export const Cognito = makeFromNextAuth(CognitoNextAuth);
 
-const Coinbase = require("next-auth/providers/coinbase").default;
-export const CoinbaseProvider = makeFromNextAuth(Coinbase);
+const CoinbaseNextAuth = require("next-auth/providers/coinbase").default;
+export const Coinbase = makeFromNextAuth(CoinbaseNextAuth);
 
-const Discord = require("next-auth/providers/discord").default;
-export const DiscordProvider = makeFromNextAuth(Discord);
+const DiscordNextAuth = require("next-auth/providers/discord").default;
+export const Discord = makeFromNextAuth(DiscordNextAuth);
 
-const Dropbox = require("next-auth/providers/dropbox").default;
-export const DropboxProvider = makeFromNextAuth(Dropbox);
+const DropboxNextAuth = require("next-auth/providers/dropbox").default;
+export const Dropbox = makeFromNextAuth(DropboxNextAuth);
 
-const DuendeIdentityServer6 =
+const DuendeIdentityServer6NextAuth =
   require("next-auth/providers/duende-identity-server6").default;
-export const DuendeIdentityServer6Provider = makeFromNextAuth(
-  DuendeIdentityServer6,
+export const DuendeIdentityServer6 = makeFromNextAuth(
+  DuendeIdentityServer6NextAuth,
 );
 
-const Eveonline = require("next-auth/providers/eveonline").default;
-export const EveonlineProvider = makeFromNextAuth(Eveonline);
+const EveonlineNextAuth = require("next-auth/providers/eveonline").default;
+export const Eveonline = makeFromNextAuth(EveonlineNextAuth);
 
-const Facebook = require("next-auth/providers/facebook").default;
-export const FacebookProvider = makeFromNextAuth(Facebook);
+const FacebookNextAuth = require("next-auth/providers/facebook").default;
+export const Facebook = makeFromNextAuth(FacebookNextAuth);
 
-const Faceit = require("next-auth/providers/faceit").default;
-export const FaceitProvider = makeFromNextAuth(Faceit);
+const FaceitNextAuth = require("next-auth/providers/faceit").default;
+export const Faceit = makeFromNextAuth(FaceitNextAuth);
 
-const Foursquare = require("next-auth/providers/foursquare").default;
-export const FoursquareProvider = makeFromNextAuth(Foursquare);
+const FoursquareNextAuth = require("next-auth/providers/foursquare").default;
+export const Foursquare = makeFromNextAuth(FoursquareNextAuth);
 
-const Freshbooks = require("next-auth/providers/freshbooks").default;
-export const FreshbooksProvider = makeFromNextAuth(Freshbooks);
+const FreshbooksNextAuth = require("next-auth/providers/freshbooks").default;
+export const Freshbooks = makeFromNextAuth(FreshbooksNextAuth);
 
-const Fusionauth = require("next-auth/providers/fusionauth").default;
-export const FusionauthProvider = makeFromNextAuth(Fusionauth);
+const FusionauthNextAuth = require("next-auth/providers/fusionauth").default;
+export const Fusionauth = makeFromNextAuth(FusionauthNextAuth);
 
-const GitHub = require("next-auth/providers/github").default;
-export const GitHubProvider = makeFromNextAuth(GitHub);
+const GitHubNextAuth = require("next-auth/providers/github").default;
+export const GitHub = makeFromNextAuth(GitHubNextAuth);
 
-const Gitlab = require("next-auth/providers/gitlab").default;
-export const GitlabProvider = makeFromNextAuth(Gitlab);
+const GitlabNextAuth = require("next-auth/providers/gitlab").default;
+export const Gitlab = makeFromNextAuth(GitlabNextAuth);
 
-const Google = require("next-auth/providers/google").default;
-export const GoogleProvider = makeFromNextAuth(Google);
+// import Google from "next-auth/providers/google";
+const GoogleNextAuth = require("next-auth/providers/google").default;
+export const Google = makeFromNextAuth(GoogleNextAuth);
 
-const Hubspot = require("next-auth/providers/hubspot").default;
-export const HubspotProvider = makeFromNextAuth(Hubspot);
+const HubspotNextAuth = require("next-auth/providers/hubspot").default;
+export const Hubspot = makeFromNextAuth(HubspotNextAuth);
 
-const IdentityServer4 = require("next-auth/providers/identity-server4").default;
-export const IdentityServer4Provider = makeFromNextAuth(IdentityServer4);
+const IdentityServer4NextAuth =
+  require("next-auth/providers/identity-server4").default;
+export const IdentityServer4 = makeFromNextAuth(IdentityServer4NextAuth);
 
-const Instagram = require("next-auth/providers/instagram").default;
-export const InstagramProvider = makeFromNextAuth(Instagram);
+const InstagramNextAuth = require("next-auth/providers/instagram").default;
+export const Instagram = makeFromNextAuth(InstagramNextAuth);
 
-const Kakao = require("next-auth/providers/kakao").default;
-export const KakaoProvider = makeFromNextAuth(Kakao);
+const KakaoNextAuth = require("next-auth/providers/kakao").default;
+export const Kakao = makeFromNextAuth(KakaoNextAuth);
 
-const Keycloak = require("next-auth/providers/keycloak").default;
-export const KeycloakProvider = makeFromNextAuth(Keycloak);
+const KeycloakNextAuth = require("next-auth/providers/keycloak").default;
+export const Keycloak = makeFromNextAuth(KeycloakNextAuth);
 
-const Line = require("next-auth/providers/line").default;
-export const LineProvider = makeFromNextAuth(Line);
+const LineNextAuth = require("next-auth/providers/line").default;
+export const Line = makeFromNextAuth(LineNextAuth);
 
-const Linkedin = require("next-auth/providers/linkedin").default;
-export const LinkedinProvider = makeFromNextAuth(Linkedin);
+const LinkedinNextAuth = require("next-auth/providers/linkedin").default;
+export const Linkedin = makeFromNextAuth(LinkedinNextAuth);
 
-const Mailchimp = require("next-auth/providers/mailchimp").default;
-export const MailchimpProvider = makeFromNextAuth(Mailchimp);
+const MailchimpNextAuth = require("next-auth/providers/mailchimp").default;
+export const Mailchimp = makeFromNextAuth(MailchimpNextAuth);
 
-const Mailru = require("next-auth/providers/mailru").default;
-export const MailruProvider = makeFromNextAuth(Mailru);
+const MailruNextAuth = require("next-auth/providers/mailru").default;
+export const Mailru = makeFromNextAuth(MailruNextAuth);
 
-const Medium = require("next-auth/providers/medium").default;
-export const MediumProvider = makeFromNextAuth(Medium);
+const MediumNextAuth = require("next-auth/providers/medium").default;
+export const Medium = makeFromNextAuth(MediumNextAuth);
 
-const Naver = require("next-auth/providers/naver").default;
-export const NaverProvider = makeFromNextAuth(Naver);
+const NaverNextAuth = require("next-auth/providers/naver").default;
+export const Naver = makeFromNextAuth(NaverNextAuth);
 
-const Netlify = require("next-auth/providers/netlify").default;
-export const NetlifyProvider = makeFromNextAuth(Netlify);
+const NetlifyNextAuth = require("next-auth/providers/netlify").default;
+export const Netlify = makeFromNextAuth(NetlifyNextAuth);
 
-const Okta = require("next-auth/providers/okta").default;
-export const OktaProvider = makeFromNextAuth(Okta);
+const OktaNextAuth = require("next-auth/providers/okta").default;
+export const Okta = makeFromNextAuth(OktaNextAuth);
 
-const Onelogin = require("next-auth/providers/onelogin").default;
-export const OneloginProvider = makeFromNextAuth(Onelogin);
+const OneloginNextAuth = require("next-auth/providers/onelogin").default;
+export const Onelogin = makeFromNextAuth(OneloginNextAuth);
 
-const Osso = require("next-auth/providers/osso").default;
-export const OssoProvider = makeFromNextAuth(Osso);
+const OssoNextAuth = require("next-auth/providers/osso").default;
+export const Osso = makeFromNextAuth(OssoNextAuth);
 
-const Osu = require("next-auth/providers/osu").default;
-export const OsuProvider = makeFromNextAuth(Osu);
+const OsuNextAuth = require("next-auth/providers/osu").default;
+export const Osu = makeFromNextAuth(OsuNextAuth);
 
-const Passage = require("next-auth/providers/passage").default;
-export const PassageProvider = makeFromNextAuth(Passage);
+const PassageNextAuth = require("next-auth/providers/passage").default;
+export const Passage = makeFromNextAuth(PassageNextAuth);
 
-const Patreon = require("next-auth/providers/patreon").default;
-export const PatreonProvider = makeFromNextAuth(Patreon);
+const PatreonNextAuth = require("next-auth/providers/patreon").default;
+export const Patreon = makeFromNextAuth(PatreonNextAuth);
 
-const Pinterest = require("next-auth/providers/pinterest").default;
-export const PinterestProvider = makeFromNextAuth(Pinterest);
+const PinterestNextAuth = require("next-auth/providers/pinterest").default;
+export const Pinterest = makeFromNextAuth(PinterestNextAuth);
 
-const Pipedrive = require("next-auth/providers/pipedrive").default;
-export const PipedriveProvider = makeFromNextAuth(Pipedrive);
+const PipedriveNextAuth = require("next-auth/providers/pipedrive").default;
+export const Pipedrive = makeFromNextAuth(PipedriveNextAuth);
 
-const Reddit = require("next-auth/providers/reddit").default;
-export const RedditProvider = makeFromNextAuth(Reddit);
+const RedditNextAuth = require("next-auth/providers/reddit").default;
+export const Reddit = makeFromNextAuth(RedditNextAuth);
 
-const Salesforce = require("next-auth/providers/salesforce").default;
-export const SalesforceProvider = makeFromNextAuth(Salesforce);
+const SalesforceNextAuth = require("next-auth/providers/salesforce").default;
+export const Salesforce = makeFromNextAuth(SalesforceNextAuth);
 
-const Slack = require("next-auth/providers/slack").default;
-export const SlackProvider = makeFromNextAuth(Slack);
+const SlackNextAuth = require("next-auth/providers/slack").default;
+export const Slack = makeFromNextAuth(SlackNextAuth);
 
-const Spotify = require("next-auth/providers/spotify").default;
-export const SpotifyProvider = makeFromNextAuth(Spotify);
+const SpotifyNextAuth = require("next-auth/providers/spotify").default;
+export const Spotify = makeFromNextAuth(SpotifyNextAuth);
 
-const Strava = require("next-auth/providers/strava").default;
-export const StravaProvider = makeFromNextAuth(Strava);
+const StravaNextAuth = require("next-auth/providers/strava").default;
+export const Strava = makeFromNextAuth(StravaNextAuth);
 
-const Todoist = require("next-auth/providers/todoist").default;
-export const TodoistProvider = makeFromNextAuth(Todoist);
+const TodoistNextAuth = require("next-auth/providers/todoist").default;
+export const Todoist = makeFromNextAuth(TodoistNextAuth);
 
-const Trakt = require("next-auth/providers/trakt").default;
-export const TraktProvider = makeFromNextAuth(Trakt);
+const TraktNextAuth = require("next-auth/providers/trakt").default;
+export const Trakt = makeFromNextAuth(TraktNextAuth);
 
-const Twitch = require("next-auth/providers/twitch").default;
-export const TwitchProvider = makeFromNextAuth(Twitch);
+const TwitchNextAuth = require("next-auth/providers/twitch").default;
+export const Twitch = makeFromNextAuth(TwitchNextAuth);
 
-const Twitter = require("next-auth/providers/twitter").default;
-export const TwitterProvider = makeFromNextAuth(Twitter);
+const TwitterNextAuth = require("next-auth/providers/twitter").default;
+export const Twitter = makeFromNextAuth(TwitterNextAuth);
 
-const UnitedEffects = require("next-auth/providers/united-effects").default;
-export const UnitedEffectsProvider = makeFromNextAuth(UnitedEffects);
+const UnitedEffectsNextAuth =
+  require("next-auth/providers/united-effects").default;
+export const UnitedEffects = makeFromNextAuth(UnitedEffectsNextAuth);
 
-const Vk = require("next-auth/providers/vk").default;
-export const VkProvider = makeFromNextAuth(Vk);
+const VkNextAuth = require("next-auth/providers/vk").default;
+export const Vk = makeFromNextAuth(VkNextAuth);
 
-const Wikimedia = require("next-auth/providers/wikimedia").default;
-export const WikimediaProvider = makeFromNextAuth(Wikimedia);
+const WikimediaNextAuth = require("next-auth/providers/wikimedia").default;
+export const Wikimedia = makeFromNextAuth(WikimediaNextAuth);
 
-const Wordpress = require("next-auth/providers/wordpress").default;
-export const WordpressProvider = makeFromNextAuth(Wordpress);
+const WordpressNextAuth = require("next-auth/providers/wordpress").default;
+export const Wordpress = makeFromNextAuth(WordpressNextAuth);
 
-const Workos = require("next-auth/providers/workos").default;
-export const WorkosProvider = makeFromNextAuth(Workos);
+const WorkosNextAuth = require("next-auth/providers/workos").default;
+export const Workos = makeFromNextAuth(WorkosNextAuth);
 
-const Yandex = require("next-auth/providers/yandex").default;
-export const YandexProvider = makeFromNextAuth(Yandex);
+const YandexNextAuth = require("next-auth/providers/yandex").default;
+export const Yandex = makeFromNextAuth(YandexNextAuth);
 
-const Zitadel = require("next-auth/providers/zitadel").default;
-export const ZitadelProvider = makeFromNextAuth(Zitadel);
+const ZitadelNextAuth = require("next-auth/providers/zitadel").default;
+export const Zitadel = makeFromNextAuth(ZitadelNextAuth);
 
-const Zoho = require("next-auth/providers/zoho").default;
-export const ZohoProvider = makeFromNextAuth(Zoho);
+const ZohoNextAuth = require("next-auth/providers/zoho").default;
+export const Zoho = makeFromNextAuth(ZohoNextAuth);
 
-const Zoom = require("next-auth/providers/zoom").default;
-export const ZoomProvider = makeFromNextAuth(Zoom);
+const ZoomNextAuth = require("next-auth/providers/zoom").default;
+export const Zoom = makeFromNextAuth(ZoomNextAuth);

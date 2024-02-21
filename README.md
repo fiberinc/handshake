@@ -20,10 +20,15 @@
 ## Introduction
 
 Handshake is a Next.js app that handles OAuth flow against 60+ third-party apps
-and APIs. We use parts of `next-auth` under the hood, to extend our coverage of
+and APIs. We use parts of `next-auth` under the hood to extend our coverage of
 providers.
 
 See the [full list of providers](./PROVIDERS.md).
+
+### Features
+
+- Fully self-hostable and highly extensible. Add, modify, and remove third-party
+  apps providers without running into a wall.
 
 ## How it works
 
@@ -34,7 +39,7 @@ their behalf. Handshake can help with you.
 To acquire Salesforce credentials for a user, redirect them to:
 
 ```ts
-https://YOUR_HANDSHAKE_URL/api/auth/stripe/redirect
+https://YOUR_HANDSHAKE_URL/api/auth/salesforce/redirect
   ?state=123456&
   &callback_uri=https://app.example.com/integrations
 ```
@@ -80,7 +85,7 @@ In the new file, replace the values for `REDIRECT_URL` and `SESSION_SECRET`.
 
 ### Configure your providers
 
-Modify the `app/config.ts` file to include the providers you want to use:
+Modify the `app/handshake.ts` file to include the providers you want to use:
 
 ```ts
 export const config = Handshake({
@@ -153,12 +158,13 @@ Yes! Please open an issue or reach out to us at
 ### How is this different from next-auth or passport?
 
 Libraries like [next-auth](https://github.com/nextauthjs/next-auth) and
-[passport](https://github.com/jaredhanson/passport) help you for authenticate
-users _into your app_ through their third-party identities.
+[passport](https://github.com/jaredhanson/passport) help you sign users into
+your app using their third-party identities. You use them to implement the "Sign
+In With Google" or "Sign In With Github" buttons.
 
-In contrast, Handshake helps you **acquire** access tokens to access your users'
-accounts within other apps. We actually use `next-auth`'s large catalog of
-providers under the hood, to increase our coverage.
+In contrast, Handshake help you acquire access tokens to your users' accounts in
+other apps. It's authorization instead of authentication. Handshake actually
+uses `next-auth`'s large catalog of OAuth provider information under the hood.
 
 ## Contributing
 

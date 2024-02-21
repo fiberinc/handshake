@@ -9,7 +9,6 @@ import { InternalOptions } from "./options";
 // gets redirected to the redirect_uri for tool B.
 
 const ACCOUNT_ID_PARAM = "account_id";
-const STATE_PARAM = "state";
 
 export const SessionValueStruct = z.object({
   // The URI to send users back to once the OAuth is completed.

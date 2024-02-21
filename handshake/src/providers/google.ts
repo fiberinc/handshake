@@ -1,7 +1,10 @@
+// @ts-nocheck
+
 import assert from "assert";
 import crypto from "crypto";
 import { z } from "zod";
-import { InvalidRequest, Provider } from "../core/Provider";
+import { InvalidRequest } from "~/core/errors";
+import { Provider } from "../core/Provider";
 
 export const GoogleCredentialSchema = z.object({
   email: z.string(),
@@ -19,24 +22,19 @@ const QueryParamStruct = z.object({
 
 type CallbackParams = z.infer<typeof QueryParamStruct>;
 
-export interface GoogleConfig {
+export interface Config {
+  id?: string;
   clientId: string;
   clientSecret: string;
   requiredScopes: string[];
 }
-
-type FindAName<T> = T & { id?: string };
 
 export const GoogleProviderId = "google";
 
 export function GoogleProvider({
   id,
   ...config
-}: FindAName<GoogleConfig>): Provider<
-  GoogleConfig,
-  CallbackParams,
-  GoogleCredential
-> {
+}: Config): Provider<Config, CallbackParams, GoogleCredential> {
   const providerId = id ?? GoogleProviderId;
 
   return {

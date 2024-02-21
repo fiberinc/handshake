@@ -15,3 +15,9 @@ export class InvalidCheck extends Error {
     this.message += `${this.message ? ". " : ""}Read more at 1234`;
   }
 }
+
+export class InvalidRequest extends Error {
+  toString() {
+    return "InvalidRequest bro";
+  }
+}

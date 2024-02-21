@@ -1,15 +1,6 @@
-import { NextRequest } from "next/server";
 import { SessionValue } from "./session";
 
-export type RequestWithParams<P = any> = NextRequest & {
-  // query: P;
-};
-
-export interface Provider<
-  Config = unknown,
-  QueryParams = unknown,
-  CR = unknown,
-> {
+export interface Provider<Config = unknown, CR = unknown> {
   id: string;
   type: string;
   metadata: {
@@ -31,19 +22,9 @@ export interface Provider<
   ):
     | Promise<{ url: string; persist?: Record<string, string> }>
     | { url: string; persist?: Record<string, string> };
+
   /**
-   * Allows the provider to check that the query params returned by the provider
-   * match the expected shape.
-   *
-   * @throws
-   */
-  validateQueryParams?(
-    params: URLSearchParams,
-    req: Request,
-  ): QueryParams & {
-    expiresAt?: Date;
-  };
-  /**
+   * Exchange the data received
    *
    * @param req - With search params = QP
    * @param thisCallbackUrl
@@ -54,10 +35,4 @@ export interface Provider<
     thisCallbackUrl: string,
     session: SessionValue,
   ): Promise<CR>;
-}
-
-export class InvalidRequest extends Error {
-  toString() {
-    return "InvalidRequest bro";
-  }
 }

@@ -4,7 +4,7 @@ const config = {
   theme: {
     fontFamily: {
       sans: '"SF Pro Display",-apple-system,system-ui,sans-serif',
-      mono: ['"JetBrains Mono"', '"IBM Plex Mono"', "monospace"],
+      mono: '"JetBrains Mono","IBM Plex Mono",monospace',
     },
     extend: {
       ringColor: {

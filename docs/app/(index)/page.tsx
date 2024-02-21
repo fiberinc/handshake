@@ -6,7 +6,7 @@ import { getProviderInfos } from "../getProviderInfos";
 import { REPO_URL } from "../routes";
 
 export const metadata: Metadata = {
-  title: "Handshake Documentation",
+  title: "Handshake – OAuth made easy",
 };
 
 export default function Home() {

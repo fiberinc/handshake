@@ -7,10 +7,12 @@ export async function ProviderList() {
   const infos = await getProviderInfos();
 
   const els = infos.map((info) => {
+    const markdown = <MdxRender {...info.serialized}></MdxRender>;
+
     return (
       <div key={info.name}>
         <h1 className="text-3xl font-medium">{info.name}</h1>
-        {info.serialized && <MdxRender {...info.serialized}></MdxRender>}
+        {markdown}
       </div>
     );
   });
@@ -22,12 +24,27 @@ async function getProviderInfos(): Promise<
 > {
   return Promise.all(
     providers.map(async (provider) => {
+      let providerText: string = provider.text ?? "";
+      if (!providerText) {
+        providerText = `
+\`\`\`ts
+// Inside app/api/[...handshake]/route.ts
+
+import { ${provider.name} } from "handshake";
+
+${provider.name}({
+  clientId: "",
+  clientSecret: "",
+});
+\`\`\`
+
+Adapted from [next-auth](https://github.com/nextauthjs/next-auth).`;
+      }
+
       return {
         // ...provider,
         name: provider.name,
-        serialized: provider.text
-          ? await getSerializedMarkdown(provider.text)
-          : null,
+        serialized: await getSerializedMarkdown(providerText),
       };
     }),
   );

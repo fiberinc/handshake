@@ -41,6 +41,29 @@ type Credential = {
   scopes: string[];
 };
 
+/**
+ *
+ *
+```ts
+// Inside app/handshake.ts
+
+import { Shopify } from "handshake";
+
+Shopify({
+  clientId: "",
+  clientSecret: "",
+  scopes: ["read_orders", "read_products"],
+});
+```
+
+### Configure the Callback URL
+
+Make sure your Handshake URL is allowed within your Shopify app's Configuration tab:
+
+![](/docs/public/images/providers-shopify-redirect.png)
+
+Follow the format: `https://HANDSHAKE_URL/api/auth/shopify/callback`
+ */
 export const Shopify: HandlerFactory<Args, Credential> = ({ id, ...args }) => {
   const providerId = id ?? PROVIDER_ID;
 

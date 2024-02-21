@@ -24,14 +24,16 @@ export const PROVIDER_ID = "amazon-seller";
  *
  * ## Configuration
  *
- * ```js
- * {
- *   appId: string
- *   clientId: string
- *   clientSecret: string
- *   // default: true
- *   isAppDraft?: boolean
- * }
+ * ```ts
+ * // Inside app/api/[...handshake]/route.ts
+ * import { Amazon } from "handshake";
+ *
+ * Amazon({
+ *  appId: "",
+ *  clientId: "",
+ *  clientSecret: "",
+ *  isDraftApp: true,
+ * });
  * ```
  *
  * ## Notes

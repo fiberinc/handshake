@@ -1,4 +1,3 @@
-# Inspired by Supabase's documenation spec Makefile.
 # Just run `make`.
 
 PWD=$(shell pwd)
@@ -8,14 +7,7 @@ ROOT_DIR=$(shell cd .. && pwd)
 run: typedoc-providers parse
 
 ###############################################################################
-# Init - prepare the environment
-###############################################################################
-
-init:
-	echo "nothing"
-
-###############################################################################
-# Generate the PROVIDERS.md file
+# Generate the docs/providers.json file
 ###############################################################################
 typedoc-providers:
 	cd $(LIB_DIR) && npx typedoc --json $(PWD)/bin/providers-typedoc.json $(LIB_DIR)/src/providers/index.ts --options $(PWD)/bin/typedoc.json

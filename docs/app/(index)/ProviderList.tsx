@@ -7,7 +7,7 @@ export async function ProviderList() {
   const infos = await getProviderInfos();
 
   const els = infos.map((info) => {
-    const markdown = <MdxRender {...info.serialized}></MdxRender>;
+    const markdown = <MdxRender {...info.serialized} />;
 
     return (
       <div key={info.name}>

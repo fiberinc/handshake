@@ -1,29 +1,20 @@
 import { serialize } from "next-mdx-remote/serialize";
 import rehypePrettyCode from "rehype-pretty-code";
-import { MdxRender } from "~/ui/MdxRender";
-import providers from "../../providers.json";
+import providers from "../providers.json";
 
-export async function ProviderList() {
-  const infos = await getProviderInfos();
-
-  const els = infos.map((info) => {
-    const markdown = <MdxRender {...info.serialized} />;
-
-    return (
-      <div key={info.name}>
-        <h1 className="text-3xl font-medium">{info.name}</h1>
-        {markdown}
-      </div>
-    );
-  });
-  return <>{els}</>;
+export interface ProviderInfo {
+  id: string;
+  name: string;
+  logoUrl: string;
+  serialized: null | any;
 }
 
-async function getProviderInfos(): Promise<
-  { name: string; serialized: null | any }[]
-> {
+export async function getProviderInfos(): Promise<ProviderInfo[]> {
+  const filteredProviders =
+    process.env.NODE_ENV === "development" ? providers.slice(0, 10) : providers;
+
   return Promise.all(
-    providers.map(async (provider) => {
+    filteredProviders.map(async (provider): Promise<ProviderInfo> => {
       let providerText: string = provider.text ?? "";
       if (!providerText) {
         providerText = `
@@ -43,7 +34,9 @@ Adapted from [next-auth](https://github.com/nextauthjs/next-auth).`;
 
       return {
         // ...provider,
+        id: provider.name.toLowerCase(),
         name: provider.name,
+        logoUrl: `/handshake/images/logos/${provider.name.toLocaleLowerCase()}.svg`,
         serialized: await getSerializedMarkdown(providerText),
       };
     }),

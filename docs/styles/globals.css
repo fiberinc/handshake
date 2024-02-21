@@ -4,20 +4,85 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-  }
-}
-
+html,
 body {
-  /* color: rgb(var(--foreground-rgb)); */
+  max-width: 100vw;
+  overflow-x: hidden;
+  padding: 0;
+  margin: 0;
+  font-family:
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    Inter,
+    BlinkMacSystemFont,
+    Segoe UI,
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    Fira Sans,
+    Droid Sans,
+    Helvetica Neue,
+    sans-serif;
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+  letter-spacing: 0.000001px;
+  /* -webkit-font-smoothing: antialiased; */
+  background-color: var(--bg-background);
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+a {
+  color: inherit;
+  text-decoration: none;
+  /* color: var(--color-link); */
+  cursor: pointer;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+@layer base {
+  :root {
+    /* --text-contrast: #000; */
+    --color-highlight: #e16767;
+    --color-link: var(--blue-600);
+
+    --text-default: 85 77 77;
+    --text-contrast: 0 0 0;
+
+    --bg-background: 255 255 255;
+    --bg-foreground: 254 250 248;
+
+    /* borders */
+    --border-primary: #f4efec;
+    --border-stronger: #b2a7a0;
+    --border-weaker: var(--gray-050);
+    --border-secondary: var(--gray-200);
+
+    --text-light: var(--gray-050);
+    --text-dark: var(--gray-850);
+    --text-light-secondary: var(--gray-600);
+    --text-dark-secondary: var(--gray-400);
+    /* --bg-background: var(--white); */
+    /* --bg-foreground: var(--gray-050); */
+  }
+
+  /* Now for the dark primary */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-highlight: #e16767;
+      --text-default: 188 182 180;
+      --text-contrast: 255 255 255;
+
+      --bg-background: 10 9 7;
+      --bg-foreground: 18 17 16;
+
+      --border-primary: #1f1d1a;
+      --border-stronger: #252220;
+      --border-weaker: var(--gray-850);
+      --color-link: var(--blue-400);
+    }
   }
 }

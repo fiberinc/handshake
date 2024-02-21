@@ -3,8 +3,7 @@ import Link from "next/link";
 import { Banner } from "~/ui/Banner";
 import { GithubLogoMark } from "~/ui/GithubLogoMark";
 import { getProviderInfos } from "../getProviderInfos";
-
-export const REPO_URL = "https://github.com/fiberinc/handshake";
+import { REPO_URL } from "../routes";
 
 export const metadata: Metadata = {
   title: "Handshake Documentation",

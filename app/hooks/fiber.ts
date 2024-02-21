@@ -22,6 +22,18 @@ interface Args {
 /**
  * A hook that uses the newly obtained account credentials to register a new
  * account inside a Fiber.dev source.
+ *
+ * Use it inside your `onSuccess` function like:
+ * ```ts
+ * async onSuccess(credentials: unknown, handlerId) {
+ *   await FiberHook({
+ *     clientId: process.env.FIBER_CLIENT_ID!,
+ *     clientSecret: process.env.FIBER_CLIENT_SECRET!,
+ *   })(credentials, handlerId, {});
+ *
+ *   // ... you can do other things here.
+ * }
+ * ```
  */
 export function FiberHook({ clientId, clientSecret }: Args) {
   return async (credentials: unknown, handlerId: string, extras: any) => {

@@ -23,28 +23,26 @@ export const MARKDOWN_COMPONENTS = {
   // },
 };
 
-const a = `
+export const StyleWrapper = styled.div`
   line-height: 1.7;
-
-  p {
-    font-size: 1rem;
-  }
+  display: flex;
+  flex-direction: column;
+  font-size: 17px;
+  font-weight: 400;
+  color: rgb(var(--text-contrast));
 
   a {
     text-decoration: underline;
     text-decoration-style: dashed;
+    text-underline-offset: 4px;
   }
 
   strong {
     font-weight: 600;
   }
 
-  a {
-    text-underline-offset: 4px;
-  }
-
   li {
-    list-style-type: '–    ';
+    list-style-type: "–    ";
     /* padding-left: 20px; */
     list-style-position: inside;
   }
@@ -52,34 +50,36 @@ const a = `
   blockquote,
   iframe,
   .twitter-tweet,
+  & > div,
   & > p,
   & > ul {
-    margin-bottom: 0.8em !important;
+    margin-bottom: 25px !important;
   }
 
-  code {
+  *:not(pre) > code {
+    color: rgb(var(--text-contrast));
+    border: 1px solid rgba(var(--text-contrast) / 0.4);
     border-radius: 4px;
-    background-color: var(--border-primary);
-    padding: 2px 4px;
     font-size: 0.9rem;
+    padding: 3px 5px;
   }
-`;
 
-export const MDXWrapper = styled.div`
-  ${a}
-`;
-
-export const MDXFullTextWrapper = styled(MDXWrapper)`
-  ${a}
-
-  display: flex;
-  flex-direction: column;
+  pre > code {
+    overflow-x: scroll;
+    border-radius: 4px;
+    /* background-color: var(--border-primary); */
+    padding: 20px;
+    font-size: 0.86rem;
+    background: rgb(var(--color-foreground));
+    tab-size: 20px;
+  }
 
   blockquote,
   iframe,
   .twitter-tweet,
   & > p,
-  & > ul {
+  & > ul,
+  & > ol {
     margin-bottom: 1.5em !important;
   }
 
@@ -101,38 +101,76 @@ export const MDXFullTextWrapper = styled(MDXWrapper)`
   h2,
   h3,
   h4 {
-    color: black;
     -webkit-font-smoothing: auto !important;
   }
 
-  @media (prefers-color-scheme: dark) {
-    h1,
-    h2,
-    h3,
-    h4 {
-      color: white;
-    }
-  }
-
   h1 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
+    font-size: 1.5em;
+    margin-bottom: 1em;
   }
 
   h2 {
-    font-size: 1.3rem;
+    font-size: 1.25em;
     font-weight: 500;
-    margin-bottom: 0.8rem;
+    margin-bottom: 0.8em;
   }
 
   h3 {
-    font-size: 1rem;
+    font-size: 1.2em;
     font-weight: 600;
+    margin-bottom: 0.5em;
   }
 
   blockquote {
     border-left: 4px solid #f3f4f6;
-    padding-left: 1rem;
+    padding-left: 1em;
+  }
+
+  /* SHOW LINE NUMBERS */
+
+  code {
+    counter-reset: line;
+  }
+
+  code > [data-line]::before {
+    counter-increment: line;
+    content: counter(line);
+
+    /* Other styling */
+    display: inline-block;
+    width: 1rem;
+    margin-right: 1rem;
+    text-align: right;
+    color: gray;
+  }
+
+  code[data-line-numbers-max-digits="2"] > [data-line]::before {
+    width: 2rem;
+  }
+
+  code[data-line-numbers-max-digits="3"] > [data-line]::before {
+    width: 3rem;
+  }
+
+  /* SHOW TAB TITLE */
+
+  figure[data-rehype-pretty-code-figure] {
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 30px;
+
+    figcaption {
+      border-top-right-radius: 5px;
+      border-top-left-radius: 5px;
+      background: var(--background-primary);
+      font-size: 13px;
+      display: flex;
+      height: 40px;
+      align-items: center;
+      justify-content: center;
+      color: rgb(var(--text-contrast));
+      border: 1px solid var(--border-stronger);
+    }
   }
 `;
 
@@ -140,8 +178,8 @@ export function MdxRender<TScope, TFrontmatter>(
   props: MDXRemoteProps<TScope, TFrontmatter>,
 ) {
   return (
-    <MDXFullTextWrapper className="[&_strong]:text-black dark:[&_strong]:text-white">
+    <StyleWrapper className="[&_strong]:text-black dark:[&_strong]:text-white">
       <MDXRemote {...props} components={MARKDOWN_COMPONENTS} />
-    </MDXFullTextWrapper>
+    </StyleWrapper>
   );
 }

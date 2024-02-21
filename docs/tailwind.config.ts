@@ -53,6 +53,13 @@ const config = {
             fontWeight: "600",
           },
         ],
+        "page-header": [
+          "30px",
+          {
+            lineHeight: "1.2",
+            fontWeight: "500",
+          },
+        ],
         subheader: [
           "23px",
           {

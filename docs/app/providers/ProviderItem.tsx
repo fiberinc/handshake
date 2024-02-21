@@ -1,28 +1,36 @@
 "use client";
 
+import Link from "next/link";
 import { useMedia, useTimeout } from "react-use";
 import { MdxRender } from "~/ui/MdxRender";
 import { ProviderInfo } from "../getProviderInfos";
 
 export function ProviderItem(info: ProviderInfo) {
-  const isDarkMode = useIsDarkMode();
+  // const isDarkMode = useIsDarkMode();
 
   return (
     <div key={info.id} id={info.id}>
-      <h1 className="text-contrast text-3xl font-medium">{info.name}</h1>
+      <Link href={`/providers/#${info.id}`}>
+        <div className="group relative flex h-[50px] w-fit cursor-pointer flex-row items-center gap-2">
+          <div className="absolute left-[-25px] text-[24px] font-bold opacity-10 transition group-hover:opacity-40">
+            #
+          </div>
+          {/* <div className="flex-inline h-[40px] w-[40px] items-center justify-center rounded-lg">
+          <img
+            src={
+              isDarkMode
+                ? `/handshake/images/logos/${info.id}.svg`
+                : `/handshake/images/logos/${info.id}-dark.svg`
+            }
+            width="30px"
+            alt={`${info.name} logo`}
+          />
+        </div> */}
+          <h1 className="text-contrast text-2xl font-medium">{info.name}</h1>
+        </div>
+      </Link>
 
-      <div className="flex h-[40px] w-[40px] items-center justify-center rounded-lg">
-        <img
-          src={
-            isDarkMode
-              ? `/handshake/images/logos/${info.id}.svg`
-              : `/handshake/images/logos/${info.id}-dark.svg`
-          }
-          width="30px"
-          alt={`${info.name} logo`}
-        />
-      </div>
-
+      <br />
       <MdxRender {...info.serialized} />
     </div>
   );

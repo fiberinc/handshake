@@ -23,7 +23,7 @@ Handshake is a Next.js app that handles OAuth flow against 60+ third-party apps
 and APIs. We use parts of `next-auth` under the hood to extend our coverage of
 providers.
 
-See the [full list of providers][1]
+See the [full list of providers][1].
 
 ## How it works
 
@@ -126,6 +126,8 @@ vercel deploy
 You must deploy the project from the root folder, even though the Next.js app
 folder lives within `app/`. The Next.js code needs the `handshake/` folder,
 which otherwise won't be available.
+
+You may delete the `docs/` folder or add it to a `.vercelignore` file.
 
 ### Fix project root and framework preset in Vercel
 

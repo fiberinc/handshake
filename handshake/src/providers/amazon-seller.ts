@@ -22,7 +22,9 @@ export const PROVIDER_ID = "amazon-seller";
 /**
  * Docs: https://developer-docs.amazon.com/sp-api/docs/website-authorization-workflow
  *
- * ## Configuration
+ * ## Usage
+ *
+ * Provide the following arguments:
  *
  * ```ts
  * // Inside app/api/[...handshake]/route.ts

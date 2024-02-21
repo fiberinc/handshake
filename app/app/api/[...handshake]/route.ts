@@ -8,7 +8,6 @@ import {
   NextHandshake,
   Shopify,
 } from "handshake";
-import { FiberHook } from "~/hooks/fiber";
 
 const REDIRECT_URL = process.env.REDIRECT_URL || "";
 assert(REDIRECT_URL, "Specify a URL at REDIRECT_URL.");
@@ -68,18 +67,8 @@ export const OPTIONS: HandshakeConfig = {
    * 'google', 'github', 'amazon-seller' etc.
    */
   async onSuccess(credentials: unknown, handlerId) {
-    const creds_ = JSON.stringify(credentials);
-    const creds = encodeURI(creds_);
-
-    await FiberHook({
-      clientId: process.env.FIBER_CLIENT_ID!,
-      clientSecret: process.env.FIBER_CLIENT_SECRET!,
-    })(credentials, handlerId, {});
-
     return {
-      forwardParams: {
-        creds,
-      },
+      forwardParams: {},
     };
   },
 };

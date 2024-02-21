@@ -30,6 +30,7 @@ Can't find a provider here? Open a [GitHub Issue](https://github.com/fiberinc/ha
   - [Gitlab](#gitlab)
   - [Google](#google)
   - [Hubspot](#hubspot)
+    - [Configure the Callback URL](#configure-the-callback-url)
   - [IdentityServer4](#identityserver4)
   - [Instagram](#instagram)
   - [Kakao](#kakao)
@@ -52,6 +53,7 @@ Can't find a provider here? Open a [GitHub Issue](https://github.com/fiberinc/ha
   - [Reddit](#reddit)
   - [Salesforce](#salesforce)
   - [Shopify](#shopify)
+    - [Configure the Callback URL](#configure-the-callback-url-1)
   - [Slack](#slack)
   - [Spotify](#spotify)
   - [Strava](#strava)
@@ -462,7 +464,6 @@ HubspotProvider({
   clientSecret: "",
   scopes: [
     "oauth",
-
     Adapted from [next-auth](https://github.com/nextauthjs/next-auth).
     "e-commerce",
     "crm.schemas.contacts.read",
@@ -470,6 +471,14 @@ HubspotProvider({
   ],
 });
 ```
+
+### Configure the Callback URL
+
+Make sure your Handshake URL is allowed within your Hubspot app's Auth tab:
+
+![](/docs/public/images/providers-hubspot-redirect.png)
+
+Follow the format: `https://HANDSHAKE_URL/api/auth/hubspot/callback`
 
 ## IdentityServer4
 
@@ -799,6 +808,14 @@ ShopifyProvider({
   scopes: ["read_orders", "read_products"],
 });
 ```
+
+### Configure the Callback URL
+
+Make sure your Handshake URL is allowed within your Shopify app's Configuration tab:
+
+![](/docs/public/images/providers-shopify-redirect.png)
+
+Follow the format: `https://HANDSHAKE_URL/api/auth/shopify/callback`
 
 ## Slack
 

@@ -118,7 +118,7 @@ providers:
 Deploy the app to Vercel by running, from the root folder:
 
 ```bash
-vercel deploy --prod
+vercel deploy
 ```
 
 You must deploy the project from the root folder, even though the Next.js app

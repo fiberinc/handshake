@@ -25,11 +25,6 @@ providers.
 
 See the [full list of providers][1]
 
-### Features
-
-- Fully self-hostable and highly extensible. Add, modify, and remove third-party
-  apps providers without running into a wall.
-
 ## How it works
 
 Suppose you want to access your users' Salesforce data. You will need to your

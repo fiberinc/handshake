@@ -20,7 +20,7 @@ export interface Credential {
 export const PROVIDER_ID = "amazon-seller";
 
 /**
- * Docs: https://developer-docs.amazon.com/sp-api/docs/website-authorization-workflow
+ * ["Website authorization workflow" documentation](https://developer-docs.amazon.com/sp-api/docs/website-authorization-workflow)
  *
  * ## Usage
  *
@@ -31,25 +31,25 @@ export const PROVIDER_ID = "amazon-seller";
  * import { Amazon } from "handshake";
  *
  * Amazon({
- *  appId: "",
- *  clientId: "",
- *  clientSecret: "",
- *  isDraftApp: true,
+ *   appId: string,
+ *   clientId: string,
+ *   clientSecret: string,
+ *   isDraftApp: true | false,
  * });
  * ```
  *
- * ## Notes
+ * ## Troubleshooting
  *
- * Need to "set up your “Authorize” buttons so that selling partners are redirected
- * to the Seller Central (for sellers) or Vendor Central (for vendors) sign-in page
- * for their own region."
+ * Need to "set up your “Authorize” buttons so that selling partners are
+ * redirected to the Seller Central (for sellers) or Vendor Central (for
+ * vendors) sign-in page for their own region."
  *
  * ### No localhost redirect
  *
- * Amazon does not allow setting localhost as a redirect_uri. You may want to use
- * Ngrok or another service to provide a publicly addressable URL.
+ * Amazon does not allow setting localhost as a redirect_uri. You may want to
+ * use Ngrok or another service to provide a publicly addressable URL.
  *
- * https://github.com/amzn/selling-partner-api-docs/issues/26
+ * [https://github.com/amzn/selling-partner-api-docs/issues/26](https://github.com/amzn/selling-partner-api-docs/issues/26)
  *
  * ### Error Code: MD5101
  *
@@ -57,16 +57,14 @@ export const PROVIDER_ID = "amazon-seller";
  *
  * ### Developer Central – "You do not have permissions to view this page"
  *
- * FYI. Only the primary user of the Seller Central account is able to create and
- * modify apps via the "Developer Central" page.
+ * FYI. Only the primary user of the Seller Central account is able to create
+ * and modify apps via the "Developer Central" page.
  *
- * https://github.com/amzn/selling-partner-api-docs/issues/2191
- *
- * ## Troubleshooting
+ * [https://github.com/amzn/selling-partner-api-docs/issues/2191](https://github.com/amzn/selling-partner-api-docs/issues/2191)
  *
  * ### Not setup for OAuth
  *
- * ![Alt text](not-setup-oauth.png)
+ * ![amazon-not-setup](/handshake/images/providers/amazon-not-setup-oauth.png)
  *
  * @param param0
  * @returns

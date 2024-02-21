@@ -3,7 +3,7 @@ const config = {
   content: ["./app/**/*.{js,ts,jsx,tsx}", "./ui/**/*.{js,ts,jsx,tsx}"],
   theme: {
     fontFamily: {
-      sans: '"SF Pro Display",-apple-system,system-ui,sans-serif',
+      sans: '"SF Pro Text",-apple-system,system-ui,sans-serif',
       mono: '"JetBrains Mono","IBM Plex Mono",monospace',
     },
     extend: {

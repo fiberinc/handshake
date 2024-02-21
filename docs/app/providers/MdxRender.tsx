@@ -34,7 +34,7 @@ export const StyleWrapper = styled.div`
   a {
     text-decoration: underline;
     text-decoration-style: dashed;
-    text-underline-offset: 4px;
+    text-underline-offset: 6px;
   }
 
   strong {
@@ -45,15 +45,6 @@ export const StyleWrapper = styled.div`
     list-style-type: "–    ";
     /* padding-left: 20px; */
     list-style-position: inside;
-  }
-
-  blockquote,
-  iframe,
-  .twitter-tweet,
-  & > div,
-  & > p,
-  & > ul {
-    margin-bottom: 25px !important;
   }
 
   *:not(pre) > code {
@@ -71,7 +62,7 @@ export const StyleWrapper = styled.div`
     padding: 20px;
     font-size: 0.86rem;
     background: rgb(var(--color-foreground));
-    tab-size: 20px;
+    tab-size: 300px;
   }
 
   blockquote,
@@ -110,14 +101,14 @@ export const StyleWrapper = styled.div`
   }
 
   h2 {
-    font-size: 1.25em;
+    font-size: 1.3em;
     font-weight: 500;
     margin-bottom: 0.8em;
   }
 
   h3 {
-    font-size: 1.2em;
-    font-weight: 600;
+    font-size: 1em;
+    font-weight: 500;
     margin-bottom: 0.5em;
   }
 
@@ -150,6 +141,10 @@ export const StyleWrapper = styled.div`
 
   code[data-line-numbers-max-digits="3"] > [data-line]::before {
     width: 3rem;
+  }
+
+  img {
+    border: 1px solid var(--border-primary);
   }
 
   /* SHOW TAB TITLE */

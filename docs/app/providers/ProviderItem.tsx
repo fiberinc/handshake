@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import { useMedia, useTimeout } from "react-use";
-import { MdxRender } from "~/ui/MdxRender";
 import { ProviderInfo } from "../getProviderInfos";
+import { MdxRender } from "./MdxRender";
 
 export function ProviderItem(info: ProviderInfo) {
   // const isDarkMode = useIsDarkMode();
@@ -26,7 +26,9 @@ export function ProviderItem(info: ProviderInfo) {
             alt={`${info.name} logo`}
           />
         </div> */}
-          <h1 className="text-contrast text-2xl font-medium">{info.name}</h1>
+          <h1 className="text-contrast text-page-header font-medium">
+            {info.name}
+          </h1>
         </div>
       </Link>
 

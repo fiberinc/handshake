@@ -101,7 +101,7 @@ Google({
 
 Make sure your Handshake URL is allowed within your Hubspot app's Auth tab:
 
-![](/docs/public/images/providers-hubspot-redirect.png)
+![](/handshake/images/providers/hubspot-redirect.png)
 
 Follow the format: `https://HANDSHAKE_URL/api/auth/hubspot/callback`
 

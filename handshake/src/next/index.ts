@@ -1,4 +1,5 @@
 import { BadRequest, HttpError } from "http-errors";
+import { isRedirectError } from "next/dist/client/components/redirect";
 import { NextRequest } from "next/server";
 import { HandshakeConfig, getFullHandshakeOptions } from "..";
 import { handleCallback } from "./handle-callback";
@@ -8,9 +9,9 @@ function getInfoFromUrl(url: string) {
   // FIXME refactor
   const pathname = new URL(url).pathname;
   let action: "redirect" | "callback";
-  if (pathname.match("^/([^/]+)/([^/]+)/redirect")) {
+  if (pathname.match("^/api/([^/]+)/([^/]+)/redirect")) {
     action = "redirect";
-  } else if (pathname.match("^/([^/]+)/([^/]+)/callback")) {
+  } else if (pathname.match("^/api/([^/]+)/([^/]+)/callback")) {
     action = "callback";
   } else {
     console.log("pathname", pathname);
@@ -18,10 +19,10 @@ function getInfoFromUrl(url: string) {
   }
 
   // FIXME refactor
-  const matches = pathname.match("^/auth/([^/]+)/([^/]+)/")!;
+  const matches = pathname.match("^/api/([^/]+)/([^/]+)/")!;
   const tenantId = matches[1];
-
   const handlerId = matches[2];
+
   if (!handlerId) {
     throw new BadRequest("handler with id not found");
   }
@@ -62,8 +63,8 @@ export function NextHandshake(userOptions: HandshakeConfig) {
   };
 
   return {
-    GET: handleCaughtHttpErrors(nextHandler),
-    POST: handleCaughtHttpErrors(nextHandler),
+    GET: handleErrors(nextHandler),
+    POST: handleErrors(nextHandler),
 
     // Expose the final options to the user.
     // options,
@@ -83,25 +84,39 @@ function validateHandlers(userOptions: HandshakeConfig) {
   // TODO there's more we can test here.
 }
 
-function handleCaughtHttpErrors(
-  handler: (req: NextRequest) => Promise<Response>,
-) {
+function handleErrors(handler: (req: NextRequest) => Promise<Response>) {
   return async (req: NextRequest) => {
     let response: Response;
     try {
       response = await handler(req);
     } catch (e) {
+      // Next's `redirect` throws an error which we must bubble up.
+      if (isRedirectError(e)) {
+        throw e;
+      }
+
       if (e instanceof HttpError) {
+        const message = `Error: ${e.message.replace(/^Error: /g, "")}`;
+        const status = e.statusCode;
+
         if (req.headers.get("accept")?.includes("application/json")) {
-          return Response.json({ error: e.message }, { status: e.statusCode });
+          return Response.json({ error: message }, { status });
         } else {
-          const message = e.message.replace(/^Error: /g, "");
-          return new Response(`Error: ${message}`, {
-            status: e.statusCode,
-          });
+          return new Response(message, { status });
         }
       }
-      throw e;
+
+      if (process.env.NODE_ENV === "development") {
+        return new Response(JSON.stringify(e), { status: 500 });
+      }
+
+      // Return an identifier to help the developer track it down in production.
+      const errorId = Math.floor(Math.random() * 10000000);
+      console.error(`Unexpected error: ${errorId}`, e);
+      return Response.json(
+        { error: `An unexpected error occured (id=${errorId})` },
+        { status: 500 },
+      );
     }
 
     // if (!response) {

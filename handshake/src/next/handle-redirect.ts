@@ -10,7 +10,7 @@ import { getNextHost } from "./handle-callback";
 
 export async function handleRedirect(
   options: ExtendedConfig,
-  projectId: string,
+  tenantId: string,
   handler: Handler,
   req: NextRequest,
 ): Promise<Response> {
@@ -25,7 +25,7 @@ export async function handleRedirect(
   // The URI inside this handshake deployment that the provider should send
   // users back to.
   const handshakeCallbackUrl =
-    getNextHost(req) + `/api/${projectId}/${handler.id}/callback`;
+    getNextHost(req) + `/api/${tenantId}/${handler.id}/callback`;
 
   console.log("callbackHandlerUrl", handshakeCallbackUrl);
 

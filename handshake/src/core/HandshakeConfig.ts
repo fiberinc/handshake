@@ -1,6 +1,6 @@
 import { Handler } from "./Handler";
 
-export interface HandshakeOptions {
+export interface HandshakeConfig {
   /**
    * A list of hosts that we are allowed to redirect users back to.
    */
@@ -68,8 +68,8 @@ export interface HandshakeOptions {
 type RequireKeys<T extends object, K extends keyof T> = Required<Pick<T, K>> &
   Omit<T, K>;
 
-export interface InternalOptions
-  extends RequireKeys<HandshakeOptions, "secret" | "sessionCookieName"> {
+export interface ExtendedConfig
+  extends RequireKeys<HandshakeConfig, "secret" | "sessionCookieName"> {
   getHandler(id: string): Handler | null;
 
   /**
@@ -83,9 +83,7 @@ export interface InternalOptions
   sessionCookieMaxSecs: number;
 }
 
-export function getFullHandshakeOptions(
-  args: HandshakeOptions,
-): InternalOptions {
+export function getFullHandshakeOptions(args: HandshakeConfig): ExtendedConfig {
   if (!args.secret) {
     throw Error("Specify a valid `secret` attribute.");
   }

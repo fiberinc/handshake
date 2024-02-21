@@ -3,7 +3,7 @@ import {
   AmazonSeller,
   GitHub,
   Google,
-  HandshakeOptions,
+  HandshakeConfig,
   Hubspot,
   NextHandshake,
   Shopify,
@@ -12,7 +12,7 @@ import {
 const REDIRECT_URL = process.env.REDIRECT_URL || "";
 assert(REDIRECT_URL, "Specify a URL at REDIRECT_URL.");
 
-export const options: HandshakeOptions = {
+export const config: HandshakeConfig = {
   secret: process.env.SESSION_SECRET!,
   allowedRedirectUris: [REDIRECT_URL],
   handlers: [
@@ -61,4 +61,4 @@ export const options: HandshakeOptions = {
   },
 };
 
-export const { GET, POST } = NextHandshake(options);
+export const { GET, POST } = NextHandshake(config);

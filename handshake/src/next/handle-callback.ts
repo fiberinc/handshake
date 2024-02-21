@@ -4,15 +4,15 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { NextRequest } from "next/server";
 import { Handler } from "~/core/Handler";
-import { InternalOptions } from "~/core/options";
+import { ExtendedConfig } from "~/core/HandshakeConfig";
 import { parseSessionFromStringValue } from "~/core/session";
 
 export async function handleCallback(
-  options: InternalOptions,
+  options: ExtendedConfig,
   tenantId: string,
   handler: Handler,
   req: NextRequest,
-) {
+): Promise<Response> {
   if (req.method !== "GET") {
     return new Response(
       `Error: This action with HTTP ${req.method} is not supported.`,
@@ -128,7 +128,6 @@ export async function handleCallback(
       `Success handler failed${err.message ? ": " + err.message : ""}.`,
     );
     redirect(url.href);
-    return;
   }
 
   const url = new URL(session.developerCallbackUri);
@@ -149,8 +148,6 @@ export async function handleCallback(
 
   console.log(`Redirecting user to ${url.href}`);
   redirect(url.href);
-
-  return;
 }
 
 /**
@@ -158,7 +155,7 @@ export async function handleCallback(
  */
 export function isValidDeveloperCallbackUri(
   value: string,
-  options: InternalOptions,
+  options: ExtendedConfig,
 ): boolean {
   // If a callback cookie is set, use it. Make sure it agrees with one of the
   // registered URIs. If it doesn't, or if there's no cookie, just use the

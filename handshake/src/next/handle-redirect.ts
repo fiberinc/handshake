@@ -4,16 +4,16 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { NextRequest } from "next/server";
 import { Handler } from "~/core/Handler";
-import { InternalOptions } from "~/core/options";
+import { ExtendedConfig } from "~/core/HandshakeConfig";
 import { getSessionValueToSave } from "~/core/session";
 import { getNextHost } from "./handle-callback";
 
 export async function handleRedirect(
-  options: InternalOptions,
+  options: ExtendedConfig,
   projectId: string,
   handler: Handler,
   req: NextRequest,
-) {
+): Promise<Response> {
   if (req.method !== "GET") {
     return new Response(`Expected method GET, not ${req.method}.`, {
       status: 400,

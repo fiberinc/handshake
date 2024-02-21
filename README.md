@@ -85,17 +85,17 @@ In the new file, replace the values for `REDIRECT_URL` and `SESSION_SECRET`.
 
 ### Configure your providers
 
-Modify the `app/handshake.ts` file to include the providers you want to use:
+Modify the `app/api/[...handshake]/routes.ts` file to include the providers you want to use:
 
 ```ts
-export const config = Handshake({
+const options: HandshakeOptions = {
   // Register the providers you want to use, entering the
   // required credentials for each of them.
-  providers: [
-    GoogleProvider({
+  handlers: [
+    Google({
       clientId: process.env.GOOGLE_CLIENT_ID!,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
-      scopes: ["email"],
+      scopes: ["https://www.googleapis.com/auth/gmail.readonly"],
     }),
   ],
   // Tell Handshake which URLs it can redirect users back to. This is a
@@ -103,7 +103,7 @@ export const config = Handshake({
   allowedRedirectUris: [process.env.REDIRECT_URL],
   // Set a unique secret to sign session cookies.
   secret: process.env.SESSION_SECRET!,
-});
+};
 ```
 
 You can now run your app:

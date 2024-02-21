@@ -1,5 +1,5 @@
 import { Inter } from "next/font/google";
-import { options } from "../api/[...link]/route";
+import { config } from "../auth/[...handshake]/route";
 
 const REPO_HOST = "https://github.com/fiberinc/link";
 const inter = Inter({ subsets: ["latin"] });
@@ -8,7 +8,7 @@ export async function DevIndex() {
   const handlers = await getSanitizedHandlerInfo();
 
   const els = handlers.map((handler) => {
-    const base = `/api/auth/${handler.id}/redirect`;
+    const base = `/auth/${handler.id}/redirect`;
     let args =
       "state=111&account_id=222&callback_uri=http://localhost:3000/done";
 
@@ -54,7 +54,7 @@ export async function DevIndex() {
 }
 
 async function getSanitizedHandlerInfo() {
-  return options.handlers.map((handler) => {
+  return config.handlers.map((handler) => {
     return {
       id: handler.id,
       providerType: handler.provider.id,

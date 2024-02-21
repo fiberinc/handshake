@@ -1,6 +1,6 @@
 import { BadRequest } from "http-errors";
 import { z } from "zod";
-import { InternalOptions } from "./options";
+import { ExtendedConfig } from "./HandshakeConfig";
 
 // ATTENTION I'm scared of using these static cookie names here because they may
 // cause conflicts between different concurrent linking attempts. Example: a
@@ -52,7 +52,7 @@ export type SessionValue = z.infer<typeof SessionValueStruct>;
  *
  */
 export function getSessionValueToSave(
-  options: InternalOptions,
+  options: ExtendedConfig,
   req: Request,
   handshakeCallbackUrl: string,
 ): SessionValue {

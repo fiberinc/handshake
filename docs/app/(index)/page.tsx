@@ -1,5 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
+import { FaExternalLinkAlt } from "react-icons/fa";
+import { twMerge } from "tailwind-merge";
 import { Banner } from "~/ui/Banner";
 import { GithubLogoMark } from "~/ui/GithubLogoMark";
 import { getProviderInfos } from "../getProviderInfos";
@@ -9,12 +11,14 @@ export const metadata: Metadata = {
   title: "Handshake – OAuth made easy",
 };
 
+const BUTTON_CLS = "flex h-[55px] flex-row items-center gap-3 font-medium";
+
 export default function Home() {
   return (
     <div className="m-auto flex flex-col gap-16">
       <header className="flex flex-col gap-3">
         <Link href="/providers/#stripe">
-          <Banner>🎉 New Stripe connector</Banner>
+          <Banner>🎉&nbsp;&nbsp;New Stripe connector</Banner>
         </Link>
         <h1
           className="text-contrast text-[305px] font-semibold leading-[1.1] lg:text-[85px]"
@@ -33,16 +37,24 @@ export default function Home() {
         <section className="flex flex-wrap gap-5">
           <a
             href={REPO_URL}
-            className="flex h-[55px] flex-row items-center gap-3 rounded-md border bg-white p-4 px-5 font-medium text-black "
+            className={twMerge(
+              BUTTON_CLS,
+              "rounded-md border bg-white px-5 text-black ",
+            )}
           >
             <GithubLogoMark size={25} /> Github
           </a>
 
           <a
             href="https://github.com/fiberinc/handshake?tab=readme-ov-file#deploy"
-            className="flex h-[55px] flex-row items-center gap-3 rounded-md bg-black p-4 px-5 font-medium text-white antialiased"
+            className={twMerge(
+              BUTTON_CLS,
+              "gap-2 rounded-md bg-black px-5 pl-3 text-white antialiased",
+            )}
           >
-            <span className="text-[20px] leading-[0.5]">▲</span>
+            <span className="flex h-[30px] w-[30px] items-center justify-center rounded-full bg-[#222222] text-[20px] leading-[0.5]">
+              ▲
+            </span>
             &nbsp;&nbsp;Deploy to Vercel
           </a>
         </section>
@@ -68,12 +80,12 @@ export default function Home() {
             </pre>
           </code>
         </section>
-        <section className="flex flex-col gap-5">
+        <section className="flex flex-col gap-6">
           <div>
             <h2 className="text-subheader text-contrast mb-3">
               Supported Providers
             </h2>
-            <p>Click to see documentation.</p>
+            <p>Click to read documentation:</p>
           </div>
           <ul className="flex flex-row flex-wrap gap-2">
             <ProviderNames />
@@ -88,6 +100,21 @@ export default function Home() {
               opening an issue.
             </a>
           </p>
+        </section>
+        <section className="mt-16 flex flex-col items-center justify-center">
+          <div className="text-contrast flex flex-row items-center gap-7 text-[40px]">
+            <a
+              target="_blank"
+              href={REPO_URL + "/blob/main/README.md"}
+              className={twMerge(
+                BUTTON_CLS,
+                "text-contrast hover:border-stronger inline-flex rounded-md border bg-white p-10 text-[40px] transition",
+              )}
+            >
+              <FaExternalLinkAlt className="mr-3 w-8" />
+              README.md
+            </a>
+          </div>
         </section>
       </div>
     </div>

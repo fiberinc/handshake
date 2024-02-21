@@ -67,13 +67,6 @@ const config = {
             fontWeight: "500",
           },
         ],
-        monospace: [
-          "14px",
-          {
-            lineHeight: "20px",
-            fontWeight: "400",
-          },
-        ],
       },
     },
   },

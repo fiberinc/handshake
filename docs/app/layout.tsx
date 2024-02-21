@@ -33,14 +33,18 @@ export default function RootLayout({
 function Nav() {
   return (
     <nav className="bg-foreground relative">
-      <div className="absolute left-6 top-2 text-[30px]">🫱🏻‍🫲🏽</div>
-      <div className="m-auto flex h-[60px] flex-row items-center justify-between px-5 md:px-0 lg:w-[900px]">
+      {/* <div className="absolute left-6 top-[10px] text-[30px]">🫱🏻‍🫲🏽</div> */}
+      <div className="m-auto flex h-[70px] flex-row items-center justify-between px-5 md:px-0 lg:w-[900px]">
         <Link href="/">
-          <h1 className="text-contrast text-lg font-semibold">Handshake </h1>
+          <h1 className="text-contrast text-lg font-semibold">🫱🏻‍🫲🏽 Handshake </h1>
         </Link>
         <div className="flex flex-row gap-10">
-          <Link href="/providers">Provider Docs</Link>
-          <a href="/providers" target="_blank" className="text-contrast">
+          <Link href="/providers">All providers</Link>
+          <a
+            href="/providers"
+            target="_blank"
+            className="text-contrast font-medium"
+          >
             On Github
           </a>
         </div>
@@ -52,7 +56,7 @@ function Nav() {
 function Footer() {
   return (
     <footer className="bg-foreground">
-      <div className="text-monospace text-md m-auto flex flex-row flex-wrap justify-between gap-10 px-5 py-10  font-medium md:px-0 lg:w-[900px]">
+      <div className="text-mono text-md m-auto flex flex-row flex-wrap justify-between gap-10 px-5 py-10  font-medium md:px-0 lg:w-[900px]">
         <div>
           A project by{" "}
           <a href="https://fiber.dev" className="underline">

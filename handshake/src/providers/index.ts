@@ -1,6 +1,6 @@
 export * from "./from-next-auth";
 
-export * from "./amazon-seller";
-export * from "./shopify";
+export { AmazonSeller } from "./amazon-seller";
+export { Shopify } from "./shopify";
 
 export { GoogleProviderId } from "./google";

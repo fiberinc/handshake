@@ -5,21 +5,21 @@ const REPO_HOST = "https://github.com/fiberinc/link";
 const inter = Inter({ subsets: ["latin"] });
 
 export async function DevIndex() {
-  const providers = await getSanitizedProviderConfigs();
+  const handlers = await getSanitizedHandlerInfo();
 
-  const els = providers.map((provider) => {
-    const base = `/api/auth/${provider.id}/redirect`;
+  const els = handlers.map((handler) => {
+    const base = `/api/auth/${handler.id}/redirect`;
     let args =
       "state=111&account_id=222&callback_uri=http://localhost:3000/done";
 
     // Shopify redirection consumes a 'shop' field to identify the shop for its
     // own redirection.
-    if (provider.id === "shopify") {
+    if (handler.id === "shopify") {
       args += "&extras.shop=hahvaleu.myshopify.com";
     }
 
     return (
-      <li key={provider.id} className="group flex flex-row items-center">
+      <li key={handler.id} className="group flex flex-row items-center">
         <a href={`${base}?${args}`} target="blank">
           <span>{base}</span>
           <span className="opacity-10 transition group-hover:opacity-100">
@@ -53,12 +53,12 @@ export async function DevIndex() {
   );
 }
 
-async function getSanitizedProviderConfigs() {
-  return options.handlers.map((provider) => {
+async function getSanitizedHandlerInfo() {
+  return options.handlers.map((handler) => {
     return {
-      id: provider.id,
-      metadata: provider.metadata,
-      type: provider.type,
+      id: handler.id,
+      providerType: handler.provider.id,
+      providerMetadata: handler.provider.metadata,
     };
   });
 }

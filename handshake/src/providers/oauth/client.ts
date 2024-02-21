@@ -1,6 +1,6 @@
 import type { Client } from "openid-client";
 import { Issuer, custom } from "openid-client";
-import { OAuthProviderInfo } from "./types";
+import { OAuthProvider } from "./OAuthProvider";
 
 /**
  * NOTE: We can add auto discovery of the provider's endpoint
@@ -10,7 +10,7 @@ import { OAuthProviderInfo } from "./types";
  * Client supporting OAuth 2.x and OIDC.
  */
 export async function getOpenIdClient(
-  info: OAuthProviderInfo,
+  info: OAuthProvider,
   clientId: string,
   clientSecret: string,
   callbackUrl: string,

@@ -3,14 +3,14 @@ import { HttpError } from "http-errors";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { NextRequest } from "next/server";
-import { Provider } from "~/core/Provider";
+import { Handler } from "~/core/Handler";
 import { InternalOptions } from "~/core/options";
 import { parseSessionFromStringValue } from "~/core/session";
 
 export async function handleCallback(
   options: InternalOptions,
   tenantId: string,
-  provider: Provider,
+  handler: Handler,
   req: NextRequest,
 ) {
   if (req.method !== "GET") {
@@ -24,21 +24,6 @@ export async function handleCallback(
     chalk.green("Received user at callback"),
     req.nextUrl.searchParams,
   );
-
-  // Validate the query params returned by the provider, if
-  // `validateQueryParams` is defined.
-  if (provider.validateQueryParams) {
-    try {
-      const searchParams = req.nextUrl.searchParams;
-      provider.validateQueryParams(searchParams, req);
-    } catch (e) {
-      console.log("provider.parseQueryParams failed", e);
-
-      // TODO improve
-      // TODO only show in development
-      return new Response(`Wrong parameters: ${e}`, { status: 400 });
-    }
-  }
 
   // Get session valued we saved in a cookie.
   const cookieStore = cookies();
@@ -61,7 +46,6 @@ export async function handleCallback(
   const isValid = isValidDeveloperCallbackUri(
     session.developerCallbackUri,
     options,
-    req,
   );
   if (!isValid) {
     // FIXME this could be a React page.
@@ -80,13 +64,17 @@ export async function handleCallback(
   // Exchange search parameters for account credentials.
   let credentials;
   try {
-    credentials = await provider.exchange(
+    credentials = await handler.exchange(
       new URL(req.url).searchParams,
       req,
       session.handshakeCallbackUrl,
       session,
     );
-  } catch (e: any) {
+  } catch (e: unknown) {
+    if (!(e instanceof Error)) {
+      throw new TypeError("Not an error");
+    }
+
     console.log(chalk.red("Failed to exchange credentials"), e);
 
     // Convert any HttpError thrown by the handler into a JSON response with the
@@ -112,7 +100,7 @@ export async function handleCallback(
   let successParams;
   try {
     const accountId = session.accountId;
-    let linkParams: { account_id?: string } = {};
+    const linkParams: { account_id?: string } = {};
     if (accountId) {
       linkParams.account_id = accountId;
     }
@@ -120,13 +108,17 @@ export async function handleCallback(
     console.log("linkParams", linkParams);
 
     successParams = await options.onSuccess(
-      provider.id,
       credentials,
+      handler.id,
       linkParams,
     );
 
     console.log("onSuccess returned", successParams);
-  } catch (err: any) {
+  } catch (err: unknown) {
+    if (!(err instanceof Error)) {
+      throw new TypeError("Not an error");
+    }
+
     console.log("Failed to call onSuccess", err);
     // Sentry.captureException(err);
     const url = new URL(session.developerCallbackUri);
@@ -148,7 +140,7 @@ export async function handleCallback(
       if (url.searchParams.has(key)) {
         throw new Error(`onSuccess handler returned a reserved param: ${key}`);
       }
-      url.searchParams.set(key, value as any);
+      url.searchParams.set(key, value);
     }
   }
 
@@ -167,7 +159,6 @@ export async function handleCallback(
 export function isValidDeveloperCallbackUri(
   value: string,
   options: InternalOptions,
-  req: NextRequest,
 ): boolean {
   // If a callback cookie is set, use it. Make sure it agrees with one of the
   // registered URIs. If it doesn't, or if there's no cookie, just use the
@@ -175,10 +166,9 @@ export function isValidDeveloperCallbackUri(
   const url = new URL(value);
 
   const allowedRedirectUris = options.allowedRedirectUris.map(
-    (uri: any) => new URL(uri),
+    (uri) => new URL(uri),
   );
 
-  let isAllowed = false;
   for (const allowedUri of allowedRedirectUris) {
     if (
       url.hostname === allowedUri.hostname &&

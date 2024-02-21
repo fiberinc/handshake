@@ -1,7 +1,6 @@
 import { Handler } from "./Handler";
-import { Provider } from "./Provider";
 
-interface Options<Credential> {
+export interface HandshakeOptions {
   /**
    * A list of hosts that we are allowed to redirect users back to.
    */
@@ -29,7 +28,7 @@ interface Options<Credential> {
   /**
    * A function called after the handshake occurs successfully.
    *
-   * @param credential -
+   * @param credentials - A dictionary of values returned by the handler.
    * @param handlerId - Identifies the provider that handled this handshake,
    * eg. "stripe". Normally the provider name in snake_case, or whatever you set
    * in the "id" field when you create the provider.
@@ -38,7 +37,7 @@ interface Options<Credential> {
    * @returns Returns a list of params to send back to the redirect URL.
    */
   onSuccess(
-    credential: Credential,
+    credentials: any, // Record<string, unknown>,
     handlerId: string,
     linkParams: { account_id?: string },
   ): Promise<Record<string, string>> | undefined;
@@ -69,9 +68,9 @@ interface Options<Credential> {
 type RequireKeys<T extends object, K extends keyof T> = Required<Pick<T, K>> &
   Omit<T, K>;
 
-export interface InternalOptions<Credential = unknown>
-  extends RequireKeys<Options<Credential>, "secret" | "sessionCookieName"> {
-  getProvider(id: string): Provider | null;
+export interface InternalOptions
+  extends RequireKeys<HandshakeOptions, "secret" | "sessionCookieName"> {
+  getHandler(id: string): Handler | null;
 
   /**
    * Defaults to `callback_uri`.
@@ -84,9 +83,9 @@ export interface InternalOptions<Credential = unknown>
   sessionCookieMaxSecs: number;
 }
 
-export function Handshake<Credential>(
-  args: Options<Credential>,
-): InternalOptions<Credential> {
+export function getFullHandshakeOptions(
+  args: HandshakeOptions,
+): InternalOptions {
   if (!args.secret) {
     throw Error("Specify a valid `secret` attribute.");
   }
@@ -97,8 +96,8 @@ export function Handshake<Credential>(
     developerCallbackUrlQueryParameter: "callback_uri",
     sessionCookieName: args.sessionCookieName ?? "session",
     sessionCookieMaxSecs: 60 * 2,
-    getProvider(id: string): Provider | null {
-      return args.handlers.find((provider) => provider.id === id) ?? null;
+    getHandler(id: string): Handler | null {
+      return args.handlers.find((handler) => handler.id === id) ?? null;
     },
   };
 }

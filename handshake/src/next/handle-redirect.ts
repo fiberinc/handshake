@@ -3,7 +3,7 @@ import { BadRequest, HttpError, InternalServerError } from "http-errors";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { NextRequest } from "next/server";
-import { Provider } from "~/core/Provider";
+import { Handler } from "~/core/Handler";
 import { InternalOptions } from "~/core/options";
 import { getSessionValueToSave } from "~/core/session";
 import { getNextHost } from "./handle-callback";
@@ -11,7 +11,7 @@ import { getNextHost } from "./handle-callback";
 export async function handleRedirect(
   options: InternalOptions,
   projectId: string,
-  provider: Provider,
+  handler: Handler,
   req: NextRequest,
 ) {
   if (req.method !== "GET") {
@@ -25,14 +25,14 @@ export async function handleRedirect(
   // The URI inside this handshake deployment that the provider should send
   // users back to.
   const handshakeCallbackUrl =
-    getNextHost(req) + `/api/${projectId}/${provider.id}/callback`;
+    getNextHost(req) + `/api/${projectId}/${handler.id}/callback`;
 
   console.log("callbackHandlerUrl", handshakeCallbackUrl);
 
   let cookiesToSave: Record<string, string> | null = null;
   let url: string;
   try {
-    const result = await provider.getAuthorizationUrl(
+    const result = await handler.getAuthorizationUrl(
       handshakeCallbackUrl,
       extras,
     );
@@ -41,7 +41,10 @@ export async function handleRedirect(
     if (result.persist && Object.keys(result.persist).length > 0) {
       cookiesToSave = result.persist;
     }
-  } catch (e: any) {
+  } catch (e: unknown) {
+    if (!(e instanceof Error)) {
+      throw new TypeError("Not an error");
+    }
     // Convert any HttpError thrown by the handler into a JSON response with the
     // error message. This is useful to simplify program logic.
     if (e instanceof HttpError) {
@@ -92,7 +95,7 @@ export async function handleRedirect(
 function getExtras(req: NextRequest): Record<string, string> {
   const searchParams = new URL(req.url).searchParams;
 
-  const extras: any = {};
+  const extras: Record<string, string> = {};
   for (const [key, value] of searchParams.entries()) {
     if (key.startsWith("extras.")) {
       extras[key.replace("extras.", "")] = value;

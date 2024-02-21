@@ -1,31 +1,31 @@
 import assert from "assert";
 import {
-  AmazonSellerProvider,
-  GitHubProvider,
-  GoogleProvider,
-  Handshake,
-  HubspotProvider,
+  AmazonSeller,
+  GitHub,
+  Google,
+  HandshakeOptions,
+  Hubspot,
   NextHandshake,
-  ShopifyProvider,
+  Shopify,
 } from "handshake";
 
 const REDIRECT_URL = process.env.REDIRECT_URL || "";
 assert(REDIRECT_URL, "Specify a URL at REDIRECT_URL.");
 
-export const options = Handshake({
+export const options: HandshakeOptions = {
   secret: process.env.SESSION_SECRET!,
   allowedRedirectUris: [REDIRECT_URL],
   handlers: [
-    GitHubProvider({
+    GitHub({
       clientId: process.env.GITHUB_CLIENT_ID!,
       clientSecret: process.env.GITHUB_CLIENT_SECRET!,
     }),
-    GitHubProvider({
+    GitHub({
       id: "github-other",
       clientId: "anotheraccount",
       clientSecret: "anothersecret",
     }),
-    HubspotProvider({
+    Hubspot({
       clientId: process.env.HUBSPOT_CLIENT_ID!,
       clientSecret: process.env.HUBSPOT_CLIENT_SECRET!,
       scopes: [
@@ -35,30 +35,30 @@ export const options = Handshake({
         "crm.objects.contacts.read",
       ],
     }),
-    ShopifyProvider({
+    Shopify({
       clientId: process.env.SHOPIFY_CLIENT_ID!,
       clientSecret: process.env.SHOPIFY_CLIENT_SECRET!,
       scopes: ["read_orders", "read_products"],
     }),
-    AmazonSellerProvider({
+    AmazonSeller({
       appId: "asdf",
       clientId: "asdf",
       clientSecret: "asdf",
       isDraftApp: true,
     }),
-    GoogleProvider({
+    Google({
       clientId: process.env.GOOGLE_CLIENT_ID!,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
       // requiredScopes: ["https://www.googleapis.com/auth/gmail.readonly"],
     }),
   ],
-  async onSuccess(credential, handlerId) {
+  async onSuccess(credentials, handlerId) {
     // This
 
     return {
       // external_id: externalId,
     };
   },
-});
+};
 
 export const { GET, POST } = NextHandshake(options);

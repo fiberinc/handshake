@@ -1,38 +1,23 @@
 import assert from "assert";
 import crypto from "crypto";
 import { z } from "zod";
+import { HandlerFactory } from "~/core/Handler";
 import { InvalidRequest } from "~/core/errors";
-import { Provider } from "../core/Provider";
 
-export const AmazonSellerCredentialSchema = z.object({
-  accessToken: z.string(),
-  refreshToken: z.string(),
-  scopes: z.optional(z.array(z.string())),
-});
-
-export type AmazonSellerCredential = z.infer<
-  typeof AmazonSellerCredentialSchema
->;
-
-const querySchema = z.object({
-  spapi_oauth_code: z.string(),
-  state: z.string(),
-  selling_partner_id: z.string(),
-  // mws_auth_token: z.string(),
-});
-
-type CallbackParams = z.infer<typeof querySchema>;
-
-export interface AmazonSellerConfig {
+export interface Args {
   appId: string;
   clientId: string;
   clientSecret: string;
   isDraftApp: boolean;
 }
 
-type FindAName<T> = T & { id?: string };
+export interface Credential {
+  accessToken: string;
+  refreshToken: string;
+  expiresAt: string;
+}
 
-export const AmazonSellerProviderId = "amazon-seller";
+export const PROVIDER_ID = "amazon-seller";
 
 /**
  * Docs: https://developer-docs.amazon.com/sp-api/docs/website-authorization-workflow
@@ -82,23 +67,19 @@ export const AmazonSellerProviderId = "amazon-seller";
  * @param param0
  * @returns
  */
-export function AmazonSellerProvider({
+export const AmazonSeller: HandlerFactory<Args, Credential> = ({
   id,
   ...config
-}: FindAName<AmazonSellerConfig>): Provider<
-  AmazonSellerConfig,
-  CallbackParams,
-  AmazonSellerCredential
-> {
-  const providerId = id ?? AmazonSellerProviderId;
-
+}) => {
   return {
-    id: providerId,
-    type: AmazonSellerProviderId,
+    id: id ?? PROVIDER_ID,
     config,
-    metadata: {
-      title: "Amazon Seller Central",
-      logo: "/images/providers/amazon-a.svg",
+    provider: {
+      id: PROVIDER_ID,
+      metadata: {
+        title: "Amazon Seller Central",
+        logo: "/images/providers/amazon-a.svg",
+      },
     },
     getAuthorizationUrl(callbackHandlerUrl: string) {
       const { appId, isDraftApp } = config;
@@ -131,11 +112,15 @@ export function AmazonSellerProvider({
 
       return { url: authUrl.toString() };
     },
-    validateQueryParams(params: URLSearchParams) {
-      return querySchema.parse(Object.fromEntries(params.entries()));
-    },
     async exchange(searchParams) {
-      const params = Object.fromEntries(searchParams) as CallbackParams;
+      const params = z
+        .object({
+          spapi_oauth_code: z.string(),
+          state: z.string(),
+          selling_partner_id: z.string(),
+          // mws_auth_token: z.string(),
+        })
+        .parse(Object.fromEntries(searchParams.entries()));
 
       // 	projectAlias: string,
       // 	clientId: string,
@@ -172,10 +157,13 @@ export function AmazonSellerProvider({
       }
 
       return {
-        accessToken: json.access_token,
-        refreshToken: json.refresh_token,
-        expiresAt: new Date(Date.now() + (json.expires_in as number) * 1000),
+        tokens: {
+          accessToken: "" + json.access_token,
+          refreshToken: "" + json.refresh_token,
+          expiresAt:
+            "" + new Date(Date.now() + (json.expires_in as number) * 1000),
+        },
       };
     },
   };
-}
+};

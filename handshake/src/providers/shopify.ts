@@ -6,7 +6,7 @@ import crypto from "crypto";
 import { Forbidden } from "http-errors";
 import querystring from "querystring";
 import { z } from "zod";
-import { Handler } from "~/core/Handler";
+import { HandlerFactory } from "~/core/Handler";
 import { InvalidRequest } from "~/core/errors";
 
 interface SessionShopData {
@@ -18,13 +18,6 @@ interface SessionShopData {
   country: string | null;
   city: string | null;
 }
-
-const ShopifyCredentialSchema = z.object({
-  accessToken: z.string(),
-  myShopifyDomain: z.string(),
-});
-
-type ShopifyCredential = z.infer<typeof ShopifyCredentialSchema>;
 
 const querySchema = z.object({
   state: z.string(),
@@ -40,29 +33,27 @@ interface Args {
   scopes: string[];
 }
 
-type FindAName<T> = T & { id?: string };
+export const PROVIDER_ID = "shopify";
 
-export const ShopifyProviderId = "shopify";
+type Credential = {
+  myShopifyDomain: string;
+  accessToken: string;
+  scopes: string[];
+};
 
-export const Shopify: HandlerFactory<Args> = ({
-  id,
-  ...config
-}: FindAName<Partial<Args>>): Handler<Args, ShopifyCredential> => {
-  const providerId = id ?? ShopifyProviderId;
+export const Shopify: HandlerFactory<Args, Credential> = ({ id, ...args }) => {
+  const providerId = id ?? PROVIDER_ID;
 
-  const scopes = config?.scopes || DEFAULT_SHOPIFY_SCOPES;
+  const scopes = args?.scopes || DEFAULT_SHOPIFY_SCOPES;
 
   return {
     id: providerId,
-    type: ShopifyProviderId,
-    config: {
-      clientId: config.clientId!,
-      clientSecret: config.clientSecret!,
-      scopes,
-    },
-    metadata: {
-      title: "Shopify",
-      logo: "/images/providers/shopify.svg",
+    provider: {
+      id: "shopify",
+      metadata: {
+        title: "Shopify",
+        logo: "/images/providers/shopify.svg",
+      },
     },
     getAuthorizationUrl(callbackHandlerUrl, extras) {
       if (!extras?.shop) {
@@ -70,7 +61,7 @@ export const Shopify: HandlerFactory<Args> = ({
       }
 
       const authUrl = new URL(`https://${extras.shop}/admin/oauth/authorize`);
-      authUrl.searchParams.set("client_id", config.clientId!);
+      authUrl.searchParams.set("client_id", args.clientId!);
       authUrl.searchParams.set("scope", scopes.join(","));
       authUrl.searchParams.set("redirect_uri", callbackHandlerUrl);
 
@@ -80,7 +71,6 @@ export const Shopify: HandlerFactory<Args> = ({
 
       return { url: authUrl.toString() };
     },
-
     async exchange(searchParams, req) {
       const params = querySchema.parse(
         Object.fromEntries(searchParams.entries()),
@@ -95,8 +85,8 @@ export const Shopify: HandlerFactory<Args> = ({
         const objs = await getAccessTokenAndShopInfo(
           req,
           params,
-          config.clientId!,
-          config.clientSecret!,
+          args.clientId!,
+          args.clientSecret!,
         );
         accessToken = objs.accessToken;
         myShopifyDomain = objs.myShopifyDomain;
@@ -117,8 +107,11 @@ export const Shopify: HandlerFactory<Args> = ({
       );
 
       return {
-        accessToken: "",
-        myShopifyDomain: "",
+        tokens: {
+          accessToken,
+          myShopifyDomain,
+          scopes,
+        },
       };
     },
   };
@@ -246,7 +239,7 @@ export async function getShopifyShopInformation(
 function verifyHmac(query: any, shopifyApiSecretKey: string) {
   assert(shopifyApiSecretKey);
 
-  const { hmac, signature: _signature, ...map } = query;
+  const { hmac, signature, ...map } = query;
 
   const orderedMap = Object.keys(map)
     .sort((v1, v2) => v1.localeCompare(v2))

@@ -1,11 +1,7 @@
 import { OAuthConfig, OAuthUserConfig } from "next-auth/providers";
-import { Provider } from "../../core/Provider";
-import {
-  OAuthProvider,
-  ProviderFactory,
-  TypicalOAuthConfig,
-} from "../oauth/OAuthProvider";
-import { OAuthProviderInfo } from "../oauth/types";
+import { Handler, HandlerFactory } from "~/core/Handler";
+import { OAuthProvider } from "../oauth/OAuthProvider";
+import { TypicalOAuthArgs, makeHandlerFactory } from "../oauth/makeHandler";
 
 // The type of the factories that next-auth exposes for each provider (eg.
 // GitHub, Keycloak, etc.)
@@ -16,11 +12,11 @@ type NextAuthProviderFactory = (
 /**
  * Crate a provider from a `next-auth` provider factory.
  */
-export function makeFromNextAuth<Config extends TypicalOAuthConfig>(
+export function makeFromNextAuth<Args extends TypicalOAuthArgs>(
   nextAuthProviderFactory: NextAuthProviderFactory,
-  overrideOptions?: Partial<OAuthProviderInfo>,
-): ProviderFactory<Config> {
-  return (args: Config): Provider<any> => {
+  overrideOptions?: Partial<OAuthProvider>,
+): HandlerFactory<Args> {
+  return (args: Args): Handler => {
     // Where args is something like { clientId, clientSecret }. The NextAuth
     // factory may do nothing special with it other than inline it into the info
     // object. But it can also use it to modify other attributes in
@@ -31,8 +27,13 @@ export function makeFromNextAuth<Config extends TypicalOAuthConfig>(
     delete info.clientId;
     delete info.clientSecret;
 
-    return OAuthProvider({
+    return makeHandlerFactory({
       ...info,
+      id: args.id ?? info.id,
+      metadata: {
+        title: info.name,
+        logo: info.style?.logo,
+      },
       authorization:
         typeof info.authorization === "string"
           ? {

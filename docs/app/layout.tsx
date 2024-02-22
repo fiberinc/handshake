@@ -41,7 +41,7 @@ function Nav() {
       <div className="m-auto flex h-[70px] flex-row items-center justify-between px-5 lg:w-[900px] lg:px-0">
         <Link href="/">
           <h1 className="text-contrast text-lg font-semibold">
-            🫱🏻‍🫲🏽&nbsp;&nbsp;Handshake{" "}
+            Handshake {/* 🫱🏻‍🫲🏽&nbsp;&nbsp; */}
           </h1>
         </Link>
         <div className="flex flex-row gap-10">
@@ -69,11 +69,15 @@ function Footer() {
             Fiber
           </a>
         </div>
-        <a href="https://twitter.com/fiber_dev" className="hover:text-link">
+        <a
+          href="https://twitter.com/fiber_dev"
+          className="hover:text-link"
+          target="_blank"
+        >
           @FIBER_dev
         </a>
         {/* <div>🫱🏻‍🫲🏽</div> */}
-        <div>© 2024 Portalform Inc, Inc.</div>
+        <div>© 2024 Portalform Inc.</div>
       </div>
     </footer>
   );

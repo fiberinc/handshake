@@ -315,7 +315,7 @@
     "name": "Shopify",
     "title": "Shopify",
     "logo": "shopify.svg",
-    "docs": "```ts title=\"app/api/[...handshake]/route.ts\"\n\nimport { Shopify } from \"handshake\";\n\nShopify({\n  clientId: \"\",\n  clientSecret: \"\",\n  scopes: [\"read_orders\", \"read_products\"],\n});\n```\n\n\n### Configure the Callback URL\n\nMake sure your Handshake URL is allowed within your Shopify app's Configuration tab:\n\n![](/handshake/images/providers/shopify-redirect.png)\n\nFollow the format: \n`https://HANDSHAKE_URL/api/auth/shopify/callback`"
+    "docs": "```ts title=\"app/api/[...handshake]/route.ts\"\nimport { Shopify } from \"handshake\";\n\nShopify({\n  clientId: \"\",\n  clientSecret: \"\",\n  scopes: [\"read_orders\", \"read_products\"],\n});\n```\n\n\n### Configure the Callback URL\n\nMake sure your Handshake URL is allowed within your Shopify app's Configuration tab:\n\n![](/handshake/images/providers/shopify-redirect.png)\n\nFollow the format: \n`https://HANDSHAKE_URL/api/auth/shopify/callback`"
   },
   {
     "id": "slack",

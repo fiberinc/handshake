@@ -34,10 +34,12 @@ export default async function Page() {
             textWrap: "balance",
           }}
         >
-          Get user credentials to 60+ tools
+          Get access tokens for 60+ services
         </h1>
         <p className="text-contrast max-w-[760px] text-2xl antialiased">
-          Handshake handles OAuth flows with popular tools to give you access
+          {/* Handshake is an OAuth handler that gets you access tokens to your
+          users&apos; accounts in dozens of popular apps and APIs */}
+          Handshake handles OAuth flows with popular tools and gets you access
           tokens to your users&apos; third-party accounts.
         </p>
         <br />

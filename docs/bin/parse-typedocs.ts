@@ -6,6 +6,31 @@ import chalk from "chalk";
 import fs from "fs";
 import * as handshake from "../../handshake";
 import docsJson from "./providers-typedoc.json";
+const providersWithoutLogos = [
+  "authentik",
+  "zoho",
+  "42-school",
+  "dropbox",
+  "strava",
+  "naver",
+  "duende-identity-server6.svg",
+  "coinbase",
+  "netlify",
+  "pipedrive",
+  "medium",
+  "wordpress",
+  "eveonline",
+  "kakao",
+  "fusionauth",
+  "osu",
+  "osso",
+  "zitadel",
+  "pinterest",
+  "four",
+  "reddit",
+  "salesforce",
+  "zoom",
+];
 
 function extractClasses(docs: any) {
   const result: {
@@ -54,31 +79,6 @@ function extractClasses(docs: any) {
 
       let logo = fromHandshake.metadata.logo?.replace("/", "");
 
-      const providersWithoutLogos = [
-        "authentik",
-        "zoho",
-        "42-school",
-        "dropbox",
-        "strava",
-        "naver",
-        "duende-identity-server6.svg",
-        "coinbase",
-        "netlify",
-        "pipedrive",
-        "medium",
-        "wordpress",
-        "eveonline",
-        "kakao",
-        "fusionauth",
-        "osu",
-        "osso",
-        "zitadel",
-        "pinterest",
-        "four",
-        "reddit",
-        "salesforce",
-        "zoom",
-      ];
       if (providersWithoutLogos.indexOf(providerId) !== -1) {
         logo = `${providerId}.svg`;
         // } else if (!logo) {

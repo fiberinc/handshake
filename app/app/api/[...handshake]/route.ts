@@ -1,14 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import assert from "assert";
-import {
-  AmazonSeller,
-  GitHub,
-  Google,
-  HandshakeConfig,
-  Hubspot,
-  NextHandshake,
-  Shopify,
-  Stripe,
-} from "handshake";
+import { GitHub, HandshakeConfig, NextHandshake } from "handshake";
 
 const REDIRECT_URL = process.env.REDIRECT_URL || "";
 assert(REDIRECT_URL, "Specify a URL at REDIRECT_URL.");
@@ -20,37 +13,6 @@ export const OPTIONS: HandshakeConfig = {
     GitHub({
       clientId: process.env.GITHUB_CLIENT_ID!,
       clientSecret: process.env.GITHUB_CLIENT_SECRET!,
-    }),
-    Stripe({
-      clientId: process.env.STRIPE_CLIENT_ID!,
-      clientSecret: process.env.STRIPE_CLIENT_SECRET!,
-      scopes: ["read_only"],
-    }),
-    Hubspot({
-      clientId: process.env.HUBSPOT_CLIENT_ID!,
-      clientSecret: process.env.HUBSPOT_CLIENT_SECRET!,
-      scopes: [
-        "oauth",
-        "e-commerce",
-        "crm.schemas.contacts.read",
-        "crm.objects.contacts.read",
-      ],
-    }),
-    Shopify({
-      clientId: process.env.SHOPIFY_CLIENT_ID!,
-      clientSecret: process.env.SHOPIFY_CLIENT_SECRET!,
-      scopes: ["read_orders", "read_products"],
-    }),
-    AmazonSeller({
-      appId: process.env.AMAZON_APP_ID!,
-      clientId: process.env.AMAZON_CLIENT_ID!,
-      clientSecret: process.env.AMAZON_CLIENT_SECRET!,
-      isDraftApp: true,
-    }),
-    Google({
-      clientId: process.env.GOOGLE_CLIENT_ID!,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
-      // requiredScopes: ["https://www.googleapis.com/auth/gmail.readonly"],
     }),
   ],
   /**
@@ -68,6 +30,8 @@ export const OPTIONS: HandshakeConfig = {
    * 'google', 'github', 'amazon-seller' etc.
    */
   async onSuccess(credentials, handlerId) {
+    // Do something with the credentials.
+
     return {
       forwardParams: {},
     };

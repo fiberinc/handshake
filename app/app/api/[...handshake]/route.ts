@@ -7,6 +7,7 @@ import {
   Hubspot,
   NextHandshake,
   Shopify,
+  Stripe,
 } from "handshake";
 
 const REDIRECT_URL = process.env.REDIRECT_URL || "";
@@ -20,10 +21,10 @@ export const OPTIONS: HandshakeConfig = {
       clientId: process.env.GITHUB_CLIENT_ID!,
       clientSecret: process.env.GITHUB_CLIENT_SECRET!,
     }),
-    GitHub({
-      id: "github-other",
-      clientId: "anotheraccount",
-      clientSecret: "anothersecret",
+    Stripe({
+      clientId: process.env.STRIPE_CLIENT_ID!,
+      clientSecret: process.env.STRIPE_CLIENT_SECRET!,
+      scopes: ["read_only"],
     }),
     Hubspot({
       clientId: process.env.HUBSPOT_CLIENT_ID!,
@@ -66,7 +67,7 @@ export const OPTIONS: HandshakeConfig = {
    * @param handlerId - Identifies the provider that handled this handshake, eg:
    * 'google', 'github', 'amazon-seller' etc.
    */
-  async onSuccess(credentials: unknown, handlerId) {
+  async onSuccess(credentials, handlerId) {
     return {
       forwardParams: {},
     };

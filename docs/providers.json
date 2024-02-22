@@ -4,7 +4,7 @@
     "name": "AmazonSeller",
     "title": "Amazon Seller Central",
     "logo": "amazonseller.svg",
-    "docs": "[\"Website authorization workflow\"\ndocumentation](https://developer-docs.amazon.com/sp-api/docs/website-authorization-workflow)\n\n## Usage\n\nProvide the following arguments:\n\n\n```ts\n// Inside app/api/[...handshake]/route.ts\nimport { Amazon } from \"handshake\";\n\nAmazon({\n  appId: string,\n  clientId: string,\n  clientSecret: string,\n  isDraftApp: true | false,\n});\n```\n\n\n## Troubleshooting\n\nNeed to \"set up your “Authorize” buttons so that selling partners are\nredirected to the Seller Central (for sellers) or Vendor Central (for\nvendors) sign-in page for their own region.\"\n\n### No localhost redirect\n\nAmazon does not allow setting localhost as a \n`redirect_uri`\n. You may want to\nuse Ngrok or another service to provide a publicly addressable URL.\n\n[https://github.com/amzn/selling-partner-api-docs/issues/26](https://github.com/amzn/selling-partner-api-docs/issues/26)\n\n### Error Code: MD5101\n\nThis means unauthorized redirect URI. localhost URIs are allowed.\n\n### Developer Central – \"You do not have permissions to view this page\"\n\nFYI. Only the primary user of the Seller Central account is able to create\nand modify apps via the \"Developer Central\" page.\n\n[https://github.com/amzn/selling-partner-api-docs/issues/2191](https://github.com/amzn/selling-partner-api-docs/issues/2191)\n\n### Not setup for OAuth\n\n![amazon-not-setup](/handshake/images/providers/amazon-not-setup-oauth.png)"
+    "docs": "[\"Website authorization workflow\"\ndocumentation](https://developer-docs.amazon.com/sp-api/docs/website-authorization-workflow)\n\n## Usage\n\nProvide the following arguments:\n\n\n```ts title=\"app/api/[...handshake]/route.ts\"\nimport { Amazon } from \"handshake\";\n\nAmazon({\n  appId: string,\n  clientId: string,\n  clientSecret: string,\n  isDraftApp: true | false,\n});\n```\n\n\n## Troubleshooting\n\nNeed to \"set up your “Authorize” buttons so that selling partners are\nredirected to the Seller Central (for sellers) or Vendor Central (for\nvendors) sign-in page for their own region.\"\n\n### No localhost redirect\n\nAmazon does not allow setting localhost as a \n`redirect_uri`\n. You may want to\nuse Ngrok or another service to provide a publicly addressable URL.\n\n[https://github.com/amzn/selling-partner-api-docs/issues/26](https://github.com/amzn/selling-partner-api-docs/issues/26)\n\n### Error Code: MD5101\n\nThis means unauthorized redirect URI. localhost URIs are allowed.\n\n### Developer Central – \"You do not have permissions to view this page\"\n\nFYI. Only the primary user of the Seller Central account is able to create\nand modify apps via the \"Developer Central\" page.\n\n[https://github.com/amzn/selling-partner-api-docs/issues/2191](https://github.com/amzn/selling-partner-api-docs/issues/2191)\n\n### Not setup for OAuth\n\n![amazon-not-setup](/handshake/images/providers/amazon-not-setup-oauth.png)"
   },
   {
     "id": "apple",
@@ -163,14 +163,14 @@
     "name": "Google",
     "title": "Google",
     "logo": "google.svg",
-    "docs": "```ts\n// Inside app/handshake.ts\n\nimport { Google } from \"handshake\";\n\nGoogle({\n  clientId: \"\",\n  clientSecret: \"\",\n  scopes: [\n    \"e-commerce\",\n    \"crm.schemas.contacts.read\",\n    \"crm.objects.contacts.read\",\n  ],\n});\n```\n\n\n### Configure the Callback URL\n\nMake sure your Handshake URL is allowed within your Hubspot app's Auth tab:\n\n![](/handshake/images/providers/hubspot-redirect.png)\n\nFollow the format: \n`https://HANDSHAKE_URL/api/auth/hubspot/callback`\n\n\n *"
+    "docs": null
   },
   {
     "id": "hubspot",
     "name": "Hubspot",
     "title": "HubSpot",
     "logo": "hubspot.svg",
-    "docs": null
+    "docs": "## Usage\n\nProvide the following arguments:\n\n\n```ts\n// Inside app/api/[...handshake]/route.ts\n\nimport { Hubspot } from \"handshake\";\n\nHubspot({\n  clientId: string,\n  clientSecret: string,\n  scopes: [\n    \"e-commerce\",\n    \"crm.schemas.contacts.read\",\n    \"crm.objects.contacts.read\",\n  ],\n});\n```\n\n\n### Configure the Callback URL\n\nMake sure your Handshake URL is allowed within your Hubspot app's Auth tab:\n\n![](/handshake/images/providers/hubspot-redirect.png)\n\nFollow the format: \n`https://HANDSHAKE_URL/api/auth/hubspot/callback`"
   },
   {
     "id": "instagram",
@@ -315,7 +315,7 @@
     "name": "Shopify",
     "title": "Shopify",
     "logo": "shopify.svg",
-    "docs": "```ts\n// Inside app/handshake.ts\n\nimport { Shopify } from \"handshake\";\n\nShopify({\n clientId: \"\",\n clientSecret: \"\",\n scopes: [\"read_orders\", \"read_products\"],\n});\n```\n\n\n### Configure the Callback URL\n\nMake sure your Handshake URL is allowed within your Shopify app's Configuration tab:\n\n![](/docs/public/images/providers-shopify-redirect.png)\n\nFollow the format: \n`https://HANDSHAKE_URL/api/auth/shopify/callback`"
+    "docs": "```ts title=\"app/api/[...handshake]/route.ts\"\n\nimport { Shopify } from \"handshake\";\n\nShopify({\n  clientId: \"\",\n  clientSecret: \"\",\n  scopes: [\"read_orders\", \"read_products\"],\n});\n```\n\n\n### Configure the Callback URL\n\nMake sure your Handshake URL is allowed within your Shopify app's Configuration tab:\n\n![](/handshake/images/providers/shopify-redirect.png)\n\nFollow the format: \n`https://HANDSHAKE_URL/api/auth/shopify/callback`"
   },
   {
     "id": "slack",
@@ -337,6 +337,13 @@
     "title": "Strava",
     "logo": "strava.svg",
     "docs": null
+  },
+  {
+    "id": "stripe",
+    "name": "Stripe",
+    "title": "Stripe",
+    "logo": "stripe.svg",
+    "docs": "## Usage\n\nProvide the following arguments:\n\n\n```ts title=\"app/api/[...handshake]/route.ts\"\n\nimport { Stripe } from \"handshake\";\n\nStripe({\n  clientId: \"ca_\",\n  clientSecret: \"sk_\",\n  scopes: [],\n});\n```\n\n\n### Configure the Callback URL\n\nYou can set up a localhost callback by toggling the \"View test data\" switch.\n\n![](/handshake/images/providers/stripe-redirect.png)"
   },
   {
     "id": "todoist",

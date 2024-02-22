@@ -21,10 +21,11 @@ export type TypicalOAuthArgs = {
 
 /**
  */
-export function makeHandlerFactory<Args extends TypicalOAuthArgs>(
-  provider: OAuthProvider,
-): HandlerFactory<Args> {
-  return (args: Args): Handler => {
+export function makeHandlerFactory<
+  Args extends TypicalOAuthArgs,
+  Credential = unknown,
+>(provider: OAuthProvider): HandlerFactory<Args, Credential> {
+  return (args: Args): Handler<Credential> => {
     return {
       ...provider,
       id: provider.id,
@@ -58,6 +59,7 @@ export function makeHandlerFactory<Args extends TypicalOAuthArgs>(
         if (args.scopes) {
           params.scope = args.scopes.join(" ");
         }
+
         // @felipap: for later
         // if (inner.type === "oidc" && !params.has("scope")) {
         //   params.scope = "openid profile email"
@@ -145,7 +147,7 @@ export function makeHandlerFactory<Args extends TypicalOAuthArgs>(
             url: `http://n?${searchParams.toString()}`,
             // TODO: Ask to allow object to be passed upstream:
             // https://github.com/panva/node-openid-client/blob/3ae206dfc78c02134aa87a07f693052c637cab84/types/index.d.ts#L439
-            // @ts-expect-error
+            // @ts-expect-error whatever
             body: req.body,
             method: req.method,
           }),
@@ -153,7 +155,13 @@ export function makeHandlerFactory<Args extends TypicalOAuthArgs>(
         };
 
         if (provider.token?.request) {
-          throw new Error("Not needed yet");
+          const response = await provider.token.request({
+            provider: provider as any,
+            params,
+            checks,
+            client,
+          });
+          tokens = new TokenSet(response.tokens);
         } else if (provider.idToken) {
           console.log("will work it", callbackHandlerUrl, params, checks);
           tokens = await client.callback(callbackHandlerUrl, params, checks);

@@ -163,9 +163,11 @@ export const StyleWrapper = styled.div`
       display: flex;
       height: 40px;
       align-items: center;
+      font-family: monospace;
       justify-content: center;
       color: rgb(var(--text-contrast));
-      border: 1px solid var(--border-stronger);
+      background: rgb(var(--bg-foreground));
+      border: 1px solid var(--border-primary);
     }
   }
 `;

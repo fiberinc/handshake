@@ -27,8 +27,7 @@ export const PROVIDER_ID = "amazon-seller";
  *
  * Provide the following arguments:
  *
- * ```ts
- * // Inside app/api/[...handshake]/route.ts
+ * ```ts title="app/api/[...handshake]/route.ts"
  * import { Amazon } from "handshake";
  *
  * Amazon({

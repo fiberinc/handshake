@@ -24,7 +24,7 @@ export default async function Page() {
         <Link href="/providers/#stripe" className="w-fit">
           <Banner>
             <span className="mr-2">🎉</span>New Stripe connector
-            <span className="ml-2 opacity-40">&rarr;</span>&nbsp;
+            <span className="text-default ml-2 opacity-60">&rarr;</span>&nbsp;
           </Banner>
         </Link>
         <h1

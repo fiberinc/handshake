@@ -22,15 +22,22 @@ export async function getProviderInfos(): Promise<ProviderInfo[]> {
       let providerDocs: string = provider.docs ?? "";
       if (!providerDocs) {
         providerDocs = `
-\`\`\`ts
-// Inside app/api/[...handshake]/route.ts
 
+\`\`\`ts title="app/api/[...handshake]/route.ts"
 import { ${provider.name} } from "handshake";
 
-${provider.name}({
-  clientId: "",
-  clientSecret: "",
-});
+const options: HandshakeOptions = {
+  // ...
+  handlers: [
+    ${provider.name}({
+      clientId: string,
+      clientSecret: string,
+    });
+    // ...
+  ],
+}
+
+// ...
 \`\`\`
 
 Adapted from [next-auth](https://github.com/nextauthjs/next-auth).`;

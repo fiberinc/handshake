@@ -12,7 +12,7 @@ import { OAuthProvider } from "./OAuthProvider";
 export async function getOpenIdClient(
   info: OAuthProvider,
   clientId: string,
-  clientSecret: string,
+  clientSecret: string | undefined,
   callbackUrl: string,
 ): Promise<Client> {
   if (info.httpOptions) {

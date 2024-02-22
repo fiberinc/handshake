@@ -4,7 +4,7 @@ interface Props {
 
 export function Banner({ children }: Props) {
   return (
-    <div className="bg-foreground text-contrast w-fit rounded-md border p-2 py-0.5 text-sm">
+    <div className="bg-foreground text-contrast flex h-[30px] w-fit flex-row items-center rounded-md border p-2 text-[14px] antialiased">
       {children}
     </div>
   );

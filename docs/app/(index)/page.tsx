@@ -22,7 +22,10 @@ export default async function Page() {
     <div className="m-auto flex flex-col gap-16">
       <header className="flex flex-col gap-3">
         <Link href="/providers/#stripe" className="w-fit">
-          <Banner>🎉&nbsp;&nbsp;New Stripe connector</Banner>
+          <Banner>
+            <span className="mr-2">🎉</span>New Stripe connector{" "}
+            <span className="ml-2 opacity-40">&rarr;</span>&nbsp;
+          </Banner>
         </Link>
         <h1
           className="text-contrast text-[35px] font-semibold leading-[1.1] lg:text-[85px]"

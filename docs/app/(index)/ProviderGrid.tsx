@@ -15,7 +15,11 @@ export function ProviderGrid({ infos }: Props) {
     <Link key={info.id} href={`/providers#${info.id}`}>
       <div className="hover:bg-foreground text-contrast flex flex-row items-center gap-3 rounded-md border px-3.5 py-2">
         {info.logoUrl && (
-          <img src={isDarkMode ? info.darkLogoUrl : info.logoUrl} width={20} />
+          <img
+            alt=""
+            src={isDarkMode ? info.darkLogoUrl! : info.logoUrl}
+            width={20}
+          />
         )}
         {info.title}
       </div>

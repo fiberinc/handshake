@@ -4,7 +4,7 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { NextRequest } from "next/server";
 import { Handler } from "~/core/Handler";
-import { ExtendedConfig } from "~/core/HandshakeConfig";
+import { ExtendedConfig } from "~/core/HandshakeOptions";
 import { parseSessionFromStringValue } from "~/core/session";
 
 export async function handleCallback(

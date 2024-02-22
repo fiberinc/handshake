@@ -1,6 +1,6 @@
 import { BadRequest } from "http-errors";
 import { z } from "zod";
-import { ExtendedConfig } from "./HandshakeConfig";
+import { ExtendedConfig } from "./HandshakeOptions";
 
 // ATTENTION I'm scared of using these static cookie names here because they may
 // cause conflicts between different concurrent linking attempts. Example: a

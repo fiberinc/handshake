@@ -1,5 +1,5 @@
 import { Inter } from "next/font/google";
-import { OPTIONS } from "../api/[...handshake]/route";
+import { options } from "../api/[...handshake]/route";
 
 const REPO_HOST = "https://github.com/fiberinc/link";
 const inter = Inter({ subsets: ["latin"] });
@@ -30,20 +30,46 @@ export async function DevIndex() {
     );
   });
 
+  let main;
+  if (handlers.length) {
+    main = (
+      <>
+        <p>The following projects are configured: (click to start auth)</p>
+        <ul>{els}</ul>
+      </>
+    );
+  } else {
+    main = (
+      <div>
+        <h3>Add the following code to your app/api/[...handshake]/route.ts</h3>
+        <pre>
+          <code>{`
+import { Handshake } from "handshake";
+
+const options: HandshakeOptions = {
+  // ...
+  handlers: [
+    Google({
+      clientId: "...",
+      clientSecret: "...",
+    })
+  ]
+}
+`}</code>
+        </pre>
+      </div>
+    );
+  }
+
   return (
     <main
       className={`justify-top flex min-h-screen flex-col items-start p-12 ${inter.className} gap-5`}
     >
       <section>
-        <h2 className="text-lg font-semibold">
-          Your Handshake instance is running
-        </h2>
+        <h2 className="text-lg font-semibold">Handshake is running</h2>
         <p>But there is nothing to see in this root page.</p>
       </section>
-      <section className="flex flex-col gap-4">
-        <p>The following projects are configured: (click to start auth)</p>
-        <ul>{els}</ul>
-      </section>
+      <main className="flex flex-col gap-4">{main}</main>
       <p>
         Stuck? Get help{" "}
         <a href={REPO_HOST} target="_blank">
@@ -57,7 +83,7 @@ export async function DevIndex() {
 }
 
 async function getSanitizedHandlerInfo() {
-  return OPTIONS.handlers.map((handler) => {
+  return options.handlers.map((handler) => {
     return {
       id: handler.id,
       providerType: handler.provider.id,

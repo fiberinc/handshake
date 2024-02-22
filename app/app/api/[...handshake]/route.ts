@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
 import assert from "assert";
-import { GitHub, HandshakeConfig, NextHandshake } from "handshake";
+import { GitHub, HandshakeOptions, NextHandshake } from "handshake";
 
 const REDIRECT_URL = process.env.REDIRECT_URL || "";
 assert(REDIRECT_URL, "Specify a URL at REDIRECT_URL.");
 
-export const OPTIONS: HandshakeConfig = {
+export const options: HandshakeOptions = {
   secret: process.env.SESSION_SECRET!,
   allowedRedirectUris: [REDIRECT_URL],
   handlers: [
@@ -31,6 +31,7 @@ export const OPTIONS: HandshakeConfig = {
    */
   async onSuccess(credentials, handlerId) {
     // Do something with the credentials.
+    console.log(`Credentials for ${handlerId} are`, credentials);
 
     return {
       forwardParams: {},
@@ -38,4 +39,4 @@ export const OPTIONS: HandshakeConfig = {
   },
 };
 
-export const { GET, POST } = NextHandshake(OPTIONS);
+export const { GET, POST } = NextHandshake(options);

@@ -1,7 +1,7 @@
 import { BadRequest, HttpError } from "http-errors";
 import { isRedirectError } from "next/dist/client/components/redirect";
 import { NextRequest } from "next/server";
-import { HandshakeConfig, getFullHandshakeOptions } from "..";
+import { HandshakeOptions, getFullHandshakeOptions } from "..";
 import { handleCallback } from "./handle-callback";
 import { handleRedirect } from "./handle-redirect";
 
@@ -35,7 +35,7 @@ function getInfoFromUrl(url: string) {
 }
 
 // https://nextjs.org/docs/app/building-your-application/routing/route-handlers
-export function NextHandshake(userOptions: HandshakeConfig) {
+export function NextHandshake(userOptions: HandshakeOptions) {
   validateHandlers(userOptions);
 
   const options = getFullHandshakeOptions(userOptions);
@@ -71,7 +71,7 @@ export function NextHandshake(userOptions: HandshakeConfig) {
   };
 }
 
-function validateHandlers(userOptions: HandshakeConfig) {
+function validateHandlers(userOptions: HandshakeOptions) {
   // Check for conflict in handler IDs.
   const idSet = new Set();
   userOptions.handlers.forEach((handler) => {

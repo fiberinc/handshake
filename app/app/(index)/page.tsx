@@ -9,6 +9,7 @@ export default function Home() {
 
   return (
     <main>
+      {/* TODO: come up with a better message in production this. */}
       <p>Your OAuth redirection is now up.</p>
     </main>
   );

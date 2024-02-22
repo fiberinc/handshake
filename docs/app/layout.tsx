@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { Toaster } from "sonner";
 import "~/styles/globals.css";
+import { REPO_URL } from "./routes";
 
 export const metadata: Metadata = {
   title: "Handshake – OAuth made easy",
@@ -44,7 +45,7 @@ function Nav() {
         <div className="flex flex-row gap-10">
           <Link href="/providers">All providers</Link>
           <a
-            href="/providers"
+            href={REPO_URL}
             target="_blank"
             className="text-contrast font-medium"
           >

@@ -1,20 +1,16 @@
-// @ts-nocheck
-
 import assert from "assert";
 import crypto from "crypto";
 import { z } from "zod";
+import { HandlerFactory } from "~/core/Handler";
 import { InvalidRequest } from "~/core/errors";
-import { Provider } from "../core/Provider";
 
-export const GoogleCredentialSchema = z.object({
-  email: z.string(),
-  accessToken: z.string(),
-  refreshToken: z.string(),
-  scopes: z.optional(z.array(z.string())),
-  expiresAt: z.date(),
-});
-
-export type GoogleCredential = z.infer<typeof GoogleCredentialSchema>;
+export interface Credential {
+  email: string;
+  accessToken: string;
+  refreshToken: string;
+  scopes?: string[];
+  expiresAt: Date;
+}
 
 const QueryParamStruct = z.object({
   code: z.string(),
@@ -22,36 +18,32 @@ const QueryParamStruct = z.object({
 
 type CallbackParams = z.infer<typeof QueryParamStruct>;
 
-export interface Config {
-  id?: string;
+export interface Args {
   clientId: string;
   clientSecret: string;
-  requiredScopes: string[];
+  scopes: string[];
 }
 
 export const PROVIDER_ID = "google";
 
-export function GoogleProvider({
-  id,
-  ...config
-}: Config): Provider<Config, CallbackParams, GoogleCredential> {
-  const providerId = id ?? PROVIDER_ID;
-
+export const Google: HandlerFactory<Args, Credential> = ({ id, ...args }) => {
   return {
-    id: providerId,
+    id: id ?? PROVIDER_ID,
     type: "google",
-    metadata: {
-      title: "google",
-      logo: "",
+    provider: {
+      id: PROVIDER_ID,
+      metadata: {
+        title: "google",
+        logo: "google.svg",
+      },
     },
-    config,
     getAuthorizationUrl(callbackHandlerUrl: string) {
       const nonce = crypto.randomBytes(16).toString("hex");
       const authUrl = new URL("https://accounts.google.com/o/oauth2/v2/auth");
       authUrl.searchParams.append(
         "scope",
         Array.from(
-          new Set([...config.requiredScopes, "openid", "email", "profile"]),
+          new Set([...args.scopes, "openid", "email", "profile"]),
         ).join(" "),
       );
       // README this is apparently necessary in order to get the refresh token for
@@ -62,7 +54,7 @@ export function GoogleProvider({
       authUrl.searchParams.append("response_type", "code");
       authUrl.searchParams.append("state", nonce);
       authUrl.searchParams.append("redirect_uri", callbackHandlerUrl);
-      authUrl.searchParams.append("client_id", config.clientId);
+      authUrl.searchParams.append("client_id", args.clientId);
       return { url: authUrl.toString() };
     },
     validateQueryParams(params: URLSearchParams) {
@@ -71,28 +63,26 @@ export function GoogleProvider({
     async exchange(searchParams, req, callbackHandlerUrl) {
       const params = Object.fromEntries(searchParams) as CallbackParams;
 
-      // console.log("req.url", req.url);
-      console.log("callbackHandlerUrl FUCK THIS 444", callbackHandlerUrl);
-      console.log("req.headers.origin", req.headers.get("origin"));
-
       const { accessToken, refreshToken, expiresAt, email, scopes } =
         await exchangeGoogleAccessTokenAndReadStoreData(
           callbackHandlerUrl,
-          config.clientId,
-          config.clientSecret,
+          args.clientId,
+          args.clientSecret,
           params.code,
         );
 
       return {
-        accessToken,
-        refreshToken,
-        expiresAt,
-        email,
-        scopes,
+        tokens: {
+          accessToken,
+          refreshToken,
+          expiresAt,
+          email,
+          scopes,
+        } satisfies Credential,
       };
     },
   };
-}
+};
 
 /**
  *
@@ -136,10 +126,6 @@ export async function exchangeGoogleAccessTokenAndReadStoreData(
 
   const json = await res.json();
 
-  console.log("json", json, {
-    body,
-  });
-
   if (json.error) {
     if (json.error === "invalid_request") {
       throw new InvalidRequest(json);
@@ -159,15 +145,11 @@ export async function exchangeGoogleAccessTokenAndReadStoreData(
 }
 
 export async function getGmailProfileInfo(accessToken: string) {
-  let json;
-  try {
-    const res = await fetch(
-      `https://www.googleapis.com/gmail/v1/users/me/profile?access_token=${accessToken}`,
-    );
-    json = await res.json();
-  } catch (e) {
-    throw e;
-  }
+  // TODO try-catch?
+  const res = await fetch(
+    `https://www.googleapis.com/gmail/v1/users/me/profile?access_token=${accessToken}`,
+  );
+  const json = await res.json();
 
   return { email: json.emailAddress };
 }

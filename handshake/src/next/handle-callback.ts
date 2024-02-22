@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 import { NextRequest } from "next/server";
 import { Handler } from "~/core/Handler";
 import { ExtendedConfig } from "~/core/HandshakeOptions";
+import { debug, error, info } from "~/core/logger";
 import { parseSessionFromStringValue } from "~/core/session";
 
 export async function handleCallback(
@@ -20,10 +21,7 @@ export async function handleCallback(
     );
   }
 
-  console.log(
-    chalk.green("Received user at callback"),
-    req.nextUrl.searchParams,
-  );
+  info(chalk.green("Received user at callback"), req.nextUrl.searchParams);
 
   // Get session valued we saved in a cookie.
   const cookieStore = cookies();
@@ -36,8 +34,9 @@ export async function handleCallback(
       },
     );
   }
+
   const session = parseSessionFromStringValue(savedCookie.value);
-  console.log("Found session stored in cookie.", session);
+  debug("Found session stored in cookie.", session);
 
   // TODO QUESTION should we clear the cookie here?
 
@@ -57,7 +56,7 @@ export async function handleCallback(
       },
     );
   }
-  console.log(
+  info(
     `Will redirect users back to ${session.developerCallbackUri} if successful`,
   );
 
@@ -75,12 +74,12 @@ export async function handleCallback(
       throw new TypeError("Not an error");
     }
 
-    console.log(chalk.red("Failed to exchange credentials"), e);
+    error("Failed to exchange credentials", e);
 
     // Convert any HttpError thrown by the handler into a JSON response with the
     // error message. This is useful to simplify program logic.
     if (e instanceof HttpError) {
-      console.warn("provider.exchange threw http error", e);
+      error("provider.exchange threw http error", e);
       return Response.json({ message: e.message }, { status: e.statusCode });
     }
 
@@ -105,18 +104,15 @@ export async function handleCallback(
       linkParams.account_id = accountId;
     }
 
-    console.log("linkParams", linkParams);
-
     const result = await options.onSuccess(credentials, handler.id, linkParams);
     forwardParams = result?.forwardParams;
-
-    console.log("onSuccess returned", forwardParams);
   } catch (err: unknown) {
     if (!(err instanceof Error)) {
       throw new TypeError("Not an error");
     }
 
-    console.log("Failed to call onSuccess", err);
+    error("Failed to call onSuccess", err);
+
     // Sentry.captureException(err);
     const url = new URL(session.developerCallbackUri);
     url.searchParams.set("state", session.developerState);
@@ -140,10 +136,10 @@ export async function handleCallback(
     }
   }
 
-  console.log("Will clear session cookie.");
+  debug("Will clear session cookie.");
   cookies().set(options.sessionCookieName, "", { expires: new Date(0) });
 
-  console.log(`Redirecting user to ${url.href}`);
+  info(`Redirecting user to ${url.href}`);
   redirect(url.href);
 }
 
@@ -179,8 +175,6 @@ export function isValidDeveloperCallbackUri(
 export function getNextHost(req: NextRequest) {
   const host = (req.headers.get("x-forwarded-host") ??
     req.headers.get("host")) as string;
-  console.log("host is", host);
-
   const protocol = `http${host.includes("localhost") ? "" : "s"}://`;
   return `${protocol}${host}`;
 }

@@ -1,6 +1,7 @@
 import { BadRequest } from "http-errors";
 import { z } from "zod";
 import { ExtendedConfig } from "./HandshakeOptions";
+import { debug } from "./logger";
 
 // ATTENTION I'm scared of using these static cookie names here because they may
 // cause conflicts between different concurrent linking attempts. Example: a
@@ -66,7 +67,7 @@ export function getSessionValueToSave(
   // If callback_uri is not passed, that's OK, we'll just use the project
   // default.
   if (!callbackUri) {
-    console.warn(
+    debug(
       `No ${options.developerCallbackUrlQueryParameter} param passed. Won't save cookie.`,
     );
     throw new BadRequest(
@@ -104,13 +105,13 @@ export function parseSessionFromStringValue(value: string): SessionValue {
   try {
     parsed = JSON.parse(value);
   } catch (e) {
-    console.warn("Session string value:", value);
+    debug("Session string value:", value);
     throw new BadRequest("Session string does not contain valid JSON.");
   }
 
   const result = SessionValueStruct.safeParse(parsed);
   if (!result.success) {
-    console.warn("Session string value:", value);
+    debug("Session string value:", value);
     throw new BadRequest("Session string has unexpected format.");
   }
 

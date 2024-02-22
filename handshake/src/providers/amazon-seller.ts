@@ -3,6 +3,7 @@ import crypto from "crypto";
 import { z } from "zod";
 import { HandlerFactory } from "~/core/Handler";
 import { InvalidRequest } from "~/core/errors";
+import { debug } from "~/core/logger";
 
 export interface Args {
   appId: string;
@@ -149,7 +150,7 @@ export const AmazonSeller: HandlerFactory<Args, Credential> = ({
       });
 
       const json = await res.json();
-      console.log("json", body, json);
+      debug("json returned from Amazon", body, json);
 
       if (json.error) {
         if (json.error === "invalid_request") {

@@ -1,6 +1,7 @@
 import { BadRequest, HttpError } from "http-errors";
 import { isRedirectError } from "next/dist/client/components/redirect";
 import { NextRequest } from "next/server";
+import { debug, error } from "~/core/logger";
 import { HandshakeOptions, getFullHandshakeOptions } from "..";
 import { handleCallback } from "./handle-callback";
 import { handleRedirect } from "./handle-redirect";
@@ -14,7 +15,7 @@ function getInfoFromUrl(url: string) {
   } else if (pathname.match("^/api/([^/]+)/([^/]+)/callback")) {
     action = "callback";
   } else {
-    console.log("pathname", pathname);
+    debug("pathname", pathname);
     throw new BadRequest("Unexpected URL action.");
   }
 
@@ -112,7 +113,7 @@ function handleErrors(handler: (req: NextRequest) => Promise<Response>) {
 
       // Return an identifier to help the developer track it down in production.
       const errorId = Math.floor(Math.random() * 10000000);
-      console.error(`Unexpected error: ${errorId}`, e);
+      error(`Unexpected error: ${errorId}`, e);
       return Response.json(
         { error: `An unexpected error occured (id=${errorId})` },
         { status: 500 },

@@ -1,9 +1,11 @@
+const REPO_URL = "https://github.com/fiberinc/handshake";
+
 // FIXME
 export class OAuthCallbackError extends Error {
   constructor(message: string) {
     super(message);
     this.name = this.constructor.name;
-    this.message += `${this.message ? " ." : ""}Read more at 1234`;
+    this.message += `${this.message ? ". " : ""}Read more at ${REPO_URL}`;
   }
 }
 
@@ -12,7 +14,7 @@ export class InvalidCheck extends Error {
   constructor(message: string) {
     super(message);
     this.name = this.constructor.name;
-    this.message += `${this.message ? ". " : ""}Read more at 1234`;
+    this.message += `${this.message ? ". " : ""}Read more at ${REPO_URL}`;
   }
 }
 

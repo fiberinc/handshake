@@ -2,5 +2,5 @@
 
 // TODO
 export default function Page() {
-  return <div>Errrrro!</div>;
+  return <div className="p-5">Error!</div>;
 }

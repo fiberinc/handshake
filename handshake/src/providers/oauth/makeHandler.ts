@@ -7,7 +7,7 @@ import {
   generators,
 } from "openid-client";
 import { Handler, HandlerFactory } from "~/core/Handler";
-import { InvalidCheck } from "~/core/errors";
+import { InvalidCheck, OAuthCallbackError } from "~/core/errors";
 import { SessionValue } from "~/core/session";
 import { OAuthProvider } from "./OAuthProvider";
 import { getOpenIdClient } from "./client";
@@ -163,7 +163,6 @@ export function makeHandlerFactory<
           });
           tokens = new TokenSet(response.tokens);
         } else if (provider.idToken) {
-          console.log("will work it", callbackHandlerUrl, params, checks);
           tokens = await client.callback(callbackHandlerUrl, params, checks);
         } else {
           // This seems to fail silently, which is shit.
@@ -174,7 +173,12 @@ export function makeHandlerFactory<
           );
         }
 
-        console.log("tokens", tokens);
+        // README double-check this.
+        if (tokens.error) {
+          throw new OAuthCallbackError(
+            `"${tokens.error}": ${tokens.error_description} url=${tokens.error_uri}`,
+          );
+        }
 
         return {
           tokens: JSON.parse(JSON.stringify(tokens)),

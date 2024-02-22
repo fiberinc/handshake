@@ -1,10 +1,10 @@
-import chalk from "chalk";
 import { BadRequest, HttpError, InternalServerError } from "http-errors";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { NextRequest } from "next/server";
 import { Handler } from "~/core/Handler";
 import { ExtendedConfig } from "~/core/HandshakeOptions";
+import { debug, error, info } from "~/core/logger";
 import { getSessionValueToSave } from "~/core/session";
 import { getNextHost } from "./handle-callback";
 
@@ -26,8 +26,6 @@ export async function handleRedirect(
   // users back to.
   const handshakeCallbackUrl =
     getNextHost(req) + `/api/${tenantId}/${handler.id}/callback`;
-
-  console.log("callbackHandlerUrl", handshakeCallbackUrl);
 
   let cookiesToSave: Record<string, string> | null = null;
   let url: string;
@@ -56,8 +54,7 @@ export async function handleRedirect(
       );
     }
 
-    // Unexpected errors.
-    console.warn("provider.getAuthorizationUrl error", e);
+    error("handler.getAuthorizationUrl failed", e);
     // Sentry.captureException(e);
     throw new BadRequest("Error: " + e.message);
   }
@@ -73,13 +70,13 @@ export async function handleRedirect(
   }
 
   const cookieValue = getSessionValueToSave(options, req, handshakeCallbackUrl);
-  console.log("Will save into cookie", cookieValue);
 
   // If the provider, while generating authorization URL, asks us to save some values, we do it here.
   if (cookiesToSave) {
-    console.log("Will save to cookies =>", cookiesToSave);
     cookieValue.valuesFromProvider = cookiesToSave;
   }
+
+  debug("Will save session into cookie", cookieValue);
 
   const cookieStore = cookies();
   cookieStore.set(options.sessionCookieName, JSON.stringify(cookieValue), {
@@ -87,7 +84,7 @@ export async function handleRedirect(
     maxAge: options.sessionCookieMaxSecs,
   });
 
-  console.log(chalk.green(`Sending user to ${url}`));
+  info(`Sending user to ${url}`);
 
   redirect(url.toString());
 }

@@ -64,7 +64,7 @@ type Credential = {
 export const Shopify: HandlerFactory<Args, Credential> = ({ id, ...args }) => {
   const providerId = id ?? PROVIDER_ID;
 
-  const scopes = args?.scopes || DEFAULT_SHOPIFY_SCOPES;
+  const scopes = args?.scopes || SHOPIFY_SCOPES;
 
   return {
     id: providerId,
@@ -121,10 +121,10 @@ export const Shopify: HandlerFactory<Args, Credential> = ({ id, ...args }) => {
         throw e;
       }
 
-      const shop = await getShopifyShopInformation(
-        myShopifyDomain,
-        accessToken,
-      );
+      // const shop = await getShopifyShopInformation(
+      //   myShopifyDomain,
+      //   accessToken,
+      // );
 
       return {
         tokens: {
@@ -259,7 +259,7 @@ export async function getShopifyShopInformation(
 function verifyHmac(query: any, shopifyApiSecretKey: string) {
   assert(shopifyApiSecretKey);
 
-  const { hmac, signature, ...map } = query;
+  const { hmac, signature: _, ...map } = query;
 
   const orderedMap = Object.keys(map)
     .sort((v1, v2) => v1.localeCompare(v2))
@@ -296,10 +296,10 @@ function safeCompare(stringA: string, stringB: string) {
   return crypto.timingSafeEqual(buffA, buffB);
 }
 
-const DEFAULT_SHOPIFY_SCOPES = [
+const SHOPIFY_SCOPES = [
   "read_themes",
   "read_orders",
-  // 'read_all_orders', // Will need extra permissions for this.
+  "read_all_orders", // Will need extra permissions for this.
   "read_assigned_fulfillment_orders",
   "read_checkouts",
   "read_content",
@@ -316,4 +316,6 @@ const DEFAULT_SHOPIFY_SCOPES = [
   "write_customers",
   "write_fulfillments",
   "write_orders",
-];
+] as const;
+
+export type ShopifyScope = (typeof SHOPIFY_SCOPES)[number];

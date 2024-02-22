@@ -1,5 +1,5 @@
 import assert from "assert";
-import { HandshakeOptions, NextHandshake } from "handshake";
+import { GitHub, HandshakeOptions, NextHandshake } from "handshake";
 
 const REDIRECT_URL = process.env.REDIRECT_URL || "";
 assert(REDIRECT_URL, "Specify a URL at REDIRECT_URL.");
@@ -10,10 +10,11 @@ export const config: HandshakeOptions = {
   handlers: [
     // TODO: Add your handlers here.
     //
-    // GitHub({
-    //   clientId: process.env.GITHUB_CLIENT_ID!,
-    //   clientSecret: process.env.GITHUB_CLIENT_SECRET!,
-    // }),
+    GitHub({
+      clientId: process.env.GITHUB_CLIENT_ID!,
+      clientSecret: process.env.GITHUB_CLIENT_SECRET!,
+      scopes: ["admin:org	"],
+    }),
   ],
   /**
    * This is where you'll handle forwarding the acquired credentials back to

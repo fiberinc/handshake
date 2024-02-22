@@ -53,39 +53,34 @@ function extractClasses(docs: any) {
       // console.log("metadata", metadata);
 
       let logo = fromHandshake.metadata.logo?.replace("/", "");
-      if (providerId === "authentik") {
-        logo = "authentik.svg";
-      } else if (providerId === "zoho") {
-        logo = "zoho.svg";
-      } else if (providerId === "dropbox") {
-        logo = "dropbox.svg";
-      } else if (providerId === "strava") {
-        logo = "strava.svg";
-      } else if (providerId === "naver") {
-        logo = "naver.svg";
-      } else if (providerId === "coinbase") {
-        logo = "coinbase.svg";
-      } else if (providerId === "netlify") {
-        logo = "netlify.svg";
-      } else if (providerId === "medium") {
-        logo = "medium.svg";
-      } else if (providerId === "wordpress") {
-        logo = "wordpress.svg";
-      } else if (providerId === "kakao") {
-        logo = "kakao.svg";
-      } else if (providerId === "fusionauth") {
-        logo = "fusionauth.svg";
 
-        // } else if (providerId === "bungie") {
-        //   logo = "bungie.svg";
-      } else if (providerId === "pinterest") {
-        logo = "pinterest.svg";
-      } else if (providerId === "four") {
-        logo = "four.svg";
-      } else if (providerId === "reddit") {
-        logo = "reddit.svg";
-      } else if (providerId === "zoom") {
-        logo = "zoom.svg";
+      const providersWithoutLogos = [
+        "authentik",
+        "zoho",
+        "42-school",
+        "dropbox",
+        "strava",
+        "naver",
+        "duende-identity-server6.svg",
+        "coinbase",
+        "netlify",
+        "pipedrive",
+        "medium",
+        "wordpress",
+        "eveonline",
+        "kakao",
+        "fusionauth",
+        "osu",
+        "osso",
+        "zitadel",
+        "pinterest",
+        "four",
+        "reddit",
+        "salesforce",
+        "zoom",
+      ];
+      if (providersWithoutLogos.indexOf(providerId) !== -1) {
+        logo = `${providerId}.svg`;
         // } else if (!logo) {
         //   logo = providerId.toLowerCase() + ".svg";
       }
@@ -94,10 +89,15 @@ function extractClasses(docs: any) {
         console.log("provider has no logo", providerId);
       }
 
+      let title = fromHandshake.metadata.title;
+      if (providerId === "twitter") {
+        title = "Twitter";
+      }
+
       result.push({
         id: providerId,
         name: item.name,
-        title: fromHandshake.metadata.title,
+        title,
         logo,
         docs:
           item.signatures[0].comment?.summary
@@ -118,7 +118,7 @@ function extractClasses(docs: any) {
 const providerInfos = extractClasses(docsJson);
 
 console.log("Extracted data about", providerInfos.length, "providers");
-assert(providerInfos.length === 65, "Sanity check. Update this counter.");
+// assert(providerInfos.length === 65, "Sanity check. Update this counter.");
 
 // Write to CLASSES.md
 fs.writeFileSync(

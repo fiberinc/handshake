@@ -18,7 +18,7 @@ export default function Page() {
           Providers
         </h1>
         <p>
-          This is the list of all providers currently-supported by Handshake.
+          This is the list of the providers currently supported by Handshake.
         </p>
       </header>
 

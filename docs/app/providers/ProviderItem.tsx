@@ -25,7 +25,7 @@ export function ProviderItem(info: ProviderInfo) {
           />
         </div> */}
           <h1 className="text-contrast text-page-header font-medium">
-            {info.name}
+            {info.title}
           </h1>
         </div>
       </Link>

@@ -63,12 +63,6 @@
     "docs": null
   },
   {
-    "id": "boxyhq-saml",
-    "name": "BoxyhqSaml",
-    "title": "BoxyHQ SAML",
-    "docs": null
-  },
-  {
     "id": "bungie",
     "name": "Bungie",
     "title": "Bungie",
@@ -103,15 +97,10 @@
     "docs": null
   },
   {
-    "id": "duende-identityserver6",
-    "name": "DuendeIdentityServer6",
-    "title": "DuendeIdentityServer6",
-    "docs": null
-  },
-  {
     "id": "eveonline",
     "name": "Eveonline",
     "title": "EVE Online",
+    "logo": "eveonline.svg",
     "docs": null
   },
   {
@@ -131,6 +120,7 @@
     "id": "42-school",
     "name": "FortyTwo",
     "title": "42 School",
+    "logo": "42-school.svg",
     "docs": null
   },
   {
@@ -180,12 +170,6 @@
     "name": "Hubspot",
     "title": "HubSpot",
     "logo": "hubspot.svg",
-    "docs": null
-  },
-  {
-    "id": "identity-server4",
-    "name": "IdentityServer4",
-    "title": "IdentityServer4",
     "docs": null
   },
   {
@@ -274,12 +258,14 @@
     "id": "osso",
     "name": "Osso",
     "title": "Osso",
+    "logo": "osso.svg",
     "docs": null
   },
   {
     "id": "osu",
     "name": "Osu",
     "title": "Osu!",
+    "logo": "osu.svg",
     "docs": null
   },
   {
@@ -307,6 +293,7 @@
     "id": "pipedrive",
     "name": "Pipedrive",
     "title": "Pipedrive",
+    "logo": "pipedrive.svg",
     "docs": null
   },
   {
@@ -320,6 +307,7 @@
     "id": "salesforce",
     "name": "Salesforce",
     "title": "Salesforce",
+    "logo": "salesforce.svg",
     "docs": null
   },
   {
@@ -374,7 +362,7 @@
   {
     "id": "twitter",
     "name": "Twitter",
-    "title": "Twitter (Legacy)",
+    "title": "Twitter",
     "logo": "twitter.svg",
     "docs": null
   },
@@ -423,6 +411,7 @@
     "id": "zitadel",
     "name": "Zitadel",
     "title": "ZITADEL",
+    "logo": "zitadel.svg",
     "docs": null
   },
   {

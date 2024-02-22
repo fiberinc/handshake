@@ -29,8 +29,8 @@ export const Battlenet = makeFromNextAuth(BattlenetNextAuth);
 const BoxNextAuth = require("next-auth/providers/box").default;
 export const Box = makeFromNextAuth(BoxNextAuth);
 
-const BoxyhqSamlNextAuth = require("next-auth/providers/boxyhq-saml").default;
-export const BoxyhqSaml = makeFromNextAuth(BoxyhqSamlNextAuth);
+// const BoxyhqSamlNextAuth = require("next-auth/providers/boxyhq-saml").default;
+// export const BoxyhqSaml = makeFromNextAuth(BoxyhqSamlNextAuth);
 
 const BungieNextAuth = require("next-auth/providers/bungie").default;
 export const Bungie = makeFromNextAuth(BungieNextAuth);
@@ -47,11 +47,11 @@ export const Discord = makeFromNextAuth(DiscordNextAuth);
 const DropboxNextAuth = require("next-auth/providers/dropbox").default;
 export const Dropbox = makeFromNextAuth(DropboxNextAuth);
 
-const DuendeIdentityServer6NextAuth =
-  require("next-auth/providers/duende-identity-server6").default;
-export const DuendeIdentityServer6 = makeFromNextAuth(
-  DuendeIdentityServer6NextAuth,
-);
+// const DuendeIdentityServer6NextAuth =
+//   require("next-auth/providers/duende-identity-server6").default;
+// export const DuendeIdentityServer6 = makeFromNextAuth(
+//   DuendeIdentityServer6NextAuth,
+// );
 
 const EveonlineNextAuth = require("next-auth/providers/eveonline").default;
 export const Eveonline = makeFromNextAuth(EveonlineNextAuth);
@@ -112,9 +112,9 @@ export const Google = makeFromNextAuth(GoogleNextAuth);
 const HubspotNextAuth = require("next-auth/providers/hubspot").default;
 export const Hubspot = makeFromNextAuth(HubspotNextAuth);
 
-const IdentityServer4NextAuth =
-  require("next-auth/providers/identity-server4").default;
-export const IdentityServer4 = makeFromNextAuth(IdentityServer4NextAuth);
+// const IdentityServer4NextAuth =
+//   require("next-auth/providers/identity-server4").default;
+// export const IdentityServer4 = makeFromNextAuth(IdentityServer4NextAuth);
 
 const InstagramNextAuth = require("next-auth/providers/instagram").default;
 export const Instagram = makeFromNextAuth(InstagramNextAuth);

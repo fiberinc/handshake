@@ -5,7 +5,6 @@ import { BASE_URL } from "./routes";
 
 export interface ProviderInfo {
   id: string;
-  name: string;
   title: string;
   darkLogoUrl: string | null;
   logoUrl: string | null;
@@ -38,9 +37,7 @@ Adapted from [next-auth](https://github.com/nextauthjs/next-auth).`;
       }
 
       return {
-        // ...provider,
-        id: provider.name.toLowerCase(),
-        name: provider.name,
+        id: provider.id,
         title: provider.title,
         darkLogoUrl: provider.logo
           ? `${BASE_URL}/images/logos/${provider.logo}`

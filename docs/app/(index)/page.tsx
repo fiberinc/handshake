@@ -69,8 +69,8 @@ export default function Home() {
             <p>Clone our repo to get started. </p>
           </div>
 
-          <div className="bg-foreground text-contrast gap-4 rounded-md p-5">
-            <code className="flex flex-row items-center justify-between">
+          <div className="bg-foreground text-contrast flex flex-col gap-4 rounded-md p-5">
+            <code className="flex h-[30px] flex-row items-center justify-between">
               <pre className="antialiased">
                 <span className="text-default/60 mr-3">{`$`}</span> git clone
                 https://github.com/fiberinc/handshake.git
@@ -79,16 +79,11 @@ export default function Home() {
                 <GitCloneCopyButton content={`git clone ${REPO_URL}`} />
               </div>
             </code>
-            <code className="flex flex-row items-center justify-between">
-              <pre className="antialiased">
-                <span className="text-default/60 mr-3">{`$`}</span> cd handshake
-              </pre>
-            </code>
           </div>
           <p>
-            Then follow the{" "}
+            Then follow the instructions in{" "}
             <a href={REPO_URL} className="hover:text-link">
-              instructions in our README.
+              our README.
             </a>
           </p>
         </section>

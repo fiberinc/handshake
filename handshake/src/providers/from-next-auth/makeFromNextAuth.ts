@@ -29,7 +29,7 @@ export function makeFromNextAuth<Args extends TypicalOAuthArgs>(
 
     return makeHandlerFactory({
       ...info,
-      id: args.id ?? info.id,
+      id: info.id,
       metadata: {
         title: info.name,
         logo: info.style?.logo,

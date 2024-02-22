@@ -43,7 +43,7 @@ type Credential = {
 
 /**
  *
- * ```ts title="app/api/[...handshake]/route.ts"
+ * ```ts title="app/options.ts"
  * import { Shopify } from "handshake";
  *
  * Shopify({

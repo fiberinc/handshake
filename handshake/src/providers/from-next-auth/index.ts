@@ -88,7 +88,7 @@ const HubspotNextAuth = require("next-auth/providers/hubspot").default;
  * Provide the following arguments:
  *
  * ```ts
- * // Inside app/api/[...handshake]/route.ts
+ * // Inside app/options.ts
  *
  * import { Hubspot } from "handshake";
  *

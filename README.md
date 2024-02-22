@@ -97,7 +97,7 @@ In the new file, replace the values for `REDIRECT_URL` and `SESSION_SECRET`.
 
 ### Configure your providers
 
-Modify the `app/api/[...handshake]/routes.ts` file to include the providers you want to use:
+Modify the `app/optionss.ts` file to include the providers you want to use:
 
 ```ts
 const options: HandshakeOptions = {

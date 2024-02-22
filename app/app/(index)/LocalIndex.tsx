@@ -1,4 +1,5 @@
-import { config } from "../api/[...handshake]/route";
+import { twMerge } from "tailwind-merge";
+import { options } from "../options";
 
 const REPO_URL = "https://github.com/fiberinc/handshake";
 
@@ -17,13 +18,33 @@ export async function LocalIndex() {
     }
 
     return (
-      <li key={handler.id} className="group flex flex-row items-center">
-        <a href={`${base}?${args}`} target="blank">
-          <span>{base}</span>
-          <span className="opacity-10 transition group-hover:opacity-100">
-            ?{args}
+      <li key={handler.id} className="flex flex-col gap-3 bg-gray-50 p-5">
+        <p className="flex flex-row items-center gap-3">
+          <img
+            className="inline-block"
+            src={`https://fiber.dev/handshake/images/logos/${handler.provider.id}-dark.svg`}
+            width={18}
+            alt=""
+          />
+          <strong className="font-medium">{handler.provider.title}</strong>{" "}
+          <span
+            className={twMerge(
+              "italic",
+              handler.id === handler.provider.id && "opacity-30",
+            )}
+          >
+            id: {handler.id}
           </span>
-        </a>
+        </p>
+        <p className="group text-sm">
+          Example redirection URL:{" "}
+          <a href={`${base}?${args}`} target="blank">
+            <span>{base}</span>
+            <span className="opacity-10 transition group-hover:opacity-100">
+              ?{args}
+            </span>
+          </a>
+        </p>
       </li>
     );
   });
@@ -32,8 +53,8 @@ export async function LocalIndex() {
   if (handlers.length) {
     main = (
       <>
-        <p>The following projects are configured: (click to start auth)</p>
-        <ul>{els}</ul>
+        <p>The following projects are configured:</p>
+        <ul className="flex flex-col gap-5">{els}</ul>
       </>
     );
   } else {
@@ -41,8 +62,7 @@ export async function LocalIndex() {
       <div className="flex flex-col gap-3">
         <h2 className="font-semibold">No providers are configured</h2>
         <h3 className="mb-3">
-          Add the following code to your{" "}
-          <code>app/api/[...handshake]/route.ts</code>
+          Add the following code to your <code>app/options.ts</code>
         </h3>
         <pre className="block rounded-md border p-3 text-sm">
           <code>{MARKDOWN_CODE}</code>
@@ -60,11 +80,10 @@ export async function LocalIndex() {
 
   return (
     <main
-      className={`justify-top flex min-h-screen flex-col items-start gap-5 p-12`}
+      className={`justify-top flex min-h-screen flex-col items-start gap-8 p-12`}
     >
       <section>
         <h2 className="text-lg font-semibold">Handshake is running</h2>
-        <p>But there is nothing to see in this root page.</p>
       </section>
       <main className="flex flex-col gap-4">{main}</main>
       <p>
@@ -89,7 +108,7 @@ export interface HandlerInfo {
 }
 
 export async function getSanitizedHandlerInfo(): Promise<HandlerInfo[]> {
-  return config.handlers.map((handler) => {
+  return options.handlers.map((handler) => {
     return {
       id: handler.id,
       provider: {

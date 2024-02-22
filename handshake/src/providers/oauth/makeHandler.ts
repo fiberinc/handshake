@@ -28,7 +28,7 @@ export function makeHandlerFactory<
   return (args: Args): Handler<Credential> => {
     return {
       ...provider,
-      id: provider.id,
+      id: args.id ?? provider.id,
       provider,
       async getAuthorizationUrl(callbackHandlerUrl) {
         // Handle OAuth v1.x

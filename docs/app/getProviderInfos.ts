@@ -24,7 +24,7 @@ export async function getProviderInfos(): Promise<ProviderInfo[]> {
         providerDocs = `
 Connect to your customers&apos; ${provider.title} accounts.
 
-\`\`\`ts title="app/api/[...handshake]/route.ts"
+\`\`\`ts title="app/options.ts"
 import { ${provider.name}, HandshakeOptions } from "handshake";
 
 const config: HandshakeOptions = {

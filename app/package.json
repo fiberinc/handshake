@@ -15,6 +15,7 @@
     "cookie": "^0.6.0",
     "handshake": "workspace:*",
     "http-errors": "^2.0.0",
+    "jose": "^5.2.2",
     "next": "14.1.0",
     "react": "^18",
     "react-dom": "^18",

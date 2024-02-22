@@ -17,7 +17,7 @@ type Credential = {
  *
  * Provide the following arguments:
  *
- * ```ts title="app/api/[...handshake]/route.ts"
+ * ```ts title="app/options.ts"
  *
  * import { Stripe } from "handshake";
  *

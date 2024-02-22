@@ -6,6 +6,7 @@ import { Banner } from "~/ui/Banner";
 import { GithubLogoMark } from "~/ui/GithubLogoMark";
 import { getProviderInfos } from "../getProviderInfos";
 import { REPO_URL } from "../routes";
+import { GitCloneCopyButton } from "./GitCloneCopyButton";
 
 export const metadata: Metadata = {
   title: "Handshake – OAuth made easy",
@@ -27,11 +28,11 @@ export default function Home() {
             textWrap: "balance",
           }}
         >
-          Get third-party access tokens for 60+ APIs
+          Get user credentials to 60+ tools
         </h1>
         <p className="text-contrast max-w-[760px] text-2xl antialiased">
-          Handshake handles the OAuth flow with popular APIs gives you
-          credentials to access user accounts in third-party services.
+          Handshake handles OAuth flows with popular tools to give you access
+          tokens to your users&apos; third-party accounts.
         </p>
         <br />
         <section className="flex flex-wrap gap-5">
@@ -49,7 +50,7 @@ export default function Home() {
             href="https://github.com/fiberinc/handshake?tab=readme-ov-file#deploy"
             className={twMerge(
               BUTTON_CLS,
-              "gap-2 rounded-md bg-black px-5 pl-3 text-white antialiased",
+              "gap-2 rounded-md border bg-black px-5 pl-3 text-white antialiased",
             )}
           >
             <span className="flex h-[30px] w-[30px] items-center justify-center rounded-full bg-[#222222] text-[20px] leading-[0.5]">
@@ -65,20 +66,31 @@ export default function Home() {
             <h2 className="text-subheader text-contrast mb-5">
               Getting started
             </h2>
-            <p>
-              Clone our repo to get started.{" "}
-              <a href={REPO_URL} className="hover:text-link">
-                Then follow the instructions in our README.
-              </a>
-            </p>
+            <p>Clone our repo to get started. </p>
           </div>
 
-          <code className="bg-foreground text-contrast block rounded-md p-5 antialiased">
-            <pre>
-              <span className="text-default/60 mr-3">{`$`}</span> git clone
-              https://github.com/fiberinc/handshake.git
-            </pre>
-          </code>
+          <div className="bg-foreground text-contrast gap-4 rounded-md p-5">
+            <code className="flex flex-row items-center justify-between">
+              <pre className="antialiased">
+                <span className="text-default/60 mr-3">{`$`}</span> git clone
+                https://github.com/fiberinc/handshake.git
+              </pre>
+              <div className="">
+                <GitCloneCopyButton content={`git clone ${REPO_URL}`} />
+              </div>
+            </code>
+            <code className="flex flex-row items-center justify-between">
+              <pre className="antialiased">
+                <span className="text-default/60 mr-3">{`$`}</span> cd handshake
+              </pre>
+            </code>
+          </div>
+          <p>
+            Then follow the{" "}
+            <a href={REPO_URL} className="hover:text-link">
+              instructions in our README.
+            </a>
+          </p>
         </section>
         <section className="flex flex-col gap-6">
           <div>
@@ -101,14 +113,15 @@ export default function Home() {
             </a>
           </p>
         </section>
-        <section className="mt-16 flex flex-col items-center justify-center">
+        <div className="mt-5 w-full border-t " />
+        <section className=" flex flex-col items-center justify-center">
           <div className="text-contrast flex flex-row items-center gap-7 text-[40px]">
             <a
               target="_blank"
               href={REPO_URL + "/blob/main/README.md"}
               className={twMerge(
                 BUTTON_CLS,
-                "text-contrast hover:border-stronger inline-flex rounded-md border bg-white p-10 text-[40px] transition",
+                "text-contrast hover:border-stronger inline-flex rounded-md border bg-white p-10 text-[40px] transition dark:bg-black",
               )}
             >
               <FaExternalLinkAlt className="mr-3 w-8" />

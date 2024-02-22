@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
+import { Toaster } from "sonner";
 import "~/styles/globals.css";
 
 export const metadata: Metadata = {
@@ -13,6 +14,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <Toaster />
+
       <head>
         <link
           rel="icon"
@@ -21,7 +24,7 @@ export default function RootLayout({
       </head>
       <body className="bg-background text-default m-auto flex w-full flex-col gap-20 selection:bg-fuchsia-300 selection:text-fuchsia-900 ">
         <Nav />
-        <div className="m-auto w-full px-5 md:px-0 lg:w-[900px] ">
+        <div className="m-auto w-full px-5 md:px-0 lg:w-[900px]">
           {children}
         </div>
         <Footer />
@@ -32,7 +35,7 @@ export default function RootLayout({
 
 function Nav() {
   return (
-    <nav className="bg-foreground relative">
+    <nav className="bg-foreground relative border-b">
       {/* <div className="absolute left-6 top-[10px] text-[30px]">🫱🏻‍🫲🏽</div> */}
       <div className="m-auto flex h-[70px] flex-row items-center justify-between px-5 md:px-0 lg:w-[900px]">
         <Link href="/">
@@ -55,7 +58,7 @@ function Nav() {
 
 function Footer() {
   return (
-    <footer className="bg-foreground">
+    <footer className="bg-foreground border-t">
       <div className="text-mono text-md m-auto flex flex-row flex-wrap justify-between gap-10 px-5 py-10  font-medium md:px-0 lg:w-[900px]">
         <div>
           A project by{" "}

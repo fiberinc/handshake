@@ -1,5 +1,6 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { ProviderInfo } from "../getProviderInfos";
 import { useIsDarkMode } from "../providers/ProviderItem";
@@ -8,7 +9,7 @@ interface Props {
   infos: ProviderInfo[];
 }
 
-export function ProviderGrid({ infos }: Props) {
+function ProviderGrid_({ infos }: Props) {
   const isDarkMode = useIsDarkMode();
 
   const els = infos.map((info) => (
@@ -28,3 +29,7 @@ export function ProviderGrid({ infos }: Props) {
 
   return <>{els}</>;
 }
+
+export const ProviderGrid = dynamic(() => Promise.resolve(ProviderGrid_), {
+  ssr: false,
+});

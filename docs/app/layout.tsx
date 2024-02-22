@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/react";
 import { Metadata } from "next";
 import Link from "next/link";
 import { Toaster } from "sonner";
@@ -15,7 +16,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <Toaster />
       <head>
         <link
           rel="icon"
@@ -23,11 +23,13 @@ export default function RootLayout({
         />
       </head>
       <body className="bg-background text-default m-auto flex w-full flex-col gap-20 selection:bg-fuchsia-300 selection:text-fuchsia-900 ">
+        <Toaster />
         <Nav />
         <div className="m-auto w-full px-5 lg:w-[900px] lg:px-0">
           {children}
         </div>
         <Footer />
+        <Analytics />
       </body>
     </html>
   );

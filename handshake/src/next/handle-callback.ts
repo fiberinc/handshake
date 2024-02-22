@@ -116,10 +116,7 @@ export async function handleCallback(
     // Sentry.captureException(err);
     const url = new URL(session.developerCallbackUri);
     url.searchParams.set("state", session.developerState);
-    url.searchParams.set(
-      "error",
-      `Success handler failed${err.message ? ": " + err.message : ""}.`,
-    );
+    url.searchParams.set("error", `${err.message ? ": " + err.message : ""}.`);
     redirect(url.href);
   }
 

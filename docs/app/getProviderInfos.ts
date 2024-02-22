@@ -27,7 +27,7 @@ Connect to your customers&apos; ${provider.title} accounts.
 \`\`\`ts title="app/api/[...handshake]/route.ts"
 import { ${provider.name}, HandshakeOptions } from "handshake";
 
-const options: HandshakeOptions = {
+const config: HandshakeOptions = {
   handlers: [
     ${provider.name}({
       clientId: string,

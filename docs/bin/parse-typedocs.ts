@@ -68,8 +68,6 @@ function extractClasses(docs: any) {
         throw Error("unexpected");
       }
 
-      console.log("asdf", item.name, item.signatures[0].comment);
-
       // const from = require('')[itemName]
 
       const fromHandshake = handshake[item.name]({}).provider;

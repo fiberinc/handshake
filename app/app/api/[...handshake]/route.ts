@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-
 import assert from "assert";
 import { HandshakeOptions, NextHandshake } from "handshake";
 
@@ -11,6 +9,7 @@ export const config: HandshakeOptions = {
   allowedRedirectUris: [REDIRECT_URL],
   handlers: [
     // TODO: Add your handlers here.
+    //
     // GitHub({
     //   clientId: process.env.GITHUB_CLIENT_ID!,
     //   clientSecret: process.env.GITHUB_CLIENT_SECRET!,

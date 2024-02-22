@@ -16,7 +16,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <Toaster />
-
       <head>
         <link
           rel="icon"

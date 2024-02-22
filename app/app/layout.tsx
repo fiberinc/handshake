@@ -3,8 +3,7 @@ import "~/styles/globals.css";
 import { twMerge } from "tailwind-merge";
 
 export const metadata = {
-  title: "",
-  description: "",
+  title: "Handshake is running",
 };
 
 export default function RootLayout({
@@ -24,11 +23,6 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
         />
         <link rel="shortcut icon" href="/favicon.png" />
-        <meta property="og:description" content="TODO." />
-        <meta property="og:image" content="/images/TODO.png" />
-        <meta property="og:image:type" content="/images/TODO.png" />
-        <meta property="og:image:width" content="/images/TODO.png" />
-        <meta property="og:image:height" content="/images/TODO.png" />
       </head>
 
       <body

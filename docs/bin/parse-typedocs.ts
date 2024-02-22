@@ -1,11 +1,12 @@
-// Parses provider information from the handshake library and places it in a
-// clean object inside `docs/providers.json`.
+// Parses provider typedocs and values from the handshake library and places it
+// in a cleaner object inside `docs/providers.json`.
 
 import assert from "assert";
 import chalk from "chalk";
 import fs from "fs";
 import * as handshake from "../../handshake";
 import docsJson from "./providers-typedoc.json";
+
 const providersWithoutLogos = [
   "authentik",
   "zoho",

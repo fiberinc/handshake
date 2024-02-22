@@ -1,19 +1,20 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
 import assert from "assert";
-import { GitHub, HandshakeOptions, NextHandshake } from "handshake";
+import { HandshakeOptions, NextHandshake } from "handshake";
 
 const REDIRECT_URL = process.env.REDIRECT_URL || "";
 assert(REDIRECT_URL, "Specify a URL at REDIRECT_URL.");
 
-export const options: HandshakeOptions = {
+export const config: HandshakeOptions = {
   secret: process.env.SESSION_SECRET!,
   allowedRedirectUris: [REDIRECT_URL],
   handlers: [
-    GitHub({
-      clientId: process.env.GITHUB_CLIENT_ID!,
-      clientSecret: process.env.GITHUB_CLIENT_SECRET!,
-    }),
+    // TODO: Add your handlers here.
+    // GitHub({
+    //   clientId: process.env.GITHUB_CLIENT_ID!,
+    //   clientSecret: process.env.GITHUB_CLIENT_SECRET!,
+    // }),
   ],
   /**
    * This is where you'll handle forwarding the acquired credentials back to
@@ -30,7 +31,7 @@ export const options: HandshakeOptions = {
    * 'google', 'github', 'amazon-seller' etc.
    */
   async onSuccess(credentials, handlerId) {
-    // Do something with the credentials.
+    // TODO: Do something with the credentials.
     console.log(`Credentials for ${handlerId} are`, credentials);
 
     return {
@@ -39,4 +40,4 @@ export const options: HandshakeOptions = {
   },
 };
 
-export const { GET, POST } = NextHandshake(options);
+export const { GET, POST } = NextHandshake(config);

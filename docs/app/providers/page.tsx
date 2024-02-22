@@ -17,9 +17,7 @@ export default function Page() {
         <h1 id="providers" className="text-page-header text-contrast">
           Providers
         </h1>
-        <p>
-          This is the list of the providers currently supported by Handshake.
-        </p>
+        <p>This is the list of services we currently support.</p>
       </header>
 
       <ul className="flex flex-col gap-6 md:gap-16">

@@ -6,8 +6,6 @@ import { ProviderInfo } from "../getProviderInfos";
 import { MdxRender } from "./MdxRender";
 
 export function ProviderItem(info: ProviderInfo) {
-  // const isDarkMode = useIsDarkMode();
-
   return (
     <div key={info.id} id={info.id}>
       <Link href={`/providers/#${info.id}`}>

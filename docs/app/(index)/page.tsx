@@ -7,6 +7,7 @@ import { GithubLogoMark } from "~/ui/GithubLogoMark";
 import { getProviderInfos } from "../getProviderInfos";
 import { REPO_URL } from "../routes";
 import { GitCloneCopyButton } from "./GitCloneCopyButton";
+import { ProviderGrid } from "./ProviderGrid";
 
 export const metadata: Metadata = {
   title: "Handshake – OAuth made easy",
@@ -14,7 +15,9 @@ export const metadata: Metadata = {
 
 const BUTTON_CLS = "flex h-[55px] flex-row items-center gap-3 font-medium";
 
-export default function Home() {
+export default async function Page() {
+  const infos = await getProviderInfos();
+
   return (
     <div className="m-auto flex flex-col gap-16">
       <header className="flex flex-col gap-3">
@@ -95,7 +98,7 @@ export default function Home() {
             <p>Click to read documentation:</p>
           </div>
           <ul className="flex flex-row flex-wrap gap-2">
-            <ProviderNames />
+            <ProviderGrid infos={infos} />
           </ul>
           <p>
             Can&apos;t find a provider? Let us know by{" "}
@@ -127,18 +130,4 @@ export default function Home() {
       </div>
     </div>
   );
-}
-
-async function ProviderNames() {
-  const infos = await getProviderInfos();
-
-  const els = infos.map((info) => (
-    <Link key={info.id} href={`/providers#${info.id}`}>
-      <div className="hover:bg-foreground text-contrast flex flex-row items-center gap-3 rounded-md border px-3.5 py-2">
-        {info.logoUrl && <img src={info.darkLogoUrl} width={20} />}
-        {info.title}
-      </div>
-    </Link>
-  ));
-  return <>{els}</>;
 }

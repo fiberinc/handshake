@@ -14,7 +14,9 @@ export interface ProviderInfo {
 
 export async function getProviderInfos(): Promise<ProviderInfo[]> {
   const filteredProviders =
-    process.env.NODE_ENV === "development" ? providers.slice(0, 5) : providers;
+    process.env.NODE_ENV === "development"
+      ? providers.slice(0, 500)
+      : providers;
 
   return Promise.all(
     filteredProviders.map(async (provider): Promise<ProviderInfo> => {

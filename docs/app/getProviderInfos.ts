@@ -27,13 +27,11 @@ export async function getProviderInfos(): Promise<ProviderInfo[]> {
 import { ${provider.name}, HandshakeOptions } from "handshake";
 
 const options: HandshakeOptions = {
-  // ...
   handlers: [
     ${provider.name}({
       clientId: string,
       clientSecret: string,
     });
-    // ...
   ],
 }
 

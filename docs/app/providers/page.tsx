@@ -22,7 +22,7 @@ export default function Page() {
         </p>
       </header>
 
-      <ul className="flex flex-col gap-16">
+      <ul className="flex flex-col gap-6 md:gap-16">
         <ProviderList />
       </ul>
     </div>

@@ -25,7 +25,7 @@ export default async function Page() {
           <Banner>🎉&nbsp;&nbsp;New Stripe connector</Banner>
         </Link>
         <h1
-          className="text-contrast text-[305px] font-semibold leading-[1.1] lg:text-[85px]"
+          className="text-contrast text-[35px] font-semibold leading-[1.1] lg:text-[85px]"
           style={{
             // @ts-ignore
             textWrap: "balance",

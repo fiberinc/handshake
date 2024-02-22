@@ -1,15 +1,15 @@
 <br />
 
-<p align="center">
+<p align="left">
   <img src="https://media1.giphy.com/media/750o1RprTNj8ldkwak/200.gif?cid=5a38a5a2julf1ukb89781yu88pth7ol9sm22s52gc88gc0hs&ep=v1_gifs_search&rid=300.gif&ct=g" width="300"/>
 
-  <h1 align="center">Handshake</h1>
+  <h1 align="left">Handshake</h1>
 
-  <p align="center">
+  <p align="left">
     Self-hosted solution for OAuth authentication against 60+ APIs.
   </p>
 
-  <p align="center" style="align: center;">
+  <p align="left" style="align: left;">
     <img src="https://img.shields.io/badge/TypeScript-blue" alt="TypeScript" />
     <img src="https://img.shields.io/badge/MIT-License" alt="MIT License" />
     <a href="https://github.com/fiberinc/handshake/actions/workflows/ci.yml"><img src="https://github.com/fiberinc/handshake/actions/workflows/ci.yml/badge.svg" alt="CI status" style="max-width: 100%;"></a>
@@ -18,7 +18,23 @@
 
 <br />
 
-## Introduction
+- [About](#about)
+- [How it works](#how-it-works)
+- [Setup](#setup)
+  - [Set environment variables](#set-environment-variables)
+  - [Configure your providers](#configure-your-providers)
+- [Deploy](#deploy)
+  - [Fix project root and framework preset in Vercel](#fix-project-root-and-framework-preset-in-vercel)
+  - [Upload environment variables to Vercel](#upload-environment-variables-to-vercel)
+- [FAQ](#faq)
+  - [Can you add support for X provider?](#can-you-add-support-for-x-provider)
+  - [How is this different from next-auth or passport?](#how-is-this-different-from-next-auth-or-passport)
+- [Contributing](#contributing)
+- [License](#license)
+
+<br />
+
+## About
 
 Handshake is a Next.js app that handles OAuth flow against 60+ third-party apps
 and APIs. We use parts of `next-auth` under the hood to extend our coverage of

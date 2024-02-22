@@ -53,7 +53,7 @@ export default function Home() {
               "gap-2 rounded-md border bg-black px-5 pl-3 text-white antialiased",
             )}
           >
-            <span className="flex h-[30px] w-[30px] items-center justify-center rounded-full bg-[#222222] text-[20px] leading-[0.5]">
+            <span className="flex h-[30px] w-[30px] items-center justify-center rounded-full bg-[#222] text-[20px] leading-[0.5]">
               ▲
             </span>
             &nbsp;&nbsp;Deploy to Vercel
@@ -131,10 +131,12 @@ export default function Home() {
 
 async function ProviderNames() {
   const infos = await getProviderInfos();
+
   const els = infos.map((info) => (
     <Link key={info.id} href={`/providers#${info.id}`}>
-      <div className="hover:bg-foreground text-contrast rounded-md border px-3 py-2">
-        {info.name}
+      <div className="hover:bg-foreground text-contrast flex flex-row items-center gap-3 rounded-md border px-3.5 py-2">
+        {info.logoUrl && <img src={info.darkLogoUrl} width={20} />}
+        {info.title}
       </div>
     </Link>
   ));

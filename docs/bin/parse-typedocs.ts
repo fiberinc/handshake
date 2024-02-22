@@ -4,12 +4,15 @@
 import assert from "assert";
 import chalk from "chalk";
 import fs from "fs";
+import * as handshake from "../../handshake";
 import docsJson from "./providers-typedoc.json";
 
 function extractClasses(docs: any) {
   const result: {
     name: string;
-    text: string;
+    title: string;
+    logo: string;
+    docs: string;
   }[] = [];
 
   // Traverse the JSON structure to find and format class documentation
@@ -40,9 +43,21 @@ function extractClasses(docs: any) {
 
       console.log("asdf", item.name, item.signatures[0].comment);
 
+      // const from = require('')[itemName]
+
+      const fromHandshake = handshake[item.name]({}).provider;
+
+      // console.log("metadata", metadata);
+
+      if (!fromHandshake.metadata.logo) {
+        console.log("provider has no logo", item.name);
+      }
+
       result.push({
         name: item.name,
-        text:
+        title: fromHandshake.metadata.title,
+        logo: fromHandshake.metadata.logo?.replace("/", ""),
+        docs:
           item.signatures[0].comment?.summary
             .map(({ text }: any) => {
               return text;

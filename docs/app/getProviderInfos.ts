@@ -1,10 +1,14 @@
 import { serialize } from "next-mdx-remote/serialize";
 import rehypePrettyCode from "rehype-pretty-code";
 import providers from "../providers.json";
+import { BASE_URL } from "./routes";
 
 export interface ProviderInfo {
   id: string;
   name: string;
+  title: string;
+  darkLogoUrl: string | null;
+  logoUrl: string | null;
   serialized: null | any;
 }
 
@@ -14,9 +18,9 @@ export async function getProviderInfos(): Promise<ProviderInfo[]> {
 
   return Promise.all(
     filteredProviders.map(async (provider): Promise<ProviderInfo> => {
-      let providerText: string = provider.text ?? "";
-      if (!providerText) {
-        providerText = `
+      let providerDocs: string = provider.docs ?? "";
+      if (!providerDocs) {
+        providerDocs = `
 \`\`\`ts
 // Inside app/api/[...handshake]/route.ts
 
@@ -35,7 +39,14 @@ Adapted from [next-auth](https://github.com/nextauthjs/next-auth).`;
         // ...provider,
         id: provider.name.toLowerCase(),
         name: provider.name,
-        serialized: await getSerializedMarkdown(providerText),
+        title: provider.title,
+        darkLogoUrl: provider.logo
+          ? `${BASE_URL}/images/logos/${provider.logo}`
+          : null,
+        logoUrl: provider.logo
+          ? `${BASE_URL}/images/logos/${provider.logo.replace(".svg", "-dark.svg")}`
+          : null,
+        serialized: await getSerializedMarkdown(providerDocs),
       };
     }),
   );

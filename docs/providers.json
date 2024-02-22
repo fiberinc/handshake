@@ -1,262 +1,363 @@
 [
   {
     "name": "AmazonSeller",
-    "text": "[\"Website authorization workflow\" documentation](https://developer-docs.amazon.com/sp-api/docs/website-authorization-workflow)\n\n## Usage\n\nProvide the following arguments:\n\n\n```ts\n// Inside app/api/[...handshake]/route.ts\nimport { Amazon } from \"handshake\";\n\nAmazon({\n  appId: string,\n  clientId: string,\n  clientSecret: string,\n  isDraftApp: true | false,\n});\n```\n\n\n## Troubleshooting\n\nNeed to \"set up your “Authorize” buttons so that selling partners are\nredirected to the Seller Central (for sellers) or Vendor Central (for\nvendors) sign-in page for their own region.\"\n\n### No localhost redirect\n\nAmazon does not allow setting localhost as a redirect_uri. You may want to\nuse Ngrok or another service to provide a publicly addressable URL.\n\n[https://github.com/amzn/selling-partner-api-docs/issues/26](https://github.com/amzn/selling-partner-api-docs/issues/26)\n\n### Error Code: MD5101\n\nThis means unauthorized redirect URI. localhost URIs are allowed.\n\n### Developer Central – \"You do not have permissions to view this page\"\n\nFYI. Only the primary user of the Seller Central account is able to create\nand modify apps via the \"Developer Central\" page.\n\n[https://github.com/amzn/selling-partner-api-docs/issues/2191](https://github.com/amzn/selling-partner-api-docs/issues/2191)\n\n### Not setup for OAuth\n\n![amazon-not-setup](/handshake/images/providers/amazon-not-setup-oauth.png)"
+    "title": "Amazon Seller Central",
+    "logo": "amazonseller.svg",
+    "docs": "[\"Website authorization workflow\"\ndocumentation](https://developer-docs.amazon.com/sp-api/docs/website-authorization-workflow)\n\n## Usage\n\nProvide the following arguments:\n\n\n```ts\n// Inside app/api/[...handshake]/route.ts\nimport { Amazon } from \"handshake\";\n\nAmazon({\n  appId: string,\n  clientId: string,\n  clientSecret: string,\n  isDraftApp: true | false,\n});\n```\n\n\n## Troubleshooting\n\nNeed to \"set up your “Authorize” buttons so that selling partners are\nredirected to the Seller Central (for sellers) or Vendor Central (for\nvendors) sign-in page for their own region.\"\n\n### No localhost redirect\n\nAmazon does not allow setting localhost as a \n`redirect_uri`\n. You may want to\nuse Ngrok or another service to provide a publicly addressable URL.\n\n[https://github.com/amzn/selling-partner-api-docs/issues/26](https://github.com/amzn/selling-partner-api-docs/issues/26)\n\n### Error Code: MD5101\n\nThis means unauthorized redirect URI. localhost URIs are allowed.\n\n### Developer Central – \"You do not have permissions to view this page\"\n\nFYI. Only the primary user of the Seller Central account is able to create\nand modify apps via the \"Developer Central\" page.\n\n[https://github.com/amzn/selling-partner-api-docs/issues/2191](https://github.com/amzn/selling-partner-api-docs/issues/2191)\n\n### Not setup for OAuth\n\n![amazon-not-setup](/handshake/images/providers/amazon-not-setup-oauth.png)"
   },
   {
     "name": "Apple",
-    "text": null
+    "title": "Apple",
+    "logo": "apple.svg",
+    "docs": null
   },
   {
     "name": "Atlassian",
-    "text": null
+    "title": "Atlassian",
+    "logo": "atlassian.svg",
+    "docs": null
   },
   {
     "name": "Auth0",
-    "text": null
+    "title": "Auth0",
+    "logo": "auth0.svg",
+    "docs": null
   },
   {
     "name": "Authentik",
-    "text": null
+    "title": "Authentik",
+    "docs": null
   },
   {
     "name": "AzureAd",
-    "text": null
+    "title": "Azure Active Directory",
+    "logo": "azure.svg",
+    "docs": null
   },
   {
     "name": "AzureAdB2c",
-    "text": null
+    "title": "Azure Active Directory B2C",
+    "logo": "azure.svg",
+    "docs": null
   },
   {
     "name": "Battlenet",
-    "text": null
+    "title": "Battle.net",
+    "logo": "battlenet.svg",
+    "docs": null
   },
   {
     "name": "Box",
-    "text": null
+    "title": "Box",
+    "logo": "box.svg",
+    "docs": null
   },
   {
     "name": "BoxyhqSaml",
-    "text": null
+    "title": "BoxyHQ SAML",
+    "docs": null
   },
   {
     "name": "Bungie",
-    "text": null
+    "title": "Bungie",
+    "docs": null
   },
   {
     "name": "Cognito",
-    "text": null
+    "title": "Cognito",
+    "logo": "cognito.svg",
+    "docs": null
   },
   {
     "name": "Coinbase",
-    "text": null
+    "title": "Coinbase",
+    "docs": null
   },
   {
     "name": "Discord",
-    "text": null
+    "title": "Discord",
+    "logo": "discord.svg",
+    "docs": null
   },
   {
     "name": "Dropbox",
-    "text": null
+    "title": "Dropbox",
+    "docs": null
   },
   {
     "name": "DuendeIdentityServer6",
-    "text": null
+    "title": "DuendeIdentityServer6",
+    "docs": null
   },
   {
     "name": "Eveonline",
-    "text": null
+    "title": "EVE Online",
+    "docs": null
   },
   {
     "name": "Facebook",
-    "text": null
+    "title": "Facebook",
+    "logo": "facebook.svg",
+    "docs": null
   },
   {
     "name": "Faceit",
-    "text": null
+    "title": "FACEIT",
+    "docs": null
   },
   {
     "name": "FortyTwo",
-    "text": null
+    "title": "42 School",
+    "docs": null
   },
   {
     "name": "Foursquare",
-    "text": null
+    "title": "Foursquare",
+    "logo": "foursquare.svg",
+    "docs": null
   },
   {
     "name": "Freshbooks",
-    "text": null
+    "title": "Freshbooks",
+    "logo": "freshbooks.svg",
+    "docs": null
   },
   {
     "name": "Fusionauth",
-    "text": null
+    "title": "FusionAuth",
+    "docs": null
   },
   {
     "name": "GitHub",
-    "text": null
+    "title": "GitHub",
+    "logo": "github.svg",
+    "docs": null
   },
   {
     "name": "Gitlab",
-    "text": null
+    "title": "GitLab",
+    "logo": "gitlab.svg",
+    "docs": null
   },
   {
     "name": "Google",
-    "text": "```ts\n// Inside app/handshake.ts\n\nimport { Google } from \"handshake\";\n\nGoogle({\n  clientId: \"\",\n  clientSecret: \"\",\n  scopes: [\n    \"e-commerce\",\n    \"crm.schemas.contacts.read\",\n    \"crm.objects.contacts.read\",\n  ],\n});\n```\n\n\n### Configure the Callback URL\n\nMake sure your Handshake URL is allowed within your Hubspot app's Auth tab:\n\n![](/handshake/images/providers/hubspot-redirect.png)\n\nFollow the format: \n`https://HANDSHAKE_URL/api/auth/hubspot/callback`\n\n\n *"
+    "title": "Google",
+    "logo": "google.svg",
+    "docs": "```ts\n// Inside app/handshake.ts\n\nimport { Google } from \"handshake\";\n\nGoogle({\n  clientId: \"\",\n  clientSecret: \"\",\n  scopes: [\n    \"e-commerce\",\n    \"crm.schemas.contacts.read\",\n    \"crm.objects.contacts.read\",\n  ],\n});\n```\n\n\n### Configure the Callback URL\n\nMake sure your Handshake URL is allowed within your Hubspot app's Auth tab:\n\n![](/handshake/images/providers/hubspot-redirect.png)\n\nFollow the format: \n`https://HANDSHAKE_URL/api/auth/hubspot/callback`\n\n\n *"
   },
   {
     "name": "Hubspot",
-    "text": null
+    "title": "HubSpot",
+    "logo": "hubspot.svg",
+    "docs": null
   },
   {
     "name": "IdentityServer4",
-    "text": null
+    "title": "IdentityServer4",
+    "docs": null
   },
   {
     "name": "Instagram",
-    "text": null
+    "title": "Instagram",
+    "logo": "instagram.svg",
+    "docs": null
   },
   {
     "name": "Kakao",
-    "text": null
+    "title": "Kakao",
+    "docs": null
   },
   {
     "name": "Keycloak",
-    "text": null
+    "title": "Keycloak",
+    "logo": "keycloak.svg",
+    "docs": null
   },
   {
     "name": "Line",
-    "text": null
+    "title": "LINE",
+    "logo": "line.svg",
+    "docs": null
   },
   {
     "name": "Linkedin",
-    "text": null
+    "title": "LinkedIn",
+    "logo": "linkedin.svg",
+    "docs": null
   },
   {
     "name": "Mailchimp",
-    "text": null
+    "title": "Mailchimp",
+    "logo": "mailchimp.svg",
+    "docs": null
   },
   {
     "name": "Mailru",
-    "text": null
+    "title": "Mail.ru",
+    "docs": null
   },
   {
     "name": "Medium",
-    "text": null
+    "title": "Medium",
+    "docs": null
   },
   {
     "name": "Naver",
-    "text": null
+    "title": "Naver",
+    "docs": null
   },
   {
     "name": "Netlify",
-    "text": null
+    "title": "Netlify",
+    "docs": null
   },
   {
     "name": "Okta",
-    "text": null
+    "title": "Okta",
+    "logo": "okta.svg",
+    "docs": null
   },
   {
     "name": "Onelogin",
-    "text": null
+    "title": "OneLogin",
+    "docs": null
   },
   {
     "name": "Osso",
-    "text": null
+    "title": "Osso",
+    "docs": null
   },
   {
     "name": "Osu",
-    "text": null
+    "title": "Osu!",
+    "docs": null
   },
   {
     "name": "Passage",
-    "text": null
+    "title": "Passage",
+    "logo": "passage.svg",
+    "docs": null
   },
   {
     "name": "Patreon",
-    "text": null
+    "title": "Patreon",
+    "logo": "patreon.svg",
+    "docs": null
   },
   {
     "name": "Pinterest",
-    "text": null
+    "title": "Pinterest",
+    "docs": null
   },
   {
     "name": "Pipedrive",
-    "text": null
+    "title": "Pipedrive",
+    "docs": null
   },
   {
     "name": "Reddit",
-    "text": null
+    "title": "Reddit",
+    "docs": null
   },
   {
     "name": "Salesforce",
-    "text": null
+    "title": "Salesforce",
+    "docs": null
   },
   {
     "name": "Shopify",
-    "text": "```ts\n// Inside app/handshake.ts\n\nimport { Shopify } from \"handshake\";\n\nShopify({\n clientId: \"\",\n clientSecret: \"\",\n scopes: [\"read_orders\", \"read_products\"],\n});\n```\n\n\n### Configure the Callback URL\n\nMake sure your Handshake URL is allowed within your Shopify app's Configuration tab:\n\n![](/docs/public/images/providers-shopify-redirect.png)\n\nFollow the format: \n`https://HANDSHAKE_URL/api/auth/shopify/callback`"
+    "title": "Shopify",
+    "logo": "shopify.svg",
+    "docs": "```ts\n// Inside app/handshake.ts\n\nimport { Shopify } from \"handshake\";\n\nShopify({\n clientId: \"\",\n clientSecret: \"\",\n scopes: [\"read_orders\", \"read_products\"],\n});\n```\n\n\n### Configure the Callback URL\n\nMake sure your Handshake URL is allowed within your Shopify app's Configuration tab:\n\n![](/docs/public/images/providers-shopify-redirect.png)\n\nFollow the format: \n`https://HANDSHAKE_URL/api/auth/shopify/callback`"
   },
   {
     "name": "Slack",
-    "text": null
+    "title": "Slack",
+    "logo": "slack.svg",
+    "docs": null
   },
   {
     "name": "Spotify",
-    "text": null
+    "title": "Spotify",
+    "logo": "spotify.svg",
+    "docs": null
   },
   {
     "name": "Strava",
-    "text": null
+    "title": "Strava",
+    "docs": null
   },
   {
     "name": "Todoist",
-    "text": null
+    "title": "Todoist",
+    "logo": "todoist.svg",
+    "docs": null
   },
   {
     "name": "Trakt",
-    "text": null
+    "title": "Trakt",
+    "logo": "trakt.svg",
+    "docs": null
   },
   {
     "name": "Twitch",
-    "text": null
+    "title": "Twitch",
+    "logo": "twitch.svg",
+    "docs": null
   },
   {
     "name": "Twitter",
-    "text": null
+    "title": "Twitter (Legacy)",
+    "logo": "twitter.svg",
+    "docs": null
   },
   {
     "name": "UnitedEffects",
-    "text": null
+    "title": "United Effects",
+    "docs": null
   },
   {
     "name": "Vk",
-    "text": null
+    "title": "VK",
+    "logo": "vk.svg",
+    "docs": null
   },
   {
     "name": "Wikimedia",
-    "text": null
+    "title": "Wikimedia",
+    "logo": "wikimedia.svg",
+    "docs": null
   },
   {
     "name": "Wordpress",
-    "text": null
+    "title": "WordPress.com",
+    "docs": null
   },
   {
     "name": "Workos",
-    "text": null
+    "title": "WorkOS",
+    "logo": "workos.svg",
+    "docs": null
   },
   {
     "name": "Yandex",
-    "text": null
+    "title": "Yandex",
+    "logo": "yandex.svg",
+    "docs": null
   },
   {
     "name": "Zitadel",
-    "text": null
+    "title": "ZITADEL",
+    "docs": null
   },
   {
     "name": "Zoho",
-    "text": null
+    "title": "Zoho",
+    "docs": null
   },
   {
     "name": "Zoom",
-    "text": null
+    "title": "Zoom",
+    "docs": null
   }
 ]

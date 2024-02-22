@@ -81,7 +81,7 @@ export const AmazonSeller: HandlerFactory<Args, Credential> = ({
       id: PROVIDER_ID,
       metadata: {
         title: "Amazon Seller Central",
-        logo: "/images/providers/amazon-a.svg",
+        logo: "amazonseller.svg",
       },
     },
     getAuthorizationUrl(callbackHandlerUrl: string) {

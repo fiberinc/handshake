@@ -28,12 +28,7 @@ export function makeHandlerFactory<Args extends TypicalOAuthArgs>(
     return {
       ...provider,
       id: provider.id,
-      provider: {
-        id: provider.id,
-        metadata: {
-          title: provider.name,
-        },
-      },
+      provider,
       async getAuthorizationUrl(callbackHandlerUrl) {
         // Handle OAuth v1.x
         if (provider.version?.startsWith("1.")) {

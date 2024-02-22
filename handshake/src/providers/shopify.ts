@@ -75,7 +75,7 @@ export const Shopify: HandlerFactory<Args, Credential> = ({ id, ...args }) => {
       id: "shopify",
       metadata: {
         title: "Shopify",
-        logo: "/images/providers/shopify.svg",
+        logo: "shopify.svg",
       },
     },
     getAuthorizationUrl(callbackHandlerUrl, extras) {

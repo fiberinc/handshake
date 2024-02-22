@@ -40,7 +40,9 @@ function Nav() {
       {/* <div className="absolute left-6 top-[10px] text-[30px]">🫱🏻‍🫲🏽</div> */}
       <div className="m-auto flex h-[70px] flex-row items-center justify-between px-5 lg:w-[900px] lg:px-0">
         <Link href="/">
-          <h1 className="text-contrast text-lg font-semibold">🫱🏻‍🫲🏽 Handshake </h1>
+          <h1 className="text-contrast text-lg font-semibold">
+            🫱🏻‍🫲🏽&nbsp;&nbsp;Handshake{" "}
+          </h1>
         </Link>
         <div className="flex flex-row gap-10">
           <Link href="/providers">All providers</Link>

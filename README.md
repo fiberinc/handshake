@@ -190,4 +190,4 @@ Thank you for considering contributing to Handshake! If you believe you found a 
 
 MIT
 
-[1]: https://handshake.js
+[1]: https://handshake.lol

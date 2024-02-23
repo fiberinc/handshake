@@ -7,7 +7,7 @@ export async function Link() {
   const handlerInfos = await getSanitizedHandlerInfo();
 
   const els = handlerInfos.map((handlerInfo) => {
-    const logoUrl = `https://handshake.js/images/logos/${handlerInfo.provider.id}.svg`;
+    const logoUrl = `https://handshake.lol/images/logos/${handlerInfo.provider.id}.svg`;
 
     function onClick() {}
 

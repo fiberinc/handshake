@@ -1,5 +1,5 @@
 import { HandlerFactory } from "~/core/Handler";
-import { makeHandlerFactory } from "../lib/makeHandler";
+import { TypicalOAuthArgs, makeHandlerFactory } from "../lib/makeHandler";
 
 function makeOauthFactory(info: {
   id: string;
@@ -26,7 +26,7 @@ function makeOauthFactory(info: {
     token: {
       url: info.access_url,
     },
-  }) satisfies HandlerFactory<any>;
+  }) satisfies HandlerFactory<TypicalOAuthArgs>;
 }
 
 export const _23andMe = makeOauthFactory({

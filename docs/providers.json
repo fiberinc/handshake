@@ -1,8 +1,15 @@
 [
   {
+    "id": "aweber",
+    "name": "AWeber",
+    "title": "AWeber",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
     "id": "acton",
-    "name": "Acton",
-    "title": "Acton",
+    "name": "ActOn",
+    "title": "Act-On",
     "logo": "info.svg",
     "docs": null
   },
@@ -23,7 +30,7 @@
   {
     "id": "aha",
     "name": "Aha",
-    "title": "Aha",
+    "title": "Aha!",
     "logo": "info.svg",
     "docs": null
   },
@@ -50,7 +57,7 @@
   },
   {
     "id": "angellist",
-    "name": "Angellist",
+    "name": "AngelList",
     "title": "AngelList",
     "logo": "info.svg",
     "docs": null
@@ -64,8 +71,8 @@
   },
   {
     "id": "arcgis",
-    "name": "Arcgis",
-    "title": "Arcgis",
+    "name": "ArcGIS",
+    "title": "ArcGIS",
     "logo": "info.svg",
     "docs": null
   },
@@ -122,13 +129,6 @@
     "id": "autodesk",
     "name": "Autodesk",
     "title": "Autodesk",
-    "logo": "info.svg",
-    "docs": null
-  },
-  {
-    "id": "aweber",
-    "name": "Aweber",
-    "title": "Aweber",
     "logo": "info.svg",
     "docs": null
   },
@@ -216,16 +216,16 @@
     "docs": null
   },
   {
-    "id": "campaignmonitor",
-    "name": "Campaignmonitor",
-    "title": "Campaignmonitor",
+    "id": "cas",
+    "name": "CAS",
+    "title": "CAS",
     "logo": "info.svg",
     "docs": null
   },
   {
-    "id": "cas",
-    "name": "Cas",
-    "title": "Cas",
+    "id": "campaignmonitor",
+    "name": "CampaignMonitor",
+    "title": "Campaign Monitor",
     "logo": "info.svg",
     "docs": null
   },
@@ -266,8 +266,8 @@
   },
   {
     "id": "constantcontact",
-    "name": "Constantcontact",
-    "title": "Constantcontact",
+    "name": "ConstantContact",
+    "title": "Constant Contact",
     "logo": "info.svg",
     "docs": null
   },
@@ -280,8 +280,8 @@
   },
   {
     "id": "crossid",
-    "name": "Crossid",
-    "title": "Crossid",
+    "name": "CrossID",
+    "title": "CrossID",
     "logo": "info.svg",
     "docs": null
   },
@@ -315,15 +315,15 @@
   },
   {
     "id": "deviantart",
-    "name": "Deviantart",
-    "title": "Deviantart",
+    "name": "DeviantArt",
+    "title": "DeviantArt",
     "logo": "info.svg",
     "docs": null
   },
   {
     "id": "digitalocean",
-    "name": "Digitalocean",
-    "title": "Digitalocean",
+    "name": "DigitalOcean",
+    "title": "DigitalOcean",
     "logo": "info.svg",
     "docs": null
   },
@@ -351,7 +351,7 @@
   {
     "id": "docusign",
     "name": "Docusign",
-    "title": "Docusign",
+    "title": "DocuSign",
     "logo": "info.svg",
     "docs": null
   },
@@ -372,14 +372,14 @@
   {
     "id": "ebay",
     "name": "Ebay",
-    "title": "Ebay",
+    "title": "eBay",
     "logo": "info.svg",
     "docs": null
   },
   {
     "id": "echosign",
     "name": "Echosign",
-    "title": "Echosign",
+    "title": "Adobe Sign",
     "logo": "info.svg",
     "docs": null
   },
@@ -434,8 +434,8 @@
   },
   {
     "id": "eyeem",
-    "name": "Eyeem",
-    "title": "Eyeem",
+    "name": "EyeEm",
+    "title": "EyeEm",
     "logo": "info.svg",
     "docs": null
   },
@@ -454,8 +454,8 @@
   },
   {
     "id": "familysearch",
-    "name": "Familysearch",
-    "title": "Familysearch",
+    "name": "FamilySearch",
+    "title": "FamilySearch",
     "logo": "info.svg",
     "docs": null
   },
@@ -510,15 +510,15 @@
   },
   {
     "id": "freeagent",
-    "name": "Freeagent",
-    "title": "Freeagent",
+    "name": "FreeAgent",
+    "title": "FreeAgent",
     "logo": "info.svg",
     "docs": null
   },
   {
     "id": "freelancer",
     "name": "Freelancer",
-    "title": "Freelancer",
+    "title": "",
     "logo": "info.svg",
     "docs": null
   },
@@ -560,14 +560,7 @@
   {
     "id": "getbase",
     "name": "Getbase",
-    "title": "Getbase",
-    "logo": "info.svg",
-    "docs": null
-  },
-  {
-    "id": "getpocket",
-    "name": "Getpocket",
-    "title": "Getpocket",
+    "title": "Zendesk Sell",
     "logo": "info.svg",
     "docs": null
   },
@@ -581,14 +574,7 @@
   {
     "id": "gitbook",
     "name": "Gitbook",
-    "title": "Gitbook",
-    "logo": "info.svg",
-    "docs": null
-  },
-  {
-    "id": "github",
-    "name": "Github",
-    "title": "Github",
+    "title": "GitBook",
     "logo": "info.svg",
     "docs": null
   },
@@ -643,8 +629,8 @@
   },
   {
     "id": "hellosign",
-    "name": "Hellosign",
-    "title": "Hellosign",
+    "name": "HelloSign",
+    "title": "HelloSign",
     "logo": "info.svg",
     "docs": null
   },
@@ -658,7 +644,7 @@
   {
     "id": "homeaway",
     "name": "Homeaway",
-    "title": "Homeaway",
+    "title": "HomeAway",
     "logo": "info.svg",
     "docs": null
   },
@@ -685,8 +671,22 @@
   },
   {
     "id": "ibm",
-    "name": "Ibm",
-    "title": "Ibm",
+    "name": "IBM",
+    "title": "IBM",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "idme",
+    "name": "IDme",
+    "title": "ID.me",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "idonethis",
+    "name": "IDoneThis",
+    "title": "I Done This",
     "logo": "info.svg",
     "docs": null
   },
@@ -694,20 +694,6 @@
     "id": "iconfinder",
     "name": "Iconfinder",
     "title": "Iconfinder",
-    "logo": "info.svg",
-    "docs": null
-  },
-  {
-    "id": "idme",
-    "name": "Idme",
-    "title": "Idme",
-    "logo": "info.svg",
-    "docs": null
-  },
-  {
-    "id": "idonethis",
-    "name": "Idonethis",
-    "title": "Idonethis",
     "logo": "info.svg",
     "docs": null
   },
@@ -782,23 +768,16 @@
     "docs": null
   },
   {
-    "id": "live",
-    "name": "Live",
-    "title": "Live",
-    "logo": "info.svg",
-    "docs": null
-  },
-  {
     "id": "livechat",
-    "name": "Livechat",
-    "title": "Livechat",
+    "name": "LiveChat",
+    "title": "LiveChat",
     "logo": "info.svg",
     "docs": null
   },
   {
     "id": "logingov",
-    "name": "Logingov",
-    "title": "Logingov",
+    "name": "LoginGOV",
+    "title": "Login.gov",
     "logo": "info.svg",
     "docs": null
   },
@@ -806,6 +785,20 @@
     "id": "lyft",
     "name": "Lyft",
     "title": "Lyft",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "myob",
+    "name": "MYOB",
+    "title": "MYOB",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "mailup",
+    "name": "MailUp",
+    "title": "MailUp",
     "logo": "info.svg",
     "docs": null
   },
@@ -823,13 +816,6 @@
     "docs": null
   },
   {
-    "id": "mailup",
-    "name": "Mailup",
-    "title": "Mailup",
-    "logo": "info.svg",
-    "docs": null
-  },
-  {
     "id": "mailxpert",
     "name": "Mailxpert",
     "title": "Mailxpert",
@@ -838,8 +824,8 @@
   },
   {
     "id": "mapmyfitness",
-    "name": "Mapmyfitness",
-    "title": "Mapmyfitness",
+    "name": "MapMyFitness",
+    "title": "MapMyFitness",
     "logo": "info.svg",
     "docs": null
   },
@@ -886,6 +872,13 @@
     "docs": null
   },
   {
+    "id": "live",
+    "name": "MicrosoftLive",
+    "title": "Microsoft Live",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
     "id": "mixcloud",
     "name": "Mixcloud",
     "title": "Mixcloud",
@@ -896,13 +889,6 @@
     "id": "moxtra",
     "name": "Moxtra",
     "title": "Moxtra",
-    "logo": "info.svg",
-    "docs": null
-  },
-  {
-    "id": "myob",
-    "name": "Myob",
-    "title": "Myob",
     "logo": "info.svg",
     "docs": null
   },
@@ -929,8 +915,8 @@
   },
   {
     "id": "nokotime",
-    "name": "Nokotime",
-    "title": "Nokotime",
+    "name": "NokoTime",
+    "title": "NokoTime",
     "logo": "info.svg",
     "docs": null
   },
@@ -963,15 +949,15 @@
   },
   {
     "id": "openstreetmap",
-    "name": "Openstreetmap",
-    "title": "Openstreetmap",
+    "name": "OpenStreetMap",
+    "title": "OpenStreetMap",
     "logo": "info.svg",
     "docs": null
   },
   {
     "id": "openstreetmap2",
-    "name": "Openstreetmap2",
-    "title": "Openstreetmap2",
+    "name": "OpenStreetMap2",
+    "title": "OpenStreetMap",
     "logo": "info.svg",
     "docs": null
   },
@@ -1012,8 +998,8 @@
   },
   {
     "id": "paypal",
-    "name": "Paypal",
-    "title": "Paypal",
+    "name": "PayPal",
+    "title": "PayPal",
     "logo": "info.svg",
     "docs": null
   },
@@ -1046,6 +1032,13 @@
     "docs": null
   },
   {
+    "id": "pocket",
+    "name": "Pocket",
+    "title": "Pocket",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
     "id": "podio",
     "name": "Podio",
     "title": "Podio",
@@ -1061,8 +1054,8 @@
   },
   {
     "id": "producthunt",
-    "name": "Producthunt",
-    "title": "Producthunt",
+    "name": "ProductHunt",
+    "title": "Product Hunt",
     "logo": "info.svg",
     "docs": null
   },
@@ -1076,7 +1069,7 @@
   {
     "id": "projectplace2",
     "name": "Projectplace2",
-    "title": "Projectplace2",
+    "title": "Projectplace",
     "logo": "info.svg",
     "docs": null
   },
@@ -1201,8 +1194,8 @@
   },
   {
     "id": "socialpilot",
-    "name": "Socialpilot",
-    "title": "Socialpilot",
+    "name": "SocialPilot",
+    "title": "SocialPilot",
     "logo": "info.svg",
     "docs": null
   },
@@ -1215,8 +1208,8 @@
   },
   {
     "id": "soundcloud",
-    "name": "Soundcloud",
-    "title": "Soundcloud",
+    "name": "SoundCloud",
+    "title": "SoundCloud",
     "logo": "info.svg",
     "docs": null
   },
@@ -1236,8 +1229,8 @@
   },
   {
     "id": "stackexchange",
-    "name": "Stackexchange",
-    "title": "Stackexchange",
+    "name": "StackExchange",
+    "title": "Stack Exchange",
     "logo": "info.svg",
     "docs": null
   },
@@ -1278,15 +1271,15 @@
   },
   {
     "id": "surveymonkey",
-    "name": "Surveymonkey",
-    "title": "Surveymonkey",
+    "name": "SurveyMonkey",
+    "title": "SurveyMonkey",
     "logo": "info.svg",
     "docs": null
   },
   {
     "id": "surveysparrow",
-    "name": "Surveysparrow",
-    "title": "Surveysparrow",
+    "name": "SurveysParrow",
+    "title": "SurveySparrow",
     "logo": "info.svg",
     "docs": null
   },
@@ -1306,15 +1299,15 @@
   },
   {
     "id": "tiktok",
-    "name": "Tiktok",
-    "title": "Tiktok",
+    "name": "TikTok",
+    "title": "TikTok",
     "logo": "info.svg",
     "docs": null
   },
   {
-    "id": "timelyapp",
-    "name": "Timelyapp",
-    "title": "Timelyapp",
+    "id": "timely",
+    "name": "Timely",
+    "title": "Timely",
     "logo": "info.svg",
     "docs": null
   },
@@ -1348,8 +1341,8 @@
   },
   {
     "id": "tripit",
-    "name": "Tripit",
-    "title": "Tripit",
+    "name": "TripIt",
+    "title": "TripIt",
     "logo": "info.svg",
     "docs": null
   },
@@ -1404,8 +1397,8 @@
   },
   {
     "id": "underarmour",
-    "name": "Underarmour",
-    "title": "Underarmour",
+    "name": "UnderArmour",
+    "title": "Under Armour",
     "logo": "info.svg",
     "docs": null
   },
@@ -1438,8 +1431,8 @@
   },
   {
     "id": "uservoice",
-    "name": "Uservoice",
-    "title": "Uservoice",
+    "name": "UserVoice",
+    "title": "UserVoice",
     "logo": "info.svg",
     "docs": null
   },
@@ -1466,8 +1459,8 @@
   },
   {
     "id": "verticalresponse",
-    "name": "Verticalresponse",
-    "title": "Verticalresponse",
+    "name": "VerticalResponse",
+    "title": "VerticalResponse",
     "logo": "info.svg",
     "docs": null
   },
@@ -1487,8 +1480,8 @@
   },
   {
     "id": "visualstudio",
-    "name": "Visualstudio",
-    "title": "Visualstudio",
+    "name": "VisualStudio",
+    "title": "Visual Studio",
     "logo": "info.svg",
     "docs": null
   },
@@ -1501,8 +1494,8 @@
   },
   {
     "id": "wechat",
-    "name": "Wechat",
-    "title": "Wechat",
+    "name": "WeChat",
+    "title": "WeChat",
     "logo": "info.svg",
     "docs": null
   },
@@ -1620,14 +1613,14 @@
   },
   {
     "id": "23andme",
-    "name": "_23andme",
-    "title": "23andme",
+    "name": "_23andMe",
+    "title": "23andMe",
     "logo": "info.svg",
     "docs": null
   },
   {
     "id": "500px",
-    "name": "_500px",
+    "name": "_500PX",
     "title": "500px",
     "logo": "info.svg",
     "docs": null

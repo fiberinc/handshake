@@ -70,10 +70,8 @@ export const Shopify: HandlerFactory<Args, Credential> = ({ id, ...args }) => {
     id: providerId,
     provider: {
       id: "shopify",
-      metadata: {
-        title: "Shopify",
-        logo: "shopify.svg",
-      },
+      name: "Shopify",
+      website: "https://shopify.com",
     },
     getAuthorizationUrl(callbackHandlerUrl, extras) {
       if (!extras?.shop) {

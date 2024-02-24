@@ -30,10 +30,8 @@ export function makeFromNextAuth<Args extends TypicalOAuthArgs>(
     return makeHandlerFactory({
       ...info,
       id: info.id,
-      metadata: {
-        title: info.name,
-        logo: info.style?.logo,
-      },
+      name: info.name,
+      website: "",
       authorization:
         typeof info.authorization === "string"
           ? {

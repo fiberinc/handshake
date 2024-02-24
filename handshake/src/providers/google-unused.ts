@@ -32,10 +32,8 @@ export const Google: HandlerFactory<Args, Credential> = ({ id, ...args }) => {
     type: "google",
     provider: {
       id: PROVIDER_ID,
-      metadata: {
-        title: "google",
-        logo: "google.svg",
-      },
+      name: "google",
+      website: "https://google.com",
     },
     getAuthorizationUrl(callbackHandlerUrl: string) {
       const nonce = crypto.randomBytes(16).toString("hex");

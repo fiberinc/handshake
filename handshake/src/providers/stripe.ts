@@ -39,12 +39,9 @@ export const Stripe: HandlerFactory<Args, Credential> = makeHandlerFactory<
   Credential
 >({
   id: "stripe",
-  name: "stripe",
+  name: "Stripe",
   type: "oauth",
-  metadata: {
-    title: "Stripe",
-    logo: "stripe.svg",
-  },
+  website: "https://stripe.com",
   authorization: { url: "https://connect.stripe.com/oauth/authorize" },
   client: {
     token_endpoint_auth_method: "client_secret_post",

@@ -14,13 +14,10 @@ function makeOauthFactory(info: {
 }) {
   return makeHandlerFactory({
     id: info.id,
-    version: info.oauth === 2 ? "2" : "1.1",
-    metadata: {
-      title: info.title,
-      logo: "info.svg",
-    },
     name: info.title,
     type: "oauth",
+    website: info.website,
+    version: info.oauth === 2 ? "2" : "1.1",
     authorization: {
       url: info.authorize_url,
     },

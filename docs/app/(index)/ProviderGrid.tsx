@@ -14,11 +14,11 @@ function ProviderGrid_({ infos }: Props) {
 
   const els = infos.map((info) => (
     <Link key={info.id} href={`/providers#${info.id}`}>
-      <div className="hover:bg-foreground text-contrast flex flex-row items-center gap-3 rounded-md border px-3.5 py-2">
+      <div className="hover:bg-foreground text-contrast flex h-[45px] flex-row items-center gap-3 rounded-md border px-3.5">
         {info.hasLogo !== false && (
           <img
             onError={function () {
-              const fallbackUrl = `/images/logos/${info.id}-light.svg`;
+              const fallbackUrl = `/images/logos/${info.id}.svg`;
               // @ts-ignore
               if (this.src !== fallbackUrl) {
                 // @ts-ignore
@@ -26,7 +26,7 @@ function ProviderGrid_({ infos }: Props) {
               }
             }}
             alt=""
-            src={`/images/logos/${info.id}${isDarkMode ? "-dark" : "-light"}.svg`}
+            src={`/images/logos/${info.id}${isDarkMode ? "-dark" : ""}.svg`}
             width={20}
           />
         )}

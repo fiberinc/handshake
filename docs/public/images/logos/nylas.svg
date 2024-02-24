@@ -1,0 +1,24 @@
+<svg
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns:cc="http://creativecommons.org/ns#"
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:svg="http://www.w3.org/2000/svg"
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+  xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+  width="400"
+  height="344"
+  viewBox="0 0 400 344"
+  version="1.1">
+  <defs
+    id="defs5">
+    <polygon
+      id="path-1"
+      points="47.342083,0.25277778 47.342083,49.305139 0,49.305139 0,0.25277778 " />
+  </defs>
+  <path
+    d="m 0,177.34116 154.38275,96.25265 v 70.93354 L 0,248.27469 Z M 178.13132,0 332.51407,96.25266 v 70.93841 L 178.13132,70.93841 Z m 0,96.05756 154.38275,96.25753 v 70.93354 L 178.13132,166.99597 Z m 114.8457,236.38822 -114.8457,-70.86525 v -70.93842 l 154.38275,96.25266 v 23.49006 c 0,14.31547 -11.60358,25.92393 -25.92394,25.92393 -4.80434,0 -9.52088,-1.34131 -13.61311,-3.86298 z M 38.303037,8.36004 154.38275,79.99593 v 70.93354 L 0,54.67681 V 29.73326 C 0,15.86652 11.247524,4.62387 25.114267,4.62387 c 4.658016,0 9.22336,1.29254 13.18877,3.73617 z M 0,81.2836 154.38275,177.53625 v 70.93354 L 0,152.21713 Z"
+    id="Fill-1"
+    mask="none"
+    style="fill:#00e4bf;fill-rule:evenodd;stroke:none;stroke-width:7.02360535" />
+</svg>

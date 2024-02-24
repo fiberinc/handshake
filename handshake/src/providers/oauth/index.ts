@@ -4,8 +4,9 @@ import { TypicalOAuthArgs, makeHandlerFactory } from "../lib/makeHandler";
 function makeOauthFactory(info: {
   id: string;
   title: string;
-  website: string;
   oauth: 1 | 2;
+  website: string;
+  noLogo?: boolean;
   authorize_url: string;
   request_url?: string;
   access_url: string;
@@ -51,6 +52,7 @@ export const _500PX = makeOauthFactory({
 
 export const ActOn = makeOauthFactory({
   id: "acton",
+  noLogo: true,
   title: "Act-On",
   authorize_url: "https://restapi.actonsoftware.com/authorize",
   access_url: "https://restapi.actonsoftware.com/token",
@@ -60,6 +62,7 @@ export const ActOn = makeOauthFactory({
 
 export const AcuityScheduling = makeOauthFactory({
   id: "acuityscheduling",
+  noLogo: true,
   title: "Acuity Scheduling",
   authorize_url: "https://acuityscheduling.com/oauth2/authorize",
   access_url: "https://acuityscheduling.com/oauth2/token",
@@ -87,6 +90,7 @@ export const Aha = makeOauthFactory({
 
 export const Alchemer = makeOauthFactory({
   id: "alchemer",
+  noLogo: true,
   title: "Alchemer",
   request_url: "https://api.alchemer.com/head/oauth/request_token",
   authorize_url: "https://api.alchemer.com/head/oauth/authenticate",
@@ -146,6 +150,7 @@ export const Asana = makeOauthFactory({
 
 export const Assembla = makeOauthFactory({
   id: "assembla",
+  noLogo: true,
   title: "Assembla",
   authorize_url: "https://api.assembla.com/authorization",
   access_url: "https://api.assembla.com/token",
@@ -175,6 +180,7 @@ export const Assembla = makeOauthFactory({
 
 export const Authentiq = makeOauthFactory({
   id: "authentiq",
+  noLogo: true,
   title: "Authentiq",
   authorize_url: "https://connect.authentiq.io/sign-in",
   access_url: "https://connect.authentiq.io/token",
@@ -185,6 +191,7 @@ export const Authentiq = makeOauthFactory({
 
 export const Authing = makeOauthFactory({
   id: "authing",
+  noLogo: true,
   title: "Authing",
   authorize_url: "https://[subdomain].authing.cn/oidc/auth",
   access_url: "https://[subdomain].authing.cn/oidc/token",
@@ -206,6 +213,7 @@ export const Autodesk = makeOauthFactory({
 
 export const AWeber = makeOauthFactory({
   id: "aweber",
+  noLogo: true,
   title: "AWeber",
   authorize_url: "https://auth.aweber.com/oauth2/authorize",
   access_url: "https://auth.aweber.com/oauth2/token",
@@ -215,6 +223,7 @@ export const AWeber = makeOauthFactory({
 });
 export const Axosoft = makeOauthFactory({
   id: "axosoft",
+  noLogo: true,
   title: "Axosoft",
   authorize_url: "https://[subdomain].axosoft.com/auth",
   access_url: "https://[subdomain].axosoft.com/api/oauth2/token",
@@ -319,6 +328,7 @@ export const CAS = makeOauthFactory({
 
 export const Cheddar = makeOauthFactory({
   id: "cheddar",
+  noLogo: true,
   title: "Cheddar",
   authorize_url: "https://api.cheddarapp.com/oauth/authorize",
   access_url: "https://api.cheddarapp.com/oauth/token",
@@ -328,6 +338,7 @@ export const Cheddar = makeOauthFactory({
 
 export const Clio = makeOauthFactory({
   id: "clio",
+  noLogo: true,
   title: "Clio",
   authorize_url: "https://app.clio.com/oauth/authorize",
   access_url: "https://app.clio.com/oauth/token",
@@ -357,6 +368,7 @@ export const Clio = makeOauthFactory({
 
 export const Concur = makeOauthFactory({
   id: "concur",
+  noLogo: true,
   title: "Concur",
   authorize_url:
     "https://[subdomain].api.concursolutions.com/oauth2/v0/authorize",
@@ -367,6 +379,7 @@ export const Concur = makeOauthFactory({
 
 export const ConstantContact = makeOauthFactory({
   id: "constantcontact",
+  noLogo: true,
   title: "Constant Contact",
   authorize_url:
     "https://oauth2.constantcontact.com/oauth2/oauth/siteowner/authorize",
@@ -387,6 +400,7 @@ export const Coursera = makeOauthFactory({
 
 export const CrossID = makeOauthFactory({
   id: "crossid",
+  noLogo: true,
   title: "CrossID",
   authorize_url: "https://[subdomain].crossid.io/oauth2/auth",
   access_url: "https://[subdomain].crossid.io/oauth2/token",
@@ -415,6 +429,7 @@ export const Deezer = makeOauthFactory({
 
 export const Delivery = makeOauthFactory({
   id: "delivery",
+  noLogo: true,
   title: "Delivery",
   authorize_url: "https://api.delivery.com/third_party/authorize",
   access_url: "https://api.delivery.com/third_party/access_token",
@@ -424,6 +439,7 @@ export const Delivery = makeOauthFactory({
 
 export const Deputy = makeOauthFactory({
   id: "deputy",
+  noLogo: true,
   title: "Deputy",
   authorize_url: "https://once.deputy.com/my/oauth/login",
   access_url: "https://once.deputy.com/my/oauth/access_token",
@@ -520,6 +536,7 @@ export const Ebay = makeOauthFactory({
 
 export const Echosign = makeOauthFactory({
   id: "echosign",
+  noLogo: true,
   title: "Adobe Sign",
   authorize_url: "https://secure.echosign.com/public/oauth",
   access_url: "https://secure.echosign.com/oauth/token",
@@ -530,6 +547,7 @@ export const Echosign = makeOauthFactory({
 
 export const Ecwid = makeOauthFactory({
   id: "ecwid",
+  noLogo: true,
   title: "Ecwid",
   authorize_url: "https://my.ecwid.com/api/oauth/authorize",
   access_url: "https://my.ecwid.com/api/oauth/token",
@@ -540,6 +558,7 @@ export const Ecwid = makeOauthFactory({
 
 export const Edmodo = makeOauthFactory({
   id: "edmodo",
+  noLogo: true,
   title: "Edmodo",
   authorize_url: "https://api.edmodo.com/oauth/authorize",
   access_url: "https://api.edmodo.com/oauth/token",
@@ -609,6 +628,7 @@ export const EyeEm = makeOauthFactory({
 
 export const FamilySearch = makeOauthFactory({
   id: "familysearch",
+  noLogo: true,
   title: "FamilySearch",
   authorize_url:
     "https://ident.familysearch.org/cis-web/oauth2/v3/authorization",
@@ -676,6 +696,7 @@ export const Formstack = makeOauthFactory({
 
 export const FreeAgent = makeOauthFactory({
   id: "freeagent",
+  noLogo: true,
   title: "FreeAgent",
   authorize_url: "https://api.freeagent.com/v2/approve_app",
   access_url: "https://api.freeagent.com/v2/token_endpoint",
@@ -685,7 +706,7 @@ export const FreeAgent = makeOauthFactory({
 
 export const Freelancer = makeOauthFactory({
   id: "freelancer",
-  title: "",
+  title: "Freelancer",
   authorize_url: "https://accounts.freelancer.com/oauth/authorize",
   access_url: "https://accounts.freelancer.com/oauth/token",
   website: "https://www.freelancer.com",
@@ -726,6 +747,7 @@ export const Garmin = makeOauthFactory({
 
 export const Geeklist = makeOauthFactory({
   id: "geeklist",
+  noLogo: true,
   title: "Geeklist",
   request_url: "https://api.geekli.st/v1/oauth/request_token",
   authorize_url: "https://geekli.st/oauth/authorize",
@@ -747,10 +769,11 @@ export const Genius = makeOauthFactory({
 // FIXME
 export const Getbase = makeOauthFactory({
   id: "getbase",
-  title: "Zendesk Sell",
+  noLogo: true,
+  title: "Getbase",
   authorize_url: "https://api.getbase.com/oauth2/authorize",
   access_url: "https://api.getbase.com/oauth2/token",
-  website: "https://www.zendesk.com/sell/",
+  website: "https://www.getbase.com/sell/",
   oauth: 2,
   scope_delimiter: " ",
 });
@@ -852,6 +875,7 @@ export const Harvest = makeOauthFactory({
 
 export const HelloSign = makeOauthFactory({
   id: "hellosign",
+  noLogo: true,
   title: "HelloSign",
   authorize_url: "https://www.hellosign.com/oauth/authorize",
   access_url: "https://www.hellosign.com/oauth/token",
@@ -888,6 +912,7 @@ export const Hootsuite = makeOauthFactory({
 
 export const Huddle = makeOauthFactory({
   id: "huddle",
+  noLogo: true,
   title: "Huddle",
   authorize_url: "https://login.huddle.net/request",
   access_url: "https://login.huddle.net/token",
@@ -915,6 +940,7 @@ export const Iconfinder = makeOauthFactory({
 
 export const IDme = makeOauthFactory({
   id: "idme",
+  noLogo: true,
   title: "ID.me",
   authorize_url: "https://api.id.me/oauth/authorize",
   access_url: "https://api.id.me/oauth/token",
@@ -924,6 +950,7 @@ export const IDme = makeOauthFactory({
 
 export const IDoneThis = makeOauthFactory({
   id: "idonethis",
+  noLogo: true,
   title: "I Done This",
   authorize_url: "https://idonethis.com/api/oauth2/authorize/",
   access_url: "https://idonethis.com/api/oauth2/token/",
@@ -942,6 +969,7 @@ export const Imgur = makeOauthFactory({
 
 export const Infusionsoft = makeOauthFactory({
   id: "infusionsoft",
+  noLogo: true,
   title: "Infusionsoft",
   authorize_url: "https://signin.infusionsoft.com/app/oauth/authorize",
   access_url: "https://api.infusionsoft.com/token",
@@ -971,6 +999,7 @@ export const Intuit = makeOauthFactory({
 
 export const Jamendo = makeOauthFactory({
   id: "jamendo",
+  noLogo: true,
   title: "Jamendo",
   authorize_url: "https://api.jamendo.com/v3.0/oauth/authorize",
   access_url: "https://api.jamendo.com/v3.0/oauth/grant",
@@ -980,6 +1009,7 @@ export const Jamendo = makeOauthFactory({
 
 export const Jumplead = makeOauthFactory({
   id: "jumplead",
+  noLogo: true,
   title: "Jumplead",
   authorize_url: "https://account.mooloop.com/oauth/authorize",
   access_url: "https://account.mooloop.com/oauth/access_token",
@@ -1075,6 +1105,7 @@ export const Lyft = makeOauthFactory({
 
 export const MailUp = makeOauthFactory({
   id: "mailup",
+  noLogo: true,
   title: "MailUp",
   authorize_url:
     "https://services.mailup.com/Authorization/OAuth/Authorization",
@@ -1085,6 +1116,7 @@ export const MailUp = makeOauthFactory({
 
 export const Mailxpert = makeOauthFactory({
   id: "mailxpert",
+  noLogo: true,
   title: "Mailxpert",
   authorize_url: "https://app.mailxpert.ch/oauth/v2/auth",
   access_url: "https://app.mailxpert.ch/oauth/v2/token",
@@ -1094,6 +1126,7 @@ export const Mailxpert = makeOauthFactory({
 
 export const MapMyFitness = makeOauthFactory({
   id: "mapmyfitness",
+  noLogo: true,
   title: "MapMyFitness",
   authorize_url: "https://www.mapmyfitness.com/v7.1/oauth2/uacf/authorize",
   access_url: "https://api.mapmyfitness.com/v7.1/oauth2/access_token",
@@ -1103,6 +1136,7 @@ export const MapMyFitness = makeOauthFactory({
 
 export const Mastodon = makeOauthFactory({
   id: "mastodon",
+  noLogo: true,
   title: "Mastodon",
   authorize_url: "https://[subdomain]/oauth/authorize",
   access_url: "https://[subdomain]/oauth/token",
@@ -1170,6 +1204,7 @@ export const Mixcloud = makeOauthFactory({
 
 export const Moxtra = makeOauthFactory({
   id: "moxtra",
+  noLogo: true,
   title: "Moxtra",
   authorize_url: "https://api.moxtra.com/oauth/authorize",
   access_url: "https://api.moxtra.com/oauth/token",
@@ -1216,6 +1251,7 @@ export const Nest = makeOauthFactory({
 
 export const NokoTime = makeOauthFactory({
   id: "nokotime",
+  noLogo: true,
   title: "NokoTime",
   authorize_url: "https://secure.nokotime.com/oauth/2/authorize",
   access_url: "https://secure.nokotime.com/oauth/2/access_token",
@@ -1273,6 +1309,7 @@ export const OpenStreetMap = makeOauthFactory({
 
 export const OpenStreetMap2 = makeOauthFactory({
   id: "openstreetmap2",
+  noLogo: true,
   title: "OpenStreetMap",
   authorize_url: "https://www.openstreetmap.org/oauth2/authorize",
   access_url: "https://www.openstreetmap.org/oauth2/token",
@@ -1323,6 +1360,7 @@ export const PayPal = makeOauthFactory({
 
 export const Phantauth = makeOauthFactory({
   id: "phantauth",
+  noLogo: true,
   title: "Phantauth",
   authorize_url: "https://phantauth.net/auth/authorize",
   access_url: "https://phantauth.net/auth/token",
@@ -1380,6 +1418,7 @@ export const ProductHunt = makeOauthFactory({
 
 export const Projectplace = makeOauthFactory({
   id: "projectplace",
+  noLogo: true,
   title: "Projectplace",
   request_url: "https://api.projectplace.com/initiate",
   authorize_url: "https://api.projectplace.com/authorize",
@@ -1390,6 +1429,7 @@ export const Projectplace = makeOauthFactory({
 
 export const Projectplace2 = makeOauthFactory({
   id: "projectplace2",
+  noLogo: true,
   title: "Projectplace",
   authorize_url: "https://api.projectplace.com/oauth2/authorize",
   access_url: "https://api.projectplace.com/oauth2/access_token",
@@ -1408,6 +1448,7 @@ export const Pushbullet = makeOauthFactory({
 
 export const Qq = makeOauthFactory({
   id: "qq",
+  noLogo: true,
   title: "Qq",
   authorize_url: "https://graph.qq.com/oauth2.0/authorize",
   access_url: "https://graph.qq.com/oauth2.0/token",
@@ -1428,6 +1469,7 @@ export const Ravelry = makeOauthFactory({
 
 export const Redbooth = makeOauthFactory({
   id: "redbooth",
+  noLogo: true,
   title: "Redbooth",
   authorize_url: "https://redbooth.com/oauth2/authorize",
   access_url: "https://redbooth.com/oauth2/token",
@@ -1465,6 +1507,7 @@ export const Runkeeper = makeOauthFactory({
 
 export const Sellsy = makeOauthFactory({
   id: "sellsy",
+  noLogo: true,
   title: "Sellsy",
   request_url: "https://apifeed.sellsy.com/0/request_token",
   authorize_url: "https://apifeed.sellsy.com/0/login.php",
@@ -1475,6 +1518,7 @@ export const Sellsy = makeOauthFactory({
 
 export const Shoeboxed = makeOauthFactory({
   id: "shoeboxed",
+  noLogo: true,
   title: "Shoeboxed",
   authorize_url: "https://id.shoeboxed.com/oauth/authorize",
   access_url: "https://id.shoeboxed.com/oauth/token",
@@ -1521,6 +1565,7 @@ export const Slice = makeOauthFactory({
 
 export const Smartsheet = makeOauthFactory({
   id: "smartsheet",
+  noLogo: true,
   title: "Smartsheet",
   authorize_url: "https://app.smartsheet.com/b/authorize",
   access_url: "https://api.smartsheet.com/2.0/token",
@@ -1561,6 +1606,7 @@ export const Snowflake = makeOauthFactory({
 
 export const SocialPilot = makeOauthFactory({
   id: "socialpilot",
+  noLogo: true,
   title: "SocialPilot",
   authorize_url: "https://panel.socialpilot.co/oauth",
   access_url: "https://panel.socialpilot.co/oauth/accesstoken",
@@ -1570,6 +1616,7 @@ export const SocialPilot = makeOauthFactory({
 
 export const Socrata = makeOauthFactory({
   id: "socrata",
+  noLogo: true,
   title: "Socrata",
   authorize_url: "https://[subdomain]/oauth/authorize",
   access_url: "https://[subdomain]/oauth/access_token",
@@ -1617,6 +1664,7 @@ export const StackExchange = makeOauthFactory({
 
 export const Stocktwits = makeOauthFactory({
   id: "stocktwits",
+  noLogo: true,
   title: "Stocktwits",
   authorize_url: "https://api.stocktwits.com/api/2/oauth/authorize",
   access_url: "https://api.stocktwits.com/api/2/oauth/token",
@@ -1626,6 +1674,7 @@ export const Stocktwits = makeOauthFactory({
 
 export const Stormz = makeOauthFactory({
   id: "stormz",
+  noLogo: true,
   title: "Stormz",
   authorize_url: "https://stormz.me/oauth/authorize",
   access_url: "https://stormz.me/oauth/token",
@@ -1673,6 +1722,7 @@ export const SurveyMonkey = makeOauthFactory({
 
 export const SurveysParrow = makeOauthFactory({
   id: "surveysparrow",
+  noLogo: true,
   title: "SurveySparrow",
   authorize_url: "https://app.surveysparrow.com/o/oauth/auth",
   access_url: "https://app.surveysparrow.com/o/oauth/token",
@@ -1691,6 +1741,7 @@ export const Thingiverse = makeOauthFactory({
 
 export const Ticketbud = makeOauthFactory({
   id: "ticketbud",
+  noLogo: true,
   title: "Ticketbud",
   authorize_url: "https://api.ticketbud.com/oauth/authorize",
   access_url: "https://api.ticketbud.com/oauth/token",
@@ -1709,6 +1760,7 @@ export const TikTok = makeOauthFactory({
 
 export const Timely = makeOauthFactory({
   id: "timely",
+  noLogo: true,
   title: "Timely",
   authorize_url: "https://api.timelyapp.com/1.1/oauth/authorize",
   access_url: "https://api.timelyapp.com/1.1/oauth/token",
@@ -1736,6 +1788,7 @@ export const Timely = makeOauthFactory({
 
 export const Traxo = makeOauthFactory({
   id: "traxo",
+  noLogo: true,
   title: "Traxo",
   authorize_url: "https://www.traxo.com/oauth/authenticate",
   access_url: "https://www.traxo.com/oauth/token",
@@ -1755,6 +1808,7 @@ export const Trello = makeOauthFactory({
 
 export const TripIt = makeOauthFactory({
   id: "tripit",
+  noLogo: true,
   title: "TripIt",
   request_url: "https://api.tripit.com/oauth/request_token",
   authorize_url: "https://www.tripit.com/oauth/authorize",
@@ -1891,6 +1945,7 @@ export const UserVoice = makeOauthFactory({
 
 export const Vend = makeOauthFactory({
   id: "vend",
+  noLogo: true,
   title: "Vend",
   authorize_url: "https://secure.vendhq.com/connect",
   access_url: "https://[subdomain].vendhq.com/api/1.0/token",
@@ -1919,6 +1974,7 @@ export const Vercel = makeOauthFactory({
 
 export const VerticalResponse = makeOauthFactory({
   id: "verticalresponse",
+  noLogo: true,
   title: "VerticalResponse",
   authorize_url: "https://vrapi.verticalresponse.com/api/v1/oauth/authorize",
   access_url: "https://vrapi.verticalresponse.com/api/v1/oauth/access_token",
@@ -1975,6 +2031,7 @@ export const WeChat = makeOauthFactory({
 
 export const Weekdone = makeOauthFactory({
   id: "weekdone",
+  noLogo: true,
   title: "Weekdone",
   authorize_url: "https://weekdone.com/oauth_authorize",
   access_url: "https://weekdone.com/oauth_token",
@@ -1993,6 +2050,7 @@ export const Weibo = makeOauthFactory({
 
 export const Withings = makeOauthFactory({
   id: "withings",
+  noLogo: true,
   title: "Withings",
   authorize_url: "https://account.withings.com/oauth2_user/authorize2",
   access_url: "https://wbsapi.withings.net/v2/oauth2",

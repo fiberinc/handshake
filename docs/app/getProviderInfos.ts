@@ -1,7 +1,6 @@
 import { serialize } from "next-mdx-remote/serialize";
 import rehypePrettyCode from "rehype-pretty-code";
 import providers from "../providers.json";
-import { BASE_URL } from "./routes";
 
 export interface ProviderInfo {
   id: string;
@@ -44,13 +43,7 @@ Adapted from [next-auth](https://github.com/nextauthjs/next-auth).`;
       return {
         id: provider.id,
         title: provider.title,
-        darkLogoUrl: provider.logo
-          ? `${BASE_URL}/images/logos/${provider.logo}`
-          : null,
-        // logoUrl: provider.logo
-        //   ? // ? `${BASE_URL}/images/logos/${provider.logo.replace(".svg", "-dark.svg")}`
-        //     `${BASE_URL}/images/logos/${provider.logo}`
-        //   : null,
+        hasLogo: PROVIDERS_WITH_LOGOS.includes(provider.id),
         serialized: await getSerializedMarkdown(providerDocs),
       };
     }),
@@ -73,3 +66,8 @@ function getSerializedMarkdown(text: string) {
     },
   });
 }
+
+export const PROVIDERS_WITH_LOGOS =
+  "23andme 42-school 500px adobe aha amazon-seller amazon angellist apple arcgis asana asgardeo atlassian auth0 authentik autodesk azure-ad-b2c azure-ad azure baidu basecamp battlenet beatport beyondidentity bitbucket bitly box buffer campaignmonitor cas cognito coinbase coursera copy coursera dailymotion deezer descope deviantart digitalocean discogs discord discus disqus docusign dribbble dropbox duende-identity-server6 ebay egnyte etsy eventbrite copy eventbrite eveonline evernote eyeem facebook faceit feedly figma fitbit flickr formstack foursquare freelancer freshbooks fusionauth garmin genius gitbook github gitlab gitter goodreads google groove gumroad copy gumroad harvest heroku homeaway hootsuite hubspot ibm iconfinder imgur instagram intuit kakao keycloak line linkedin live livechat logingov lyft mailchimp mattermost medium meetup mendeley mention microsoft mixcloud myob naver nest netlify notion nylas okta openstreetmap optimizely osso osu passage patreon paypal pinterest pipedrive plurk pocket podio procore producthunt pushbullet ravelry reddit runkeeper salesforce shopify skyrock slack slice smugmug snapchat snowflake soundcloud spotify square stackexchange storyblok strava stripe surveymonkey thingiverse tiktok todoist trakt trello trustpilot tumblr twitch twitter typeform uber unbounce underarmour unsplash untappd upwork copy upwork uservoice venmo vercel viadeo vimeo visualstudio vk wechat copy wechat weibo wikimedia wordpress workos wrike xero xing yahoo yammer yandex zendesk copy zendesk zitadel zoho zoom".split(
+    " ",
+  );

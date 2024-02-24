@@ -13,7 +13,7 @@ export function WistiaPlayer() {
     }
 
     const script1 = document.createElement("script");
-    script1.src = `https://fast.wistia.com/embed/medias/3lpprlxsq1.jsonp`;
+    script1.src = `https://fast.wistia.com/embed/medias/n1fsgrs00i.jsonp`;
     script1.async = true;
     const script2 = document.createElement("script");
     script2.src = "https://fast.wistia.com/assets/external/E-v1.js";
@@ -22,7 +22,7 @@ export function WistiaPlayer() {
     const div = document.createElement("div");
     div.innerHTML = `
     <div
-    class="wistia_embed wistia_async_3lpprlxsq1 seo=true videoFoam=false"
+    class="wistia_embed wistia_async_n1fsgrs00i seo=true videoFoam=false"
     style="position:relative;width:900px;max-width:100%;height:${Math.floor((Math.min(width, 900) * 455) / 700)}px"
   >
     <div
@@ -30,7 +30,7 @@ export function WistiaPlayer() {
       style="height:100%;left:0;opacity:0;overflow:hidden;position:absolute;top:0;transition:opacity 200ms;width:100%;"
     >
       <img
-        src="https://fast.wistia.com/embed/medias/3lpprlxsq1/swatch"
+        src="https://fast.wistia.com/embed/medias/n1fsgrs00i/swatch"
         style="filter:blur(5px);height:100%;object-fit:contain;width:100%;"
         alt=""
         aria-hidden="true"

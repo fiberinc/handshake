@@ -8,6 +8,7 @@ import { getProviderInfos } from "../getProviderInfos";
 import { REPO_URL } from "../routes";
 import { GitCloneCopyButton } from "./GitCloneCopyButton";
 import { ProviderGrid } from "./ProviderGrid";
+import { WistiaPlayer } from "./WistiaPlayer";
 
 export const metadata: Metadata = {
   title: "Handshake – OAuth made easy",
@@ -71,6 +72,13 @@ export default async function Page() {
       <div className="flex w-full flex-col gap-16">
         <section className="flex flex-col gap-5">
           <div>
+            <h2 className="text-subheader text-contrast mb-5">Demo</h2>
+            <p>See Handshake in action handling a Github OAuth flow:</p>
+          </div>
+          <WistiaPlayer />
+        </section>
+        <section className="flex flex-col gap-5">
+          <div>
             <h2 className="text-subheader text-contrast mb-5">
               Getting started
             </h2>
@@ -78,7 +86,7 @@ export default async function Page() {
           </div>
 
           <div className="bg-foreground text-contrast flex flex-col gap-4 rounded-md p-5">
-            <code className="flex h-[30px] flex-row items-center justify-between">
+            <code className="flex h-[30px] flex-row items-center justify-between overflow-hidden">
               <pre className="antialiased">
                 <span className="text-default/60 mr-3">{`$`}</span> git clone
                 https://github.com/fiberinc/handshake.git

@@ -1,5 +1,47 @@
 [
   {
+    "id": "acton",
+    "name": "Acton",
+    "title": "Acton",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "acuityscheduling",
+    "name": "AcuityScheduling",
+    "title": "Acuity Scheduling",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "adobe",
+    "name": "Adobe",
+    "title": "Adobe",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "aha",
+    "name": "Aha",
+    "title": "Aha",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "alchemer",
+    "name": "Alchemer",
+    "title": "Alchemer",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "amazon",
+    "name": "Amazon",
+    "title": "Amazon",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
     "id": "amazon-seller",
     "name": "AmazonSeller",
     "title": "Amazon Seller Central",
@@ -7,10 +49,38 @@
     "docs": "[\"Website authorization workflow\"\ndocumentation](https://developer-docs.amazon.com/sp-api/docs/website-authorization-workflow)\n\n## Usage\n\nProvide the following arguments:\n\n\n```ts title=\"app/options.ts\"\nimport { Amazon } from \"handshake\";\n\nAmazon({\n  appId: string,\n  clientId: string,\n  clientSecret: string,\n  isDraftApp: true | false,\n});\n```\n\n\n## Troubleshooting\n\nNeed to \"set up your “Authorize” buttons so that selling partners are\nredirected to the Seller Central (for sellers) or Vendor Central (for\nvendors) sign-in page for their own region.\"\n\n### No localhost redirect\n\nAmazon does not allow setting localhost as a \n`redirect_uri`\n. You may want to\nuse Ngrok or another service to provide a publicly addressable URL.\n\n[https://github.com/amzn/selling-partner-api-docs/issues/26](https://github.com/amzn/selling-partner-api-docs/issues/26)\n\n### Error Code: MD5101\n\nThis means unauthorized redirect URI. localhost URIs are allowed.\n\n### Developer Central – \"You do not have permissions to view this page\"\n\nFYI. Only the primary user of the Seller Central account is able to create\nand modify apps via the \"Developer Central\" page.\n\n[https://github.com/amzn/selling-partner-api-docs/issues/2191](https://github.com/amzn/selling-partner-api-docs/issues/2191)\n\n### Not setup for OAuth\n\n![amazon-not-setup](/handshake/images/providers/amazon-not-setup-oauth.png)"
   },
   {
+    "id": "angellist",
+    "name": "Angellist",
+    "title": "AngelList",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
     "id": "apple",
     "name": "Apple",
     "title": "Apple",
     "logo": "apple.svg",
+    "docs": null
+  },
+  {
+    "id": "arcgis",
+    "name": "Arcgis",
+    "title": "Arcgis",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "asana",
+    "name": "Asana",
+    "title": "Asana",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "assembla",
+    "name": "Assembla",
+    "title": "Assembla",
+    "logo": "info.svg",
     "docs": null
   },
   {
@@ -35,6 +105,41 @@
     "docs": null
   },
   {
+    "id": "authentiq",
+    "name": "Authentiq",
+    "title": "Authentiq",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "authing",
+    "name": "Authing",
+    "title": "Authing",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "autodesk",
+    "name": "Autodesk",
+    "title": "Autodesk",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "aweber",
+    "name": "Aweber",
+    "title": "Aweber",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "axosoft",
+    "name": "Axosoft",
+    "title": "Axosoft",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
     "id": "azure-ad",
     "name": "AzureAd",
     "title": "Azure Active Directory",
@@ -49,10 +154,45 @@
     "docs": null
   },
   {
+    "id": "baidu",
+    "name": "Baidu",
+    "title": "Baidu",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "basecamp",
+    "name": "Basecamp",
+    "title": "Basecamp",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
     "id": "battlenet",
     "name": "Battlenet",
     "title": "Battle.net",
     "logo": "battlenet.svg",
+    "docs": null
+  },
+  {
+    "id": "beatport",
+    "name": "Beatport",
+    "title": "Beatport",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "bitbucket",
+    "name": "Bitbucket",
+    "title": "Bitbucket",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "bitly",
+    "name": "Bitly",
+    "title": "Bitly",
+    "logo": "info.svg",
     "docs": null
   },
   {
@@ -63,9 +203,44 @@
     "docs": null
   },
   {
+    "id": "buffer",
+    "name": "Buffer",
+    "title": "Buffer",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
     "id": "bungie",
     "name": "Bungie",
     "title": "Bungie",
+    "docs": null
+  },
+  {
+    "id": "campaignmonitor",
+    "name": "Campaignmonitor",
+    "title": "Campaignmonitor",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "cas",
+    "name": "Cas",
+    "title": "Cas",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "cheddar",
+    "name": "Cheddar",
+    "title": "Cheddar",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "clio",
+    "name": "Clio",
+    "title": "Clio",
+    "logo": "info.svg",
     "docs": null
   },
   {
@@ -83,10 +258,108 @@
     "docs": null
   },
   {
+    "id": "concur",
+    "name": "Concur",
+    "title": "Concur",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "constantcontact",
+    "name": "Constantcontact",
+    "title": "Constantcontact",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "coursera",
+    "name": "Coursera",
+    "title": "Coursera",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "crossid",
+    "name": "Crossid",
+    "title": "Crossid",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "dailymotion",
+    "name": "Dailymotion",
+    "title": "Dailymotion",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "deezer",
+    "name": "Deezer",
+    "title": "Deezer",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "delivery",
+    "name": "Delivery",
+    "title": "Delivery",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "deputy",
+    "name": "Deputy",
+    "title": "Deputy",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "deviantart",
+    "name": "Deviantart",
+    "title": "Deviantart",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "digitalocean",
+    "name": "Digitalocean",
+    "title": "Digitalocean",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "discogs",
+    "name": "Discogs",
+    "title": "Discogs",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
     "id": "discord",
     "name": "Discord",
     "title": "Discord",
     "logo": "discord.svg",
+    "docs": null
+  },
+  {
+    "id": "disqus",
+    "name": "Disqus",
+    "title": "Disqus",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "docusign",
+    "name": "Docusign",
+    "title": "Docusign",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "dribbble",
+    "name": "Dribbble",
+    "title": "Dribbble",
+    "logo": "info.svg",
     "docs": null
   },
   {
@@ -97,10 +370,73 @@
     "docs": null
   },
   {
+    "id": "ebay",
+    "name": "Ebay",
+    "title": "Ebay",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "echosign",
+    "name": "Echosign",
+    "title": "Echosign",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "ecwid",
+    "name": "Ecwid",
+    "title": "Ecwid",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "edmodo",
+    "name": "Edmodo",
+    "title": "Edmodo",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "egnyte",
+    "name": "Egnyte",
+    "title": "Egnyte",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "etsy",
+    "name": "Etsy",
+    "title": "Etsy",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "eventbrite",
+    "name": "Eventbrite",
+    "title": "Eventbrite",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
     "id": "eveonline",
     "name": "Eveonline",
     "title": "EVE Online",
     "logo": "eveonline.svg",
+    "docs": null
+  },
+  {
+    "id": "evernote",
+    "name": "Evernote",
+    "title": "Evernote",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "eyeem",
+    "name": "Eyeem",
+    "title": "Eyeem",
+    "logo": "info.svg",
     "docs": null
   },
   {
@@ -114,6 +450,48 @@
     "id": "faceit",
     "name": "Faceit",
     "title": "FACEIT",
+    "docs": null
+  },
+  {
+    "id": "familysearch",
+    "name": "Familysearch",
+    "title": "Familysearch",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "feedly",
+    "name": "Feedly",
+    "title": "Feedly",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "figma",
+    "name": "Figma",
+    "title": "Figma",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "fitbit",
+    "name": "Fitbit",
+    "title": "Fitbit",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "flickr",
+    "name": "Flickr",
+    "title": "Flickr",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "formstack",
+    "name": "Formstack",
+    "title": "Formstack",
+    "logo": "info.svg",
     "docs": null
   },
   {
@@ -131,6 +509,20 @@
     "docs": null
   },
   {
+    "id": "freeagent",
+    "name": "Freeagent",
+    "title": "Freeagent",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "freelancer",
+    "name": "Freelancer",
+    "title": "Freelancer",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
     "id": "freshbooks",
     "name": "Freshbooks",
     "title": "Freshbooks",
@@ -145,10 +537,59 @@
     "docs": null
   },
   {
+    "id": "garmin",
+    "name": "Garmin",
+    "title": "Garmin",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "geeklist",
+    "name": "Geeklist",
+    "title": "Geeklist",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "genius",
+    "name": "Genius",
+    "title": "Genius",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "getbase",
+    "name": "Getbase",
+    "title": "Getbase",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "getpocket",
+    "name": "Getpocket",
+    "title": "Getpocket",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
     "id": "github",
     "name": "GitHub",
     "title": "GitHub",
     "logo": "github.svg",
+    "docs": null
+  },
+  {
+    "id": "gitbook",
+    "name": "Gitbook",
+    "title": "Gitbook",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "github",
+    "name": "Github",
+    "title": "Github",
+    "logo": "info.svg",
     "docs": null
   },
   {
@@ -159,10 +600,73 @@
     "docs": null
   },
   {
+    "id": "gitter",
+    "name": "Gitter",
+    "title": "Gitter",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "goodreads",
+    "name": "Goodreads",
+    "title": "Goodreads",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
     "id": "google",
     "name": "Google",
     "title": "Google",
     "logo": "google.svg",
+    "docs": null
+  },
+  {
+    "id": "groove",
+    "name": "Groove",
+    "title": "Groove",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "gumroad",
+    "name": "Gumroad",
+    "title": "Gumroad",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "harvest",
+    "name": "Harvest",
+    "title": "Harvest",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "hellosign",
+    "name": "Hellosign",
+    "title": "Hellosign",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "heroku",
+    "name": "Heroku",
+    "title": "Heroku",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "homeaway",
+    "name": "Homeaway",
+    "title": "Homeaway",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "hootsuite",
+    "name": "Hootsuite",
+    "title": "Hootsuite",
+    "logo": "info.svg",
     "docs": null
   },
   {
@@ -173,10 +677,80 @@
     "docs": "## Usage\n\nProvide the following arguments:\n\n\n```ts\n// Inside app/options.ts\n\nimport { Hubspot } from \"handshake\";\n\nHubspot({\n  clientId: string,\n  clientSecret: string,\n  scopes: [\n    \"e-commerce\",\n    \"crm.schemas.contacts.read\",\n    \"crm.objects.contacts.read\",\n  ],\n});\n```\n\n\n### Configure the Callback URL\n\nMake sure your Handshake URL is allowed within your Hubspot app's Auth tab:\n\n![](/handshake/images/providers/hubspot-redirect.png)\n\nFollow the format: \n`https://HANDSHAKE_URL/api/auth/hubspot/callback`"
   },
   {
+    "id": "huddle",
+    "name": "Huddle",
+    "title": "Huddle",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "ibm",
+    "name": "Ibm",
+    "title": "Ibm",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "iconfinder",
+    "name": "Iconfinder",
+    "title": "Iconfinder",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "idme",
+    "name": "Idme",
+    "title": "Idme",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "idonethis",
+    "name": "Idonethis",
+    "title": "Idonethis",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "imgur",
+    "name": "Imgur",
+    "title": "Imgur",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "infusionsoft",
+    "name": "Infusionsoft",
+    "title": "Infusionsoft",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
     "id": "instagram",
     "name": "Instagram",
     "title": "Instagram",
     "logo": "instagram.svg",
+    "docs": null
+  },
+  {
+    "id": "intuit",
+    "name": "Intuit",
+    "title": "Intuit",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "jamendo",
+    "name": "Jamendo",
+    "title": "Jamendo",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "jumplead",
+    "name": "Jumplead",
+    "title": "Jumplead",
+    "logo": "info.svg",
     "docs": null
   },
   {
@@ -202,9 +776,37 @@
   },
   {
     "id": "linkedin",
-    "name": "Linkedin",
+    "name": "LinkedIn",
     "title": "LinkedIn",
     "logo": "linkedin.svg",
+    "docs": null
+  },
+  {
+    "id": "live",
+    "name": "Live",
+    "title": "Live",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "livechat",
+    "name": "Livechat",
+    "title": "Livechat",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "logingov",
+    "name": "Logingov",
+    "title": "Logingov",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "lyft",
+    "name": "Lyft",
+    "title": "Lyft",
+    "logo": "info.svg",
     "docs": null
   },
   {
@@ -221,10 +823,87 @@
     "docs": null
   },
   {
+    "id": "mailup",
+    "name": "Mailup",
+    "title": "Mailup",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "mailxpert",
+    "name": "Mailxpert",
+    "title": "Mailxpert",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "mapmyfitness",
+    "name": "Mapmyfitness",
+    "title": "Mapmyfitness",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "mastodon",
+    "name": "Mastodon",
+    "title": "Mastodon",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
     "id": "medium",
     "name": "Medium",
     "title": "Medium",
     "logo": "medium.svg",
+    "docs": null
+  },
+  {
+    "id": "meetup",
+    "name": "Meetup",
+    "title": "Meetup",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "mendeley",
+    "name": "Mendeley",
+    "title": "Mendeley",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "mention",
+    "name": "Mention",
+    "title": "Mention",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "microsoft",
+    "name": "Microsoft",
+    "title": "Microsoft",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "mixcloud",
+    "name": "Mixcloud",
+    "title": "Mixcloud",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "moxtra",
+    "name": "Moxtra",
+    "title": "Moxtra",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "myob",
+    "name": "Myob",
+    "title": "Myob",
+    "logo": "info.svg",
     "docs": null
   },
   {
@@ -235,10 +914,38 @@
     "docs": null
   },
   {
+    "id": "nest",
+    "name": "Nest",
+    "title": "Nest",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
     "id": "netlify",
     "name": "Netlify",
     "title": "Netlify",
     "logo": "netlify.svg",
+    "docs": null
+  },
+  {
+    "id": "nokotime",
+    "name": "Nokotime",
+    "title": "Nokotime",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "notion",
+    "name": "Notion",
+    "title": "Notion",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "nylas",
+    "name": "Nylas",
+    "title": "Nylas",
+    "logo": "info.svg",
     "docs": null
   },
   {
@@ -252,6 +959,27 @@
     "id": "onelogin",
     "name": "Onelogin",
     "title": "OneLogin",
+    "docs": null
+  },
+  {
+    "id": "openstreetmap",
+    "name": "Openstreetmap",
+    "title": "Openstreetmap",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "openstreetmap2",
+    "name": "Openstreetmap2",
+    "title": "Openstreetmap2",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "optimizely",
+    "name": "Optimizely",
+    "title": "Optimizely",
+    "logo": "info.svg",
     "docs": null
   },
   {
@@ -283,6 +1011,20 @@
     "docs": null
   },
   {
+    "id": "paypal",
+    "name": "Paypal",
+    "title": "Paypal",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "phantauth",
+    "name": "Phantauth",
+    "title": "Phantauth",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
     "id": "pinterest",
     "name": "Pinterest",
     "title": "Pinterest",
@@ -297,10 +1039,87 @@
     "docs": null
   },
   {
+    "id": "plurk",
+    "name": "Plurk",
+    "title": "Plurk",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "podio",
+    "name": "Podio",
+    "title": "Podio",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "procore",
+    "name": "Procore",
+    "title": "Procore",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "producthunt",
+    "name": "Producthunt",
+    "title": "Producthunt",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "projectplace",
+    "name": "Projectplace",
+    "title": "Projectplace",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "projectplace2",
+    "name": "Projectplace2",
+    "title": "Projectplace2",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "pushbullet",
+    "name": "Pushbullet",
+    "title": "Pushbullet",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "qq",
+    "name": "Qq",
+    "title": "Qq",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "ravelry",
+    "name": "Ravelry",
+    "title": "Ravelry",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "redbooth",
+    "name": "Redbooth",
+    "title": "Redbooth",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
     "id": "reddit",
     "name": "Reddit",
     "title": "Reddit",
     "logo": "reddit.svg",
+    "docs": null
+  },
+  {
+    "id": "runkeeper",
+    "name": "Runkeeper",
+    "title": "Runkeeper",
+    "logo": "info.svg",
     "docs": null
   },
   {
@@ -311,11 +1130,32 @@
     "docs": null
   },
   {
+    "id": "sellsy",
+    "name": "Sellsy",
+    "title": "Sellsy",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "shoeboxed",
+    "name": "Shoeboxed",
+    "title": "Shoeboxed",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
     "id": "shopify",
     "name": "Shopify",
     "title": "Shopify",
     "logo": "shopify.svg",
     "docs": "```ts title=\"app/options.ts\"\nimport { Shopify } from \"handshake\";\n\nShopify({\n  clientId: \"\",\n  clientSecret: \"\",\n  scopes: [\"read_orders\", \"read_products\"],\n});\n```\n\n\n### Configure the Callback URL\n\nMake sure your Handshake URL is allowed within your Shopify app's Configuration tab:\n\n![](/handshake/images/providers/shopify-redirect.png)\n\nFollow the format: \n`https://HANDSHAKE_URL/api/auth/shopify/callback`"
+  },
+  {
+    "id": "skyrock",
+    "name": "Skyrock",
+    "title": "Skyrock",
+    "logo": "info.svg",
+    "docs": null
   },
   {
     "id": "slack",
@@ -325,10 +1165,101 @@
     "docs": null
   },
   {
+    "id": "slice",
+    "name": "Slice",
+    "title": "Slice",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "smartsheet",
+    "name": "Smartsheet",
+    "title": "Smartsheet",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "smugmug",
+    "name": "Smugmug",
+    "title": "Smugmug",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "snapchat",
+    "name": "Snapchat",
+    "title": "Snapchat",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "snowflake",
+    "name": "Snowflake",
+    "title": "Snowflake",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "socialpilot",
+    "name": "Socialpilot",
+    "title": "Socialpilot",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "socrata",
+    "name": "Socrata",
+    "title": "Socrata",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "soundcloud",
+    "name": "Soundcloud",
+    "title": "Soundcloud",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
     "id": "spotify",
     "name": "Spotify",
     "title": "Spotify",
     "logo": "spotify.svg",
+    "docs": null
+  },
+  {
+    "id": "square",
+    "name": "Square",
+    "title": "Square",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "stackexchange",
+    "name": "Stackexchange",
+    "title": "Stackexchange",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "stocktwits",
+    "name": "Stocktwits",
+    "title": "Stocktwits",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "stormz",
+    "name": "Stormz",
+    "title": "Stormz",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "storyblok",
+    "name": "Storyblok",
+    "title": "Storyblok",
+    "logo": "info.svg",
     "docs": null
   },
   {
@@ -346,6 +1277,48 @@
     "docs": "## Usage\n\nProvide the following arguments:\n\n\n```ts title=\"app/options.ts\"\n\nimport { Stripe } from \"handshake\";\n\nStripe({\n  clientId: \"ca_\",\n  clientSecret: \"sk_\",\n  scopes: [],\n});\n```\n\n\n### Configure the Callback URL\n\nYou can set up a localhost callback by toggling the \"View test data\" switch.\n\n![](/handshake/images/providers/stripe-redirect.png)"
   },
   {
+    "id": "surveymonkey",
+    "name": "Surveymonkey",
+    "title": "Surveymonkey",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "surveysparrow",
+    "name": "Surveysparrow",
+    "title": "Surveysparrow",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "thingiverse",
+    "name": "Thingiverse",
+    "title": "Thingiverse",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "ticketbud",
+    "name": "Ticketbud",
+    "title": "Ticketbud",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "tiktok",
+    "name": "Tiktok",
+    "title": "Tiktok",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "timelyapp",
+    "name": "Timelyapp",
+    "title": "Timelyapp",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
     "id": "todoist",
     "name": "Todoist",
     "title": "Todoist",
@@ -360,6 +1333,41 @@
     "docs": null
   },
   {
+    "id": "traxo",
+    "name": "Traxo",
+    "title": "Traxo",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "trello",
+    "name": "Trello",
+    "title": "Trello",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "tripit",
+    "name": "Tripit",
+    "title": "Tripit",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "trustpilot",
+    "name": "Trustpilot",
+    "title": "Trustpilot",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "tumblr",
+    "name": "Tumblr",
+    "title": "Tumblr",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
     "id": "twitch",
     "name": "Twitch",
     "title": "Twitch",
@@ -370,13 +1378,118 @@
     "id": "twitter",
     "name": "Twitter",
     "title": "Twitter",
-    "logo": "twitter.svg",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "typeform",
+    "name": "Typeform",
+    "title": "Typeform",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "uber",
+    "name": "Uber",
+    "title": "Uber",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "unbounce",
+    "name": "Unbounce",
+    "title": "Unbounce",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "underarmour",
+    "name": "Underarmour",
+    "title": "Underarmour",
+    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "united-effects",
     "name": "UnitedEffects",
     "title": "United Effects",
+    "docs": null
+  },
+  {
+    "id": "unsplash",
+    "name": "Unsplash",
+    "title": "Unsplash",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "untappd",
+    "name": "Untappd",
+    "title": "Untappd",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "upwork",
+    "name": "Upwork",
+    "title": "Upwork",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "uservoice",
+    "name": "Uservoice",
+    "title": "Uservoice",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "vend",
+    "name": "Vend",
+    "title": "Vend",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "venmo",
+    "name": "Venmo",
+    "title": "Venmo",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "vercel",
+    "name": "Vercel",
+    "title": "Vercel",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "verticalresponse",
+    "name": "Verticalresponse",
+    "title": "Verticalresponse",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "viadeo",
+    "name": "Viadeo",
+    "title": "Viadeo",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "vimeo",
+    "name": "Vimeo",
+    "title": "Vimeo",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "visualstudio",
+    "name": "Visualstudio",
+    "title": "Visualstudio",
+    "logo": "info.svg",
     "docs": null
   },
   {
@@ -387,10 +1500,38 @@
     "docs": null
   },
   {
+    "id": "wechat",
+    "name": "Wechat",
+    "title": "Wechat",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "weekdone",
+    "name": "Weekdone",
+    "title": "Weekdone",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "weibo",
+    "name": "Weibo",
+    "title": "Weibo",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
     "id": "wikimedia",
     "name": "Wikimedia",
     "title": "Wikimedia",
     "logo": "wikimedia.svg",
+    "docs": null
+  },
+  {
+    "id": "withings",
+    "name": "Withings",
+    "title": "Withings",
+    "logo": "info.svg",
     "docs": null
   },
   {
@@ -408,10 +1549,52 @@
     "docs": null
   },
   {
+    "id": "wrike",
+    "name": "Wrike",
+    "title": "Wrike",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "xero",
+    "name": "Xero",
+    "title": "Xero",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "xing",
+    "name": "Xing",
+    "title": "Xing",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "yahoo",
+    "name": "Yahoo",
+    "title": "Yahoo",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "yammer",
+    "name": "Yammer",
+    "title": "Yammer",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
     "id": "yandex",
     "name": "Yandex",
     "title": "Yandex",
     "logo": "yandex.svg",
+    "docs": null
+  },
+  {
+    "id": "zendesk",
+    "name": "Zendesk",
+    "title": "Zendesk",
+    "logo": "info.svg",
     "docs": null
   },
   {
@@ -433,6 +1616,20 @@
     "name": "Zoom",
     "title": "Zoom",
     "logo": "zoom.svg",
+    "docs": null
+  },
+  {
+    "id": "23andme",
+    "name": "_23andme",
+    "title": "23andme",
+    "logo": "info.svg",
+    "docs": null
+  },
+  {
+    "id": "500px",
+    "name": "_500px",
+    "title": "500px",
+    "logo": "info.svg",
     "docs": null
   }
 ]

@@ -54,6 +54,8 @@ function extractClasses(docs: any) {
         throw Error("unexpected");
       }
       if (
+        item.sources[0].fileName.match(/providers\/oauth\/[-_a-zA-Z]+.ts/) ===
+          null &&
         item.sources[0].fileName.match(/providers\/[-_a-zA-Z]+.ts/) === null &&
         item.sources[0].fileName.match(
           /providers\/from-next-auth\/[-_a-zA-Z]+.ts/,

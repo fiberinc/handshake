@@ -10,7 +10,7 @@ import { Handler, HandlerFactory } from "~/core/Handler";
 import { InvalidCheck, OAuthCallbackError } from "~/core/errors";
 import { SessionValue } from "~/core/session";
 import { OAuthProvider } from "./OAuthProvider";
-import { getOpenIdClient } from "./client";
+import { getOpenIdClient } from "./getOpenIdClient";
 
 export type TypicalOAuthArgs = {
   id?: string;

@@ -129,8 +129,8 @@ export const Keycloak = makeFromNextAuth(KeycloakNextAuth);
 const LineNextAuth = require("next-auth/providers/line").default;
 export const Line = makeFromNextAuth(LineNextAuth);
 
-const LinkedinNextAuth = require("next-auth/providers/linkedin").default;
-export const Linkedin = makeFromNextAuth(LinkedinNextAuth);
+const LinkedInNextAuth = require("next-auth/providers/linkedin").default;
+export const LinkedIn = makeFromNextAuth(LinkedInNextAuth);
 
 const MailchimpNextAuth = require("next-auth/providers/mailchimp").default;
 export const Mailchimp = makeFromNextAuth(MailchimpNextAuth);
@@ -195,8 +195,8 @@ export const Trakt = makeFromNextAuth(TraktNextAuth);
 const TwitchNextAuth = require("next-auth/providers/twitch").default;
 export const Twitch = makeFromNextAuth(TwitchNextAuth);
 
-const TwitterNextAuth = require("next-auth/providers/twitter").default;
-export const Twitter = makeFromNextAuth(TwitterNextAuth);
+// const TwitterNextAuth = require("next-auth/providers/twitter").default;
+// export const Twitter = makeFromNextAuth(TwitterNextAuth);
 
 const UnitedEffectsNextAuth =
   require("next-auth/providers/united-effects").default;

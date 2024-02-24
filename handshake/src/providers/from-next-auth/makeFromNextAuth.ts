@@ -1,7 +1,7 @@
 import { OAuthConfig, OAuthUserConfig } from "next-auth/providers";
 import { Handler, HandlerFactory } from "~/core/Handler";
-import { OAuthProvider } from "../oauth/OAuthProvider";
-import { TypicalOAuthArgs, makeHandlerFactory } from "../oauth/makeHandler";
+import { OAuthProvider } from "../lib/OAuthProvider";
+import { TypicalOAuthArgs, makeHandlerFactory } from "../lib/makeHandler";
 
 // The type of the factories that next-auth exposes for each provider (eg.
 // GitHub, Keycloak, etc.)

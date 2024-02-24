@@ -53,7 +53,7 @@ export async function LocalIndex() {
   if (handlers.length) {
     main = (
       <>
-        <p>The following projects are configured:</p>
+        <p>The following handlers are configured:</p>
         <ul className="flex flex-col gap-5">{els}</ul>
       </>
     );

@@ -37,13 +37,12 @@ export default async function Page() {
         >
           Get access tokens for 60+ services
         </h1>
-        <p className="text-contrast max-w-[760px] text-2xl antialiased">
+        <p className="text-contrast mb-4 max-w-[760px] text-2xl antialiased">
           {/* Handshake is an OAuth handler that gets you access tokens to your
           users&apos; accounts in dozens of popular apps and APIs */}
           Handshake handles OAuth flows with popular tools and gets you access
           tokens to your users&apos; third-party accounts.
         </p>
-        <br />
         <section className="flex flex-wrap gap-5">
           <a
             href={REPO_URL}
@@ -72,14 +71,14 @@ export default async function Page() {
       <div className="flex w-full flex-col gap-16">
         <section className="flex flex-col gap-5">
           <div>
-            <h2 className="text-subheader text-contrast mb-5">Demo</h2>
+            <h2 className="text-subheader text-contrast mb-3">Demo</h2>
             <p>See Handshake in action handling a Github OAuth flow:</p>
           </div>
           <WistiaPlayer />
         </section>
         <section className="flex flex-col gap-5">
           <div>
-            <h2 className="text-subheader text-contrast mb-5">
+            <h2 className="text-subheader text-contrast mb-3">
               Getting started
             </h2>
             <p>Clone our repo to get started. </p>

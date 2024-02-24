@@ -22,7 +22,7 @@ export async function LocalIndex() {
         <p className="flex flex-row items-center gap-3">
           <img
             className="inline-block"
-            src={`https://handshake.lol/images/logos/${handler.provider.id}-dark.svg`}
+            src={`https://handshake.cool/images/logos/${handler.provider.id}-dark.svg`}
             width={18}
             alt=""
           />

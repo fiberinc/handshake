@@ -6,9 +6,8 @@ import { BASE_URL } from "./routes";
 export interface ProviderInfo {
   id: string;
   title: string;
-  darkLogoUrl: string | null;
-  logoUrl: string | null;
   serialized: null | any;
+  hasLogo?: boolean;
 }
 
 export async function getProviderInfos(): Promise<ProviderInfo[]> {
@@ -48,9 +47,10 @@ Adapted from [next-auth](https://github.com/nextauthjs/next-auth).`;
         darkLogoUrl: provider.logo
           ? `${BASE_URL}/images/logos/${provider.logo}`
           : null,
-        logoUrl: provider.logo
-          ? `${BASE_URL}/images/logos/${provider.logo.replace(".svg", "-dark.svg")}`
-          : null,
+        // logoUrl: provider.logo
+        //   ? // ? `${BASE_URL}/images/logos/${provider.logo.replace(".svg", "-dark.svg")}`
+        //     `${BASE_URL}/images/logos/${provider.logo}`
+        //   : null,
         serialized: await getSerializedMarkdown(providerDocs),
       };
     }),

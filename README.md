@@ -1,7 +1,7 @@
 <br />
 
 <p align="left">
-  <img src="https://media1.giphy.com/media/750o1RprTNj8ldkwak/200.gif?cid=5a38a5a2julf1ukb89781yu88pth7ol9sm22s52gc88gc0hs&ep=v1_gifs_search&rid=300.gif&ct=g" width="300"/>
+  <img src="/docs/public/images/github-banner.png" width="600"/>
 
   <h1 align="left">Handshake</h1>
 

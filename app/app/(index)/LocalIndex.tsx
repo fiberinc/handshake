@@ -22,7 +22,7 @@ export async function LocalIndex() {
         <p className="flex flex-row items-center gap-3">
           <img
             className="inline-block"
-            src={`https://handshake.cool/images/logos/${handler.provider.id}-dark.svg`}
+            src={handler.provider.logo}
             width={18}
             alt=""
           />
@@ -113,8 +113,8 @@ export async function getSanitizedHandlerInfo(): Promise<HandlerInfo[]> {
       id: handler.id,
       provider: {
         id: handler.provider.id,
-        title: handler.provider.metadata.title,
-        logo: handler.provider.metadata.logo,
+        title: handler.provider.name,
+        logo: `https://handshake.cool/images/logos/${handler.provider.id}.svg`,
       },
     };
   });

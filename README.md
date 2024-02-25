@@ -1,7 +1,7 @@
 <br />
 
 <p align="left">
-  <img src="/docs/public/images/github-banner.png" width="600"/>
+  <img src="/docs/public/images/github-banner.png" width="100%"/>
 
   <h1 align="left">Handshake</h1>
 

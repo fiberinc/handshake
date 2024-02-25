@@ -1,13 +1,11 @@
 import { Analytics } from "@vercel/analytics/react";
-import { Metadata } from "next";
 import Link from "next/link";
 import { Toaster } from "sonner";
 import "~/styles/globals.css";
+import { constructMetadata } from "./construct-metadata";
 import { REPO_URL } from "./routes";
 
-export const metadata: Metadata = {
-  title: "Handshake – OAuth made easy",
-};
+export const metadata = constructMetadata();
 
 export default function RootLayout({
   children,

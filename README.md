@@ -6,7 +6,7 @@
   <h1 align="left">Handshake</h1>
 
   <p align="left">
-    Self-hosted solution for OAuth authentication against 60+ APIs.
+    Self-hosted solution for OAuth authentication against 200+ APIs.
   </p>
 
   <p align="left" style="align: left;">
@@ -36,7 +36,7 @@
 
 ## About
 
-Handshake is a Next.js app that handles OAuth flow against 60+ third-party apps
+Handshake is a Next.js app that handles OAuth flow against 200+ third-party apps
 and APIs. We use parts of `next-auth` under the hood to extend our coverage of
 providers.
 

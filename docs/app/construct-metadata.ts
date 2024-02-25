@@ -6,7 +6,7 @@ const HOME_DOMAIN = "https://handshake.cool";
 
 export function constructMetadata({
   title = `Handshake - Easy OAuth for 200+ APIs`,
-  description = `Handshake handles OAuth for 200+ APIS including Google, Salesforce and Stripe. It's a Next.js self-serve app that you can configure and deploy in minutes.`,
+  description = `Handshake gets you access tokens to popular APIs like Google, Salesforce and Stripe. It's a Next.js self-serve app that you can configure and deploy in minutes.`,
   image = "https://handshake.cool/images/github-preview.png",
   // icons = [
   //   {

@@ -49,7 +49,7 @@ interface Args {
   scopes: ShopifyScope[];
 }
 
-interface Credential {
+export interface ShopifyCredential {
   shop: string;
   accessToken: string;
   scopes: string[];
@@ -92,7 +92,10 @@ interface Credential {
  *
  * Follow the format: `https://HANDSHAKE_URL/api/auth/shopify/callback`
  */
-export const Shopify: HandlerFactory<Args, Credential> = ({ id, ...args }) => {
+export const Shopify: HandlerFactory<Args, ShopifyCredential> = ({
+  id,
+  ...args
+}) => {
   const providerId = id ?? PROVIDER_ID;
 
   assert(args.scopes, "scopes is empty or missing");

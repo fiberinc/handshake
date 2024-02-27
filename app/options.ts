@@ -33,16 +33,16 @@ export const options: HandshakeOptions = {
    * @param handlerId - Identifies the provider that handled this handshake, eg:
    * 'google', 'github', 'amazon-seller' etc.
    */
-  async onSuccess(credentials, handlerId) {
+  async onSuccess(tokens, handlerId) {
     if (handlerId !== "shopify") {
       throw Error("Unexpected handler");
     }
 
-    // TODO: Do something with the credentials.
-    console.log(`Received credentials for ${handlerId}`, credentials);
+    // TODO: Do something with the tokens.
+    console.log(`Received tokens for ${handlerId}`, tokens);
 
     // Example of (1):
-    // const jsonToken = JSON.stringify(credentials.tokens);
+    // const jsonToken = JSON.stringify(tokens.tokens);
     //
     // // You will want to use `crypto.createCipheriv` instead.
     // const cipher = crypto.createCipher(

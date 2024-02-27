@@ -44,16 +44,33 @@ export abstract class KnownError<
   }
 }
 
-/**
- * OAuth exchange failed.
- */
-export class OAuthCallbackError extends KnownError {
+// https://datatracker.ietf.org/doc/html/rfc6749#section-5.2
+export class OAuthCallbackError extends Error {
   name = "OAuthCallbackError";
 
-  // constructor(message: string) {
-  //   super(message);
-  //   this.message += `${this.message ? ". " : ""}Read more at ${REPO_URL}`;
-  // }
+  constructor(
+    public error:
+      | "invalid_client"
+      | "invalid_grant"
+      | "invalid_request"
+      | "invalid_scope",
+    public errorDescription: string,
+  ) {
+    const message = `${error} (${errorDescription}). Read more at ${REPO_URL}`;
+
+    super(message);
+  }
+}
+
+/**
+ * Used when we can't parse what we received from the provider.
+ */
+export class UnknownProviderError extends Error {
+  name = "UnknownProviderError";
+
+  constructor(message: string) {
+    super(message);
+  }
 }
 
 // FIXME

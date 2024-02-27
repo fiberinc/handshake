@@ -17,7 +17,10 @@ export async function LocalIndex() {
     }
 
     return (
-      <li key={handler.id} className="flex flex-col gap-3 bg-gray-50 p-5">
+      <li
+        key={handler.id}
+        className="flex flex-col gap-3 border bg-gray-50 p-5"
+      >
         <p className="flex flex-row items-center gap-3">
           <img
             className="inline-block"

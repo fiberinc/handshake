@@ -4,7 +4,7 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { NextRequest } from "next/server";
 import { ExtendedConfig } from "~/core/HandshakeOptions";
-import { OAuthCallbackError } from "~/core/errors";
+import { OAuthCallbackError, UnknownProviderError } from "~/core/errors";
 import { debug, error, info } from "~/core/logger";
 import { parseSessionFromStringValue } from "~/core/session";
 import { Handler } from "~/core/types";
@@ -36,10 +36,13 @@ export async function handleCallback(
     );
   }
 
+  // TODO verify with session secret!
   const session = parseSessionFromStringValue(savedCookie.value);
   debug("Found session stored in cookie.", session);
 
-  // TODO QUESTION should we clear the cookie here?
+  // Clear session cookie.
+  cookies().set(options.sessionCookieName, "", { expires: new Date(0) });
+  debug("Set to clear session cookie.");
 
   // Check that the callback URI to send users back to is allowed. If the
   // exchange fails, we might want to send users back to this
@@ -57,9 +60,8 @@ export async function handleCallback(
       },
     );
   }
-  info(
-    `Will redirect users back to ${session.developerCallbackUri} if successful`,
-  );
+
+  debug(`Redirection URL is ${session.developerCallbackUri}.`);
 
   // Exchange search parameters for account credentials.
   let credentials;
@@ -75,7 +77,7 @@ export async function handleCallback(
       throw new TypeError("Not an error");
     }
 
-    error("Failed to exchange credentials", e);
+    error("handler.exchange failed", e);
 
     // Convert any HttpError thrown by the handler into a JSON response with the
     // error message. This is useful to simplify program logic.
@@ -84,19 +86,21 @@ export async function handleCallback(
       return Response.json({ message: e.message }, { status: e.statusCode });
     }
 
-    if (e instanceof OAuthCallbackError) {
-      // TODO we have to forward OAuth errors to the caller.
-    }
-
     const url = new URL(session.developerCallbackUri);
     url.searchParams.set("state", session.developerState);
-    url.searchParams.set("error", `unknown_error`);
-    url.searchParams.set(
-      "error_description",
-      `Failed to exchange credentials${
-        e.message ? " with error " + e.message : ""
-      }.`,
-    );
+
+    // We forward known OAuth errors to the caller.
+    if (e instanceof OAuthCallbackError) {
+      url.searchParams.set("error", e.error);
+      url.searchParams.set("error_description", e.errorDescription);
+    }
+    if (e instanceof UnknownProviderError) {
+      url.searchParams.set("error", "unknown_provider_error");
+      url.searchParams.set(
+        "error_description",
+        `Provider failed with unexpected error: ${e.message}. If you believe this is a mistake, please open an issue at https://github.com/fiberinc/handshake/issues.`,
+      );
+    }
 
     info(`Redirecting user to ${url.href}`);
     redirect(url.href);
@@ -139,9 +143,6 @@ export async function handleCallback(
       url.searchParams.set(key, value);
     }
   }
-
-  debug("Will clear session cookie.");
-  cookies().set(options.sessionCookieName, "", { expires: new Date(0) });
 
   info(`Redirecting user to ${url.href}`);
   redirect(url.href);

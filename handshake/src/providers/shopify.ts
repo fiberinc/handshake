@@ -3,37 +3,20 @@ import crypto from "crypto";
 import { Forbidden } from "http-errors";
 import querystring from "querystring";
 import { z } from "zod";
-import { InvalidRequest, OAuthCallbackError } from "~/core/errors";
-import { error } from "~/core/logger";
+import {
+  InvalidRequest,
+  OAuthCallbackError,
+  UnknownProviderError,
+} from "~/core/errors";
+import { error, info } from "~/core/logger";
 import { HandlerFactory } from "~/core/types";
+import { SHOPIFY_SCOPES } from "./shopify-scopes";
 
 export const PROVIDER_ID = "shopify";
 
 const SHOPIFY_API_VERSION = "2024-01";
 
-const KNOWN_SHOPIFY_SCOPES = [
-  "read_themes",
-  "read_orders",
-  "read_all_orders", // Will need extra permissions for this.
-  "read_assigned_fulfillment_orders",
-  "read_checkouts",
-  "read_content",
-  "read_customers",
-  "read_discounts",
-  "read_draft_orders",
-  "read_fulfillments",
-  "read_locales",
-  "read_locations",
-  "read_price_rules",
-  "read_products",
-  "read_product_listings",
-  "read_shopify_payments_payouts",
-  "write_customers",
-  "write_fulfillments",
-  "write_orders",
-] as const;
-
-export type ShopifyScope = (typeof KNOWN_SHOPIFY_SCOPES)[number];
+export type ShopifyScope = (typeof SHOPIFY_SCOPES)[number];
 
 interface SessionShopData {
   id: number;
@@ -63,7 +46,7 @@ type CallbackParams = z.infer<typeof querySchema>;
 interface Args {
   clientId: string;
   clientSecret: string;
-  scopes: string[];
+  scopes: ShopifyScope[];
 }
 
 interface Credential {
@@ -100,7 +83,7 @@ interface Credential {
 export const Shopify: HandlerFactory<Args, Credential> = ({ id, ...args }) => {
   const providerId = id ?? PROVIDER_ID;
 
-  const scopes = args?.scopes || KNOWN_SHOPIFY_SCOPES;
+  assert(args.scopes, "scopes is empty or missing");
   assert(args.clientId, "clientId is empty or missing");
   assert(args.clientSecret, "clientSecret is empty or missing");
 
@@ -119,13 +102,13 @@ export const Shopify: HandlerFactory<Args, Credential> = ({ id, ...args }) => {
         );
       }
       // TODO validate shop value.
-      if (extras.shop.match(/[a-z]\.myshopify.com/)) {
-        throw Error("Shop value missing from query string.");
+      if (!extras.shop.match(/^[a-zA-Z_-]*\.myshopify.com$/)) {
+        throw Error("Invalid shop value.");
       }
 
       const authUrl = new URL(`https://${extras.shop}/admin/oauth/authorize`);
       authUrl.searchParams.set("client_id", args.clientId!);
-      authUrl.searchParams.set("scope", scopes.join(","));
+      authUrl.searchParams.set("scope", args.scopes.join(","));
       authUrl.searchParams.set("redirect_uri", callbackHandlerUrl);
 
       const state = crypto.randomBytes(16).toString("hex");
@@ -134,22 +117,18 @@ export const Shopify: HandlerFactory<Args, Credential> = ({ id, ...args }) => {
       return { url: authUrl.toString(), persist: { state } };
     },
     async exchange(searchParams, req, _, { valuesFromHandler }) {
-      const paramParse = querySchema.safeParse(
-        Object.fromEntries(searchParams.entries()),
-      );
-
-      if (!paramParse.success) {
-        error(paramParse.error);
+      let params: CallbackParams;
+      try {
+        params = querySchema.parse(Object.fromEntries(searchParams.entries()));
+      } catch (e) {
+        error(e);
         throw new InvalidRequest(`Unexpected query parameter shape.`);
       }
 
-      assert(
-        valuesFromHandler?.state === paramParse.data.state,
-        "State mismatch.",
-      );
+      assert(valuesFromHandler?.state === params.state, "State mismatch.");
 
       try {
-        const isValidHmac = verifyHmac(searchParams, args.clientSecret);
+        const isValidHmac = verifyHmac(params, args.clientSecret);
         if (!isValidHmac) {
           throw new Forbidden("Invalid HMAC signature.");
         }
@@ -158,7 +137,7 @@ export const Shopify: HandlerFactory<Args, Credential> = ({ id, ...args }) => {
       }
 
       const accessTokenQuery = querystring.stringify({
-        code: paramParse.data.code,
+        code: params.code,
         client_id: args.clientId,
         client_secret: args.clientSecret,
       });
@@ -167,28 +146,31 @@ export const Shopify: HandlerFactory<Args, Credential> = ({ id, ...args }) => {
       let scopes: string[];
       try {
         const objs = await exchangeAccessTokenAndReadStoreData(
-          paramParse.data.shop,
+          params.shop,
           accessTokenQuery,
         );
 
         accessToken = objs.accessToken;
         scopes = objs.scopes;
       } catch (e) {
+        if (!(e instanceof Error)) {
+          throw new TypeError("Not an Error");
+        }
+
         console.trace();
         error("shopify: getAccessTokenAndShopInfo failed", e);
-        // if (e instanceof HttpError) {
-        // 	throw e
-        // }
-        1 + 1;
 
-        // TODO handle
-        throw e;
+        if (e instanceof OAuthCallbackError) {
+          throw e;
+        }
+
+        throw new UnknownProviderError(`Shopify exchange failed: ${e.message}`);
       }
 
       return {
         tokens: {
           accessToken,
-          myShopifyDomain: paramParse.data.shop,
+          myShopifyDomain: params.shop,
           scopes,
         },
       };
@@ -214,16 +196,15 @@ async function exchangeAccessTokenAndReadStoreData(
       body: accessTokenQuery,
     });
   } catch (e) {
-    throw new OAuthCallbackError(`Failed to hit API at ${url}`);
+    throw new UnknownProviderError(`Failed to hit API at ${url}.`);
   }
 
   const json = await res.json();
 
   if (json.error) {
-    if (json.error === "invalid_request") {
-      throw new InvalidRequest(json);
-    }
-    throw json;
+    info("Shopify exchange returned errors", json.error);
+
+    throw new OAuthCallbackError(json.error, json.error_description ?? null);
   }
 
   return {
@@ -236,10 +217,11 @@ async function exchangeAccessTokenAndReadStoreData(
  * Use the query parameters and the shopify client secret to verify that this
  * request truly came from Shopify.
  */
-function verifyHmac(query: any, shopifyApiSecretKey: string) {
+function verifyHmac(query: { hmac: string }, shopifyApiSecretKey: string) {
   assert(shopifyApiSecretKey, "Invalid shopify client secret");
 
-  const { hmac, signature: _, ...map } = query;
+  const { hmac, ...map } = query;
+  assert(hmac, "expected hmac from query params");
 
   const orderedMap = Object.keys(map)
     .sort((v1, v2) => v1.localeCompare(v2))
@@ -256,7 +238,6 @@ function verifyHmac(query: any, shopifyApiSecretKey: string) {
     .update(message)
     .digest("hex");
 
-  assert(hmac, "expected hmac from query params");
   return safeCompare(hmac, compute_hmac);
 }
 

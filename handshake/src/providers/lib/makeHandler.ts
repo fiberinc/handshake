@@ -185,7 +185,8 @@ export function makeHandlerFactory<
         // README double-check this.
         if (tokens.error) {
           throw new OAuthCallbackError(
-            `"${tokens.error}": ${tokens.error_description} url=${tokens.error_uri}`,
+            tokens.error as any,
+            `${tokens.error_description} ${tokens.error_uri ?? "(url=" + tokens.error_uri + ")"}`,
           );
         }
 

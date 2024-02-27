@@ -1,20 +1,40 @@
 import assert from "assert";
-import { HandshakeOptions } from "handshake";
+import { HandshakeOptions, Shopify } from "handshake";
 
 const ALLOWED_REDIRECT_HOST = process.env.ALLOWED_REDIRECT_HOST || "";
 assert(ALLOWED_REDIRECT_HOST, "Specify a value for ALLOWED_REDIRECT_HOST.");
+
+export const OVERSEE_SCOPES = [
+  "read_themes",
+  "read_orders",
+  // "read_all_orders", // Will need extra permissions for this.
+  "read_assigned_fulfillment_orders",
+  "read_checkouts",
+  "read_content",
+  "read_customers",
+  "read_discounts",
+  "read_draft_orders",
+  "read_fulfillments",
+  "read_locales",
+  "read_locations",
+  "write_customers",
+  "write_fulfillments",
+  "read_price_rules",
+  "read_products",
+  "read_product_listings",
+  "read_shopify_payments_payouts",
+  "write_orders",
+];
 
 export const options: HandshakeOptions = {
   secret: process.env.SESSION_SECRET!,
   allowedRedirectHosts: [ALLOWED_REDIRECT_HOST],
   handlers: [
-    // TODO: Add your handlers here.
-    //
-    // GitHub({
-    //   clientId: process.env.GITHUB_CLIENT_ID!,
-    //   clientSecret: process.env.GITHUB_CLIENT_SECRET!,
-    //   scopes: ["repo"],
-    // }),
+    Shopify({
+      clientId: process.env.SHOPIFY_CLIENT_ID!,
+      clientSecret: process.env.SHOPIFY_CLIENT_SECRET!,
+      scopes: OVERSEE_SCOPES,
+    }),
   ],
   /**
    * This is where you'll handle forwarding the acquired credentials back to

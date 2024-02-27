@@ -95,7 +95,7 @@ Duplicate the `.env.example` file within the app folder:
 cp app/.env.example app/.env
 ```
 
-In the new file, replace the values for `REDIRECT_URL` and `SESSION_SECRET`.
+In the new file, replace the values for `ALLOWED_REDIRECT_HOST` and `SESSION_SECRET`.
 
 ### Configure your providers
 
@@ -112,9 +112,9 @@ const options: HandshakeOptions = {
       scopes: ["https://www.googleapis.com/auth/gmail.readonly"],
     }),
   ],
-  // Tell Handshake which URLs it can redirect users back to. This is a
+  // Tell Handshake which hosts it can redirect users back to. This is a
   // security measure to prevent malicious redirects.
-  allowedRedirectHosts: [process.env.REDIRECT_URL],
+  allowedRedirectHosts: [process.env.ALLOWED_REDIRECT_HOST],
   // Set a unique secret to sign session cookies.
   secret: process.env.SESSION_SECRET!,
 };
@@ -166,7 +166,7 @@ actual Next.js code in the right folder.
 
 ### Upload environment variables to Vercel
 
-Set `SESSION_SECRET`, `REDIRECT_URL` and any other secrets you're using by going
+Set `SESSION_SECRET`, `ALLOWED_REDIRECT_HOST` and any other secrets you're using by going
 to **Settings > Environment Variables**, or directly [via the Vercel
 CLI](https://vercel.com/docs/cli/env).
 

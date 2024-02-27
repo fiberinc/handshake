@@ -38,5 +38,5 @@ jobs:
           node-version: 18
           cache: pnpm
       - run: pnpm i
-      - run: REDIRECT_URL=whatever SESSION_SECRET=whatever pnpm build
+      - run: ALLOWED_REDIRECT_HOST=whatever SESSION_SECRET=whatever pnpm build
       - uses: codecov/codecov-action@v3

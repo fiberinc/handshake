@@ -1,14 +1,39 @@
-// Code here is from https://github.com/bluebeel/nextjs-shopify-auth, modified
-// to change the environmental keys it looks for.
-
 import assert from "assert";
 import crypto from "crypto";
 import { Forbidden } from "http-errors";
 import querystring from "querystring";
 import { z } from "zod";
-import { InvalidRequest } from "~/core/errors";
+import { InvalidRequest, OAuthCallbackError } from "~/core/errors";
 import { error } from "~/core/logger";
 import { HandlerFactory } from "~/core/types";
+
+export const PROVIDER_ID = "shopify";
+
+const SHOPIFY_API_VERSION = "2024-01";
+
+const KNOWN_SHOPIFY_SCOPES = [
+  "read_themes",
+  "read_orders",
+  "read_all_orders", // Will need extra permissions for this.
+  "read_assigned_fulfillment_orders",
+  "read_checkouts",
+  "read_content",
+  "read_customers",
+  "read_discounts",
+  "read_draft_orders",
+  "read_fulfillments",
+  "read_locales",
+  "read_locations",
+  "read_price_rules",
+  "read_products",
+  "read_product_listings",
+  "read_shopify_payments_payouts",
+  "write_customers",
+  "write_fulfillments",
+  "write_orders",
+] as const;
+
+export type ShopifyScope = (typeof KNOWN_SHOPIFY_SCOPES)[number];
 
 interface SessionShopData {
   id: number;
@@ -20,11 +45,18 @@ interface SessionShopData {
   city: string | null;
 }
 
-const querySchema = z.object({
-  state: z.string(),
-  shop: z.string(),
-  code: z.string(),
-});
+const querySchema = z
+  .object({
+    state: z.string(),
+    shop: z.string().min(1),
+    hmac: z.string(),
+    code: z.string(),
+    host: z.string(),
+    timestamp: z.string(),
+  })
+  // The HMAC depends on every query param, so if we miss any our validation
+  // will fail unexpectedly.
+  .strict();
 
 type CallbackParams = z.infer<typeof querySchema>;
 
@@ -34,13 +66,11 @@ interface Args {
   scopes: string[];
 }
 
-export const PROVIDER_ID = "shopify";
-
-type Credential = {
+interface Credential {
   myShopifyDomain: string;
   accessToken: string;
   scopes: string[];
-};
+}
 
 /**
  *
@@ -71,6 +101,8 @@ export const Shopify: HandlerFactory<Args, Credential> = ({ id, ...args }) => {
   const providerId = id ?? PROVIDER_ID;
 
   const scopes = args?.scopes || KNOWN_SHOPIFY_SCOPES;
+  assert(args.clientId, "clientId is empty or missing");
+  assert(args.clientSecret, "clientSecret is empty or missing");
 
   return {
     id: providerId,
@@ -80,8 +112,14 @@ export const Shopify: HandlerFactory<Args, Credential> = ({ id, ...args }) => {
       type: "oauth2",
       website: "https://shopify.com",
     },
-    getAuthorizationUrl(callbackHandlerUrl, extras) {
+    getAuthorizationUrl(callbackHandlerUrl, extras: { shop?: string }) {
       if (!extras?.shop) {
+        throw new InvalidRequest(
+          "Shopify redirects requires an extra `shop` query parameter.",
+        );
+      }
+      // TODO validate shop value.
+      if (extras.shop.match(/[a-z]\.myshopify.com/)) {
         throw Error("Shop value missing from query string.");
       }
 
@@ -90,7 +128,6 @@ export const Shopify: HandlerFactory<Args, Credential> = ({ id, ...args }) => {
       authUrl.searchParams.set("scope", scopes.join(","));
       authUrl.searchParams.set("redirect_uri", callbackHandlerUrl);
 
-      // Do we need to set a nonce? What's the risk if we don't?
       const state = crypto.randomBytes(16).toString("hex");
       authUrl.searchParams.set("state", state);
 
@@ -111,20 +148,34 @@ export const Shopify: HandlerFactory<Args, Credential> = ({ id, ...args }) => {
         "State mismatch.",
       );
 
+      try {
+        const isValidHmac = verifyHmac(searchParams, args.clientSecret);
+        if (!isValidHmac) {
+          throw new Forbidden("Invalid HMAC signature.");
+        }
+      } catch (e: any) {
+        throw new InvalidRequest(e, "HMAC validation failed.");
+      }
+
+      const accessTokenQuery = querystring.stringify({
+        code: paramParse.data.code,
+        client_id: args.clientId,
+        client_secret: args.clientSecret,
+      });
+
       let accessToken: string;
-      let myShopifyDomain: string;
       let scopes: string[];
       try {
-        const objs = await getAccessTokenAndShopInfo(
-          req,
-          paramParse.data,
-          args.clientId!,
-          args.clientSecret!,
+        const objs = await exchangeAccessTokenAndReadStoreData(
+          paramParse.data.shop,
+          accessTokenQuery,
         );
+
         accessToken = objs.accessToken;
-        myShopifyDomain = objs.myShopifyDomain;
         scopes = objs.scopes;
       } catch (e) {
+        console.trace();
+        error("shopify: getAccessTokenAndShopInfo failed", e);
         // if (e instanceof HttpError) {
         // 	throw e
         // }
@@ -137,7 +188,7 @@ export const Shopify: HandlerFactory<Args, Credential> = ({ id, ...args }) => {
       return {
         tokens: {
           accessToken,
-          myShopifyDomain,
+          myShopifyDomain: paramParse.data.shop,
           scopes,
         },
       };
@@ -145,65 +196,15 @@ export const Shopify: HandlerFactory<Args, Credential> = ({ id, ...args }) => {
   };
 };
 
-type NonceValidator = (args: {
-  nonce: string | undefined;
-  req: Request;
-  shopName: string;
-}) => Promise<boolean>;
-
-async function getAccessTokenAndShopInfo(
-  req: Request,
-  searchParams: CallbackParams,
-  shopifyClientId: string,
-  shopifyClientSecret: string,
-  options?: { validateNonce: NonceValidator },
-) {
-  // verifyHmac is supposed to use the entire query params of the redirected
-  // URL, but Next.js modifies that object to add `projectAlias` and others.
-  const { ...queryMinusNextjs } = searchParams;
-  const valid = verifyHmac(queryMinusNextjs, shopifyClientSecret);
-  const shopName = (searchParams.shop as string) ?? "";
-  assert(shopName);
-
-  if (!valid) {
-    throw new Forbidden("Invalid Signature.");
-  }
-
-  const validateNonce = options && options.validateNonce;
-  const validNonce = validateNonce
-    ? await validateNonce({
-        nonce: searchParams.state as string | undefined,
-        req,
-        shopName,
-      })
-    : true;
-  if (!validNonce) {
-    throw new Forbidden("Invalid Nonce.");
-  }
-
-  const accessTokenQuery = querystring.stringify({
-    code: searchParams.code,
-    client_id: shopifyClientId,
-    client_secret: shopifyClientSecret,
-  });
-
-  const { accessToken, scopes } = await exchangeAccessTokenAndReadStoreData(
-    shopName,
-    accessTokenQuery,
-  );
-
-  return { accessToken, myShopifyDomain: shopName, scopes };
-}
-
-const SHOPIFY_API_VERSION = "2024-01";
-
 async function exchangeAccessTokenAndReadStoreData(
   myShopifyDomain: string,
   accessTokenQuery: string,
 ): Promise<{ accessToken: string; scopes: string[] }> {
-  const res = await fetch(
-    `https://${myShopifyDomain}/admin/oauth/access_token`,
-    {
+  const url = `https://${myShopifyDomain}/admin/oauth/access_token`;
+
+  let res: Response;
+  try {
+    res = await fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
@@ -211,8 +212,10 @@ async function exchangeAccessTokenAndReadStoreData(
         Accept: "application/json",
       },
       body: accessTokenQuery,
-    },
-  );
+    });
+  } catch (e) {
+    throw new OAuthCallbackError(`Failed to hit API at ${url}`);
+  }
 
   const json = await res.json();
 
@@ -227,6 +230,52 @@ async function exchangeAccessTokenAndReadStoreData(
     accessToken: json.access_token,
     scopes: json.scopes,
   };
+}
+
+/**
+ * Use the query parameters and the shopify client secret to verify that this
+ * request truly came from Shopify.
+ */
+function verifyHmac(query: any, shopifyApiSecretKey: string) {
+  assert(shopifyApiSecretKey, "Invalid shopify client secret");
+
+  const { hmac, signature: _, ...map } = query;
+
+  const orderedMap = Object.keys(map)
+    .sort((v1, v2) => v1.localeCompare(v2))
+    .reduce((sum, k) => {
+      // @ts-ignore
+      sum[k] = query[k];
+      return sum;
+    }, {});
+
+  const message = querystring.stringify(orderedMap);
+
+  const compute_hmac = crypto
+    .createHmac("sha256", shopifyApiSecretKey)
+    .update(message)
+    .digest("hex");
+
+  assert(hmac, "expected hmac from query params");
+  return safeCompare(hmac, compute_hmac);
+}
+
+function safeCompare(stringA: string, stringB: string) {
+  const aLen = Buffer.byteLength(stringA);
+  const bLen = Buffer.byteLength(stringB);
+
+  if (aLen !== bLen) {
+    return false;
+  }
+
+  // Turn strings into buffers with equal length
+  // to avoid leaking the length
+  const buffA = Buffer.alloc(aLen, 0, "utf8");
+  buffA.write(stringA);
+  const buffB = Buffer.alloc(bLen, 0, "utf8");
+  buffB.write(stringB);
+
+  return crypto.timingSafeEqual(buffA, buffB);
 }
 
 export async function getShopifyShopInformation(
@@ -260,71 +309,3 @@ export async function getShopifyShopInformation(
     city: json.shop.city,
   };
 }
-
-/**
- * Use the shopify API SECRET to verify that this request truly came from
- * Shopify.
- */
-function verifyHmac(query: any, shopifyApiSecretKey: string) {
-  assert(shopifyApiSecretKey);
-
-  const { hmac, signature: _, ...map } = query;
-
-  const orderedMap = Object.keys(map)
-    .sort((v1, v2) => v1.localeCompare(v2))
-    .reduce((sum, k) => {
-      // @ts-ignore
-      sum[k] = query[k];
-      return sum;
-    }, {});
-
-  const message = querystring.stringify(orderedMap);
-  const compute_hmac = crypto
-    .createHmac("sha256", shopifyApiSecretKey)
-    .update(message)
-    .digest("hex");
-
-  return safeCompare(hmac, compute_hmac);
-}
-
-function safeCompare(stringA: string, stringB: string) {
-  const aLen = Buffer.byteLength(stringA);
-  const bLen = Buffer.byteLength(stringB);
-
-  if (aLen !== bLen) {
-    return false;
-  }
-
-  // Turn strings into buffers with equal length
-  // to avoid leaking the length
-  const buffA = Buffer.alloc(aLen, 0, "utf8");
-  buffA.write(stringA);
-  const buffB = Buffer.alloc(bLen, 0, "utf8");
-  buffB.write(stringB);
-
-  return crypto.timingSafeEqual(buffA, buffB);
-}
-
-const KNOWN_SHOPIFY_SCOPES = [
-  "read_themes",
-  "read_orders",
-  "read_all_orders", // Will need extra permissions for this.
-  "read_assigned_fulfillment_orders",
-  "read_checkouts",
-  "read_content",
-  "read_customers",
-  "read_discounts",
-  "read_draft_orders",
-  "read_fulfillments",
-  "read_locales",
-  "read_locations",
-  "read_price_rules",
-  "read_products",
-  "read_product_listings",
-  "read_shopify_payments_payouts",
-  "write_customers",
-  "write_fulfillments",
-  "write_orders",
-] as const;
-
-export type ShopifyScope = (typeof KNOWN_SHOPIFY_SCOPES)[number];

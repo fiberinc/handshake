@@ -4,6 +4,7 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { NextRequest } from "next/server";
 import { ExtendedConfig } from "~/core/HandshakeOptions";
+import { OAuthCallbackError } from "~/core/errors";
 import { debug, error, info } from "~/core/logger";
 import { parseSessionFromStringValue } from "~/core/session";
 import { Handler } from "~/core/types";
@@ -83,15 +84,21 @@ export async function handleCallback(
       return Response.json({ message: e.message }, { status: e.statusCode });
     }
 
+    if (e instanceof OAuthCallbackError) {
+      // TODO we have to forward OAuth errors to the caller.
+    }
+
     const url = new URL(session.developerCallbackUri);
     url.searchParams.set("state", session.developerState);
+    url.searchParams.set("error", `unknown_error`);
     url.searchParams.set(
-      "error",
+      "error_description",
       `Failed to exchange credentials${
         e.message ? " with error " + e.message : ""
       }.`,
     );
 
+    info(`Redirecting user to ${url.href}`);
     redirect(url.href);
   }
 

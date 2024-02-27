@@ -17,17 +17,20 @@ function ProviderGrid_({ infos }: Props) {
       <div className="hover:bg-foreground text-contrast flex h-[45px] flex-row items-center gap-3 rounded-md border px-3.5">
         {info.hasLogo !== false && (
           <img
-            onError={function () {
+            onError={function (e) {
+              console.log("onError called", info.id);
+
               const fallbackUrl = `/images/logos/${info.id}.svg`;
               // @ts-ignore
-              if (this.src !== fallbackUrl) {
+              if (e.target.src !== fallbackUrl) {
                 // @ts-ignore
-                this.src = fallbackUrl;
+                e.target.src = fallbackUrl;
               }
             }}
             alt=""
             src={`/images/logos/${info.id}${isDarkMode ? "-dark" : ""}.svg`}
             width={20}
+            style={{ maxHeight: "20px" }}
           />
         )}
         {info.title}

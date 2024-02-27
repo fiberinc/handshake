@@ -1,5 +1,3 @@
-// For each OAuth provider, check that the URLs they reference are up.
-
 import assert from "assert";
 import { OAuthCallbackError } from "~/core/errors";
 import { Handler, HandlerFactory } from "~/core/types";
@@ -16,7 +14,7 @@ const PROVIDERS_THAT_RESPOND_WITH_4xx = [
   "faceit",
 ];
 
-// TODO check on these.
+// TODO check up on these.
 const PROVIDERS_THAT_RESPOND_WITH_500 = ["mapmyfitness"];
 
 test.skip("AmazonSeller", async () => {
@@ -43,9 +41,8 @@ test.skip("Shopify", async () => {
   );
 });
 
-test.each(Object.entries(allFactories).slice(150, 200))(
+test.each(Object.entries(allFactories).slice(0, 250))(
   "Provider %s",
-  // test("other providers",
   async (name, handlerFactory) => {
     if (["AmazonSeller", "Shopify"].includes(name)) {
       // Skip providers we're already testing outside.
@@ -152,9 +149,9 @@ async function testOauthHandler(handler: Handler<any>, params?: any) {
         // TODO Standardize errors before we can deal with this.
       }
     } else if (e.name === "OPError") {
-      // Parse
       if (
         e.error.startsWith("expected 200 OK, got: 4") ||
+        // Parse
         e.error === "Not Found" ||
         PROVIDERS_THAT_RESPOND_WITH_4xx.includes(handler.provider.id)
       ) {
@@ -175,16 +172,14 @@ async function testOauthHandler(handler: Handler<any>, params?: any) {
           `${providerId}: exchange failed with ${e.error_description}. Maybe OK.`,
         );
       }
-      //
       // Other responses to invalid client ID:
-      //
       else if (
-        e.error === "unauthorized_client" || // PayPal
         e.error_description === "invalid client_id parameter" ||
         e.error.startsWith("invalid_client") ||
-        e.error === "Missing client_id query parameter." || // From Basecamp.
+        e.error === "unauthorized_client" || // PayPal
         e.error_description === "Cannot parse client_id" ||
         e.error_description === "Invalid OAuth client credentials" ||
+        e.error === "Missing client_id query parameter." || // From Basecamp.
         e.error.includes("Code is invalid because doesn’t match any user.") || // LoginGOV
         e.error_description === "Invalid client identifier" || // Infusionsoft
         e.error === "incorrect_client_credentials" || // Mixcloud
@@ -196,19 +191,12 @@ async function testOauthHandler(handler: Handler<any>, params?: any) {
         console.log(
           `${providerId}: exchange failed with "${e.error}" ("${e.error_description}"). OK.`,
         );
-      }
-      //
-      //
-      else {
-        // error
-        // error_description
-        console.log("OPError e is", e, e.code, e.name);
+      } else {
+        console.log("OPError e is", e);
         throw e;
       }
     } else {
-      // error
-      // error_description
-      console.log("e is", e, e.code, e.name);
+      console.log("e is", e);
       throw e;
     }
   }

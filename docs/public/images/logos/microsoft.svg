@@ -1,1 +1,13 @@
-<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Microsoft</title><path d="M0 0v11.408h11.408V0zm12.594 0v11.408H24V0zM0 12.594V24h11.408V12.594zm12.594 0V24H24V12.594z"/></svg>
+<svg width="60" height="61" viewBox="0 0 60 61" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g clip-path="url(#clip0_39_1004)">
+    <path d="M31.4854 32.2891V60.8041H60.0004V32.2891H31.4854Z" fill="#FFB902" />
+    <path d="M0 29.3242V0.804199H28.52V29.3242H0Z" fill="#F25022" />
+    <path d="M31.4854 29.3242V0.804199H60.0004V29.3242H31.4854Z" fill="#7FBA02" />
+    <path d="M0 60.8041V32.2891H28.52V60.8041H0Z" fill="#01A4EF" />
+  </g>
+  <defs>
+    <clipPath id="clip0_39_1004">
+      <rect width="60" height="60" fill="white" transform="translate(0 0.804199)" />
+    </clipPath>
+  </defs>
+</svg>

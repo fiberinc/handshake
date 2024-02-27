@@ -142,23 +142,27 @@ Deploy the app to Vercel by running, from the root folder:
 vercel deploy
 ```
 
-You must deploy the project from the root folder, even though the Next.js app
-folder lives within `app/`. The Next.js code needs the `handshake/` folder,
+You must call `vercel deploy` **from the root folder**, even though the Next.js
+app folder lives within `app/`. The app code needs the `handshake/` folder,
 which otherwise won't be available.
 
-You may delete the `docs/` folder or add it to a `.vercelignore` file.
+<img src="docs/public/images/vercel-deploy.gif" width="400" />
+
+The command may tell you "No framework detected" instead of detecting Next.js as
+your framework. Steps to fix this are outlined below.
 
 ### Fix project root and framework preset in Vercel
 
-Once your project exists within Vercel, go to **Settings > General** and set the
-"Root Directory" to `app`. This will tell Vercel to look for the actual Next.js
-code in the right folder.
+Once your project exists within Vercel, go to **Settings > General**.
 
-![](/docs/public/images/readme-vercel-setings-root.png)
-
-In the same page, make sure that "Framework Preset" setting is set to "Next.js".
+First, set "Framework Preset" setting to "Next.js".
 
 ![](/docs/public/images/readme-vercel-setings-next.png)
+
+Then, set the "Root Directory" to `app`. This will tell Vercel to look for the
+actual Next.js code in the right folder.
+
+![](/docs/public/images/readme-vercel-setings-root.png)
 
 ### Upload environment variables to Vercel
 

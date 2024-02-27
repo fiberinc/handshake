@@ -1,5 +1,5 @@
 import { twMerge } from "tailwind-merge";
-import { options } from "../options";
+import { options } from "~/options";
 
 const REPO_URL = "https://github.com/fiberinc/handshake";
 

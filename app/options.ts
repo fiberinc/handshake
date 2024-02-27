@@ -1,12 +1,12 @@
 import assert from "assert";
 import { HandshakeOptions } from "handshake";
 
-const ALLOWED_REDIRECT_URI = process.env.ALLOWED_REDIRECT_URI || "";
-assert(ALLOWED_REDIRECT_URI, "Specify a value for ALLOWED_REDIRECT_URI.");
+const ALLOWED_REDIRECT_HOST = process.env.ALLOWED_REDIRECT_HOST || "";
+assert(ALLOWED_REDIRECT_HOST, "Specify a value for ALLOWED_REDIRECT_HOST.");
 
 export const options: HandshakeOptions = {
   secret: process.env.SESSION_SECRET!,
-  allowedRedirectUris: [ALLOWED_REDIRECT_URI],
+  allowedRedirectHosts: [ALLOWED_REDIRECT_HOST],
   handlers: [
     // TODO: Add your handlers here.
     //

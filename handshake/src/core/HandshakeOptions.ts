@@ -4,7 +4,7 @@ export interface HandshakeOptions {
   /**
    * A list of hosts that we are allowed to redirect users back to.
    */
-  allowedRedirectUris: string[];
+  allowedRedirectHosts: string[];
 
   /**
    * A list of OAuth handlers like:

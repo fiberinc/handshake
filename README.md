@@ -114,7 +114,7 @@ const options: HandshakeOptions = {
   ],
   // Tell Handshake which URLs it can redirect users back to. This is a
   // security measure to prevent malicious redirects.
-  allowedRedirectUris: [process.env.REDIRECT_URL],
+  allowedRedirectHosts: [process.env.REDIRECT_URL],
   // Set a unique secret to sign session cookies.
   secret: process.env.SESSION_SECRET!,
 };

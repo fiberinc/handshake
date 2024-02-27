@@ -152,11 +152,11 @@ export function isValidDeveloperCallbackUri(
   // first registered URI.
   const url = new URL(value);
 
-  const allowedRedirectUris = options.allowedRedirectUris.map(
+  const allowedRedirectHosts = options.allowedRedirectHosts.map(
     (uri) => new URL(uri),
   );
 
-  for (const allowedUri of allowedRedirectUris) {
+  for (const allowedUri of allowedRedirectHosts) {
     if (
       url.hostname === allowedUri.hostname &&
       // No, this is not standard, xbut it's what we do.

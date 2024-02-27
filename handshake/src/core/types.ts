@@ -1,4 +1,4 @@
-import { Provider } from "./Provider";
+import { OAuthProvider } from "~/providers/lib/OAuthProvider";
 import { SessionValue } from "./session";
 
 export type HandlerFactory<Args, Credential = unknown> = (
@@ -7,10 +7,17 @@ export type HandlerFactory<Args, Credential = unknown> = (
 
 export interface Handler<Credential = unknown> {
   id: string;
-  provider: Provider;
+
+  provider: {
+    id: string;
+    name: string;
+    website: string;
+    type: "oauth1" | "oauth2" | "other";
+    oauthConfig?: OAuthProvider;
+    documentationUrl?: string;
+  };
 
   /**
-   *
    * @param callbackHandlerUrl
    * @param extras - object with the `extras` option passed by the frontend.
    * Used for passing data like `myShopifyDomain`.

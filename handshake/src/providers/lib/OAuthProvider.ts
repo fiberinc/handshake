@@ -6,15 +6,17 @@ import {
   UserinfoEndpointHandler,
 } from "next-auth/providers";
 import type { ClientMetadata, HttpOptions } from "openid-client";
-import { Provider } from "~/core/Provider";
 
 type ChecksType = "pkce" | "state" | "none" | "nonce";
 
 /**
  * Modified version of next-auth's `OAuthConfigInternal`.
  */
-export interface OAuthProvider extends Provider {
+export interface OAuthProvider {
+  id: string;
   name: string;
+  website: string;
+  documentationUrl?: string;
   /**
    * OpenID Connect (OIDC) compliant providers can configure
    * this instead of `authorize`/`token`/`userinfo` options
@@ -62,6 +64,7 @@ export interface OAuthProvider extends Provider {
   httpOptions?: HttpOptions;
 
   // These are kept around for backwards compatibility with OAuth 1.x
+  authorizationUrl?: string;
   accessTokenUrl?: string;
   requestTokenUrl?: string;
   profileUrl?: string;

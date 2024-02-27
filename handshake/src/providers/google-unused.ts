@@ -1,8 +1,8 @@
 import assert from "assert";
 import crypto from "crypto";
 import { z } from "zod";
-import { HandlerFactory } from "~/core/Handler";
 import { InvalidRequest } from "~/core/errors";
+import { HandlerFactory } from "~/core/types";
 
 export interface Credential {
   email: string;
@@ -33,6 +33,7 @@ export const Google: HandlerFactory<Args, Credential> = ({ id, ...args }) => {
     provider: {
       id: PROVIDER_ID,
       name: "google",
+      type: "oauth2",
       website: "https://google.com",
     },
     getAuthorizationUrl(callbackHandlerUrl: string) {

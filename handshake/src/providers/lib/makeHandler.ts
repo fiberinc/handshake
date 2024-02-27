@@ -6,9 +6,9 @@ import {
   TokenSet,
   generators,
 } from "openid-client";
-import { Handler, HandlerFactory } from "~/core/Handler";
 import { InvalidCheck, OAuthCallbackError } from "~/core/errors";
 import { SessionValue } from "~/core/session";
+import { Handler, HandlerFactory } from "~/core/types";
 import { OAuthProvider } from "./OAuthProvider";
 import { getOpenIdClient } from "./getOpenIdClient";
 
@@ -17,6 +17,8 @@ export type TypicalOAuthArgs = {
   clientId: string;
   clientSecret: string;
   scopes?: string[];
+  issuer?: string;
+  subdomain?: string;
 };
 
 /**
@@ -29,11 +31,18 @@ export function makeHandlerFactory<
     return {
       ...provider,
       id: args.id ?? provider.id,
-      provider,
+      provider: {
+        id: provider.id,
+        name: provider.name,
+        type: provider.version?.startsWith("1") ? "oauth1" : "oauth2",
+        documentationUrl: provider.documentationUrl,
+        website: provider.website,
+        oauthConfig: provider,
+      },
       async getAuthorizationUrl(callbackHandlerUrl) {
         // Handle OAuth v1.x
-        if (provider.version?.startsWith("1.")) {
-          throw new TypeError("Not implemented");
+        if (provider.version?.startsWith("1")) {
+          throw new TypeError("makeHandlerFactory doesn't suport OAuth 1 yet");
         }
 
         // We'll return whatever is set here to the parent.

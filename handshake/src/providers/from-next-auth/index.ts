@@ -1,5 +1,12 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 
+// The following providers accept ad hoc arguments, so we hard-code their types:
+// - azure-ad-b2c
+// - azure-ad
+// - battlenet
+// - fusionauth
+// - united-effects
+
 import { makeFromNextAuth } from "./makeFromNextAuth";
 
 const FortyTwoNextAuth = require("next-auth/providers/42-school").default;
@@ -14,17 +21,33 @@ export const Atlassian = makeFromNextAuth(AtlassianNextAuth);
 const Auth0NextAuth = require("next-auth/providers/auth0").default;
 export const Auth0 = makeFromNextAuth(Auth0NextAuth);
 
-const AuthentikNextAuth = require("next-auth/providers/authentik").default;
-export const Authentik = makeFromNextAuth(AuthentikNextAuth);
+// Disabling until someone asks for it.
+// const AuthentikNextAuth = require("next-auth/providers/authentik").default;
+// export const Authentik = makeFromNextAuth(AuthentikNextAuth);
 
-const AzureAdB2cNextAuth = require("next-auth/providers/azure-ad-b2c").default;
-export const AzureAdB2c = makeFromNextAuth(AzureAdB2cNextAuth);
+import AzureAdB2cNextAuth from "next-auth/providers/azure-ad-b2c";
+export const AzureAdB2C = makeFromNextAuth<{
+  primaryUserFlow?: string;
+  tenantId?: string;
+}>(AzureAdB2cNextAuth);
 
 const AzureAdNextAuth = require("next-auth/providers/azure-ad").default;
-export const AzureAd = makeFromNextAuth(AzureAdNextAuth);
+export const AzureAd = makeFromNextAuth<{
+  /**
+   * https://docs.microsoft.com/en-us/graph/api/profilephoto-get?view=graph-rest-1.0#examples
+   * @default 48
+   */
+  profilePhotoSize?: 48 | 64 | 96 | 120 | 240 | 360 | 432 | 504 | 648;
+  /** @default "common" */
+  tenantId?: string;
+}>(AzureAdNextAuth);
 
-const BattlenetNextAuth = require("next-auth/providers/battlenet").default;
-export const Battlenet = makeFromNextAuth(BattlenetNextAuth);
+import BattlenetNextAuth, {
+  BattleNetIssuer,
+} from "next-auth/providers/battlenet";
+export const Battlenet = makeFromNextAuth<{ issuer: BattleNetIssuer }>(
+  BattlenetNextAuth,
+);
 
 const BoxNextAuth = require("next-auth/providers/box").default;
 export const Box = makeFromNextAuth(BoxNextAuth);
@@ -69,7 +92,10 @@ const FreshbooksNextAuth = require("next-auth/providers/freshbooks").default;
 export const Freshbooks = makeFromNextAuth(FreshbooksNextAuth);
 
 const FusionauthNextAuth = require("next-auth/providers/fusionauth").default;
-export const Fusionauth = makeFromNextAuth(FusionauthNextAuth);
+export const Fusionauth = makeFromNextAuth<{
+  // tenantId only needed if there is more than one tenant configured on the server
+  tenantId?: string;
+}>(FusionauthNextAuth);
 
 const GitHubNextAuth = require("next-auth/providers/github").default;
 export const GitHub = makeFromNextAuth(GitHubNextAuth);
@@ -200,7 +226,9 @@ export const Twitch = makeFromNextAuth(TwitchNextAuth);
 
 const UnitedEffectsNextAuth =
   require("next-auth/providers/united-effects").default;
-export const UnitedEffects = makeFromNextAuth(UnitedEffectsNextAuth);
+export const UnitedEffects = makeFromNextAuth<{ issuer: string }>(
+  UnitedEffectsNextAuth,
+);
 
 const VkNextAuth = require("next-auth/providers/vk").default;
 export const Vk = makeFromNextAuth(VkNextAuth);
@@ -212,7 +240,7 @@ const WordpressNextAuth = require("next-auth/providers/wordpress").default;
 export const Wordpress = makeFromNextAuth(WordpressNextAuth);
 
 const WorkosNextAuth = require("next-auth/providers/workos").default;
-export const Workos = makeFromNextAuth(WorkosNextAuth);
+export const WorkOS = makeFromNextAuth(WorkosNextAuth);
 
 const YandexNextAuth = require("next-auth/providers/yandex").default;
 export const Yandex = makeFromNextAuth(YandexNextAuth);

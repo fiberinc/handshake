@@ -6,8 +6,8 @@ import crypto from "crypto";
 import { Forbidden } from "http-errors";
 import querystring from "querystring";
 import { z } from "zod";
-import { HandlerFactory } from "~/core/Handler";
 import { InvalidRequest } from "~/core/errors";
+import { HandlerFactory } from "~/core/types";
 
 interface SessionShopData {
   id: number;
@@ -71,6 +71,7 @@ export const Shopify: HandlerFactory<Args, Credential> = ({ id, ...args }) => {
     provider: {
       id: "shopify",
       name: "Shopify",
+      type: "oauth2",
       website: "https://shopify.com",
     },
     getAuthorizationUrl(callbackHandlerUrl, extras) {

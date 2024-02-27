@@ -2,10 +2,10 @@ import { BadRequest, HttpError, InternalServerError } from "http-errors";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { NextRequest } from "next/server";
-import { Handler } from "~/core/Handler";
 import { ExtendedConfig } from "~/core/HandshakeOptions";
 import { debug, error, info } from "~/core/logger";
 import { getSessionValueToSave } from "~/core/session";
+import { Handler } from "~/core/types";
 import { getNextHost } from "./handle-callback";
 
 export async function handleRedirect(

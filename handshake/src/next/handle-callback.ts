@@ -3,10 +3,10 @@ import { HttpError } from "http-errors";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { NextRequest } from "next/server";
-import { Handler } from "~/core/Handler";
 import { ExtendedConfig } from "~/core/HandshakeOptions";
 import { debug, error, info } from "~/core/logger";
 import { parseSessionFromStringValue } from "~/core/session";
+import { Handler } from "~/core/types";
 
 export async function handleCallback(
   options: ExtendedConfig,

@@ -12,7 +12,9 @@
   <p align="left" style="align: left;">
     <img src="https://img.shields.io/badge/TypeScript-blue" alt="TypeScript" />
     <img src="https://img.shields.io/badge/MIT-License" alt="MIT License" />
-    <a href="https://github.com/fiberinc/handshake/actions/workflows/ci.yml"><img src="https://github.com/fiberinc/handshake/actions/workflows/ci.yml/badge.svg" alt="CI status" style="max-width: 100%;"></a>
+    <a href="https://github.com/fiberinc/handshake/actions/workflows/ci.yml">
+      <img src="https://github.com/fiberinc/handshake/actions/workflows/ci.yml/badge.svg" alt="CI status" style="max-width: 100%;">
+    </a>
   </p>
 </p>
 

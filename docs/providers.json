@@ -3,210 +3,168 @@
     "id": "aweber",
     "name": "AWeber",
     "title": "AWeber",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "acton",
     "name": "ActOn",
     "title": "Act-On",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "acuityscheduling",
     "name": "AcuityScheduling",
     "title": "Acuity Scheduling",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "adobe",
     "name": "Adobe",
     "title": "Adobe",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "aha",
     "name": "Aha",
     "title": "Aha!",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "alchemer",
     "name": "Alchemer",
     "title": "Alchemer",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "amazon",
     "name": "Amazon",
     "title": "Amazon",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "amazon-seller",
     "name": "AmazonSeller",
     "title": "Amazon Seller Central",
-    "logo": "amazonseller.svg",
     "docs": "[\"Website authorization workflow\"\ndocumentation](https://developer-docs.amazon.com/sp-api/docs/website-authorization-workflow)\n\n## Usage\n\nProvide the following arguments:\n\n\n```ts title=\"app/options.ts\"\nimport { Amazon } from \"handshake\";\n\nAmazon({\n  appId: string,\n  clientId: string,\n  clientSecret: string,\n  isDraftApp: true | false,\n});\n```\n\n\n## Troubleshooting\n\nNeed to \"set up your “Authorize” buttons so that selling partners are\nredirected to the Seller Central (for sellers) or Vendor Central (for\nvendors) sign-in page for their own region.\"\n\n### No localhost redirect\n\nAmazon does not allow setting localhost as a \n`redirect_uri`\n. You may want to\nuse Ngrok or another service to provide a publicly addressable URL.\n\n[https://github.com/amzn/selling-partner-api-docs/issues/26](https://github.com/amzn/selling-partner-api-docs/issues/26)\n\n### Error Code: MD5101\n\nThis means unauthorized redirect URI. localhost URIs are allowed.\n\n### Developer Central – \"You do not have permissions to view this page\"\n\nFYI. Only the primary user of the Seller Central account is able to create\nand modify apps via the \"Developer Central\" page.\n\n[https://github.com/amzn/selling-partner-api-docs/issues/2191](https://github.com/amzn/selling-partner-api-docs/issues/2191)\n\n### Not setup for OAuth\n\n![amazon-not-setup](/handshake/images/providers/amazon-not-setup-oauth.png)"
   },
   {
     "id": "angellist",
     "name": "AngelList",
     "title": "AngelList",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "apple",
     "name": "Apple",
     "title": "Apple",
-    "logo": "apple.svg",
     "docs": null
   },
   {
     "id": "arcgis",
     "name": "ArcGIS",
     "title": "ArcGIS",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "asana",
     "name": "Asana",
     "title": "Asana",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "assembla",
     "name": "Assembla",
     "title": "Assembla",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "atlassian",
     "name": "Atlassian",
     "title": "Atlassian",
-    "logo": "atlassian.svg",
     "docs": null
   },
   {
     "id": "auth0",
     "name": "Auth0",
     "title": "Auth0",
-    "logo": "auth0.svg",
-    "docs": null
-  },
-  {
-    "id": "authentik",
-    "name": "Authentik",
-    "title": "Authentik",
-    "logo": "authentik.svg",
-    "docs": null
-  },
-  {
-    "id": "authentiq",
-    "name": "Authentiq",
-    "title": "Authentiq",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "authing",
     "name": "Authing",
     "title": "Authing",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "autodesk",
     "name": "Autodesk",
     "title": "Autodesk",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "axosoft",
     "name": "Axosoft",
     "title": "Axosoft",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "azure-ad",
     "name": "AzureAd",
     "title": "Azure Active Directory",
-    "logo": "azure.svg",
     "docs": null
   },
   {
     "id": "azure-ad-b2c",
-    "name": "AzureAdB2c",
+    "name": "AzureAdB2C",
     "title": "Azure Active Directory B2C",
-    "logo": "azure.svg",
     "docs": null
   },
   {
     "id": "baidu",
     "name": "Baidu",
     "title": "Baidu",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "basecamp",
     "name": "Basecamp",
     "title": "Basecamp",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "battlenet",
     "name": "Battlenet",
     "title": "Battle.net",
-    "logo": "battlenet.svg",
     "docs": null
   },
   {
     "id": "beatport",
     "name": "Beatport",
     "title": "Beatport",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "bitbucket",
     "name": "Bitbucket",
     "title": "Bitbucket",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "bitly",
     "name": "Bitly",
     "title": "Bitly",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "box",
     "name": "Box",
     "title": "Box",
-    "logo": "box.svg",
     "docs": null
   },
   {
     "id": "buffer",
     "name": "Buffer",
     "title": "Buffer",
-    "logo": "info.svg",
     "docs": null
   },
   {
@@ -219,231 +177,186 @@
     "id": "cas",
     "name": "CAS",
     "title": "CAS",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "campaignmonitor",
     "name": "CampaignMonitor",
     "title": "Campaign Monitor",
-    "logo": "info.svg",
-    "docs": null
-  },
-  {
-    "id": "cheddar",
-    "name": "Cheddar",
-    "title": "Cheddar",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "clio",
     "name": "Clio",
     "title": "Clio",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "cognito",
     "name": "Cognito",
     "title": "Cognito",
-    "logo": "cognito.svg",
     "docs": null
   },
   {
     "id": "coinbase",
     "name": "Coinbase",
     "title": "Coinbase",
-    "logo": "coinbase.svg",
     "docs": null
   },
   {
     "id": "concur",
     "name": "Concur",
     "title": "Concur",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "constantcontact",
     "name": "ConstantContact",
     "title": "Constant Contact",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "coursera",
     "name": "Coursera",
     "title": "Coursera",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "crossid",
     "name": "CrossID",
     "title": "CrossID",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "dailymotion",
     "name": "Dailymotion",
     "title": "Dailymotion",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "deezer",
     "name": "Deezer",
     "title": "Deezer",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "delivery",
     "name": "Delivery",
     "title": "Delivery",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "deputy",
     "name": "Deputy",
     "title": "Deputy",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "deviantart",
     "name": "DeviantArt",
     "title": "DeviantArt",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "digitalocean",
     "name": "DigitalOcean",
     "title": "DigitalOcean",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "discogs",
     "name": "Discogs",
     "title": "Discogs",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "discord",
     "name": "Discord",
     "title": "Discord",
-    "logo": "discord.svg",
     "docs": null
   },
   {
     "id": "disqus",
     "name": "Disqus",
     "title": "Disqus",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "docusign",
     "name": "Docusign",
     "title": "DocuSign",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "dribbble",
     "name": "Dribbble",
     "title": "Dribbble",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "dropbox",
     "name": "Dropbox",
     "title": "Dropbox",
-    "logo": "dropbox.svg",
     "docs": null
   },
   {
     "id": "ebay",
     "name": "Ebay",
     "title": "eBay",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "echosign",
     "name": "Echosign",
     "title": "Adobe Sign",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "ecwid",
     "name": "Ecwid",
     "title": "Ecwid",
-    "logo": "info.svg",
-    "docs": null
-  },
-  {
-    "id": "edmodo",
-    "name": "Edmodo",
-    "title": "Edmodo",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "egnyte",
     "name": "Egnyte",
     "title": "Egnyte",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "etsy",
     "name": "Etsy",
     "title": "Etsy",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "eventbrite",
     "name": "Eventbrite",
     "title": "Eventbrite",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "eveonline",
     "name": "Eveonline",
     "title": "EVE Online",
-    "logo": "eveonline.svg",
     "docs": null
   },
   {
     "id": "evernote",
     "name": "Evernote",
     "title": "Evernote",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "eyeem",
     "name": "EyeEm",
     "title": "EyeEm",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "facebook",
     "name": "Facebook",
     "title": "Facebook",
-    "logo": "facebook.svg",
     "docs": null
   },
   {
@@ -456,357 +369,294 @@
     "id": "familysearch",
     "name": "FamilySearch",
     "title": "FamilySearch",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "feedly",
     "name": "Feedly",
     "title": "Feedly",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "figma",
     "name": "Figma",
     "title": "Figma",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "fitbit",
     "name": "Fitbit",
     "title": "Fitbit",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "flickr",
     "name": "Flickr",
     "title": "Flickr",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "formstack",
     "name": "Formstack",
     "title": "Formstack",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "42-school",
     "name": "FortyTwo",
     "title": "42 School",
-    "logo": "42-school.svg",
     "docs": null
   },
   {
     "id": "foursquare",
     "name": "Foursquare",
     "title": "Foursquare",
-    "logo": "foursquare.svg",
     "docs": null
   },
   {
     "id": "freeagent",
     "name": "FreeAgent",
     "title": "FreeAgent",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "freelancer",
     "name": "Freelancer",
     "title": "Freelancer",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "freshbooks",
     "name": "Freshbooks",
     "title": "Freshbooks",
-    "logo": "freshbooks.svg",
     "docs": null
   },
   {
     "id": "fusionauth",
     "name": "Fusionauth",
     "title": "FusionAuth",
-    "logo": "fusionauth.svg",
     "docs": null
   },
   {
     "id": "garmin",
     "name": "Garmin",
     "title": "Garmin",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "geeklist",
     "name": "Geeklist",
     "title": "Geeklist",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "genius",
     "name": "Genius",
     "title": "Genius",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "getbase",
     "name": "Getbase",
-    "title": "Zendesk Sell",
-    "logo": "info.svg",
+    "title": "Getbase",
     "docs": null
   },
   {
     "id": "github",
     "name": "GitHub",
     "title": "GitHub",
-    "logo": "github.svg",
     "docs": null
   },
   {
     "id": "gitbook",
     "name": "Gitbook",
     "title": "GitBook",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "gitlab",
     "name": "Gitlab",
     "title": "GitLab",
-    "logo": "gitlab.svg",
-    "docs": null
-  },
-  {
-    "id": "gitter",
-    "name": "Gitter",
-    "title": "Gitter",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "goodreads",
     "name": "Goodreads",
     "title": "Goodreads",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "google",
     "name": "Google",
     "title": "Google",
-    "logo": "google.svg",
     "docs": null
   },
   {
     "id": "groove",
     "name": "Groove",
     "title": "Groove",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "gumroad",
     "name": "Gumroad",
     "title": "Gumroad",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "harvest",
     "name": "Harvest",
     "title": "Harvest",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "hellosign",
     "name": "HelloSign",
     "title": "HelloSign",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "heroku",
     "name": "Heroku",
     "title": "Heroku",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "homeaway",
     "name": "Homeaway",
     "title": "HomeAway",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "hootsuite",
     "name": "Hootsuite",
     "title": "Hootsuite",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "hubspot",
     "name": "Hubspot",
     "title": "HubSpot",
-    "logo": "hubspot.svg",
     "docs": "## Usage\n\nProvide the following arguments:\n\n\n```ts\n// Inside app/options.ts\n\nimport { Hubspot } from \"handshake\";\n\nHubspot({\n  clientId: string,\n  clientSecret: string,\n  scopes: [\n    \"e-commerce\",\n    \"crm.schemas.contacts.read\",\n    \"crm.objects.contacts.read\",\n  ],\n});\n```\n\n\n### Configure the Callback URL\n\nMake sure your Handshake URL is allowed within your Hubspot app's Auth tab:\n\n![](/handshake/images/providers/hubspot-redirect.png)\n\nFollow the format: \n`https://HANDSHAKE_URL/api/auth/hubspot/callback`"
   },
   {
     "id": "huddle",
     "name": "Huddle",
     "title": "Huddle",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "ibm",
     "name": "IBM",
     "title": "IBM",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "idme",
     "name": "IDme",
     "title": "ID.me",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "idonethis",
     "name": "IDoneThis",
     "title": "I Done This",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "iconfinder",
     "name": "Iconfinder",
     "title": "Iconfinder",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "imgur",
     "name": "Imgur",
     "title": "Imgur",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "infusionsoft",
     "name": "Infusionsoft",
     "title": "Infusionsoft",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "instagram",
     "name": "Instagram",
     "title": "Instagram",
-    "logo": "instagram.svg",
     "docs": null
   },
   {
     "id": "intuit",
     "name": "Intuit",
     "title": "Intuit",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "jamendo",
     "name": "Jamendo",
     "title": "Jamendo",
-    "logo": "info.svg",
-    "docs": null
-  },
-  {
-    "id": "jumplead",
-    "name": "Jumplead",
-    "title": "Jumplead",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "kakao",
     "name": "Kakao",
     "title": "Kakao",
-    "logo": "kakao.svg",
     "docs": null
   },
   {
     "id": "keycloak",
     "name": "Keycloak",
     "title": "Keycloak",
-    "logo": "keycloak.svg",
     "docs": null
   },
   {
     "id": "line",
     "name": "Line",
     "title": "LINE",
-    "logo": "line.svg",
     "docs": null
   },
   {
     "id": "linkedin",
     "name": "LinkedIn",
     "title": "LinkedIn",
-    "logo": "linkedin.svg",
     "docs": null
   },
   {
     "id": "livechat",
     "name": "LiveChat",
     "title": "LiveChat",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "logingov",
     "name": "LoginGOV",
     "title": "Login.gov",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "lyft",
     "name": "Lyft",
     "title": "Lyft",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "myob",
     "name": "MYOB",
     "title": "MYOB",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "mailup",
     "name": "MailUp",
     "title": "MailUp",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "mailchimp",
     "name": "Mailchimp",
     "title": "Mailchimp",
-    "logo": "mailchimp.svg",
     "docs": null
   },
   {
@@ -819,126 +669,108 @@
     "id": "mailxpert",
     "name": "Mailxpert",
     "title": "Mailxpert",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "mapmyfitness",
     "name": "MapMyFitness",
     "title": "MapMyFitness",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "mastodon",
     "name": "Mastodon",
     "title": "Mastodon",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "medium",
     "name": "Medium",
     "title": "Medium",
-    "logo": "medium.svg",
     "docs": null
   },
   {
     "id": "meetup",
     "name": "Meetup",
     "title": "Meetup",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "mendeley",
     "name": "Mendeley",
     "title": "Mendeley",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "mention",
     "name": "Mention",
     "title": "Mention",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "microsoft",
     "name": "Microsoft",
     "title": "Microsoft",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "live",
     "name": "MicrosoftLive",
     "title": "Microsoft Live",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "mixcloud",
     "name": "Mixcloud",
     "title": "Mixcloud",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "moxtra",
     "name": "Moxtra",
     "title": "Moxtra",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "naver",
     "name": "Naver",
     "title": "Naver",
-    "logo": "naver.svg",
     "docs": null
   },
   {
     "id": "nest",
     "name": "Nest",
     "title": "Nest",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "netlify",
     "name": "Netlify",
     "title": "Netlify",
-    "logo": "netlify.svg",
     "docs": null
   },
   {
     "id": "nokotime",
     "name": "NokoTime",
     "title": "NokoTime",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "notion",
     "name": "Notion",
     "title": "Notion",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "nylas",
     "name": "Nylas",
     "title": "Nylas",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "okta",
     "name": "Okta",
     "title": "Okta",
-    "logo": "okta.svg",
     "docs": null
   },
   {
@@ -948,458 +780,369 @@
     "docs": null
   },
   {
-    "id": "openstreetmap",
-    "name": "OpenStreetMap",
-    "title": "OpenStreetMap",
-    "logo": "info.svg",
-    "docs": null
-  },
-  {
     "id": "openstreetmap2",
     "name": "OpenStreetMap2",
     "title": "OpenStreetMap",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "optimizely",
     "name": "Optimizely",
     "title": "Optimizely",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "osso",
     "name": "Osso",
     "title": "Osso",
-    "logo": "osso.svg",
     "docs": null
   },
   {
     "id": "osu",
     "name": "Osu",
     "title": "Osu!",
-    "logo": "osu.svg",
     "docs": null
   },
   {
     "id": "passage",
     "name": "Passage",
     "title": "Passage",
-    "logo": "passage.svg",
     "docs": null
   },
   {
     "id": "patreon",
     "name": "Patreon",
     "title": "Patreon",
-    "logo": "patreon.svg",
     "docs": null
   },
   {
     "id": "paypal",
     "name": "PayPal",
     "title": "PayPal",
-    "logo": "info.svg",
-    "docs": null
-  },
-  {
-    "id": "phantauth",
-    "name": "Phantauth",
-    "title": "Phantauth",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "pinterest",
     "name": "Pinterest",
     "title": "Pinterest",
-    "logo": "pinterest.svg",
     "docs": null
   },
   {
     "id": "pipedrive",
     "name": "Pipedrive",
     "title": "Pipedrive",
-    "logo": "pipedrive.svg",
     "docs": null
   },
   {
     "id": "plurk",
     "name": "Plurk",
     "title": "Plurk",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "pocket",
     "name": "Pocket",
     "title": "Pocket",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "podio",
     "name": "Podio",
     "title": "Podio",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "procore",
     "name": "Procore",
     "title": "Procore",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "producthunt",
     "name": "ProductHunt",
     "title": "Product Hunt",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "projectplace",
     "name": "Projectplace",
     "title": "Projectplace",
-    "logo": "info.svg",
-    "docs": null
-  },
-  {
-    "id": "projectplace2",
-    "name": "Projectplace2",
-    "title": "Projectplace",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "pushbullet",
     "name": "Pushbullet",
     "title": "Pushbullet",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "qq",
     "name": "Qq",
     "title": "Qq",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "ravelry",
     "name": "Ravelry",
     "title": "Ravelry",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "redbooth",
     "name": "Redbooth",
     "title": "Redbooth",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "reddit",
     "name": "Reddit",
     "title": "Reddit",
-    "logo": "reddit.svg",
     "docs": null
   },
   {
     "id": "runkeeper",
     "name": "Runkeeper",
     "title": "Runkeeper",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "salesforce",
     "name": "Salesforce",
     "title": "Salesforce",
-    "logo": "salesforce.svg",
     "docs": null
   },
   {
     "id": "sellsy",
     "name": "Sellsy",
     "title": "Sellsy",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "shoeboxed",
     "name": "Shoeboxed",
     "title": "Shoeboxed",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "shopify",
     "name": "Shopify",
     "title": "Shopify",
-    "logo": "shopify.svg",
     "docs": "```ts title=\"app/options.ts\"\nimport { Shopify } from \"handshake\";\n\nShopify({\n  clientId: \"\",\n  clientSecret: \"\",\n  scopes: [\"read_orders\", \"read_products\"],\n});\n```\n\n\n### Configure the Callback URL\n\nMake sure your Handshake URL is allowed within your Shopify app's Configuration tab:\n\n![](/handshake/images/providers/shopify-redirect.png)\n\nFollow the format: \n`https://HANDSHAKE_URL/api/auth/shopify/callback`"
   },
   {
     "id": "skyrock",
     "name": "Skyrock",
     "title": "Skyrock",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "slack",
     "name": "Slack",
     "title": "Slack",
-    "logo": "slack.svg",
-    "docs": null
-  },
-  {
-    "id": "slice",
-    "name": "Slice",
-    "title": "Slice",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "smartsheet",
     "name": "Smartsheet",
     "title": "Smartsheet",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "smugmug",
     "name": "Smugmug",
     "title": "Smugmug",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "snapchat",
     "name": "Snapchat",
     "title": "Snapchat",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "snowflake",
     "name": "Snowflake",
     "title": "Snowflake",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "socialpilot",
     "name": "SocialPilot",
     "title": "SocialPilot",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "socrata",
     "name": "Socrata",
     "title": "Socrata",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "soundcloud",
     "name": "SoundCloud",
     "title": "SoundCloud",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "spotify",
     "name": "Spotify",
     "title": "Spotify",
-    "logo": "spotify.svg",
     "docs": null
   },
   {
     "id": "square",
     "name": "Square",
     "title": "Square",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "stackexchange",
     "name": "StackExchange",
     "title": "Stack Exchange",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "stocktwits",
     "name": "Stocktwits",
     "title": "Stocktwits",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "stormz",
     "name": "Stormz",
     "title": "Stormz",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "storyblok",
     "name": "Storyblok",
     "title": "Storyblok",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "strava",
     "name": "Strava",
     "title": "Strava",
-    "logo": "strava.svg",
     "docs": null
   },
   {
     "id": "stripe",
     "name": "Stripe",
     "title": "Stripe",
-    "logo": "stripe.svg",
     "docs": "## Usage\n\nProvide the following arguments:\n\n\n```ts title=\"app/options.ts\"\n\nimport { Stripe } from \"handshake\";\n\nStripe({\n  clientId: \"ca_\",\n  clientSecret: \"sk_\",\n  scopes: [],\n});\n```\n\n\n### Configure the Callback URL\n\nYou can set up a localhost callback by toggling the \"View test data\" switch.\n\n![](/handshake/images/providers/stripe-redirect.png)"
   },
   {
     "id": "surveymonkey",
     "name": "SurveyMonkey",
     "title": "SurveyMonkey",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "surveysparrow",
     "name": "SurveysParrow",
     "title": "SurveySparrow",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "thingiverse",
     "name": "Thingiverse",
     "title": "Thingiverse",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "ticketbud",
     "name": "Ticketbud",
     "title": "Ticketbud",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "tiktok",
     "name": "TikTok",
     "title": "TikTok",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "timely",
     "name": "Timely",
     "title": "Timely",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "todoist",
     "name": "Todoist",
     "title": "Todoist",
-    "logo": "todoist.svg",
     "docs": null
   },
   {
     "id": "trakt",
     "name": "Trakt",
     "title": "Trakt",
-    "logo": "trakt.svg",
     "docs": null
   },
   {
     "id": "traxo",
     "name": "Traxo",
     "title": "Traxo",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "trello",
     "name": "Trello",
     "title": "Trello",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "tripit",
     "name": "TripIt",
     "title": "TripIt",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "trustpilot",
     "name": "Trustpilot",
     "title": "Trustpilot",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "tumblr",
     "name": "Tumblr",
     "title": "Tumblr",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "twitch",
     "name": "Twitch",
     "title": "Twitch",
-    "logo": "twitch.svg",
     "docs": null
   },
   {
     "id": "twitter",
     "name": "Twitter",
     "title": "Twitter",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "typeform",
     "name": "Typeform",
     "title": "Typeform",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "uber",
     "name": "Uber",
     "title": "Uber",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "unbounce",
     "name": "Unbounce",
     "title": "Unbounce",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "underarmour",
     "name": "UnderArmour",
     "title": "Under Armour",
-    "logo": "info.svg",
     "docs": null
   },
   {
@@ -1412,217 +1155,186 @@
     "id": "unsplash",
     "name": "Unsplash",
     "title": "Unsplash",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "untappd",
     "name": "Untappd",
     "title": "Untappd",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "upwork",
     "name": "Upwork",
     "title": "Upwork",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "uservoice",
     "name": "UserVoice",
     "title": "UserVoice",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "vend",
     "name": "Vend",
     "title": "Vend",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "venmo",
     "name": "Venmo",
     "title": "Venmo",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "vercel",
     "name": "Vercel",
     "title": "Vercel",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "verticalresponse",
     "name": "VerticalResponse",
     "title": "VerticalResponse",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "viadeo",
     "name": "Viadeo",
     "title": "Viadeo",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "vimeo",
     "name": "Vimeo",
     "title": "Vimeo",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "visualstudio",
     "name": "VisualStudio",
     "title": "Visual Studio",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "vk",
     "name": "Vk",
     "title": "VK",
-    "logo": "vk.svg",
     "docs": null
   },
   {
     "id": "wechat",
     "name": "WeChat",
     "title": "WeChat",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "weekdone",
     "name": "Weekdone",
     "title": "Weekdone",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "weibo",
     "name": "Weibo",
     "title": "Weibo",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "wikimedia",
     "name": "Wikimedia",
     "title": "Wikimedia",
-    "logo": "wikimedia.svg",
     "docs": null
   },
   {
     "id": "withings",
     "name": "Withings",
     "title": "Withings",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "wordpress",
     "name": "Wordpress",
     "title": "WordPress.com",
-    "logo": "wordpress.svg",
     "docs": null
   },
   {
     "id": "workos",
-    "name": "Workos",
+    "name": "WorkOS",
     "title": "WorkOS",
-    "logo": "workos.svg",
     "docs": null
   },
   {
     "id": "wrike",
     "name": "Wrike",
     "title": "Wrike",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "xero",
     "name": "Xero",
     "title": "Xero",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "xing",
     "name": "Xing",
     "title": "Xing",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "yahoo",
     "name": "Yahoo",
     "title": "Yahoo",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "yammer",
     "name": "Yammer",
     "title": "Yammer",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "yandex",
     "name": "Yandex",
     "title": "Yandex",
-    "logo": "yandex.svg",
     "docs": null
   },
   {
     "id": "zendesk",
     "name": "Zendesk",
     "title": "Zendesk",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "zitadel",
     "name": "Zitadel",
     "title": "ZITADEL",
-    "logo": "zitadel.svg",
     "docs": null
   },
   {
     "id": "zoho",
     "name": "Zoho",
     "title": "Zoho",
-    "logo": "zoho.svg",
     "docs": null
   },
   {
     "id": "zoom",
     "name": "Zoom",
     "title": "Zoom",
-    "logo": "zoom.svg",
     "docs": null
   },
   {
     "id": "23andme",
     "name": "_23andMe",
     "title": "23andMe",
-    "logo": "info.svg",
     "docs": null
   },
   {
     "id": "500px",
     "name": "_500PX",
     "title": "500px",
-    "logo": "info.svg",
     "docs": null
   }
 ]

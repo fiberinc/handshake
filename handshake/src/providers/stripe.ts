@@ -1,4 +1,4 @@
-import { HandlerFactory } from "~/core/Handler";
+import { HandlerFactory } from "~/core/types";
 import { TypicalOAuthArgs, makeHandlerFactory } from "./lib/makeHandler";
 
 interface Args {

@@ -1,9 +1,9 @@
 import assert from "assert";
 import crypto from "crypto";
 import { z } from "zod";
-import { HandlerFactory } from "~/core/Handler";
 import { InvalidRequest } from "~/core/errors";
 import { debug } from "~/core/logger";
+import { HandlerFactory } from "~/core/types";
 
 export interface Args {
   appId: string;
@@ -80,6 +80,7 @@ export const AmazonSeller: HandlerFactory<Args, Credential> = ({
     provider: {
       id: PROVIDER_ID,
       name: "Amazon Seller Central",
+      type: "other",
       website: "https://sellercentral.amazon.com/",
     },
     getAuthorizationUrl(callbackHandlerUrl: string) {

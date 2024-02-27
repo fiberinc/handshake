@@ -38,7 +38,7 @@ function extractClasses(docs: any) {
     id: string;
     name: string;
     title: string;
-    logo: string;
+    // logo: string;
     docs: string;
   }[] = [];
 
@@ -72,34 +72,27 @@ function extractClasses(docs: any) {
 
       // const from = require('')[itemName]
 
-      const fromHandshake = handshake[item.name]({}).provider;
+      const fromHandshake = handshake[item.name]({
+        clientId: "asdf",
+        clientSecret: "asdf",
+        subdomain: "asdf",
+        issuer: "asdf",
+      }).provider;
       const providerId = fromHandshake.id;
       assert(providerId);
 
       // console.log("metadata", metadata);
 
-      let logo = fromHandshake.metadata.logo?.replace("/", "");
-
-      if (providersWithoutLogos.indexOf(providerId) !== -1) {
-        logo = `${providerId}.svg`;
-        // } else if (!logo) {
-        //   logo = providerId.toLowerCase() + ".svg";
-      }
-
-      if (!logo) {
-        console.log("provider has no logo", providerId);
-      }
-
-      let title = fromHandshake.metadata.title;
+      let name = fromHandshake.name;
       if (providerId === "twitter") {
-        title = "Twitter";
+        name = "Twitter";
       }
 
       result.push({
         id: providerId,
         name: item.name,
-        title,
-        logo,
+        title: name,
+        // logo,
         docs:
           item.signatures[0].comment?.summary
             .map(({ text }: any) => {

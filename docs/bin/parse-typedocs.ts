@@ -7,32 +7,6 @@ import fs from "fs";
 import * as handshake from "../../handshake";
 import docsJson from "./providers-typedoc.json";
 
-const providersWithoutLogos = [
-  "authentik",
-  "zoho",
-  "42-school",
-  "dropbox",
-  "strava",
-  "naver",
-  "duende-identity-server6.svg",
-  "coinbase",
-  "netlify",
-  "pipedrive",
-  "medium",
-  "wordpress",
-  "eveonline",
-  "kakao",
-  "fusionauth",
-  "osu",
-  "osso",
-  "zitadel",
-  "pinterest",
-  "four",
-  "reddit",
-  "salesforce",
-  "zoom",
-];
-
 function extractClasses(docs: any) {
   const result: {
     id: string;
@@ -66,6 +40,14 @@ function extractClasses(docs: any) {
         );
         return;
       }
+
+      if (item.name.endsWith("Scope") || item.name.endsWith("Credential")) {
+        console.log(
+          chalk.dim(`ignoring ${item.name} inside ${item.sources[0].fileName}`),
+        );
+        return;
+      }
+
       if (item.signatures.length !== 1) {
         throw Error("unexpected");
       }
@@ -75,8 +57,9 @@ function extractClasses(docs: any) {
       const fromHandshake = handshake[item.name]({
         clientId: "asdf",
         clientSecret: "asdf",
-        subdomain: "asdf",
         issuer: "asdf",
+        subdomain: "asdf",
+        scopes: ["asdf"],
       }).provider;
       const providerId = fromHandshake.id;
       assert(providerId);

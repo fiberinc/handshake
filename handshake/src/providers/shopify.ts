@@ -56,6 +56,9 @@ export interface ShopifyCredential {
 }
 
 /**
+ * ## Usage
+ *
+ * Provide the following arguments:
  *
  * ```ts title="app/options.ts"
  * import { HandshakeOptions, Shopify } from "handshake";
@@ -76,7 +79,7 @@ export interface ShopifyCredential {
  *
  * Include an `extras.shop` parameter when redirecting users to Handshake:
  *
- * ```
+ * ```ts
  * https://HANDSHAKE_HOST/api/auth/shopify/redirect?
  *   state=12345
  *   &extras.shop=hahvaleu.myshopify.com

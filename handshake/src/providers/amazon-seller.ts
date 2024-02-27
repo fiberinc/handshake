@@ -31,12 +31,19 @@ export const PROVIDER_ID = "amazon-seller";
  * ```ts title="app/options.ts"
  * import { Amazon } from "handshake";
  *
- * Amazon({
- *   appId: string,
- *   clientId: string,
- *   clientSecret: string,
- *   isDraftApp: true | false,
- * });
+ * import { HandshakeOptions, Amazon } from "handshake";
+ *
+ * const options: HandshakeOptions = {
+ *   handles: [
+ *     Amazon({
+ *       appId: string,
+ *       clientId: string,
+ *       clientSecret: string,
+ *       isDraftApp: true | false,
+ *     });
+ *   ],
+ *   // ...
+ * };
  * ```
  *
  * ## Troubleshooting

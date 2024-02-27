@@ -1,9 +1,17 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 
 export default function Page() {
+  return (
+    <Suspense>
+      <InnerPage />
+    </Suspense>
+  );
+}
+
+function InnerPage() {
   const searchParams = useSearchParams();
 
   useEffect(() => {

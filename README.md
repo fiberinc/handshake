@@ -1,12 +1,12 @@
 <br />
 
 <p align="left">
-  <img src="/docs/public/images/github-banner.png" width="600"/>
+  <img src="/docs/public/images/github-banner.png" width="100%"/>
 
   <h1 align="left">Handshake</h1>
 
   <p align="left">
-    Self-hosted solution for OAuth authentication against 200+ APIs.
+    Self-hosted solution for OAuth authorization against 200+ APIs.
   </p>
 
   <p align="left" style="align: left;">
@@ -38,9 +38,9 @@
 
 ## About
 
-Handshake is a Next.js app that handles OAuth flow against 200+ third-party apps
-and APIs. We use parts of `next-auth` under the hood to extend our coverage of
-providers.
+Handshake helps you get OAuth tokens to your users' accounts in over 200 apps
+and services. It's an open-source Next.js app that you can easily configure and
+deploy.
 
 See the [full list of providers][1].
 

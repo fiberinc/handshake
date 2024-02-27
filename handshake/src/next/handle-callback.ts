@@ -64,14 +64,15 @@ export async function handleCallback(
   debug(`Redirection URL is ${session.developerCallbackUri}.`);
 
   // Exchange search parameters for account credentials.
-  let credentials;
+  let tokens: unknown;
   try {
-    credentials = await handler.exchange(
+    const result = await handler.exchange(
       new URL(req.url).searchParams,
       req,
       session.handshakeCallbackUrl,
       session,
     );
+    tokens = result.tokens;
   } catch (e: unknown) {
     if (!(e instanceof Error)) {
       throw new TypeError("Not an error");
@@ -115,7 +116,7 @@ export async function handleCallback(
       linkParams.account_id = accountId;
     }
 
-    const result = await options.onSuccess(credentials, handler.id, linkParams);
+    const result = await options.onSuccess(tokens, handler.id, linkParams);
     forwardParams = result?.forwardParams;
   } catch (err: unknown) {
     if (!(err instanceof Error)) {

@@ -1,7 +1,7 @@
 export async function postToSlack(
   message: string,
   channelId: string,
-  token: string,
+  bearer: string,
 ) {
   if (process.env.NODE_ENV !== "production") {
     console.log("Not posting to slack in dev mode", message);
@@ -18,7 +18,7 @@ export async function postToSlack(
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${bearer}`,
     },
     body: JSON.stringify(body),
   });

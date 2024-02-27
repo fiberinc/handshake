@@ -50,7 +50,7 @@ interface Args {
 }
 
 interface Credential {
-  myShopifyDomain: string;
+  shop: string;
   accessToken: string;
   scopes: string[];
 }
@@ -63,8 +63,8 @@ interface Credential {
  * const options: HandshakeOptions = {
  *   handles: [
  *     Shopify({
- *       clientId: "",
- *       clientSecret: "",
+ *       clientId: process.env.SHOPIFY_CLIENT_ID!,
+ *       clientSecret: process.env.SHOPIFY_CLIENT_SECRET!,
  *       scopes: ["read_orders", "read_products"],
  *     }),
  *   ],
@@ -72,9 +72,21 @@ interface Credential {
  * };
  * ```
  *
- * ### Configure the Callback URL
+ * ## Redirection
  *
- * Make sure your Handshake URL is allowed within your Shopify app's Configuration tab:
+ * Include an `extras.shop` parameter when redirecting users to Handshake:
+ *
+ * ```
+ * https://HANDSHAKE_HOST/api/auth/shopify/redirect?
+ *   state=12345
+ *   &extras.shop=hahvaleu.myshopify.com
+ *   &callback_uri=http://YOUR_APP_HOST/shopifySyncSuccess
+ * ```
+ *
+ * ## Configure the Callback URL
+ *
+ * Make sure your Handshake URL is allowed within your Shopify app's
+ * Configuration tab:
  *
  * ![](/handshake/images/providers/shopify-redirect.png)
  *
@@ -101,6 +113,7 @@ export const Shopify: HandlerFactory<Args, Credential> = ({ id, ...args }) => {
           "Shopify redirects requires an extra `shop` query parameter.",
         );
       }
+
       // TODO validate shop value.
       if (!extras.shop.match(/^[a-zA-Z_-]*\.myshopify.com$/)) {
         throw Error("Invalid shop value.");
@@ -116,7 +129,7 @@ export const Shopify: HandlerFactory<Args, Credential> = ({ id, ...args }) => {
 
       return { url: authUrl.toString(), persist: { state } };
     },
-    async exchange(searchParams, req, _, { valuesFromHandler }) {
+    async exchange(searchParams, _, __, { valuesFromHandler }) {
       let params: CallbackParams;
       try {
         params = querySchema.parse(Object.fromEntries(searchParams.entries()));
@@ -164,13 +177,13 @@ export const Shopify: HandlerFactory<Args, Credential> = ({ id, ...args }) => {
           throw e;
         }
 
-        throw new UnknownProviderError(`Shopify exchange failed: ${e.message}`);
+        throw new UnknownProviderError(`shopify: exchange failed ${e.message}`);
       }
 
       return {
         tokens: {
           accessToken,
-          myShopifyDomain: params.shop,
+          shop: params.shop,
           scopes,
         },
       };
@@ -200,16 +213,14 @@ async function exchangeAccessTokenAndReadStoreData(
   }
 
   const json = await res.json();
-
   if (json.error) {
     info("Shopify exchange returned errors", json.error);
-
     throw new OAuthCallbackError(json.error, json.error_description ?? null);
   }
 
   return {
     accessToken: json.access_token,
-    scopes: json.scopes,
+    scopes: json.scope.split(","),
   };
 }
 

@@ -36,7 +36,7 @@ export async function handleCallback(
     );
   }
 
-  // TODO verify with session secret!
+  // TODO verify with session secret.
   const session = parseSessionFromStringValue(savedCookie.value);
   debug("Found session stored in cookie.", session);
 

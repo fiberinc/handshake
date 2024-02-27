@@ -1,3 +1,4 @@
+import assert from "assert";
 import { z } from "zod";
 
 /**
@@ -5,7 +6,7 @@ import { z } from "zod";
  * register accounts to.
  */
 const FIBER_SOURCES: Record<string, string> = {
-  "amazon-seller": "amazon",
+  shopify: "shopify",
 };
 
 interface Args {
@@ -36,17 +37,23 @@ interface Args {
  * ```
  */
 export function FiberHook({ clientId, clientSecret }: Args) {
-  return async (credentials: unknown, handlerId: string, extras: any) => {
+  assert(clientId, "Missing 'clientId'");
+  assert(clientSecret, "Missing 'clientSecret'");
+
+  return async (
+    credentials: unknown,
+    handlerId: string,
+    extras: any,
+  ): Promise<{ externalId: string } | null> => {
     const sourceName = FIBER_SOURCES[handlerId];
     if (!sourceName) {
       console.warn(
         `WARNING: Handler with id ${handlerId} not in "FIBER_SOURCES". Will skip.`,
       );
-      return;
+      return null;
     }
 
     let fiberExternalId = "";
-
     if (handlerId === "amazon-seller") {
       const parsed = z
         .object({
@@ -74,8 +81,8 @@ export function FiberHook({ clientId, clientSecret }: Args) {
       const result = await postSourceAccount(
         clientId,
         clientSecret,
-        fiberExternalId,
         sourceName,
+        fiberExternalId,
         credentials,
       );
 
@@ -98,13 +105,10 @@ export function FiberHook({ clientId, clientSecret }: Args) {
       // 	SLACK_INTERNAL_SIGNUP_CHANNEL_ID
       // );
 
-      throw Error(`Failed to register Fiber account: ${e.toString()}`);
+      throw new Error(`Failed to register Fiber account: ${e.toString()}`);
     }
 
-    // await postToSlack(
-    // 	`Client logged in with ${identifierStringForDebugging}`,
-    // 	SLACK_INTERNAL_SIGNUP_CHANNEL_ID
-    // );
+    console.log(`Client logged in with ${externalId}`, credentials);
 
     return { externalId };
   };
@@ -114,13 +118,18 @@ export async function postSourceAccount(
   fiberClientId: string,
   fiberClientSecret: string,
   sourceName: string,
-  externalId: string | null,
+  overrideExternalId: string | null,
   credentials: unknown,
 ): Promise<{ externalId: string }> {
+  assert(credentials);
+  assert(sourceName);
+  assert(fiberClientId);
+  assert(fiberClientSecret);
+
   const host = process.env.FIBER_API_HOST ?? "https://api.fiber.dev";
   const url = `${host}/sources/${sourceName}/accounts`;
 
-  let res;
+  let res: Response;
   try {
     res = await fetch(url, {
       method: "POST",
@@ -133,7 +142,7 @@ export async function postSourceAccount(
       },
       body: JSON.stringify({
         credentials,
-        externalId: externalId ?? undefined,
+        externalId: overrideExternalId ?? undefined,
       }),
     });
   } catch (e) {
@@ -142,11 +151,11 @@ export async function postSourceAccount(
 
   if (!res.ok) {
     const text = await res.text();
-    throw Error("Register failed: " + text);
+    throw Error(`Register failed: url=${url} ` + text);
   }
 
   const json = await res.json();
-  console.log("Register returned", json);
+  console.log("Fiber registration success", json);
 
   let parsed;
   try {

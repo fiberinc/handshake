@@ -105,14 +105,14 @@ async function testOauthHandler(handler: Handler<any>, params?: any) {
     const callbackParams: any = {
       code: "123458796",
     };
-    const valuesFromProvider: any = {};
+    const valuesFromHandler: any = {};
 
     if (handler.provider.oauthConfig?.checks?.includes("pkce")) {
-      valuesFromProvider.pkceCodeVerifier = "random-verifier";
+      valuesFromHandler.pkceCodeVerifier = "random-verifier";
     }
 
     if (handler.provider.oauthConfig?.checks?.includes("state")) {
-      valuesFromProvider.state = "random-state";
+      valuesFromHandler.state = "random-state";
       callbackParams.state = "random-state";
     }
 
@@ -121,7 +121,7 @@ async function testOauthHandler(handler: Handler<any>, params?: any) {
       new Request("https://foobar.com/callback"),
       "https://foobar.com/callback",
       {
-        valuesFromProvider,
+        valuesFromHandler,
         handshakeCallbackUrl: "https://foobar.com/callback",
         developerState: "developer-sent-random-state",
         developerCallbackUri: "https://app.saasproduct.com",

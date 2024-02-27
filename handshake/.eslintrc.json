@@ -13,7 +13,10 @@
     "@typescript-eslint/no-unused-vars": [
       "error",
       {
-        "ignoreRestSiblings": true
+        "ignoreRestSiblings": true,
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "^_",
+        "caughtErrorsIgnorePattern": "^_"
       }
     ],
     "@typescript-eslint/ban-ts-comment": "off",
@@ -26,7 +29,7 @@
           "trace"
         ]
       }
-    ]
+    ],
   },
   "overrides": [
     {

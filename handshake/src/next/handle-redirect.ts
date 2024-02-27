@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 import { NextRequest } from "next/server";
 import { ExtendedConfig } from "~/core/HandshakeOptions";
 import { debug, error, info } from "~/core/logger";
-import { getSessionValueToSave } from "~/core/session";
+import { SessionValue, getSessionValueToSave } from "~/core/session";
 import { Handler } from "~/core/types";
 import { getNextHost } from "./handle-callback";
 
@@ -69,17 +69,23 @@ export async function handleRedirect(
     throw new BadRequest("Provider error: no authorization URL returned.");
   }
 
-  const cookieValue = getSessionValueToSave(options, req, handshakeCallbackUrl);
+  const partialSession = getSessionValueToSave(
+    options,
+    req,
+    handshakeCallbackUrl,
+  );
 
-  // If the provider, while generating authorization URL, asks us to save some values, we do it here.
-  if (cookiesToSave) {
-    cookieValue.valuesFromProvider = cookiesToSave;
-  }
+  const session: SessionValue = {
+    ...partialSession,
+    // If the provider, while generating authorization URL, asks us to save some
+    // values, we do it here by overriding `valuesFromHandler`.
+    valuesFromHandler: cookiesToSave ?? {},
+  };
 
-  debug("Will save session into cookie", cookieValue);
+  debug("Will save session into cookie", session);
 
   const cookieStore = cookies();
-  cookieStore.set(options.sessionCookieName, JSON.stringify(cookieValue), {
+  cookieStore.set(options.sessionCookieName, JSON.stringify(session), {
     path: "/",
     maxAge: options.sessionCookieMaxSecs,
   });

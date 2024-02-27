@@ -7,6 +7,7 @@ import { Forbidden } from "http-errors";
 import querystring from "querystring";
 import { z } from "zod";
 import { InvalidRequest } from "~/core/errors";
+import { error } from "~/core/logger";
 import { HandlerFactory } from "~/core/types";
 
 interface SessionShopData {
@@ -44,13 +45,18 @@ type Credential = {
 /**
  *
  * ```ts title="app/options.ts"
- * import { Shopify } from "handshake";
+ * import { HandshakeOptions, Shopify } from "handshake";
  *
- * Shopify({
- *   clientId: "",
- *   clientSecret: "",
- *   scopes: ["read_orders", "read_products"],
- * });
+ * const options: HandshakeOptions = {
+ *   handles: [
+ *     Shopify({
+ *       clientId: "",
+ *       clientSecret: "",
+ *       scopes: ["read_orders", "read_products"],
+ *     }),
+ *   ],
+ *   // ...
+ * };
  * ```
  *
  * ### Configure the Callback URL
@@ -64,7 +70,7 @@ type Credential = {
 export const Shopify: HandlerFactory<Args, Credential> = ({ id, ...args }) => {
   const providerId = id ?? PROVIDER_ID;
 
-  const scopes = args?.scopes || SHOPIFY_SCOPES;
+  const scopes = args?.scopes || KNOWN_SHOPIFY_SCOPES;
 
   return {
     id: providerId,
@@ -85,17 +91,25 @@ export const Shopify: HandlerFactory<Args, Credential> = ({ id, ...args }) => {
       authUrl.searchParams.set("redirect_uri", callbackHandlerUrl);
 
       // Do we need to set a nonce? What's the risk if we don't?
-      const nonce = crypto.randomBytes(16).toString("hex");
-      authUrl.searchParams.set("state", nonce);
+      const state = crypto.randomBytes(16).toString("hex");
+      authUrl.searchParams.set("state", state);
 
-      return { url: authUrl.toString() };
+      return { url: authUrl.toString(), persist: { state } };
     },
-    async exchange(searchParams, req) {
-      const params = querySchema.parse(
+    async exchange(searchParams, req, _, { valuesFromHandler }) {
+      const paramParse = querySchema.safeParse(
         Object.fromEntries(searchParams.entries()),
       );
 
-      // const params = Object.fromEntries(searchParams) as CallbackParams;
+      if (!paramParse.success) {
+        error(paramParse.error);
+        throw new InvalidRequest(`Unexpected query parameter shape.`);
+      }
+
+      assert(
+        valuesFromHandler?.state === paramParse.data.state,
+        "State mismatch.",
+      );
 
       let accessToken: string;
       let myShopifyDomain: string;
@@ -103,7 +117,7 @@ export const Shopify: HandlerFactory<Args, Credential> = ({ id, ...args }) => {
       try {
         const objs = await getAccessTokenAndShopInfo(
           req,
-          params,
+          paramParse.data,
           args.clientId!,
           args.clientSecret!,
         );
@@ -120,11 +134,6 @@ export const Shopify: HandlerFactory<Args, Credential> = ({ id, ...args }) => {
         throw e;
       }
 
-      // const shop = await getShopifyShopInformation(
-      //   myShopifyDomain,
-      //   accessToken,
-      // );
-
       return {
         tokens: {
           accessToken,
@@ -135,13 +144,14 @@ export const Shopify: HandlerFactory<Args, Credential> = ({ id, ...args }) => {
     },
   };
 };
-export type NonceValidator = (args: {
+
+type NonceValidator = (args: {
   nonce: string | undefined;
   req: Request;
   shopName: string;
 }) => Promise<boolean>;
 
-export async function getAccessTokenAndShopInfo(
+async function getAccessTokenAndShopInfo(
   req: Request,
   searchParams: CallbackParams,
   shopifyClientId: string,
@@ -185,9 +195,9 @@ export async function getAccessTokenAndShopInfo(
   return { accessToken, myShopifyDomain: shopName, scopes };
 }
 
-export const SHOPIFY_API_VERSION = "2022-07";
+const SHOPIFY_API_VERSION = "2024-01";
 
-export async function exchangeAccessTokenAndReadStoreData(
+async function exchangeAccessTokenAndReadStoreData(
   myShopifyDomain: string,
   accessTokenQuery: string,
 ): Promise<{ accessToken: string; scopes: string[] }> {
@@ -295,7 +305,7 @@ function safeCompare(stringA: string, stringB: string) {
   return crypto.timingSafeEqual(buffA, buffB);
 }
 
-const SHOPIFY_SCOPES = [
+const KNOWN_SHOPIFY_SCOPES = [
   "read_themes",
   "read_orders",
   "read_all_orders", // Will need extra permissions for this.
@@ -317,4 +327,4 @@ const SHOPIFY_SCOPES = [
   "write_orders",
 ] as const;
 
-export type ShopifyScope = (typeof SHOPIFY_SCOPES)[number];
+export type ShopifyScope = (typeof KNOWN_SHOPIFY_SCOPES)[number];

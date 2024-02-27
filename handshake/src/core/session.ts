@@ -31,7 +31,7 @@ export const SessionValueStruct = z.object({
 
   // Provider-specific data like { state: string, nonce: string, codeVerifier:
   // string } etc.
-  valuesFromProvider: z.record(z.string()).optional(),
+  valuesFromHandler: z.record(z.string()),
 });
 
 export type SessionValue = z.infer<typeof SessionValueStruct>;
@@ -56,7 +56,7 @@ export function getSessionValueToSave(
   options: ExtendedConfig,
   req: Request,
   handshakeCallbackUrl: string,
-): SessionValue {
+): Omit<SessionValue, "valuesFromHandler"> {
   const searchParams = new URL(req.url).searchParams;
 
   // 1.

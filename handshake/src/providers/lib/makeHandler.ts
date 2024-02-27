@@ -129,22 +129,22 @@ export function makeHandlerFactory<
 
         // Run checks.
         if (provider.checks?.includes("nonce")) {
-          if (session.valuesFromProvider?.nonce) {
-            checks.nonce = session.valuesFromProvider.nonce;
+          if (session.valuesFromHandler?.nonce) {
+            checks.nonce = session.valuesFromHandler.nonce;
           } else {
             throw new InvalidCheck("Nonce value not saved.");
           }
         }
         if (provider.checks?.includes("state")) {
-          if (session.valuesFromProvider?.state) {
-            checks.state = session.valuesFromProvider.state;
+          if (session.valuesFromHandler?.state) {
+            checks.state = session.valuesFromHandler.state;
           } else {
             throw new InvalidCheck("State value not saved.");
           }
         }
         if (provider.checks?.includes("pkce")) {
-          if (session.valuesFromProvider?.pkceCodeVerifier) {
-            checks.code_verifier = session.valuesFromProvider.pkceCodeVerifier;
+          if (session.valuesFromHandler?.pkceCodeVerifier) {
+            checks.code_verifier = session.valuesFromHandler.pkceCodeVerifier;
           } else {
             throw new InvalidCheck("pkceCodeVerifier value not saved.");
           }

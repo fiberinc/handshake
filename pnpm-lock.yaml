@@ -166,6 +166,9 @@ importers:
       autoprefixer:
         specifier: ^10.0.1
         version: 10.4.17(postcss@8.4.33)
+      chalk:
+        specifier: '4'
+        version: 4.1.2
       eslint:
         specifier: ^8
         version: 8.56.0

@@ -1,4 +1,4 @@
-// Most of this from next-auth@4.
+// Much of this from next-auth@4.
 
 import {
   AuthorizationEndpointHandler,

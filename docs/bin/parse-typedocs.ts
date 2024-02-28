@@ -12,6 +12,8 @@ function extractClasses(docs: any) {
     id: string;
     name: string;
     title: string;
+    isFromNextAuth: boolean;
+    takesSubdomainArg: string;
     // logo: string;
     docs: string;
   }[] = [];
@@ -75,6 +77,11 @@ function extractClasses(docs: any) {
         id: providerId,
         name: item.name,
         title: name,
+        isFromNextAuth:
+          item.sources[0].fileName.match(/from-next-auth/) !== null,
+        takesSubdomainArg: JSON.stringify(item.signatures).includes(
+          "subdomain",
+        ),
         // logo,
         docs:
           item.signatures[0].comment?.summary

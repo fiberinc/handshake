@@ -29,7 +29,7 @@ const config: HandshakeOptions = {
   handlers: [
     ${provider.name}({
       clientId: string,
-      clientSecret: string,
+      clientSecret: string,${provider.takesSubdomainArg ? "\n      subdomain: string," : ""}
     });
   ],
 }
@@ -37,7 +37,7 @@ const config: HandshakeOptions = {
 // ...
 \`\`\`
 
-Adapted from [next-auth](https://github.com/nextauthjs/next-auth).`;
+${provider.isFromNextAuth ? "Adapted from [next-auth](https://github.com/nextauthjs/next-auth)." : ""}`;
       }
 
       return {

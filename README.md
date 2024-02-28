@@ -99,17 +99,19 @@ In the new file, replace the values for `ALLOWED_REDIRECT_HOST` and `SESSION_SEC
 
 ### Configure your providers
 
-Modify the `app/optionss.ts` file to include the providers you want to use:
+Modify the `app/options.ts` file to include the providers you want to use:
 
 ```ts
+import { HandshakeOptions, GitHub } from "handshake";
+
 const options: HandshakeOptions = {
   // Register the providers you want to use, entering the
   // required credentials for each of them.
   handlers: [
-    Google({
-      clientId: process.env.GOOGLE_CLIENT_ID!,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
-      scopes: ["https://www.googleapis.com/auth/gmail.readonly"],
+    GitHub({
+      clientId: process.env.GITHUB_CLIENT_ID!,
+      clientSecret: process.env.GITHUB_CLIENT_SECRET!,
+      scopes: ["repo"],
     }),
   ],
   // Tell Handshake which hosts it can redirect users back to. This is a

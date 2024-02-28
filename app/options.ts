@@ -8,6 +8,8 @@ export const options: HandshakeOptions = {
   secret: process.env.SESSION_SECRET!,
   allowedRedirectHosts: [ALLOWED_REDIRECT_HOST],
   handlers: [
+    // TODO add your handlers here...
+    //
     // Shopify({
     //   clientId: process.env.SHOPIFY_CLIENT_ID!,
     //   clientSecret: process.env.SHOPIFY_CLIENT_SECRET!,
@@ -18,33 +20,30 @@ export const options: HandshakeOptions = {
    * This is where you'll handle forwarding the acquired credentials back to
    * your own app. There are three main strategies for doing this securely:
    *
-   * ## 1. URL params
-   * Send the credentials back as a URL parameter by setting `forwardParams`.
-   * You should probably symmetrically encrypt the parameter by sharing a secret
-   * between this Handshake instance and your backend.
+   * - **1. Query string** Send the credentials back as a URL parameter by
+   *   setting `forwardParams`. You should probably symmetrically encrypt the
+   *   parameter by sharing a secret between this Handshake instance and your
+   *   backend.
    *
-   * ## 2. API call
-   * Make an API call to your backend with the credentials.
+   * - **2. API call** Make an API call to your backend and send the
+   *   credentials.
    *
-   * ## 3. Cookie
-   * If you're hosting Handshake on the same domain as your app, you can set by
-   * using `cookies` from `next/server`.
+   * - **3. Cookie** If you're hosting Handshake on the same domain as your app,
+   *   you can set cookies using `cookies()` (from `next/server`) and read them
+   *   in the callback.
    *
+   * @param tokens - Credentials received from the provider.
    * @param handlerId - Identifies the provider that handled this handshake, eg:
    * 'google', 'github', 'amazon-seller' etc.
    */
   async onSuccess(tokens, handlerId) {
-    if (handlerId !== "shopify") {
-      throw Error("Unexpected handler");
-    }
-
     // TODO: Do something with the tokens.
     console.log(`Received tokens for ${handlerId}`, tokens);
 
-    // Example of (1):
+    // // Example of (1):
     // const jsonToken = JSON.stringify(tokens.tokens);
     //
-    // // You will want to use `crypto.createCipheriv` instead.
+    // // You'll want to use `crypto.createCipheriv` instead.
     // const cipher = crypto.createCipher(
     //   "aes256",
     //   "a-secret-shared-with-your-backend",

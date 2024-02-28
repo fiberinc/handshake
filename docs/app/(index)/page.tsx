@@ -37,7 +37,7 @@ export default async function Page() {
         >
           Get access tokens for 200+ services
         </h1>
-        <p className="text-contrast mb-4 max-w-[760px] text-2xl antialiased">
+        <p className="text-contrast text-md mb-4 max-w-[760px] antialiased md:text-2xl">
           {/* Handshake is an OAuth handler that gets you access tokens to your
           users&apos; accounts in dozens of popular apps and APIs */}
           Handshake handles OAuth flows with popular tools and gets you access
@@ -51,7 +51,7 @@ export default async function Page() {
               "rounded-md border bg-white px-5 text-black ",
             )}
           >
-            <GithubLogoMark size={25} /> Start on Github
+            <GithubLogoMark size={25} /> Star on Github
           </a>
 
           <a
@@ -131,7 +131,7 @@ export default async function Page() {
               href={REPO_URL + "/blob/main/README.md"}
               className={twMerge(
                 BUTTON_CLS,
-                "text-contrast hover:border-stronger inline-flex rounded-md border bg-white p-10 text-[40px] transition dark:bg-black",
+                "text-contrast hover:border-stronger inline-flex rounded-md border bg-white p-10 text-lg transition md:text-[40px] dark:bg-black",
               )}
             >
               <FaExternalLinkAlt className="mr-3 w-8" />

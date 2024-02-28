@@ -23,7 +23,7 @@ export default function RootLayout({
       <body className="bg-background text-default m-auto flex w-full flex-col gap-20 selection:bg-fuchsia-300 selection:text-fuchsia-900 ">
         <Toaster />
         <Nav />
-        <div className="m-auto w-full px-5 lg:w-[900px] lg:px-0">
+        <div className="m-auto w-full px-3 md:px-5 lg:w-[900px] lg:px-0">
           {children}
         </div>
         <Footer />
@@ -37,7 +37,7 @@ function Nav() {
   return (
     <nav className="bg-foreground relative border-b">
       {/* <div className="absolute left-6 top-[10px] text-[30px]">🫱🏻‍🫲🏽</div> */}
-      <div className="m-auto flex h-[70px] flex-row items-center justify-between px-5 lg:w-[900px] lg:px-0">
+      <div className="m-auto flex h-[70px] flex-row items-center justify-between px-3 md:px-5 lg:w-[900px] lg:px-0">
         <Link href="/">
           <h1 className="text-contrast text-lg font-semibold">
             Handshake {/* 🫱🏻‍🫲🏽&nbsp;&nbsp; */}
@@ -61,7 +61,7 @@ function Nav() {
 function Footer() {
   return (
     <footer className="bg-foreground border-t">
-      <div className="text-mono text-md m-auto flex flex-row flex-wrap justify-between gap-10 px-5 py-10  font-medium lg:w-[900px] lg:px-0">
+      <div className="text-mono text-md m-auto flex flex-row flex-wrap justify-between gap-10 px-3 py-10 font-medium md:px-5 lg:w-[900px] lg:px-0">
         <div>
           A project by{" "}
           <a href="https://fiber.dev" className="underline">

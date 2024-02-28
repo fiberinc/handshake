@@ -51,7 +51,7 @@ export default async function Page() {
               "rounded-md border bg-white px-5 text-black ",
             )}
           >
-            <GithubLogoMark size={25} /> Github
+            <GithubLogoMark size={25} /> Start on Github
           </a>
 
           <a

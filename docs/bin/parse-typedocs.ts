@@ -7,6 +7,8 @@ import fs from "fs";
 import * as handshake from "../../handshake";
 import docsJson from "./providers-typedoc.json";
 
+const DOCS_IMAGES_ABS_PATH = "https://handshake.cool/images/docs";
+
 function extractClasses(docs: any) {
   const result: {
     id: string;
@@ -95,7 +97,7 @@ function extractClasses(docs: any) {
         docs:
           item.signatures[0].comment?.summary
             .map(({ text }: any) => {
-              return text;
+              return text.replace(/\/?DOC_IMAGES/g, DOCS_IMAGES_ABS_PATH);
             })
             .join("\n") ?? null,
       });

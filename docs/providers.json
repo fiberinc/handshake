@@ -69,7 +69,7 @@
     "website": "https://sellercentral.amazon.com/",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
-    "docs": "[\"Website authorization workflow\"\ndocumentation](https://developer-docs.amazon.com/sp-api/docs/website-authorization-workflow)\n\n## Usage\n\nProvide the following arguments:\n\n\n```ts title=\"app/options.ts\"\nimport { Amazon } from \"handshake\";\n\nimport { HandshakeOptions, Amazon } from \"handshake\";\n\nconst options: HandshakeOptions = {\n  handles: [\n    Amazon({\n      appId: string,\n      clientId: string,\n      clientSecret: string,\n      isDraftApp: true | false,\n    });\n  ],\n  // ...\n};\n```\n\n\n## Troubleshooting\n\nNeed to \"set up your “Authorize” buttons so that selling partners are\nredirected to the Seller Central (for sellers) or Vendor Central (for\nvendors) sign-in page for their own region.\"\n\n### No localhost redirect\n\nAmazon does not allow setting localhost as a \n`redirect_uri`\n. You may want to\nuse Ngrok or another service to provide a publicly addressable URL.\n\n[https://github.com/amzn/selling-partner-api-docs/issues/26](https://github.com/amzn/selling-partner-api-docs/issues/26)\n\n### Error Code: MD5101\n\nThis means unauthorized redirect URI. localhost URIs are allowed.\n\n### Developer Central – \"You do not have permissions to view this page\"\n\nFYI. Only the primary user of the Seller Central account is able to create\nand modify apps via the \"Developer Central\" page.\n\n[https://github.com/amzn/selling-partner-api-docs/issues/2191](https://github.com/amzn/selling-partner-api-docs/issues/2191)\n\n### Not setup for OAuth\n\n![amazon-not-setup](/handshake/images/providers/amazon-not-setup-oauth.png)"
+    "docs": "[\"Website authorization workflow\"\ndocumentation](https://developer-docs.amazon.com/sp-api/docs/website-authorization-workflow)\n\n## Usage\n\nProvide the following arguments:\n\n\n```ts title=\"app/options.ts\"\nimport { Amazon } from \"handshake\";\n\nimport { HandshakeOptions, Amazon } from \"handshake\";\n\nconst options: HandshakeOptions = {\n  handles: [\n    Amazon({\n      appId: string,\n      clientId: string,\n      clientSecret: string,\n      isDraftApp: true | false,\n    });\n  ],\n  // ...\n};\n```\n\n\n## Troubleshooting\n\nNeed to \"set up your “Authorize” buttons so that selling partners are\nredirected to the Seller Central (for sellers) or Vendor Central (for\nvendors) sign-in page for their own region.\"\n\n### No localhost redirect\n\nAmazon does not allow setting localhost as a \n`redirect_uri`\n. You may want to\nuse Ngrok or another service to provide a publicly addressable URL.\n\n[https://github.com/amzn/selling-partner-api-docs/issues/26](https://github.com/amzn/selling-partner-api-docs/issues/26)\n\n### Error Code: MD5101\n\nThis means unauthorized redirect URI. localhost URIs are allowed.\n\n### Developer Central – \"You do not have permissions to view this page\"\n\nFYI. Only the primary user of the Seller Central account is able to create\nand modify apps via the \"Developer Central\" page.\n\n[https://github.com/amzn/selling-partner-api-docs/issues/2191](https://github.com/amzn/selling-partner-api-docs/issues/2191)\n\n### Not setup for OAuth\n\n![amazon-not-setup](https://handshake.cool/images/docs/amazon-not-setup-oauth.png)"
   },
   {
     "id": "angellist",
@@ -807,7 +807,7 @@
     "website": null,
     "isFromNextAuth": true,
     "takesSubdomainArg": false,
-    "docs": "## Usage\n\nProvide the following arguments:\n\n\n```ts\n// Inside app/options.ts\n\nimport { Hubspot } from \"handshake\";\n\nHubspot({\n  clientId: string,\n  clientSecret: string,\n  scopes: [\n    \"e-commerce\",\n    \"crm.schemas.contacts.read\",\n    \"crm.objects.contacts.read\",\n  ],\n});\n```\n\n\n### Configure the Callback URL\n\nMake sure your Handshake URL is allowed within your Hubspot app's Auth tab:\n\n![](/handshake/images/providers/hubspot-redirect.png)\n\nFollow the format: \n`https://HANDSHAKE_URL/auth/hubspot/callback`"
+    "docs": "## Usage\n\nProvide the following arguments:\n\n\n```ts\n// Inside app/options.ts\n\nimport { Hubspot } from \"handshake\";\n\nHubspot({\n  clientId: string,\n  clientSecret: string,\n  scopes: [\n    \"e-commerce\",\n    \"crm.schemas.contacts.read\",\n    \"crm.objects.contacts.read\",\n  ],\n});\n```\n\n\n### Configure the Callback URL\n\nMake sure your Handshake URL is allowed within your Hubspot app's Auth tab:\n\n![hubspot-redirect-settings](https://handshake.cool/images/docs/hubspot-redirect.png)\n\nFollow the format: \n`https://HANDSHAKE_URL/auth/hubspot/callback`"
   },
   {
     "id": "huddle",
@@ -1089,6 +1089,15 @@
     "docs": null
   },
   {
+    "id": "monday",
+    "name": "Monday",
+    "title": "Monday",
+    "website": "https://monday.com",
+    "isFromNextAuth": false,
+    "takesSubdomainArg": false,
+    "docs": "## Usage\n\nProvide the following arguments:\n\n\n```ts title=\"app/options.ts\"\nimport { HandshakeOptions, Monday } from \"handshake\";\n\nconst options: HandshakeOptions = {\n  handles: [\n    Monday({\n      clientId: string,\n      clientSecret: string,\n      scopes: string,\n      issuer?: string,\n    }),\n  ],\n  // ...\n};\n```\n\n\n[Documentation](https://developer.monday.com/apps/docs/oauth)"
+  },
+  {
     "id": "moxtra",
     "name": "Moxtra",
     "title": "Moxtra",
@@ -1362,10 +1371,10 @@
     "id": "salesforce",
     "name": "Salesforce",
     "title": "Salesforce",
-    "website": null,
-    "isFromNextAuth": true,
+    "website": "https://salesforce.com",
+    "isFromNextAuth": false,
     "takesSubdomainArg": false,
-    "docs": null
+    "docs": "## Usage\n\nProvide the following arguments:\n\n\n```ts title=\"app/options.ts\"\nimport { HandshakeOptions, Salesforce } from \"handshake\";\n\nconst options: HandshakeOptions = {\n  handles: [\n    Salesforce({\n      clientId: string,\n      clientSecret: string,\n      scopes: string,\n      issuer?: string,\n    }),\n  ],\n  // ...\n};\n```\n\n\n[Scope documentation](https://help.salesforce.com/s/articleView?id=sf.remoteaccess_oauth_tokens_scopes.htm&type=5)"
   },
   {
     "id": "sellsy",
@@ -1392,7 +1401,7 @@
     "website": "https://shopify.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
-    "docs": "## Usage\n\nProvide the following arguments:\n\n\n```ts title=\"app/options.ts\"\nimport { HandshakeOptions, Shopify } from \"handshake\";\n\nconst options: HandshakeOptions = {\n  handles: [\n    Shopify({\n      clientId: process.env.SHOPIFY_CLIENT_ID!,\n      clientSecret: process.env.SHOPIFY_CLIENT_SECRET!,\n      scopes: [\"read_orders\", \"read_products\"],\n    }),\n  ],\n  // ...\n};\n```\n\n\n## Redirection\n\nInclude an \n`extras.shop`\n parameter when redirecting users to Handshake:\n\n\n```ts\nhttps://HANDSHAKE_HOST/auth/shopify/redirect?\n  state=12345\n  &extras.shop=hahvaleu.myshopify.com\n  &callback_uri=http://YOUR_APP_HOST/shopifySyncSuccess\n```\n\n\n## Configure the Callback URL\n\nMake sure your Handshake URL is allowed within your Shopify app's\nConfiguration tab:\n\n![](/handshake/images/providers/shopify-redirect.png)\n\nFollow the format: \n`https://HANDSHAKE_URL/auth/shopify/callback`"
+    "docs": "## Usage\n\nProvide the following arguments:\n\n\n```ts title=\"app/options.ts\"\nimport { HandshakeOptions, Shopify } from \"handshake\";\n\nconst options: HandshakeOptions = {\n  handles: [\n    Shopify({\n      clientId: process.env.SHOPIFY_CLIENT_ID!,\n      clientSecret: process.env.SHOPIFY_CLIENT_SECRET!,\n      scopes: [\"read_orders\", \"read_products\"],\n    }),\n  ],\n  // ...\n};\n```\n\n\n## Redirection\n\nInclude an \n`extras.shop`\n parameter when redirecting users to Handshake:\n\n\n```ts\nhttps://HANDSHAKE_HOST/auth/shopify/redirect?\n  state=12345\n  &extras.shop=hahvaleu.myshopify.com\n  &callback_uri=http://YOUR_APP_HOST/shopifySyncSuccess\n```\n\n\n## Configure the Callback URL\n\nMake sure your Handshake URL is allowed within your Shopify app's\nConfiguration tab:\n\n![shopify-redirection](https://handshake.cool/images/docs/shopify-redirect.png)\n\nFollow the format: \n`https://HANDSHAKE_URL/auth/shopify/callback`"
   },
   {
     "id": "skyrock",
@@ -1545,7 +1554,7 @@
     "website": "https://stripe.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
-    "docs": "## Usage\n\nProvide the following arguments:\n\n\n```ts title=\"app/options.ts\"\n\nimport { Stripe } from \"handshake\";\n\nStripe({\n  clientId: \"ca_\",\n  clientSecret: \"sk_\",\n  scopes: [],\n});\n```\n\n\n### Configure the Callback URL\n\nYou can set up a localhost callback by toggling the \"View test data\" switch.\n\n![](/handshake/images/providers/stripe-redirect.png)"
+    "docs": "## Usage\n\nProvide the following arguments:\n\n\n```ts title=\"app/options.ts\"\n\nimport { Stripe } from \"handshake\";\n\nStripe({\n  clientId: \"ca_\",\n  clientSecret: \"sk_\",\n  scopes: [],\n});\n```\n\n\n### Configure the Callback URL\n\nYou can set up a localhost callback by toggling the \"View test data\" switch.\n\n![stripe-callback-settings](https://handshake.cool/images/docs/stripe-redirect.png)"
   },
   {
     "id": "surveymonkey",

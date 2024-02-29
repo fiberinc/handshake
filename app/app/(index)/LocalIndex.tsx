@@ -7,7 +7,7 @@ export async function LocalIndex() {
   const handlers = await getSanitizedHandlerInfo();
 
   const els = handlers.map((handler) => {
-    const base = `/api/auth/${handler.id}/redirect`;
+    const base = `/auth/${handler.id}/redirect`;
     let args = "state=1234567890&callback_uri=http://localhost:3000/done";
 
     // Shopify redirection consumes a 'shop' field to identify the shop for its

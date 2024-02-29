@@ -53,7 +53,7 @@ their behalf. Handshake can help with you.
 To acquire Salesforce credentials for a user, redirect them to:
 
 ```ts
-https://YOUR_HANDSHAKE_URL/api/auth/salesforce/redirect
+https://YOUR_HANDSHAKE_URL/auth/salesforce/redirect
   ?state=123456&
   &callback_uri=https://app.example.com/integrations
 ```

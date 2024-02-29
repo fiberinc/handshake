@@ -25,7 +25,7 @@ export async function handleRedirect(
   // The URI inside this handshake deployment that the provider should send
   // users back to.
   const handshakeCallbackUrl =
-    getNextHost(req) + `/api/${tenantId}/${handler.id}/callback`;
+    getNextHost(req) + `/${tenantId}/${handler.id}/callback`;
 
   let cookiesToSave: Record<string, string> | null = null;
   let url: string;

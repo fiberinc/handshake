@@ -1,28 +1,29 @@
+import assert from "assert";
 import { BadRequest, HttpError } from "http-errors";
 import { isRedirectError } from "next/dist/client/components/redirect";
 import { NextRequest } from "next/server";
-import { debug, error } from "~/core/logger";
+import { debug, error, info } from "~/core/logger";
 import { HandshakeOptions, getFullHandshakeOptions } from "..";
 import { handleCallback } from "./handle-callback";
 import { handleRedirect } from "./handle-redirect";
 
 function getInfoFromUrl(url: string) {
-  // FIXME refactor
   const pathname = new URL(url).pathname;
-  let action: "redirect" | "callback";
-  if (pathname.match("^/api/([^/]+)/([^/]+)/redirect")) {
-    action = "redirect";
-  } else if (pathname.match("^/api/([^/]+)/([^/]+)/callback")) {
-    action = "callback";
-  } else {
+  const matches = pathname.match(
+    "^/(api/)?([^/]+)/([^/]+)/(redirect|callback)",
+  );
+
+  if (!matches) {
     debug("pathname", pathname);
-    throw new BadRequest("Unexpected URL action.");
+    throw new BadRequest("Unexpected URL format.");
   }
 
-  // FIXME refactor
-  const matches = pathname.match("^/api/([^/]+)/([^/]+)/")!;
-  const tenantId = matches[1];
-  const handlerId = matches[2];
+  assert(matches.length === 5, "len" + matches.length);
+
+  const tenantId = matches[2];
+  const handlerId = matches[3];
+  const action = matches[4];
+  assert(action === "redirect" || action === "callback");
 
   if (!handlerId) {
     throw new BadRequest("handler with id not found");
@@ -44,6 +45,7 @@ export function NextHandshake(userOptions: HandshakeOptions) {
   const nextHandler = async (req: NextRequest): Promise<Response> => {
     // This may throw.
     const { action, tenantId, handlerId } = getInfoFromUrl(req.url);
+    info(`handling asdfs`);
 
     const handler = options.getHandler(handlerId);
     if (!handler) {
@@ -90,7 +92,7 @@ function handleErrors(handler: (req: NextRequest) => Promise<Response>) {
     let response: Response;
     try {
       response = await handler(req);
-    } catch (e) {
+    } catch (e: any) {
       // Next's `redirect` throws an error which we must bubble up.
       if (isRedirectError(e)) {
         throw e;
@@ -108,7 +110,10 @@ function handleErrors(handler: (req: NextRequest) => Promise<Response>) {
       }
 
       if (process.env.NODE_ENV === "development") {
-        return new Response(JSON.stringify(e), { status: 500 });
+        return Response.json(
+          { inDevError: true, e: e.toString() },
+          { status: 500 },
+        );
       }
 
       // Return an identifier to help the developer track it down in production.

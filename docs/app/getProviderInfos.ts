@@ -21,7 +21,12 @@ export async function getProviderInfos(): Promise<ProviderInfo[]> {
       let providerDocs: string = provider.docs ?? "";
       if (!providerDocs) {
         providerDocs = `
+
 Connect to your customers&apos; ${provider.website ? `[${provider.title}](${provider.website})` : provider.title} accounts.
+
+## Usage
+
+Provide the following arguments:
 
 \`\`\`ts title="app/options.ts"
 import { ${provider.name}, HandshakeOptions } from "handshake";

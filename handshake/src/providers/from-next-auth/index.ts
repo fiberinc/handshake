@@ -133,7 +133,7 @@ const HubspotNextAuth = require("next-auth/providers/hubspot").default;
  *
  * Make sure your Handshake URL is allowed within your Hubspot app's Auth tab:
  *
- * ![](/handshake/images/providers/hubspot-redirect.png)
+ * ![hubspot-redirect-settings](DOC_IMAGES/hubspot-redirect.png)
  *
  * Follow the format: `https://HANDSHAKE_URL/auth/hubspot/callback`
  */

@@ -28,11 +28,13 @@ type Credential = {
  * });
  * ```
  *
- * ### Configure the Callback URL
+ * ### Allow your Handshake callback URL
+ *
+ * In your Stripe app settings.
  *
  * You can set up a localhost callback by toggling the "View test data" switch.
  *
- * ![](/handshake/images/providers/stripe-redirect.png)
+ * ![stripe-callback-settings](DOC_IMAGES/stripe-redirect.png)
  */
 export const Stripe: HandlerFactory<Args, Credential> = makeOauthFactory<
   TypicalOAuthArgs,

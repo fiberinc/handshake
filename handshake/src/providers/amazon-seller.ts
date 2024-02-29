@@ -72,7 +72,7 @@ export const PROVIDER_ID = "amazon-seller";
  *
  * ### Not setup for OAuth
  *
- * ![amazon-not-setup](/handshake/images/providers/amazon-not-setup-oauth.png)
+ * ![amazon-not-setup](DOC_IMAGES/amazon-not-setup-oauth.png)
  *
  * @param param0
  * @returns

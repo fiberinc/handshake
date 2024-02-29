@@ -2,7 +2,7 @@ import assert from "assert";
 import { HandlerFactory } from "~/core/types";
 import { makeOauthFactory } from "./lib/makeOauthFactory";
 
-type SalesforceScope =
+export type SalesforceScope =
   | "cdp_query_api"
   | "pardot_api"
   | "cdp_profile_api"
@@ -57,7 +57,7 @@ interface Args {
  *     Salesforce({
  *       clientId: string,
  *       clientSecret: string,
- *       scopes: string,
+ *       scopes: string[],
  *       issuer?: string,
  *     }),
  *   ],

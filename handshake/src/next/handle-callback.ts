@@ -3,6 +3,7 @@ import { HttpError } from "http-errors";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { NextRequest } from "next/server";
+import { errors as OpenIdClientErrors } from "openid-client";
 import { ExtendedConfig } from "~/core/HandshakeOptions";
 import { OAuthCallbackError, UnknownProviderError } from "~/core/errors";
 import { debug, error, info } from "~/core/logger";
@@ -78,22 +79,30 @@ export async function handleCallback(
       throw new TypeError("Not an error");
     }
 
-    error("handler.exchange failed", e);
-
-    // Convert any HttpError thrown by the handler into a JSON response with the
-    // error message. This is useful to simplify program logic.
-    if (e instanceof HttpError) {
-      error("provider.exchange threw http error", e);
-      return Response.json({ message: e.message }, { status: e.statusCode });
-    }
-
     const url = new URL(session.developerCallbackUri);
     url.searchParams.set("state", session.developerState);
 
-    // We forward known OAuth errors to the caller.
+    error("handler.exchange failed", e);
+
     if (e instanceof OAuthCallbackError) {
+      // Forward known OAuth errors to the caller.
       url.searchParams.set("error", e.error);
       url.searchParams.set("error_description", e.errorDescription);
+    }
+    // Convert any HttpError thrown by the handler into a JSON response with the
+    // error message. This is useful to simplify program logic.
+    else if (e instanceof HttpError) {
+      error("provider.exchange threw http error. this is not ok.", e);
+      return Response.json({ message: e.message }, { status: e.statusCode });
+    }
+    // An OAuth handler bubbled up an openid-client error, which is not OK. This
+    // is a sanity check.
+    else if (
+      e instanceof OpenIdClientErrors.OPError ||
+      e instanceof OpenIdClientErrors.RPError
+    ) {
+      error("OpenIdClient bubbled up an error. This must be fixed.", e);
+      url.searchParams.set("error", "unknown_provider_error");
     } else if (e instanceof UnknownProviderError) {
       url.searchParams.set("error", "unknown_provider_error");
       url.searchParams.set(

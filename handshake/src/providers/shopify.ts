@@ -91,7 +91,7 @@ export interface ShopifyCredential {
  * Make sure your Handshake URL is allowed within your Shopify app's
  * Configuration tab:
  *
- * ![](/handshake/images/providers/shopify-redirect.png)
+ * ![shopify-redirection](DOC_IMAGES/shopify-redirect.png)
  *
  * Follow the format: `https://HANDSHAKE_URL/auth/shopify/callback`
  */

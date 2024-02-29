@@ -38,6 +38,9 @@ export async function getOpenIdClient(
       client_id: clientId,
       client_secret: clientSecret,
       redirect_uris: [callbackUrl],
+      // Used by Monday to modify the value of `token_endpoint_auth_method`
+      // https://github.com/panva/node-openid-client/blob/main/docs/README.md#client-authentication-methods
+      // https://github.com/panva/node-openid-client?tab=readme-ov-file#authorization-code-flow
       ...info.client,
     },
     // @felipap: removed this as no providers seemed to use it.

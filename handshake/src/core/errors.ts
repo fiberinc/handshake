@@ -55,6 +55,7 @@ export class OAuthCallbackError extends Error {
       | "invalid_request"
       | "invalid_scope",
     public errorDescription: string,
+    public extras?: any,
   ) {
     const message = `${error} (${errorDescription}). Read more at ${REPO_URL}`;
 

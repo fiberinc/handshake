@@ -3,10 +3,12 @@ import {
   CallbackParamsType,
   OAuthCallbackChecks,
   OpenIDCallbackChecks,
+  errors as OpenIdClientErrors,
   TokenSet,
   generators,
 } from "openid-client";
 import { InvalidCheck, OAuthCallbackError } from "~/core/errors";
+import { error, info } from "~/core/logger";
 import { SessionValue } from "~/core/session";
 import { Handler, HandlerFactory } from "~/core/types";
 import { OAuthProvider } from "./OAuthProvider";
@@ -164,6 +166,8 @@ export function makeOauthFactory<
           ...provider.token?.params,
         };
 
+        info("params", params);
+
         if (provider.token?.request) {
           const response = await provider.token.request({
             provider: provider as any,
@@ -175,16 +179,36 @@ export function makeOauthFactory<
         } else if (provider.idToken) {
           tokens = await client.callback(callbackHandlerUrl, params, checks);
         } else {
-          // This seems to fail silently, which is shit.
-          tokens = await client.oauthCallback(
-            callbackHandlerUrl,
-            params,
-            checks,
-          );
+          // This seems to fail silently sometimes, which is shit.
+          try {
+            tokens = await client.oauthCallback(
+              callbackHandlerUrl,
+              params,
+              checks,
+            );
+          } catch (e) {
+            if (!(e instanceof Error)) {
+              throw new TypeError("Not an error");
+            }
+
+            if (e instanceof OpenIdClientErrors.OPError) {
+              info("oauthCallback threw OPError", e);
+              // FIXME this is all pretty pretty ugly
+              throw new OAuthCallbackError(
+                (e.error as any) || "unknown_error",
+                `${e.error_description}${e.error_uri ? " (url=" + e.error_uri + ")" : ""}`,
+                e,
+              );
+            }
+
+            error("oauthCallback THREW non OPError", e);
+            throw e;
+          }
         }
 
         // README double-check this.
         if (tokens.error) {
+          info("Failed to get tokens. Result:", tokens);
           throw new OAuthCallbackError(
             tokens.error as any,
             `${tokens.error_description} ${tokens.error_uri ?? "(url=" + tokens.error_uri + ")"}`,

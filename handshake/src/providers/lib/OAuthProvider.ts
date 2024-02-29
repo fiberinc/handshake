@@ -7,7 +7,7 @@ import {
 } from "next-auth/providers";
 import type { ClientMetadata, HttpOptions } from "openid-client";
 
-type ChecksType = "pkce" | "state" | "none" | "nonce";
+type CheckType = "pkce" | "state" | "nonce";
 
 /**
  * Modified version of next-auth's `OAuthConfigInternal`.
@@ -37,7 +37,7 @@ export interface OAuthProvider {
   token?: TokenEndpointHandler;
   userinfo?: UserinfoEndpointHandler;
   version?: string;
-  checks?: ChecksType | ChecksType[];
+  checks?: CheckType[];
   client?: Partial<ClientMetadata>;
   // @felipap: doesn't seem to be used by any of the current providers.
   // jwks?: { keys: JWK[] };

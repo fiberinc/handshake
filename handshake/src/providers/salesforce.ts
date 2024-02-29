@@ -1,12 +1,46 @@
 import assert from "assert";
 import { HandlerFactory } from "~/core/types";
-import { makeOauthFactory } from "./lib/makeHandler";
+import { makeOauthFactory } from "./lib/makeOauthFactory";
+
+type SalesforceScope =
+  | "cdp_query_api"
+  | "pardot_api"
+  | "cdp_profile_api"
+  | "chatter_api"
+  | "cdp_ingest_api"
+  | "eclair_api"
+  | "wave_api"
+  | "api"
+  | "custom_permissions"
+  | "id"
+  | "profile"
+  | "email"
+  | "address"
+  | "phone"
+  | "lightning"
+  | "content"
+  | "openid"
+  | "full"
+  | "refresh_token"
+  | "offline_access"
+  | "visualforce"
+  | "web"
+  | "chatbot_api"
+  | "user_registration_api"
+  | "forgot_password"
+  | "cdp_api"
+  | "sfap_api"
+  | "interaction_api"
+  | "cdp_segment_api"
+  | "cdp_identityresolution_api"
+  | "cdp_calculated_insight_api"
+  | "einstein_gpt_api"
+  | "pwdless_login_api";
 
 interface Args {
   clientId: string;
   clientSecret: string;
-  // TODO typify
-  scopes: string[];
+  scopes: SalesforceScope[];
   issuer?: string;
 }
 
@@ -31,9 +65,11 @@ interface Args {
  * };
  * ```
  *
+ * [Scope documentation](https://help.salesforce.com/s/articleView?id=sf.remoteaccess_oauth_tokens_scopes.htm&type=5)
+ *
  */
 export const Salesforce: HandlerFactory<Args> = (args) => {
-  assert(args.scopes, "scopes is empty or missing");
+  // assert(args.scopes, "scopes is empty or missing");
   assert(args.clientId, "clientId is empty or missing");
   assert(args.clientSecret, "clientSecret is empty or missing");
 
@@ -43,15 +79,9 @@ export const Salesforce: HandlerFactory<Args> = (args) => {
     id: "salesforce",
     website: "https://salesforce.com",
     name: "Salesforce",
-    authorization: {
-      url: `${issuer}/services/oauth2/authorize?display=page`,
-    },
-    token: {
-      url: `${issuer}/services/oauth2/token`,
-    },
-    userinfo: {
-      url: `${issuer}/services/oauth2/userinfo`,
-    },
-    checks: ["pkce", "state"],
+    wellKnown: `${issuer}/.well-known/openid-configuration`,
+    issuer,
+    checks: ["pkce"],
+    idToken: true,
   })(args);
 };

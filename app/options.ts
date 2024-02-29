@@ -13,7 +13,7 @@ export const options: HandshakeOptions = {
     // Salesforce({
     //   clientId: process.env.SALESFORCE_CLIENT_ID!,
     //   clientSecret: process.env.SALESFORCE_CLIENT_SECRET!,
-    //   scopes: ["repo"],
+    //   scopes: ["full"],
     // }),
   ],
   /**

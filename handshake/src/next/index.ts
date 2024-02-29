@@ -2,7 +2,7 @@ import assert from "assert";
 import { BadRequest, HttpError } from "http-errors";
 import { isRedirectError } from "next/dist/client/components/redirect";
 import { NextRequest } from "next/server";
-import { debug, error, info } from "~/core/logger";
+import { debug, error } from "~/core/logger";
 import { HandshakeOptions, getFullHandshakeOptions } from "..";
 import { handleCallback } from "./handle-callback";
 import { handleRedirect } from "./handle-redirect";
@@ -45,7 +45,6 @@ export function NextHandshake(userOptions: HandshakeOptions) {
   const nextHandler = async (req: NextRequest): Promise<Response> => {
     // This may throw.
     const { action, tenantId, handlerId } = getInfoFromUrl(req.url);
-    info(`handling asdfs`);
 
     const handler = options.getHandler(handlerId);
     if (!handler) {

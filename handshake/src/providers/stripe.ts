@@ -1,5 +1,5 @@
 import { HandlerFactory } from "~/core/types";
-import { TypicalOAuthArgs, makeOauthFactory } from "./lib/makeHandler";
+import { TypicalOAuthArgs, makeOauthFactory } from "./lib/makeOauthFactory";
 
 interface Args {
   clientId: string;

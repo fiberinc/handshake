@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { Suspense, useEffect } from "react";
 
@@ -26,7 +27,14 @@ function InnerPage() {
   }
 
   return (
-    <main className="flex h-full w-full flex-col gap-4 p-10">{inner}</main>
+    <main className="flex h-full w-full flex-col gap-4 p-10">
+      {inner}
+      <footer className="text-sm">
+        {process.env.NODE_ENV === "development" && (
+          <Link href="/">Go back to home</Link>
+        )}
+      </footer>
+    </main>
   );
 }
 

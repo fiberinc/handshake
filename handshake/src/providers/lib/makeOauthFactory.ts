@@ -84,6 +84,7 @@ export function makeOauthFactory<
         }
 
         // Generate a nonce if the provider requires it.
+        // FIXME https://stackoverflow.com/questions/46844285
         if (provider.checks?.includes("nonce")) {
           const value = generators.nonce();
           params.nonce = value;

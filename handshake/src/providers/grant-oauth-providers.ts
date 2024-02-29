@@ -1,7 +1,7 @@
 import assert from "assert";
 import { HandlerFactory } from "~/core/types";
-import { OAuthProvider } from "../lib/OAuthProvider";
-import { TypicalOAuthArgs, makeOauthFactory } from "../lib/makeHandler";
+import { OAuthProvider } from "./lib/OAuthProvider";
+import { TypicalOAuthArgs, makeOauthFactory } from "./lib/makeOauthFactory";
 
 function makeOauthFactoryWithSubdomainArg(
   info: OAuthProvider,

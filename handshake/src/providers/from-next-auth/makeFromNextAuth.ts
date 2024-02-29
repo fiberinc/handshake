@@ -2,7 +2,7 @@ import { OAuthConfig, OAuthUserConfig } from "next-auth/providers";
 import { AuthorizationParameters } from "openid-client";
 import { Handler, HandlerFactory } from "~/core/types";
 import { OAuthProvider } from "../lib/OAuthProvider";
-import { TypicalOAuthArgs, makeOauthFactory } from "../lib/makeHandler";
+import { TypicalOAuthArgs, makeOauthFactory } from "../lib/makeOauthFactory";
 
 type FixedNextAuthOAuthConfig = OAuthConfig<any> & {
   // Providers like Freshbooks contain authorization URL.
@@ -54,12 +54,15 @@ export function makeFromNextAuth<Args = unknown>(
       };
     }
 
+    let checks;
+
     return makeOauthFactory({
       ...info,
       id: info.id,
       name: info.name,
       website: "",
       authorization,
+      checks,
       token:
         typeof info.token === "string"
           ? {

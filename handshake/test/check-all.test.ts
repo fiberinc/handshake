@@ -1,7 +1,7 @@
 import assert from "assert";
 import { OAuthCallbackError } from "~/core/errors";
 import { Handler, HandlerFactory } from "~/core/types";
-import { TypicalOAuthArgs } from "~/providers/lib/makeHandler";
+import { TypicalOAuthArgs } from "~/providers/lib/makeOauthFactory";
 import * as allFactories from "../src/providers";
 
 const FLAG_HOST = "flag_17439";
@@ -33,7 +33,7 @@ test.skip("Shopify", async () => {
     allFactories.Shopify({
       clientId: "123",
       clientSecret: "123",
-      scopes: ["123"],
+      scopes: ["read_all_orders"],
     }),
     {
       shop: "foobar.myshopify.com",
@@ -98,6 +98,11 @@ async function testOauthHandler(handler: Handler<any>, params?: any) {
 
   if (authUrl) {
     assert(authUrl.url);
+
+    if (handler.provider.oauthConfig?.checks?.includes("pkce")) {
+      assert(authUrl.url.includes("code_challenge="));
+      assert(authUrl.url.includes("code_challenge_method="));
+    }
   }
 
   let tokens: Awaited<ReturnType<typeof handler.exchange>> | null = null;

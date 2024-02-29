@@ -200,8 +200,8 @@ export const Pipedrive = makeFromNextAuth(PipedriveNextAuth);
 const RedditNextAuth = require("next-auth/providers/reddit").default;
 export const Reddit = makeFromNextAuth(RedditNextAuth);
 
-const SalesforceNextAuth = require("next-auth/providers/salesforce").default;
-export const Salesforce = makeFromNextAuth(SalesforceNextAuth);
+// const SalesforceNextAuth = require("next-auth/providers/salesforce").default;
+// export const Salesforce = makeFromNextAuth(SalesforceNextAuth);
 
 const SlackNextAuth = require("next-auth/providers/slack").default;
 export const Slack = makeFromNextAuth(SlackNextAuth);

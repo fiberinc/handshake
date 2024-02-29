@@ -101,6 +101,9 @@ export async function handleCallback(
         `Provider failed with unexpected error: ${e.message}. If you believe this is a mistake, please open an issue at https://github.com/fiberinc/handshake/issues.`,
       );
     } else {
+      info("handler.exchange error is unexpected");
+
+      console.trace();
       const { error, error_description } = e as any;
 
       url.searchParams.set("error", error ?? "unknown_error");

@@ -3,6 +3,7 @@
     "id": "aweber",
     "name": "AWeber",
     "title": "AWeber",
+    "website": "https://www.aweber.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -11,6 +12,7 @@
     "id": "acton",
     "name": "ActOn",
     "title": "Act-On",
+    "website": "https://www.act-on.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -19,6 +21,7 @@
     "id": "acuityscheduling",
     "name": "AcuityScheduling",
     "title": "Acuity Scheduling",
+    "website": "https://acuityscheduling.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -27,6 +30,7 @@
     "id": "adobe",
     "name": "Adobe",
     "title": "Adobe",
+    "website": "https://www.adobe.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -35,6 +39,7 @@
     "id": "aha",
     "name": "Aha",
     "title": "Aha!",
+    "website": "https://www.aha.io",
     "isFromNextAuth": false,
     "takesSubdomainArg": true,
     "docs": null
@@ -43,6 +48,7 @@
     "id": "alchemer",
     "name": "Alchemer",
     "title": "Alchemer",
+    "website": "https://www.alchemer.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -51,6 +57,7 @@
     "id": "amazon",
     "name": "Amazon",
     "title": "Amazon",
+    "website": "https://www.amazon.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -59,6 +66,7 @@
     "id": "amazon-seller",
     "name": "AmazonSeller",
     "title": "Amazon Seller Central",
+    "website": "https://sellercentral.amazon.com/",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": "[\"Website authorization workflow\"\ndocumentation](https://developer-docs.amazon.com/sp-api/docs/website-authorization-workflow)\n\n## Usage\n\nProvide the following arguments:\n\n\n```ts title=\"app/options.ts\"\nimport { Amazon } from \"handshake\";\n\nimport { HandshakeOptions, Amazon } from \"handshake\";\n\nconst options: HandshakeOptions = {\n  handles: [\n    Amazon({\n      appId: string,\n      clientId: string,\n      clientSecret: string,\n      isDraftApp: true | false,\n    });\n  ],\n  // ...\n};\n```\n\n\n## Troubleshooting\n\nNeed to \"set up your “Authorize” buttons so that selling partners are\nredirected to the Seller Central (for sellers) or Vendor Central (for\nvendors) sign-in page for their own region.\"\n\n### No localhost redirect\n\nAmazon does not allow setting localhost as a \n`redirect_uri`\n. You may want to\nuse Ngrok or another service to provide a publicly addressable URL.\n\n[https://github.com/amzn/selling-partner-api-docs/issues/26](https://github.com/amzn/selling-partner-api-docs/issues/26)\n\n### Error Code: MD5101\n\nThis means unauthorized redirect URI. localhost URIs are allowed.\n\n### Developer Central – \"You do not have permissions to view this page\"\n\nFYI. Only the primary user of the Seller Central account is able to create\nand modify apps via the \"Developer Central\" page.\n\n[https://github.com/amzn/selling-partner-api-docs/issues/2191](https://github.com/amzn/selling-partner-api-docs/issues/2191)\n\n### Not setup for OAuth\n\n![amazon-not-setup](/handshake/images/providers/amazon-not-setup-oauth.png)"
@@ -67,6 +75,7 @@
     "id": "angellist",
     "name": "AngelList",
     "title": "AngelList",
+    "website": "https://angel.co",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -75,6 +84,7 @@
     "id": "apple",
     "name": "Apple",
     "title": "Apple",
+    "website": null,
     "isFromNextAuth": true,
     "takesSubdomainArg": false,
     "docs": null
@@ -83,6 +93,7 @@
     "id": "arcgis",
     "name": "ArcGIS",
     "title": "ArcGIS",
+    "website": "https://www.arcgis.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -91,6 +102,7 @@
     "id": "asana",
     "name": "Asana",
     "title": "Asana",
+    "website": "https://asana.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -99,6 +111,7 @@
     "id": "assembla",
     "name": "Assembla",
     "title": "Assembla",
+    "website": "https://www.assembla.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -107,6 +120,7 @@
     "id": "atlassian",
     "name": "Atlassian",
     "title": "Atlassian",
+    "website": null,
     "isFromNextAuth": true,
     "takesSubdomainArg": false,
     "docs": null
@@ -115,6 +129,7 @@
     "id": "auth0",
     "name": "Auth0",
     "title": "Auth0",
+    "website": null,
     "isFromNextAuth": true,
     "takesSubdomainArg": false,
     "docs": null
@@ -123,6 +138,7 @@
     "id": "authing",
     "name": "Authing",
     "title": "Authing",
+    "website": "https://www.authing.cn",
     "isFromNextAuth": false,
     "takesSubdomainArg": true,
     "docs": null
@@ -131,6 +147,7 @@
     "id": "autodesk",
     "name": "Autodesk",
     "title": "Autodesk",
+    "website": "https://www.autodesk.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -139,6 +156,7 @@
     "id": "axosoft",
     "name": "Axosoft",
     "title": "Axosoft",
+    "website": "https://www.axosoft.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": true,
     "docs": null
@@ -147,6 +165,7 @@
     "id": "azure-ad",
     "name": "AzureAd",
     "title": "Azure Active Directory",
+    "website": null,
     "isFromNextAuth": true,
     "takesSubdomainArg": false,
     "docs": null
@@ -155,6 +174,7 @@
     "id": "azure-ad-b2c",
     "name": "AzureAdB2C",
     "title": "Azure Active Directory B2C",
+    "website": null,
     "isFromNextAuth": true,
     "takesSubdomainArg": false,
     "docs": null
@@ -163,6 +183,7 @@
     "id": "baidu",
     "name": "Baidu",
     "title": "Baidu",
+    "website": "https://www.baidu.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -171,6 +192,7 @@
     "id": "basecamp",
     "name": "Basecamp",
     "title": "Basecamp",
+    "website": "https://basecamp.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -179,6 +201,7 @@
     "id": "battlenet",
     "name": "Battlenet",
     "title": "Battle.net",
+    "website": null,
     "isFromNextAuth": true,
     "takesSubdomainArg": false,
     "docs": null
@@ -187,6 +210,7 @@
     "id": "beatport",
     "name": "Beatport",
     "title": "Beatport",
+    "website": "https://www.beatport.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -195,6 +219,7 @@
     "id": "bitbucket",
     "name": "Bitbucket",
     "title": "Bitbucket",
+    "website": "https://bitbucket.org",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -203,6 +228,7 @@
     "id": "bitly",
     "name": "Bitly",
     "title": "Bitly",
+    "website": "https://bitly.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -211,6 +237,7 @@
     "id": "box",
     "name": "Box",
     "title": "Box",
+    "website": null,
     "isFromNextAuth": true,
     "takesSubdomainArg": false,
     "docs": null
@@ -219,6 +246,7 @@
     "id": "buffer",
     "name": "Buffer",
     "title": "Buffer",
+    "website": "https://bufferapp.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -227,6 +255,7 @@
     "id": "bungie",
     "name": "Bungie",
     "title": "Bungie",
+    "website": null,
     "isFromNextAuth": true,
     "takesSubdomainArg": false,
     "docs": null
@@ -235,6 +264,7 @@
     "id": "cas",
     "name": "CAS",
     "title": "CAS",
+    "website": "https://www.apereo.org/projects/cas",
     "isFromNextAuth": false,
     "takesSubdomainArg": true,
     "docs": null
@@ -243,6 +273,7 @@
     "id": "campaignmonitor",
     "name": "CampaignMonitor",
     "title": "Campaign Monitor",
+    "website": "https://www.campaignmonitor.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -251,6 +282,7 @@
     "id": "clio",
     "name": "Clio",
     "title": "Clio",
+    "website": "https://www.clio.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -259,6 +291,7 @@
     "id": "cognito",
     "name": "Cognito",
     "title": "Cognito",
+    "website": null,
     "isFromNextAuth": true,
     "takesSubdomainArg": false,
     "docs": null
@@ -267,6 +300,7 @@
     "id": "coinbase",
     "name": "Coinbase",
     "title": "Coinbase",
+    "website": null,
     "isFromNextAuth": true,
     "takesSubdomainArg": false,
     "docs": null
@@ -275,6 +309,7 @@
     "id": "concur",
     "name": "Concur",
     "title": "Concur",
+    "website": "https://www.concur.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": true,
     "docs": null
@@ -283,6 +318,7 @@
     "id": "constantcontact",
     "name": "ConstantContact",
     "title": "Constant Contact",
+    "website": "https://www.constantcontact.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -291,6 +327,7 @@
     "id": "coursera",
     "name": "Coursera",
     "title": "Coursera",
+    "website": "https://www.coursera.org",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -299,6 +336,7 @@
     "id": "crossid",
     "name": "CrossID",
     "title": "CrossID",
+    "website": "https://www.crossid.io",
     "isFromNextAuth": false,
     "takesSubdomainArg": true,
     "docs": null
@@ -307,6 +345,7 @@
     "id": "dailymotion",
     "name": "Dailymotion",
     "title": "Dailymotion",
+    "website": "https://www.dailymotion.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -315,6 +354,7 @@
     "id": "deezer",
     "name": "Deezer",
     "title": "Deezer",
+    "website": "https://www.deezer.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -323,6 +363,7 @@
     "id": "delivery",
     "name": "Delivery",
     "title": "Delivery",
+    "website": "https://www.delivery.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -331,6 +372,7 @@
     "id": "deputy",
     "name": "Deputy",
     "title": "Deputy",
+    "website": "https://www.deputy.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -339,6 +381,7 @@
     "id": "deviantart",
     "name": "DeviantArt",
     "title": "DeviantArt",
+    "website": "https://www.deviantart.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -347,6 +390,7 @@
     "id": "digitalocean",
     "name": "DigitalOcean",
     "title": "DigitalOcean",
+    "website": "https://www.digitalocean.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -355,6 +399,7 @@
     "id": "discogs",
     "name": "Discogs",
     "title": "Discogs",
+    "website": "https://www.discogs.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -363,6 +408,7 @@
     "id": "discord",
     "name": "Discord",
     "title": "Discord",
+    "website": null,
     "isFromNextAuth": true,
     "takesSubdomainArg": false,
     "docs": null
@@ -371,6 +417,7 @@
     "id": "disqus",
     "name": "Disqus",
     "title": "Disqus",
+    "website": "https://www.disqus.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -379,6 +426,7 @@
     "id": "docusign",
     "name": "Docusign",
     "title": "DocuSign",
+    "website": "https://www.docusign.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -387,6 +435,7 @@
     "id": "dribbble",
     "name": "Dribbble",
     "title": "Dribbble",
+    "website": "https://www.dribbble.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -395,6 +444,7 @@
     "id": "dropbox",
     "name": "Dropbox",
     "title": "Dropbox",
+    "website": null,
     "isFromNextAuth": true,
     "takesSubdomainArg": false,
     "docs": null
@@ -403,6 +453,7 @@
     "id": "ebay",
     "name": "Ebay",
     "title": "eBay",
+    "website": "https://www.ebay.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -411,6 +462,7 @@
     "id": "echosign",
     "name": "Echosign",
     "title": "Adobe Sign",
+    "website": "https://acrobat.adobe.com/us/en/sign.html",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -419,6 +471,7 @@
     "id": "ecwid",
     "name": "Ecwid",
     "title": "Ecwid",
+    "website": "https://www.ecwid.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -427,6 +480,7 @@
     "id": "egnyte",
     "name": "Egnyte",
     "title": "Egnyte",
+    "website": "https://www.egnyte.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": true,
     "docs": null
@@ -435,6 +489,7 @@
     "id": "etsy",
     "name": "Etsy",
     "title": "Etsy",
+    "website": "https://www.etsy.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -443,6 +498,7 @@
     "id": "eventbrite",
     "name": "Eventbrite",
     "title": "Eventbrite",
+    "website": "https://www.eventbrite.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -451,6 +507,7 @@
     "id": "eveonline",
     "name": "Eveonline",
     "title": "EVE Online",
+    "website": null,
     "isFromNextAuth": true,
     "takesSubdomainArg": false,
     "docs": null
@@ -459,6 +516,7 @@
     "id": "evernote",
     "name": "Evernote",
     "title": "Evernote",
+    "website": "https://www.evernote.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -467,6 +525,7 @@
     "id": "eyeem",
     "name": "EyeEm",
     "title": "EyeEm",
+    "website": "https://www.eyeem.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -475,6 +534,7 @@
     "id": "facebook",
     "name": "Facebook",
     "title": "Facebook",
+    "website": null,
     "isFromNextAuth": true,
     "takesSubdomainArg": false,
     "docs": null
@@ -483,6 +543,7 @@
     "id": "faceit",
     "name": "Faceit",
     "title": "FACEIT",
+    "website": null,
     "isFromNextAuth": true,
     "takesSubdomainArg": false,
     "docs": null
@@ -491,6 +552,7 @@
     "id": "familysearch",
     "name": "FamilySearch",
     "title": "FamilySearch",
+    "website": "https://www.familysearch.org",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -499,6 +561,7 @@
     "id": "feedly",
     "name": "Feedly",
     "title": "Feedly",
+    "website": "https://www.feedly.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -507,6 +570,7 @@
     "id": "figma",
     "name": "Figma",
     "title": "Figma",
+    "website": "https://www.figma.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -515,6 +579,7 @@
     "id": "fitbit",
     "name": "Fitbit",
     "title": "Fitbit",
+    "website": "https://www.fitbit.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -523,6 +588,7 @@
     "id": "flickr",
     "name": "Flickr",
     "title": "Flickr",
+    "website": "https://www.flickr.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -531,6 +597,7 @@
     "id": "formstack",
     "name": "Formstack",
     "title": "Formstack",
+    "website": "https://www.formstack.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -539,6 +606,7 @@
     "id": "42-school",
     "name": "FortyTwo",
     "title": "42 School",
+    "website": null,
     "isFromNextAuth": true,
     "takesSubdomainArg": false,
     "docs": null
@@ -547,6 +615,7 @@
     "id": "foursquare",
     "name": "Foursquare",
     "title": "Foursquare",
+    "website": null,
     "isFromNextAuth": true,
     "takesSubdomainArg": false,
     "docs": null
@@ -555,6 +624,7 @@
     "id": "freeagent",
     "name": "FreeAgent",
     "title": "FreeAgent",
+    "website": "https://www.freeagent.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -563,6 +633,7 @@
     "id": "freelancer",
     "name": "Freelancer",
     "title": "Freelancer",
+    "website": "https://www.freelancer.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -571,6 +642,7 @@
     "id": "freshbooks",
     "name": "Freshbooks",
     "title": "Freshbooks",
+    "website": null,
     "isFromNextAuth": true,
     "takesSubdomainArg": false,
     "docs": null
@@ -579,6 +651,7 @@
     "id": "fusionauth",
     "name": "Fusionauth",
     "title": "FusionAuth",
+    "website": null,
     "isFromNextAuth": true,
     "takesSubdomainArg": false,
     "docs": null
@@ -587,6 +660,7 @@
     "id": "garmin",
     "name": "Garmin",
     "title": "Garmin",
+    "website": "https://connect.garmin.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -595,6 +669,7 @@
     "id": "geeklist",
     "name": "Geeklist",
     "title": "Geeklist",
+    "website": "https://geekli.st",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -603,6 +678,7 @@
     "id": "genius",
     "name": "Genius",
     "title": "Genius",
+    "website": "https://genius.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -611,6 +687,7 @@
     "id": "getbase",
     "name": "Getbase",
     "title": "Getbase",
+    "website": "https://www.getbase.com/sell/",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -619,6 +696,7 @@
     "id": "github",
     "name": "GitHub",
     "title": "GitHub",
+    "website": null,
     "isFromNextAuth": true,
     "takesSubdomainArg": false,
     "docs": null
@@ -627,6 +705,7 @@
     "id": "gitbook",
     "name": "Gitbook",
     "title": "GitBook",
+    "website": "https://www.gitbook.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -635,6 +714,7 @@
     "id": "gitlab",
     "name": "Gitlab",
     "title": "GitLab",
+    "website": null,
     "isFromNextAuth": true,
     "takesSubdomainArg": false,
     "docs": null
@@ -643,6 +723,7 @@
     "id": "goodreads",
     "name": "Goodreads",
     "title": "Goodreads",
+    "website": "https://www.goodreads.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -651,6 +732,7 @@
     "id": "google",
     "name": "Google",
     "title": "Google",
+    "website": null,
     "isFromNextAuth": true,
     "takesSubdomainArg": false,
     "docs": null
@@ -659,6 +741,7 @@
     "id": "groove",
     "name": "Groove",
     "title": "Groove",
+    "website": "https://www.groovehq.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -667,6 +750,7 @@
     "id": "gumroad",
     "name": "Gumroad",
     "title": "Gumroad",
+    "website": "https://gumroad.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -675,6 +759,7 @@
     "id": "harvest",
     "name": "Harvest",
     "title": "Harvest",
+    "website": "https://www.getharvest.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -683,6 +768,7 @@
     "id": "hellosign",
     "name": "HelloSign",
     "title": "HelloSign",
+    "website": "https://www.hellosign.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -691,6 +777,7 @@
     "id": "heroku",
     "name": "Heroku",
     "title": "Heroku",
+    "website": "https://www.heroku.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -699,6 +786,7 @@
     "id": "homeaway",
     "name": "Homeaway",
     "title": "HomeAway",
+    "website": "https://www.homeaway.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -707,6 +795,7 @@
     "id": "hootsuite",
     "name": "Hootsuite",
     "title": "Hootsuite",
+    "website": "https://hootsuite.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -715,6 +804,7 @@
     "id": "hubspot",
     "name": "Hubspot",
     "title": "HubSpot",
+    "website": null,
     "isFromNextAuth": true,
     "takesSubdomainArg": false,
     "docs": "## Usage\n\nProvide the following arguments:\n\n\n```ts\n// Inside app/options.ts\n\nimport { Hubspot } from \"handshake\";\n\nHubspot({\n  clientId: string,\n  clientSecret: string,\n  scopes: [\n    \"e-commerce\",\n    \"crm.schemas.contacts.read\",\n    \"crm.objects.contacts.read\",\n  ],\n});\n```\n\n\n### Configure the Callback URL\n\nMake sure your Handshake URL is allowed within your Hubspot app's Auth tab:\n\n![](/handshake/images/providers/hubspot-redirect.png)\n\nFollow the format: \n`https://HANDSHAKE_URL/auth/hubspot/callback`"
@@ -723,6 +813,7 @@
     "id": "huddle",
     "name": "Huddle",
     "title": "Huddle",
+    "website": "https://www.huddle.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -731,6 +822,7 @@
     "id": "ibm",
     "name": "IBM",
     "title": "IBM",
+    "website": "https://www.ibm.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -739,6 +831,7 @@
     "id": "idme",
     "name": "IDme",
     "title": "ID.me",
+    "website": "https://www.id.me",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -747,6 +840,7 @@
     "id": "idonethis",
     "name": "IDoneThis",
     "title": "I Done This",
+    "website": "https://home.idonethis.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -755,6 +849,7 @@
     "id": "iconfinder",
     "name": "Iconfinder",
     "title": "Iconfinder",
+    "website": null,
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -763,6 +858,7 @@
     "id": "imgur",
     "name": "Imgur",
     "title": "Imgur",
+    "website": "https://imgur.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -771,6 +867,7 @@
     "id": "infusionsoft",
     "name": "Infusionsoft",
     "title": "Infusionsoft",
+    "website": "https://www.infusionsoft.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -779,6 +876,7 @@
     "id": "instagram",
     "name": "Instagram",
     "title": "Instagram",
+    "website": null,
     "isFromNextAuth": true,
     "takesSubdomainArg": false,
     "docs": null
@@ -787,6 +885,7 @@
     "id": "intuit",
     "name": "Intuit",
     "title": "Intuit",
+    "website": "https://www.intuit.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -795,6 +894,7 @@
     "id": "jamendo",
     "name": "Jamendo",
     "title": "Jamendo",
+    "website": "https://www.jamendo.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -803,6 +903,7 @@
     "id": "kakao",
     "name": "Kakao",
     "title": "Kakao",
+    "website": null,
     "isFromNextAuth": true,
     "takesSubdomainArg": false,
     "docs": null
@@ -811,6 +912,7 @@
     "id": "keycloak",
     "name": "Keycloak",
     "title": "Keycloak",
+    "website": null,
     "isFromNextAuth": true,
     "takesSubdomainArg": false,
     "docs": null
@@ -819,6 +921,7 @@
     "id": "line",
     "name": "Line",
     "title": "LINE",
+    "website": null,
     "isFromNextAuth": true,
     "takesSubdomainArg": false,
     "docs": null
@@ -827,6 +930,7 @@
     "id": "linkedin",
     "name": "LinkedIn",
     "title": "LinkedIn",
+    "website": null,
     "isFromNextAuth": true,
     "takesSubdomainArg": false,
     "docs": null
@@ -835,6 +939,7 @@
     "id": "livechat",
     "name": "LiveChat",
     "title": "LiveChat",
+    "website": "https://www.livechat.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -843,6 +948,7 @@
     "id": "logingov",
     "name": "LoginGOV",
     "title": "Login.gov",
+    "website": "https://login.gov",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -851,6 +957,7 @@
     "id": "lyft",
     "name": "Lyft",
     "title": "Lyft",
+    "website": "https://www.lyft.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -859,6 +966,7 @@
     "id": "myob",
     "name": "MYOB",
     "title": "MYOB",
+    "website": "https://www.myob.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -867,6 +975,7 @@
     "id": "mailup",
     "name": "MailUp",
     "title": "MailUp",
+    "website": "https://www.mailup.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -875,6 +984,7 @@
     "id": "mailchimp",
     "name": "Mailchimp",
     "title": "Mailchimp",
+    "website": null,
     "isFromNextAuth": true,
     "takesSubdomainArg": false,
     "docs": null
@@ -883,6 +993,7 @@
     "id": "mailru",
     "name": "Mailru",
     "title": "Mail.ru",
+    "website": null,
     "isFromNextAuth": true,
     "takesSubdomainArg": false,
     "docs": null
@@ -891,6 +1002,7 @@
     "id": "mailxpert",
     "name": "Mailxpert",
     "title": "Mailxpert",
+    "website": "https://www.mailxpert.ch",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -899,6 +1011,7 @@
     "id": "mapmyfitness",
     "name": "MapMyFitness",
     "title": "MapMyFitness",
+    "website": "https://www.mapmyfitness.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -907,6 +1020,7 @@
     "id": "mastodon",
     "name": "Mastodon",
     "title": "Mastodon",
+    "website": "https://joinmastodon.org",
     "isFromNextAuth": false,
     "takesSubdomainArg": true,
     "docs": null
@@ -915,6 +1029,7 @@
     "id": "medium",
     "name": "Medium",
     "title": "Medium",
+    "website": null,
     "isFromNextAuth": true,
     "takesSubdomainArg": false,
     "docs": null
@@ -923,6 +1038,7 @@
     "id": "meetup",
     "name": "Meetup",
     "title": "Meetup",
+    "website": "https://www.meetup.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -931,6 +1047,7 @@
     "id": "mendeley",
     "name": "Mendeley",
     "title": "Mendeley",
+    "website": "https://www.mendeley.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -939,6 +1056,7 @@
     "id": "mention",
     "name": "Mention",
     "title": "Mention",
+    "website": "https://mention.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -947,6 +1065,7 @@
     "id": "microsoft",
     "name": "Microsoft",
     "title": "Microsoft",
+    "website": "https://www.microsoft.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -955,6 +1074,7 @@
     "id": "live",
     "name": "MicrosoftLive",
     "title": "Microsoft Live",
+    "website": "https://live.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -963,6 +1083,7 @@
     "id": "mixcloud",
     "name": "Mixcloud",
     "title": "Mixcloud",
+    "website": "https://www.mixcloud.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -971,6 +1092,7 @@
     "id": "moxtra",
     "name": "Moxtra",
     "title": "Moxtra",
+    "website": "https://www.moxtra.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -979,6 +1101,7 @@
     "id": "naver",
     "name": "Naver",
     "title": "Naver",
+    "website": null,
     "isFromNextAuth": true,
     "takesSubdomainArg": false,
     "docs": null
@@ -987,6 +1110,7 @@
     "id": "nest",
     "name": "Nest",
     "title": "Nest",
+    "website": "https://www.nest.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -995,6 +1119,7 @@
     "id": "netlify",
     "name": "Netlify",
     "title": "Netlify",
+    "website": null,
     "isFromNextAuth": true,
     "takesSubdomainArg": false,
     "docs": null
@@ -1003,6 +1128,7 @@
     "id": "nokotime",
     "name": "NokoTime",
     "title": "NokoTime",
+    "website": "https://www.nokotime.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -1011,6 +1137,7 @@
     "id": "notion",
     "name": "Notion",
     "title": "Notion",
+    "website": "https://www.notion.so",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -1019,6 +1146,7 @@
     "id": "nylas",
     "name": "Nylas",
     "title": "Nylas",
+    "website": "https://www.nylas.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -1027,6 +1155,7 @@
     "id": "okta",
     "name": "Okta",
     "title": "Okta",
+    "website": null,
     "isFromNextAuth": true,
     "takesSubdomainArg": false,
     "docs": null
@@ -1035,6 +1164,7 @@
     "id": "onelogin",
     "name": "Onelogin",
     "title": "OneLogin",
+    "website": null,
     "isFromNextAuth": true,
     "takesSubdomainArg": false,
     "docs": null
@@ -1043,6 +1173,7 @@
     "id": "openstreetmap2",
     "name": "OpenStreetMap2",
     "title": "OpenStreetMap",
+    "website": "https://www.openstreetmap.org",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -1051,6 +1182,7 @@
     "id": "optimizely",
     "name": "Optimizely",
     "title": "Optimizely",
+    "website": "https://www.optimizely.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -1059,6 +1191,7 @@
     "id": "osso",
     "name": "Osso",
     "title": "Osso",
+    "website": null,
     "isFromNextAuth": true,
     "takesSubdomainArg": false,
     "docs": null
@@ -1067,6 +1200,7 @@
     "id": "osu",
     "name": "Osu",
     "title": "Osu!",
+    "website": null,
     "isFromNextAuth": true,
     "takesSubdomainArg": false,
     "docs": null
@@ -1075,6 +1209,7 @@
     "id": "passage",
     "name": "Passage",
     "title": "Passage",
+    "website": null,
     "isFromNextAuth": true,
     "takesSubdomainArg": false,
     "docs": null
@@ -1083,6 +1218,7 @@
     "id": "patreon",
     "name": "Patreon",
     "title": "Patreon",
+    "website": null,
     "isFromNextAuth": true,
     "takesSubdomainArg": false,
     "docs": null
@@ -1091,6 +1227,7 @@
     "id": "paypal",
     "name": "PayPal",
     "title": "PayPal",
+    "website": "https://www.paypal.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -1099,6 +1236,7 @@
     "id": "pinterest",
     "name": "Pinterest",
     "title": "Pinterest",
+    "website": null,
     "isFromNextAuth": true,
     "takesSubdomainArg": false,
     "docs": null
@@ -1107,6 +1245,7 @@
     "id": "pipedrive",
     "name": "Pipedrive",
     "title": "Pipedrive",
+    "website": null,
     "isFromNextAuth": true,
     "takesSubdomainArg": false,
     "docs": null
@@ -1115,6 +1254,7 @@
     "id": "plurk",
     "name": "Plurk",
     "title": "Plurk",
+    "website": "https://www.plurk.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -1123,6 +1263,7 @@
     "id": "pocket",
     "name": "Pocket",
     "title": "Pocket",
+    "website": "https://getpocket.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -1131,6 +1272,7 @@
     "id": "podio",
     "name": "Podio",
     "title": "Podio",
+    "website": "https://www.podio.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -1139,6 +1281,7 @@
     "id": "procore",
     "name": "Procore",
     "title": "Procore",
+    "website": "https://www.procore.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -1147,6 +1290,7 @@
     "id": "producthunt",
     "name": "ProductHunt",
     "title": "Product Hunt",
+    "website": "https://www.producthunt.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -1155,6 +1299,7 @@
     "id": "projectplace",
     "name": "Projectplace",
     "title": "Projectplace",
+    "website": "https://www.projectplace.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -1163,6 +1308,7 @@
     "id": "pushbullet",
     "name": "Pushbullet",
     "title": "Pushbullet",
+    "website": "https://pushbullet.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -1171,6 +1317,7 @@
     "id": "qq",
     "name": "Qq",
     "title": "Qq",
+    "website": "https://qq.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -1179,6 +1326,7 @@
     "id": "ravelry",
     "name": "Ravelry",
     "title": "Ravelry",
+    "website": "https://ravelry.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -1187,6 +1335,7 @@
     "id": "redbooth",
     "name": "Redbooth",
     "title": "Redbooth",
+    "website": "https://redbooth.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -1195,6 +1344,7 @@
     "id": "reddit",
     "name": "Reddit",
     "title": "Reddit",
+    "website": null,
     "isFromNextAuth": true,
     "takesSubdomainArg": false,
     "docs": null
@@ -1203,6 +1353,7 @@
     "id": "runkeeper",
     "name": "Runkeeper",
     "title": "Runkeeper",
+    "website": "https://runkeeper.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -1211,6 +1362,7 @@
     "id": "salesforce",
     "name": "Salesforce",
     "title": "Salesforce",
+    "website": null,
     "isFromNextAuth": true,
     "takesSubdomainArg": false,
     "docs": null
@@ -1219,6 +1371,7 @@
     "id": "sellsy",
     "name": "Sellsy",
     "title": "Sellsy",
+    "website": "https://sellsy.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -1227,6 +1380,7 @@
     "id": "shoeboxed",
     "name": "Shoeboxed",
     "title": "Shoeboxed",
+    "website": "https://shoeboxed.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -1235,6 +1389,7 @@
     "id": "shopify",
     "name": "Shopify",
     "title": "Shopify",
+    "website": "https://shopify.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": "## Usage\n\nProvide the following arguments:\n\n\n```ts title=\"app/options.ts\"\nimport { HandshakeOptions, Shopify } from \"handshake\";\n\nconst options: HandshakeOptions = {\n  handles: [\n    Shopify({\n      clientId: process.env.SHOPIFY_CLIENT_ID!,\n      clientSecret: process.env.SHOPIFY_CLIENT_SECRET!,\n      scopes: [\"read_orders\", \"read_products\"],\n    }),\n  ],\n  // ...\n};\n```\n\n\n## Redirection\n\nInclude an \n`extras.shop`\n parameter when redirecting users to Handshake:\n\n\n```ts\nhttps://HANDSHAKE_HOST/auth/shopify/redirect?\n  state=12345\n  &extras.shop=hahvaleu.myshopify.com\n  &callback_uri=http://YOUR_APP_HOST/shopifySyncSuccess\n```\n\n\n## Configure the Callback URL\n\nMake sure your Handshake URL is allowed within your Shopify app's\nConfiguration tab:\n\n![](/handshake/images/providers/shopify-redirect.png)\n\nFollow the format: \n`https://HANDSHAKE_URL/auth/shopify/callback`"
@@ -1243,6 +1398,7 @@
     "id": "skyrock",
     "name": "Skyrock",
     "title": "Skyrock",
+    "website": "https://skyrock.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -1251,6 +1407,7 @@
     "id": "slack",
     "name": "Slack",
     "title": "Slack",
+    "website": null,
     "isFromNextAuth": true,
     "takesSubdomainArg": false,
     "docs": null
@@ -1259,6 +1416,7 @@
     "id": "smartsheet",
     "name": "Smartsheet",
     "title": "Smartsheet",
+    "website": "https://smartsheet.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -1267,6 +1425,7 @@
     "id": "smugmug",
     "name": "Smugmug",
     "title": "Smugmug",
+    "website": "https://smugmug.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -1275,6 +1434,7 @@
     "id": "snapchat",
     "name": "Snapchat",
     "title": "Snapchat",
+    "website": "https://snapchat.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -1283,6 +1443,7 @@
     "id": "snowflake",
     "name": "Snowflake",
     "title": "Snowflake",
+    "website": "https://www.snowflake.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": true,
     "docs": null
@@ -1291,6 +1452,7 @@
     "id": "socialpilot",
     "name": "SocialPilot",
     "title": "SocialPilot",
+    "website": "https://www.socialpilot.co",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -1299,6 +1461,7 @@
     "id": "socrata",
     "name": "Socrata",
     "title": "Socrata",
+    "website": "https://www.socrata.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": true,
     "docs": null
@@ -1307,6 +1470,7 @@
     "id": "soundcloud",
     "name": "SoundCloud",
     "title": "SoundCloud",
+    "website": "https://soundcloud.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -1315,6 +1479,7 @@
     "id": "spotify",
     "name": "Spotify",
     "title": "Spotify",
+    "website": null,
     "isFromNextAuth": true,
     "takesSubdomainArg": false,
     "docs": null
@@ -1323,6 +1488,7 @@
     "id": "square",
     "name": "Square",
     "title": "Square",
+    "website": "https://squareup.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -1331,6 +1497,7 @@
     "id": "stackexchange",
     "name": "StackExchange",
     "title": "Stack Exchange",
+    "website": "https://stackexchange.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -1339,6 +1506,7 @@
     "id": "stocktwits",
     "name": "Stocktwits",
     "title": "Stocktwits",
+    "website": "https://stocktwits.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -1347,6 +1515,7 @@
     "id": "stormz",
     "name": "Stormz",
     "title": "Stormz",
+    "website": "https://stormz.me",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -1355,6 +1524,7 @@
     "id": "storyblok",
     "name": "Storyblok",
     "title": "Storyblok",
+    "website": "https://www.storyblok.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -1363,6 +1533,7 @@
     "id": "strava",
     "name": "Strava",
     "title": "Strava",
+    "website": null,
     "isFromNextAuth": true,
     "takesSubdomainArg": false,
     "docs": null
@@ -1371,6 +1542,7 @@
     "id": "stripe",
     "name": "Stripe",
     "title": "Stripe",
+    "website": "https://stripe.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": "## Usage\n\nProvide the following arguments:\n\n\n```ts title=\"app/options.ts\"\n\nimport { Stripe } from \"handshake\";\n\nStripe({\n  clientId: \"ca_\",\n  clientSecret: \"sk_\",\n  scopes: [],\n});\n```\n\n\n### Configure the Callback URL\n\nYou can set up a localhost callback by toggling the \"View test data\" switch.\n\n![](/handshake/images/providers/stripe-redirect.png)"
@@ -1379,6 +1551,7 @@
     "id": "surveymonkey",
     "name": "SurveyMonkey",
     "title": "SurveyMonkey",
+    "website": "https://www.surveymonkey.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -1387,6 +1560,7 @@
     "id": "surveysparrow",
     "name": "SurveysParrow",
     "title": "SurveySparrow",
+    "website": "https://surveysparrow.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -1395,6 +1569,7 @@
     "id": "thingiverse",
     "name": "Thingiverse",
     "title": "Thingiverse",
+    "website": "https://www.thingiverse.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -1403,6 +1578,7 @@
     "id": "ticketbud",
     "name": "Ticketbud",
     "title": "Ticketbud",
+    "website": "https://www.ticketbud.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -1411,6 +1587,7 @@
     "id": "tiktok",
     "name": "TikTok",
     "title": "TikTok",
+    "website": "https://www.tiktok.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -1419,6 +1596,7 @@
     "id": "timely",
     "name": "Timely",
     "title": "Timely",
+    "website": "https://www.timelyapp.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -1427,6 +1605,7 @@
     "id": "todoist",
     "name": "Todoist",
     "title": "Todoist",
+    "website": null,
     "isFromNextAuth": true,
     "takesSubdomainArg": false,
     "docs": null
@@ -1435,6 +1614,7 @@
     "id": "trakt",
     "name": "Trakt",
     "title": "Trakt",
+    "website": null,
     "isFromNextAuth": true,
     "takesSubdomainArg": false,
     "docs": null
@@ -1443,6 +1623,7 @@
     "id": "traxo",
     "name": "Traxo",
     "title": "Traxo",
+    "website": "https://www.traxo.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -1451,6 +1632,7 @@
     "id": "trello",
     "name": "Trello",
     "title": "Trello",
+    "website": "https://trello.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -1459,6 +1641,7 @@
     "id": "tripit",
     "name": "TripIt",
     "title": "TripIt",
+    "website": "https://www.tripit.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -1467,6 +1650,7 @@
     "id": "trustpilot",
     "name": "Trustpilot",
     "title": "Trustpilot",
+    "website": "https://www.trustpilot.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -1475,6 +1659,7 @@
     "id": "tumblr",
     "name": "Tumblr",
     "title": "Tumblr",
+    "website": "https://tumblr.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -1483,6 +1668,7 @@
     "id": "twitch",
     "name": "Twitch",
     "title": "Twitch",
+    "website": null,
     "isFromNextAuth": true,
     "takesSubdomainArg": false,
     "docs": null
@@ -1491,6 +1677,7 @@
     "id": "twitter",
     "name": "Twitter",
     "title": "Twitter",
+    "website": "https://twitter.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -1499,6 +1686,7 @@
     "id": "typeform",
     "name": "Typeform",
     "title": "Typeform",
+    "website": "https://www.typeform.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -1507,6 +1695,7 @@
     "id": "uber",
     "name": "Uber",
     "title": "Uber",
+    "website": "https://www.uber.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -1515,6 +1704,7 @@
     "id": "unbounce",
     "name": "Unbounce",
     "title": "Unbounce",
+    "website": "https://www.unbounce.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -1523,6 +1713,7 @@
     "id": "underarmour",
     "name": "UnderArmour",
     "title": "Under Armour",
+    "website": "https://www.underarmour.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -1531,6 +1722,7 @@
     "id": "united-effects",
     "name": "UnitedEffects",
     "title": "United Effects",
+    "website": null,
     "isFromNextAuth": true,
     "takesSubdomainArg": false,
     "docs": null
@@ -1539,6 +1731,7 @@
     "id": "unsplash",
     "name": "Unsplash",
     "title": "Unsplash",
+    "website": "https://unsplash.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -1547,6 +1740,7 @@
     "id": "untappd",
     "name": "Untappd",
     "title": "Untappd",
+    "website": "https://untappd.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -1555,6 +1749,7 @@
     "id": "upwork",
     "name": "Upwork",
     "title": "Upwork",
+    "website": "https://www.upwork.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -1563,6 +1758,7 @@
     "id": "uservoice",
     "name": "UserVoice",
     "title": "UserVoice",
+    "website": "https://www.uservoice.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -1571,6 +1767,7 @@
     "id": "vend",
     "name": "Vend",
     "title": "Vend",
+    "website": "https://www.vendhq.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": true,
     "docs": null
@@ -1579,6 +1776,7 @@
     "id": "venmo",
     "name": "Venmo",
     "title": "Venmo",
+    "website": "https://venmo.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -1587,6 +1785,7 @@
     "id": "vercel",
     "name": "Vercel",
     "title": "Vercel",
+    "website": "https://vercel.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -1595,6 +1794,7 @@
     "id": "verticalresponse",
     "name": "VerticalResponse",
     "title": "VerticalResponse",
+    "website": "https://www.verticalresponse.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -1603,6 +1803,7 @@
     "id": "viadeo",
     "name": "Viadeo",
     "title": "Viadeo",
+    "website": "https://www.viadeo.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -1611,6 +1812,7 @@
     "id": "vimeo",
     "name": "Vimeo",
     "title": "Vimeo",
+    "website": "https://vimeo.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -1619,6 +1821,7 @@
     "id": "visualstudio",
     "name": "VisualStudio",
     "title": "Visual Studio",
+    "website": "https://visualstudio.microsoft.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -1627,6 +1830,7 @@
     "id": "vk",
     "name": "Vk",
     "title": "VK",
+    "website": null,
     "isFromNextAuth": true,
     "takesSubdomainArg": false,
     "docs": null
@@ -1635,6 +1839,7 @@
     "id": "wechat",
     "name": "WeChat",
     "title": "WeChat",
+    "website": "https://wechat.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -1643,6 +1848,7 @@
     "id": "weekdone",
     "name": "Weekdone",
     "title": "Weekdone",
+    "website": "https://weekdone.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -1651,6 +1857,7 @@
     "id": "weibo",
     "name": "Weibo",
     "title": "Weibo",
+    "website": "https://weibo.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -1659,6 +1866,7 @@
     "id": "wikimedia",
     "name": "Wikimedia",
     "title": "Wikimedia",
+    "website": null,
     "isFromNextAuth": true,
     "takesSubdomainArg": false,
     "docs": null
@@ -1667,6 +1875,7 @@
     "id": "withings",
     "name": "Withings",
     "title": "Withings",
+    "website": "https://www.withings.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -1675,6 +1884,7 @@
     "id": "wordpress",
     "name": "Wordpress",
     "title": "WordPress.com",
+    "website": null,
     "isFromNextAuth": true,
     "takesSubdomainArg": false,
     "docs": null
@@ -1683,6 +1893,7 @@
     "id": "workos",
     "name": "WorkOS",
     "title": "WorkOS",
+    "website": null,
     "isFromNextAuth": true,
     "takesSubdomainArg": false,
     "docs": null
@@ -1691,6 +1902,7 @@
     "id": "wrike",
     "name": "Wrike",
     "title": "Wrike",
+    "website": "https://www.wrike.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -1699,6 +1911,7 @@
     "id": "xero",
     "name": "Xero",
     "title": "Xero",
+    "website": "https://www.xero.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -1707,6 +1920,7 @@
     "id": "xing",
     "name": "Xing",
     "title": "Xing",
+    "website": "https://www.xing.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -1715,6 +1929,7 @@
     "id": "yahoo",
     "name": "Yahoo",
     "title": "Yahoo",
+    "website": "https://www.yahoo.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -1723,6 +1938,7 @@
     "id": "yammer",
     "name": "Yammer",
     "title": "Yammer",
+    "website": "https://www.yammer.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -1731,6 +1947,7 @@
     "id": "yandex",
     "name": "Yandex",
     "title": "Yandex",
+    "website": null,
     "isFromNextAuth": true,
     "takesSubdomainArg": false,
     "docs": null
@@ -1739,6 +1956,7 @@
     "id": "zendesk",
     "name": "Zendesk",
     "title": "Zendesk",
+    "website": "https://www.zendesk.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": true,
     "docs": null
@@ -1747,6 +1965,7 @@
     "id": "zitadel",
     "name": "Zitadel",
     "title": "ZITADEL",
+    "website": null,
     "isFromNextAuth": true,
     "takesSubdomainArg": false,
     "docs": null
@@ -1755,6 +1974,7 @@
     "id": "zoho",
     "name": "Zoho",
     "title": "Zoho",
+    "website": null,
     "isFromNextAuth": true,
     "takesSubdomainArg": false,
     "docs": null
@@ -1763,6 +1983,7 @@
     "id": "zoom",
     "name": "Zoom",
     "title": "Zoom",
+    "website": null,
     "isFromNextAuth": true,
     "takesSubdomainArg": false,
     "docs": null
@@ -1771,6 +1992,7 @@
     "id": "23andme",
     "name": "_23andMe",
     "title": "23andMe",
+    "website": "https://www.23andme.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null
@@ -1779,6 +2001,7 @@
     "id": "500px",
     "name": "_500PX",
     "title": "500px",
+    "website": "https://500px.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
     "docs": null

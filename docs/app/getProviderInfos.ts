@@ -5,6 +5,7 @@ import providers from "../providers.json";
 export interface ProviderInfo {
   id: string;
   title: string;
+  website: string | null;
   serialized: null | any;
   hasLogo?: boolean;
 }
@@ -20,7 +21,7 @@ export async function getProviderInfos(): Promise<ProviderInfo[]> {
       let providerDocs: string = provider.docs ?? "";
       if (!providerDocs) {
         providerDocs = `
-Connect to your customers&apos; ${provider.title} accounts.
+Connect to your customers&apos; ${provider.website ? `[${provider.title}](${provider.website})` : provider.title} accounts.
 
 \`\`\`ts title="app/options.ts"
 import { ${provider.name}, HandshakeOptions } from "handshake";
@@ -43,6 +44,7 @@ ${provider.isFromNextAuth ? "Adapted from [next-auth](https://github.com/nextaut
       return {
         id: provider.id,
         title: provider.title,
+        website: provider.website,
         hasLogo: PROVIDERS_WITH_LOGOS.includes(provider.id),
         serialized: await getSerializedMarkdown(providerDocs),
       };

@@ -12,8 +12,9 @@ function extractClasses(docs: any) {
     id: string;
     name: string;
     title: string;
+    website?: string;
     isFromNextAuth: boolean;
-    takesSubdomainArg: string;
+    takesSubdomainArg: boolean;
     // logo: string;
     docs: string;
   }[] = [];
@@ -73,10 +74,18 @@ function extractClasses(docs: any) {
         name = "Twitter";
       }
 
+      const website = fromHandshake.website || null;
+      if (website) {
+        if (!website.startsWith("https://")) {
+          throw Error(`website ${website} is invalid`);
+        }
+      }
+
       result.push({
         id: providerId,
         name: item.name,
         title: name,
+        website,
         isFromNextAuth:
           item.sources[0].fileName.match(/from-next-auth/) !== null,
         takesSubdomainArg: JSON.stringify(item.signatures).includes(

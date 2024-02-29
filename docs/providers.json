@@ -1095,7 +1095,7 @@
     "website": "https://monday.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
-    "docs": "## Usage\n\nProvide the following arguments:\n\n\n```ts title=\"app/options.ts\"\nimport { HandshakeOptions, Monday } from \"handshake\";\n\nconst options: HandshakeOptions = {\n  handles: [\n    Monday({\n      clientId: string,\n      clientSecret: string,\n      scopes: string,\n      issuer?: string,\n    }),\n  ],\n  // ...\n};\n```\n\n\n[Documentation](https://developer.monday.com/apps/docs/oauth)"
+    "docs": "Connect to your customers' [Monday](https://monday.com) accounts.\n\n## Usage\n\nProvide the following arguments:\n\n\n```ts title=\"app/options.ts\"\nimport { HandshakeOptions, Monday } from \"handshake\";\n\nconst options: HandshakeOptions = {\n  handles: [\n    Monday({\n      clientId: process.env.MONDAY_CLIENT_ID!, // string\n      clientSecret: process.env.MONDAY_CLIENT_SECRET!, // string\n      scopes: [\"account:read\"]!, // MondayScope[]\n    }),\n  ],\n  // ...\n};\n```\n\n\n## Setup\n\n[Documentation](https://developer.monday.com/apps/docs/oauth)\n\n![monday-credentials](https://handshake.cool/images/docs/monday-creds.png)\n![monday-credentials](https://handshake.cool/images/docs/monday-allow-redirect.png)\n\n## Troubleshooting\n\n### \"invalid_scope: Invalid scope param\"\n\nYou configured Handshake to request a scope that you didn't enable in your\napp's settings."
   },
   {
     "id": "moxtra",
@@ -1374,7 +1374,7 @@
     "website": "https://salesforce.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
-    "docs": "## Usage\n\nProvide the following arguments:\n\n\n```ts title=\"app/options.ts\"\nimport { HandshakeOptions, Salesforce } from \"handshake\";\n\nconst options: HandshakeOptions = {\n  handles: [\n    Salesforce({\n      clientId: string,\n      clientSecret: string,\n      scopes: string,\n      issuer?: string,\n    }),\n  ],\n  // ...\n};\n```\n\n\n[Scope documentation](https://help.salesforce.com/s/articleView?id=sf.remoteaccess_oauth_tokens_scopes.htm&type=5)"
+    "docs": "## Usage\n\nProvide the following arguments:\n\n\n```ts title=\"app/options.ts\"\nimport { HandshakeOptions, Salesforce } from \"handshake\";\n\nconst options: HandshakeOptions = {\n  handles: [\n    Salesforce({\n      clientId: string,\n      clientSecret: string,\n      scopes: string[],\n      issuer?: string,\n    }),\n  ],\n  // ...\n};\n```\n\n\n[Scope documentation](https://help.salesforce.com/s/articleView?id=sf.remoteaccess_oauth_tokens_scopes.htm&type=5)"
   },
   {
     "id": "sellsy",
@@ -1554,7 +1554,7 @@
     "website": "https://stripe.com",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
-    "docs": "## Usage\n\nProvide the following arguments:\n\n\n```ts title=\"app/options.ts\"\n\nimport { Stripe } from \"handshake\";\n\nStripe({\n  clientId: \"ca_\",\n  clientSecret: \"sk_\",\n  scopes: [],\n});\n```\n\n\n### Configure the Callback URL\n\nYou can set up a localhost callback by toggling the \"View test data\" switch.\n\n![stripe-callback-settings](https://handshake.cool/images/docs/stripe-redirect.png)"
+    "docs": "## Usage\n\nProvide the following arguments:\n\n\n```ts title=\"app/options.ts\"\n\nimport { Stripe } from \"handshake\";\n\nStripe({\n  clientId: \"ca_\",\n  clientSecret: \"sk_\",\n  scopes: [],\n});\n```\n\n\n### Allow your Handshake callback URL\n\nIn your Stripe app settings.\n\nYou can set up a localhost callback by toggling the \"View test data\" switch.\n\n![stripe-callback-settings](https://handshake.cool/images/docs/stripe-redirect.png)"
   },
   {
     "id": "surveymonkey",

@@ -94,13 +94,22 @@ export async function handleCallback(
     if (e instanceof OAuthCallbackError) {
       url.searchParams.set("error", e.error);
       url.searchParams.set("error_description", e.errorDescription);
-    }
-    if (e instanceof UnknownProviderError) {
+    } else if (e instanceof UnknownProviderError) {
       url.searchParams.set("error", "unknown_provider_error");
       url.searchParams.set(
         "error_description",
         `Provider failed with unexpected error: ${e.message}. If you believe this is a mistake, please open an issue at https://github.com/fiberinc/handshake/issues.`,
       );
+    } else {
+      const { error, error_description } = e as any;
+
+      url.searchParams.set("error", error ?? "unknown_error");
+      if (error_description) {
+        url.searchParams.set(
+          "error_description",
+          error_description ?? "unknown_error",
+        );
+      }
     }
 
     info(`Redirecting user to ${url.href}`);

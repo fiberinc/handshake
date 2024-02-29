@@ -23,7 +23,7 @@ export type TypicalOAuthArgs = {
 
 /**
  */
-export function makeHandlerFactory<
+export function makeOauthFactory<
   Args extends TypicalOAuthArgs,
   Credential = unknown,
 >(provider: OAuthProvider): HandlerFactory<Args, Credential> {

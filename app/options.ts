@@ -10,9 +10,9 @@ export const options: HandshakeOptions = {
   handlers: [
     // TODO add your handlers here...
     //
-    // GitHub({
-    //   clientId: process.env.GITHUB_CLIENT_ID!,
-    //   clientSecret: process.env.GITHUB_CLIENT_SECRET!,
+    // Salesforce({
+    //   clientId: process.env.SALESFORCE_CLIENT_ID!,
+    //   clientSecret: process.env.SALESFORCE_CLIENT_SECRET!,
     //   scopes: ["repo"],
     // }),
   ],

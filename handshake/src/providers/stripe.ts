@@ -1,5 +1,5 @@
 import { HandlerFactory } from "~/core/types";
-import { TypicalOAuthArgs, makeHandlerFactory } from "./lib/makeHandler";
+import { TypicalOAuthArgs, makeOauthFactory } from "./lib/makeHandler";
 
 interface Args {
   clientId: string;
@@ -34,13 +34,12 @@ type Credential = {
  *
  * ![](/handshake/images/providers/stripe-redirect.png)
  */
-export const Stripe: HandlerFactory<Args, Credential> = makeHandlerFactory<
+export const Stripe: HandlerFactory<Args, Credential> = makeOauthFactory<
   TypicalOAuthArgs,
   Credential
 >({
   id: "stripe",
   name: "Stripe",
-  type: "oauth",
   website: "https://stripe.com",
   authorization: { url: "https://connect.stripe.com/oauth/authorize" },
   client: {

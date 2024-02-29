@@ -24,7 +24,7 @@ export default async function Page() {
       <header className="flex flex-col gap-3">
         <Link href="/providers/#stripe" className="w-fit">
           <Banner>
-            <span className="mr-2">🎉</span>New Stripe connector
+            <span className="mr-2">🎉</span>New Stripe provider
             <span className="text-default ml-2 opacity-60">&rarr;</span>&nbsp;
           </Banner>
         </Link>

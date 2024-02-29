@@ -36,7 +36,6 @@ export interface OAuthProvider {
   authorization?: AuthorizationEndpointHandler;
   token?: TokenEndpointHandler;
   userinfo?: UserinfoEndpointHandler;
-  type: "oauth";
   version?: string;
   checks?: ChecksType | ChecksType[];
   client?: Partial<ClientMetadata>;

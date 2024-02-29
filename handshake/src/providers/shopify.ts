@@ -99,14 +99,14 @@ export const Shopify: HandlerFactory<Args, ShopifyCredential> = ({
   id,
   ...args
 }) => {
-  const providerId = id ?? PROVIDER_ID;
+  const handlerId = id ?? PROVIDER_ID;
 
   assert(args.scopes, "scopes is empty or missing");
   assert(args.clientId, "clientId is empty or missing");
   assert(args.clientSecret, "clientSecret is empty or missing");
 
   return {
-    id: providerId,
+    id: handlerId,
     provider: {
       id: "shopify",
       name: "Shopify",

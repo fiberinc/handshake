@@ -82,7 +82,7 @@ export async function LocalIndex() {
 
   return (
     <main
-      className={`justify-top flex min-h-screen flex-col items-start gap-8 p-12`}
+      className={`justify-top flex min-h-screen flex-col items-start gap-8 p-8`}
     >
       <section>
         <h2 className="text-lg font-semibold">Handshake is running</h2>

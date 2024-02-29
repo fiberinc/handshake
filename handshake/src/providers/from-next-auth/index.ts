@@ -135,7 +135,7 @@ const HubspotNextAuth = require("next-auth/providers/hubspot").default;
  *
  * ![](/handshake/images/providers/hubspot-redirect.png)
  *
- * Follow the format: `https://HANDSHAKE_URL/api/auth/hubspot/callback`
+ * Follow the format: `https://HANDSHAKE_URL/auth/hubspot/callback`
  */
 export const Hubspot = makeFromNextAuth(HubspotNextAuth);
 

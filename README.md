@@ -134,7 +134,7 @@ pnpm dev
 If you navigate to `localhost:3000`, you should see a list of all the configured
 providers:
 
-![](/docs/public/images/readme-landing.png)
+![](/docs/public/images/readme-landing-2.png)
 
 ## Deploy
 

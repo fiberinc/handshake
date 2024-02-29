@@ -717,7 +717,7 @@
     "title": "HubSpot",
     "isFromNextAuth": true,
     "takesSubdomainArg": false,
-    "docs": "## Usage\n\nProvide the following arguments:\n\n\n```ts\n// Inside app/options.ts\n\nimport { Hubspot } from \"handshake\";\n\nHubspot({\n  clientId: string,\n  clientSecret: string,\n  scopes: [\n    \"e-commerce\",\n    \"crm.schemas.contacts.read\",\n    \"crm.objects.contacts.read\",\n  ],\n});\n```\n\n\n### Configure the Callback URL\n\nMake sure your Handshake URL is allowed within your Hubspot app's Auth tab:\n\n![](/handshake/images/providers/hubspot-redirect.png)\n\nFollow the format: \n`https://HANDSHAKE_URL/api/auth/hubspot/callback`"
+    "docs": "## Usage\n\nProvide the following arguments:\n\n\n```ts\n// Inside app/options.ts\n\nimport { Hubspot } from \"handshake\";\n\nHubspot({\n  clientId: string,\n  clientSecret: string,\n  scopes: [\n    \"e-commerce\",\n    \"crm.schemas.contacts.read\",\n    \"crm.objects.contacts.read\",\n  ],\n});\n```\n\n\n### Configure the Callback URL\n\nMake sure your Handshake URL is allowed within your Hubspot app's Auth tab:\n\n![](/handshake/images/providers/hubspot-redirect.png)\n\nFollow the format: \n`https://HANDSHAKE_URL/auth/hubspot/callback`"
   },
   {
     "id": "huddle",
@@ -1237,7 +1237,7 @@
     "title": "Shopify",
     "isFromNextAuth": false,
     "takesSubdomainArg": false,
-    "docs": "## Usage\n\nProvide the following arguments:\n\n\n```ts title=\"app/options.ts\"\nimport { HandshakeOptions, Shopify } from \"handshake\";\n\nconst options: HandshakeOptions = {\n  handles: [\n    Shopify({\n      clientId: process.env.SHOPIFY_CLIENT_ID!,\n      clientSecret: process.env.SHOPIFY_CLIENT_SECRET!,\n      scopes: [\"read_orders\", \"read_products\"],\n    }),\n  ],\n  // ...\n};\n```\n\n\n## Redirection\n\nInclude an \n`extras.shop`\n parameter when redirecting users to Handshake:\n\n\n```ts\nhttps://HANDSHAKE_HOST/api/auth/shopify/redirect?\n  state=12345\n  &extras.shop=hahvaleu.myshopify.com\n  &callback_uri=http://YOUR_APP_HOST/shopifySyncSuccess\n```\n\n\n## Configure the Callback URL\n\nMake sure your Handshake URL is allowed within your Shopify app's\nConfiguration tab:\n\n![](/handshake/images/providers/shopify-redirect.png)\n\nFollow the format: \n`https://HANDSHAKE_URL/api/auth/shopify/callback`"
+    "docs": "## Usage\n\nProvide the following arguments:\n\n\n```ts title=\"app/options.ts\"\nimport { HandshakeOptions, Shopify } from \"handshake\";\n\nconst options: HandshakeOptions = {\n  handles: [\n    Shopify({\n      clientId: process.env.SHOPIFY_CLIENT_ID!,\n      clientSecret: process.env.SHOPIFY_CLIENT_SECRET!,\n      scopes: [\"read_orders\", \"read_products\"],\n    }),\n  ],\n  // ...\n};\n```\n\n\n## Redirection\n\nInclude an \n`extras.shop`\n parameter when redirecting users to Handshake:\n\n\n```ts\nhttps://HANDSHAKE_HOST/auth/shopify/redirect?\n  state=12345\n  &extras.shop=hahvaleu.myshopify.com\n  &callback_uri=http://YOUR_APP_HOST/shopifySyncSuccess\n```\n\n\n## Configure the Callback URL\n\nMake sure your Handshake URL is allowed within your Shopify app's\nConfiguration tab:\n\n![](/handshake/images/providers/shopify-redirect.png)\n\nFollow the format: \n`https://HANDSHAKE_URL/auth/shopify/callback`"
   },
   {
     "id": "skyrock",

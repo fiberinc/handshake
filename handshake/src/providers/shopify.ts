@@ -80,7 +80,7 @@ export interface ShopifyCredential {
  * Include an `extras.shop` parameter when redirecting users to Handshake:
  *
  * ```ts
- * https://HANDSHAKE_HOST/api/auth/shopify/redirect?
+ * https://HANDSHAKE_HOST/auth/shopify/redirect?
  *   state=12345
  *   &extras.shop=hahvaleu.myshopify.com
  *   &callback_uri=http://YOUR_APP_HOST/shopifySyncSuccess
@@ -93,7 +93,7 @@ export interface ShopifyCredential {
  *
  * ![](/handshake/images/providers/shopify-redirect.png)
  *
- * Follow the format: `https://HANDSHAKE_URL/api/auth/shopify/callback`
+ * Follow the format: `https://HANDSHAKE_URL/auth/shopify/callback`
  */
 export const Shopify: HandlerFactory<Args, ShopifyCredential> = ({
   id,

@@ -53,6 +53,7 @@
   "bugs": {
     "url": "https://github.com/fiberinc/handshake/issues"
   },
+  "packageManager": "pnpm@8.6.10",
   "keywords": [
     "oauth",
     "integrations"

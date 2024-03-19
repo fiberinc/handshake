@@ -1767,18 +1767,6 @@ export const Shopify = makeOauthFactoryWithSubdomainArg({
   version: "2",
 });
 
-export const Skyrock = makeOauthFactory({
-  id: "skyrock",
-  name: "Skyrock",
-  requestTokenUrl: "https://api.skyrock.com/v2/oauth/initiate",
-  authorization: {
-    url: "https://api.skyrock.com/v2/oauth/authorize",
-  },
-  website: "https://skyrock.com",
-  token: { url: "https://api.skyrock.com/v2/oauth/token" },
-  version: "1",
-});
-
 // export const Slack = make({
 //   id: "slack",
 //   name: "",

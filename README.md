@@ -6,7 +6,7 @@
   <h1 align="left">Handshake</h1>
 
   <p align="left">
-    Self-hosted solution for OAuth authorization against 200+ APIs.
+    Self-hosted app that handles OAuth against 200+ APIs.
   </p>
 
   <p align="left" style="align: left;">

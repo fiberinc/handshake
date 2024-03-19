@@ -549,6 +549,15 @@
     "docs": null
   },
   {
+    "id": "faire",
+    "name": "Faire",
+    "title": "Faire",
+    "website": "https://faire.com",
+    "isFromNextAuth": false,
+    "takesSubdomainArg": false,
+    "docs": "Connect to your customers' [Faire](https://faire.com) accounts.\n\n## Usage\n\nProvide the following arguments:\n\n\n```ts title=\"app/options.ts\"\nimport { HandshakeOptions, Faire } from \"handshake\";\n\nconst options: HandshakeOptions = {\n  handles: [\n    Faire({\n      clientId: process.env.FAIRE_CLIENT_ID!, // string\n      clientSecret: process.env.FAIRE_CLIENT_SECRET!, // string\n      scopes: [\"account:read\"]!, // FaireScope[]\n    }),\n  ],\n  // ...\n};\n```\n\n\nNote that Faire uses the \"Application ID\" and \"Secret ID\" as the client ID\nand client secret in the OAuth flow.\n\n## Setup\n\n[Documentation](https://faire.github.io/external-api-v2-docs/#using-oauth)\n\n![faire-credentials](https://handshake.cool/images/docs/faire-creds.png)\n![faire-credentials](https://handshake.cool/images/docs/faire-allow-redirect.png)\n\n## Troubleshooting\n\n### \"invalid_scope: Invalid scope param\"\n\nYou configured Handshake to request a scope that you didn't enable in your\napp's settings."
+  },
+  {
     "id": "familysearch",
     "name": "FamilySearch",
     "title": "FamilySearch",

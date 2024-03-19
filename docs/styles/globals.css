@@ -58,7 +58,7 @@ a {
     /* borders */
     --border-primary: #f4efec;
     --border-stronger: #b2a7a0;
-    --border-weaker: var(--gray-050);
+    --border-lighter: var(--gray-050);
     --border-secondary: var(--gray-200);
 
     --text-light: var(--gray-050);
@@ -81,7 +81,7 @@ a {
 
       --border-primary: #1f1d1a;
       --border-stronger: #252220;
-      --border-weaker: var(--gray-850);
+      --border-lighter: var(--gray-850);
       --color-link: var(--blue-400);
     }
   }

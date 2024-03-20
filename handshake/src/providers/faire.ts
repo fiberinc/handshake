@@ -87,7 +87,6 @@ export const Faire: HandlerFactory<Args> = (args) => {
     },
     async getAuthorizationUrl(callbackHandlerUrl) {
       const state = crypto.randomBytes(16).toString("hex");
-
       const authUrl = new URL(`https://faire.com/oauth2/authorize`);
       authUrl.searchParams.set("applicationId", args.clientId);
       authUrl.searchParams.set("redirectUrl", callbackHandlerUrl);
@@ -95,7 +94,6 @@ export const Faire: HandlerFactory<Args> = (args) => {
         authUrl.searchParams.set("scope", scope);
       }
       authUrl.searchParams.set("state", state);
-
       return { url: authUrl.toString(), persist: { state } };
     },
     async exchange(
@@ -115,7 +113,7 @@ export const Faire: HandlerFactory<Args> = (args) => {
       }
 
       if (valuesFromHandler?.state !== params.state) {
-        console.log(
+        error(
           `State mismatch (${valuesFromHandler?.state} != (${params.state})).`,
         );
       }

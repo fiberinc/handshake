@@ -91,7 +91,9 @@ export const Faire: HandlerFactory<Args> = (args) => {
       const authUrl = new URL(`https://faire.com/oauth2/authorize`);
       authUrl.searchParams.set("applicationId", args.clientId);
       authUrl.searchParams.set("redirectUrl", callbackHandlerUrl);
-      authUrl.searchParams.set("scope", args.scopes.join(","));
+      for (const scope of args.scopes) {
+        authUrl.searchParams.set("scope", scope);
+      }
       authUrl.searchParams.set("state", state);
 
       return { url: authUrl.toString(), persist: { state } };
@@ -129,8 +131,6 @@ export const Faire: HandlerFactory<Args> = (args) => {
     },
   };
 };
-
-// https://www.faire.com/oauth2/authorize?applicationId=apa_fajfug96ab&redirectUrl=http%3A%2F%2Flocalhost%3A3000%2Fauth%2Ffaire%2Fcallback&scope=READ_BRAND&response_type=code&state=DZ-TWDKSNZY13KXdHcJNaiyn2zQGAFxuqmaS6kwRjw8
 
 async function exchangeToken(
   args: Args,

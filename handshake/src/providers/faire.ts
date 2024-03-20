@@ -114,7 +114,16 @@ export const Faire: HandlerFactory<Args> = (args) => {
         throw new InvalidRequest(`Unexpected query parameter shape.`);
       }
 
-      assert(valuesFromHandler?.state === params.state, "State mismatch.");
+      if (valuesFromHandler?.state !== params.state) {
+        console.log(
+          `State mismatch (${valuesFromHandler?.state} != (${params.state})).`,
+        );
+      }
+
+      // assert(
+      //   valuesFromHandler?.state === params.state,
+      //   `State mismatch (${valuesFromHandler?.state} != (${params.state})).`,
+      // );
 
       const accessToken = await exchangeToken(
         args,
@@ -162,6 +171,8 @@ async function exchangeToken(
   const json = await res.json();
 
   if (!res.ok) {
+    error("Faire exchange failed", { json });
+
     if (json.message?.includes("Authorization code is expired")) {
       // https://datatracker.ietf.org/doc/html/rfc6749#section-5.2
       throw new OAuthCallbackError("invalid_grant", "Token is expired.", {

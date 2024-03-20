@@ -1,6 +1,6 @@
 import assert from "assert";
 import { HandlerFactory } from "~/core/types";
-import { makeOauthFactory } from "./lib/makeOauthFactory";
+import { makeOAuthFactory } from "./lib/oauth-factory";
 
 export type SalesforceScope =
   | "cdp_query_api"
@@ -75,7 +75,7 @@ export const Salesforce: HandlerFactory<Args> = (args) => {
 
   const { issuer = "https://login.salesforce.com" } = args;
 
-  return makeOauthFactory({
+  return makeOAuthFactory({
     id: "salesforce",
     website: "https://salesforce.com",
     name: "Salesforce",

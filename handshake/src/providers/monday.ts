@@ -1,6 +1,6 @@
 import assert from "assert";
 import { HandlerFactory } from "~/core/types";
-import { makeOauthFactory } from "./lib/makeOauthFactory";
+import { makeOAuthFactory } from "./lib/oauth-factory";
 
 type MondayScope =
   | "me:read"
@@ -68,7 +68,7 @@ export const Monday: HandlerFactory<Args> = (args) => {
   assert(args.clientId, "clientId is empty or missing");
   assert(args.clientSecret, "clientSecret is empty or missing");
 
-  return makeOauthFactory({
+  return makeOAuthFactory({
     id: "monday",
     name: "Monday",
     website: "https://monday.com",

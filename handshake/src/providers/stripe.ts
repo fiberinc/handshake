@@ -1,5 +1,5 @@
 import { HandlerFactory } from "~/core/types";
-import { TypicalOAuthArgs, makeOauthFactory } from "./lib/makeOauthFactory";
+import { TypicalOAuthArgs, makeOAuthFactory } from "./lib/oauth-factory";
 
 interface Args {
   clientId: string;
@@ -36,7 +36,7 @@ type Credential = {
  *
  * ![stripe-callback-settings](DOC_IMAGES/stripe-redirect.png)
  */
-export const Stripe: HandlerFactory<Args, Credential> = makeOauthFactory<
+export const Stripe: HandlerFactory<Args, Credential> = makeOAuthFactory<
   TypicalOAuthArgs,
   Credential
 >({

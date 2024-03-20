@@ -144,7 +144,10 @@ export const Shopify: HandlerFactory<Args, ShopifyCredential> = ({
         throw new InvalidRequest(`Unexpected query parameter shape.`);
       }
 
-      assert(valuesFromHandler?.state === params.state, "State mismatch.");
+      assert(
+        valuesFromHandler?.state === params.state,
+        `State mismatch (${valuesFromHandler?.state} != (${params.state})).`,
+      );
 
       try {
         const isValidHmac = verifyHmac(params, args.clientSecret);

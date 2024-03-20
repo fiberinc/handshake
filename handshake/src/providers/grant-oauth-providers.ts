@@ -1,15 +1,15 @@
 import assert from "assert";
 import { HandlerFactory } from "~/core/types";
 import { OAuthProvider } from "./lib/OAuthProvider";
-import { TypicalOAuthArgs, makeOauthFactory } from "./lib/makeOauthFactory";
+import { TypicalOAuthArgs, makeOAuthFactory } from "./lib/oauth-factory";
 
-function makeOauthFactoryWithSubdomainArg(
+function makeOAuthFactoryWithSubdomainArg(
   info: OAuthProvider,
 ): HandlerFactory<TypicalOAuthArgs & { subdomain: string }> {
   return (args: TypicalOAuthArgs & { subdomain: string }) => {
     assert(args.subdomain, `Provider ${info.id} requires subdomain value.`);
 
-    return makeOauthFactory({
+    return makeOAuthFactory({
       ...info,
       authorization: {
         url: info.authorization!.url!.replace("[subdomain]", args.subdomain),
@@ -23,7 +23,7 @@ function makeOauthFactoryWithSubdomainArg(
   };
 }
 
-export const _23andMe = makeOauthFactory({
+export const _23andMe = makeOAuthFactory({
   id: "23andme",
   name: "23andMe",
   website: "https://www.23andme.com",
@@ -34,7 +34,7 @@ export const _23andMe = makeOauthFactory({
   version: "2",
 });
 
-export const _500PX = makeOauthFactory({
+export const _500PX = makeOAuthFactory({
   id: "500px",
   name: "500px",
   requestTokenUrl: "https://api.500px.com/v1/oauth/request_token",
@@ -46,7 +46,7 @@ export const _500PX = makeOauthFactory({
   version: "1",
 });
 
-export const ActOn = makeOauthFactory({
+export const ActOn = makeOAuthFactory({
   id: "acton",
   name: "Act-On",
   authorization: {
@@ -57,7 +57,7 @@ export const ActOn = makeOauthFactory({
   version: "2",
 });
 
-export const AcuityScheduling = makeOauthFactory({
+export const AcuityScheduling = makeOAuthFactory({
   id: "acuityscheduling",
   name: "Acuity Scheduling",
   authorization: {
@@ -68,7 +68,7 @@ export const AcuityScheduling = makeOauthFactory({
   version: "2",
 });
 
-export const Adobe = makeOauthFactory({
+export const Adobe = makeOAuthFactory({
   id: "adobe",
   name: "Adobe",
   authorization: {
@@ -79,7 +79,7 @@ export const Adobe = makeOauthFactory({
   version: "2",
 });
 
-export const Aha = makeOauthFactoryWithSubdomainArg({
+export const Aha = makeOAuthFactoryWithSubdomainArg({
   id: "aha",
   name: "Aha!",
   authorization: {
@@ -90,7 +90,7 @@ export const Aha = makeOauthFactoryWithSubdomainArg({
   version: "2",
 });
 
-export const Alchemer = makeOauthFactory({
+export const Alchemer = makeOAuthFactory({
   id: "alchemer",
   name: "Alchemer",
   requestTokenUrl: "https://api.alchemer.com/head/oauth/request_token",
@@ -102,7 +102,7 @@ export const Alchemer = makeOauthFactory({
   version: "1",
 });
 
-export const Amazon = makeOauthFactory({
+export const Amazon = makeOAuthFactory({
   id: "amazon",
   name: "Amazon",
   authorization: {
@@ -113,7 +113,7 @@ export const Amazon = makeOauthFactory({
   version: "2",
 });
 
-export const AngelList = makeOauthFactory({
+export const AngelList = makeOAuthFactory({
   id: "angellist",
   name: "AngelList",
   authorization: {
@@ -136,7 +136,7 @@ export const AngelList = makeOauthFactory({
 //
 // });
 
-export const ArcGIS = makeOauthFactory({
+export const ArcGIS = makeOAuthFactory({
   id: "arcgis",
   name: "ArcGIS",
   authorization: {
@@ -147,7 +147,7 @@ export const ArcGIS = makeOauthFactory({
   version: "2",
 });
 
-export const Asana = makeOauthFactory({
+export const Asana = makeOAuthFactory({
   id: "asana",
   name: "Asana",
   authorization: {
@@ -158,7 +158,7 @@ export const Asana = makeOauthFactory({
   version: "2",
 });
 
-export const Assembla = makeOauthFactory({
+export const Assembla = makeOAuthFactory({
   id: "assembla",
   name: "Assembla",
   authorization: {
@@ -181,7 +181,7 @@ export const Assembla = makeOauthFactory({
 //
 // });
 
-// export const Auth0 = makeOauthFactoryWithSubdomainArg({
+// export const Auth0 = makeOAuthFactoryWithSubdomainArg({
 //   id: "auth0",
 //   name: "",
 //   authorization: {
@@ -193,7 +193,7 @@ export const Assembla = makeOauthFactory({
 //
 // });
 
-// export const Authentiq = makeOauthFactory({
+// export const Authentiq = makeOAuthFactory({
 //   id: "authentiq",
 //   name: "Authentiq",
 //   authorization: {
@@ -205,7 +205,7 @@ export const Assembla = makeOauthFactory({
 //
 // });
 
-export const Authing = makeOauthFactoryWithSubdomainArg({
+export const Authing = makeOAuthFactoryWithSubdomainArg({
   id: "authing",
   name: "Authing",
   authorization: {
@@ -216,7 +216,7 @@ export const Authing = makeOauthFactoryWithSubdomainArg({
   version: "2",
 });
 
-export const Autodesk = makeOauthFactory({
+export const Autodesk = makeOAuthFactory({
   id: "autodesk",
   name: "Autodesk",
   authorization: {
@@ -227,7 +227,7 @@ export const Autodesk = makeOauthFactory({
   version: "2",
 });
 
-export const AWeber = makeOauthFactory({
+export const AWeber = makeOAuthFactory({
   id: "aweber",
   name: "AWeber",
   authorization: {
@@ -238,7 +238,7 @@ export const AWeber = makeOauthFactory({
   version: "2",
 });
 
-export const Axosoft = makeOauthFactoryWithSubdomainArg({
+export const Axosoft = makeOAuthFactoryWithSubdomainArg({
   id: "axosoft",
   name: "Axosoft",
   authorization: {
@@ -249,7 +249,7 @@ export const Axosoft = makeOauthFactoryWithSubdomainArg({
   version: "2",
 });
 
-export const Baidu = makeOauthFactory({
+export const Baidu = makeOAuthFactory({
   id: "baidu",
   name: "Baidu",
   authorization: {
@@ -260,7 +260,7 @@ export const Baidu = makeOauthFactory({
   version: "2",
 });
 
-export const Basecamp = makeOauthFactory({
+export const Basecamp = makeOAuthFactory({
   id: "basecamp",
   name: "Basecamp",
   authorization: {
@@ -271,7 +271,7 @@ export const Basecamp = makeOauthFactory({
   version: "2",
 });
 
-// export const Battlenet = makeOauthFactoryWithSubdomainArg({
+// export const Battlenet = makeOAuthFactoryWithSubdomainArg({
 //   id: "battlenet",
 //   name: "",
 //   authorization: {
@@ -283,7 +283,7 @@ export const Basecamp = makeOauthFactory({
 //
 // });
 
-export const Beatport = makeOauthFactory({
+export const Beatport = makeOAuthFactory({
   id: "beatport",
   name: "Beatport",
   requestTokenUrl:
@@ -298,7 +298,7 @@ export const Beatport = makeOauthFactory({
   version: "1",
 });
 
-export const Bitbucket = makeOauthFactory({
+export const Bitbucket = makeOAuthFactory({
   id: "bitbucket",
   name: "Bitbucket",
   authorization: {
@@ -309,7 +309,7 @@ export const Bitbucket = makeOauthFactory({
   version: "2",
 });
 
-export const Bitly = makeOauthFactory({
+export const Bitly = makeOAuthFactory({
   id: "bitly",
   name: "Bitly",
   authorization: {
@@ -332,7 +332,7 @@ export const Bitly = makeOauthFactory({
 //
 // });
 
-export const Buffer = makeOauthFactory({
+export const Buffer = makeOAuthFactory({
   id: "buffer",
   name: "Buffer",
   authorization: {
@@ -343,7 +343,7 @@ export const Buffer = makeOauthFactory({
   version: "2",
 });
 
-export const CampaignMonitor = makeOauthFactory({
+export const CampaignMonitor = makeOAuthFactory({
   id: "campaignmonitor",
   name: "Campaign Monitor",
   authorization: {
@@ -354,7 +354,7 @@ export const CampaignMonitor = makeOauthFactory({
   version: "2",
 });
 
-export const CAS = makeOauthFactoryWithSubdomainArg({
+export const CAS = makeOAuthFactoryWithSubdomainArg({
   id: "cas",
   name: "CAS",
   authorization: {
@@ -366,7 +366,7 @@ export const CAS = makeOauthFactoryWithSubdomainArg({
 });
 
 // Dead.
-// export const Cheddar = makeOauthFactory({
+// export const Cheddar = makeOAuthFactory({
 //   id: "cheddar",
 //   name: "Cheddar",
 //   authorization: {
@@ -377,7 +377,7 @@ export const CAS = makeOauthFactoryWithSubdomainArg({
 //   version: "2",
 // });
 
-export const Clio = makeOauthFactory({
+export const Clio = makeOAuthFactory({
   id: "clio",
   name: "Clio",
   authorization: {
@@ -388,7 +388,7 @@ export const Clio = makeOauthFactory({
   version: "2",
 });
 
-// export const Cognito = makeOauthFactoryWithSubdomainArg({
+// export const Cognito = makeOAuthFactoryWithSubdomainArg({
 //   id: "cognito",
 //   name: "",
 //   authorization: {
@@ -412,7 +412,7 @@ export const Clio = makeOauthFactory({
 //
 // });
 
-export const Concur = makeOauthFactoryWithSubdomainArg({
+export const Concur = makeOAuthFactoryWithSubdomainArg({
   id: "concur",
   name: "Concur",
   authorization: {
@@ -423,7 +423,7 @@ export const Concur = makeOauthFactoryWithSubdomainArg({
   version: "2",
 });
 
-export const ConstantContact = makeOauthFactory({
+export const ConstantContact = makeOAuthFactory({
   id: "constantcontact",
   name: "Constant Contact",
   authorization: {
@@ -434,7 +434,7 @@ export const ConstantContact = makeOauthFactory({
   version: "2",
 });
 
-export const Coursera = makeOauthFactory({
+export const Coursera = makeOAuthFactory({
   id: "coursera",
   name: "Coursera",
   authorization: {
@@ -445,7 +445,7 @@ export const Coursera = makeOauthFactory({
   version: "2",
 });
 
-export const CrossID = makeOauthFactoryWithSubdomainArg({
+export const CrossID = makeOAuthFactoryWithSubdomainArg({
   id: "crossid",
   name: "CrossID",
   authorization: {
@@ -456,7 +456,7 @@ export const CrossID = makeOauthFactoryWithSubdomainArg({
   version: "2",
 });
 
-export const Dailymotion = makeOauthFactory({
+export const Dailymotion = makeOAuthFactory({
   id: "dailymotion",
   name: "Dailymotion",
   authorization: {
@@ -467,7 +467,7 @@ export const Dailymotion = makeOauthFactory({
   version: "2",
 });
 
-export const Deezer = makeOauthFactory({
+export const Deezer = makeOAuthFactory({
   id: "deezer",
   name: "Deezer",
   authorization: {
@@ -478,7 +478,7 @@ export const Deezer = makeOauthFactory({
   version: "2",
 });
 
-export const Delivery = makeOauthFactory({
+export const Delivery = makeOAuthFactory({
   id: "delivery",
   name: "Delivery",
   authorization: {
@@ -489,7 +489,7 @@ export const Delivery = makeOauthFactory({
   version: "2",
 });
 
-export const Deputy = makeOauthFactory({
+export const Deputy = makeOAuthFactory({
   id: "deputy",
   name: "Deputy",
   authorization: {
@@ -500,7 +500,7 @@ export const Deputy = makeOauthFactory({
   version: "2",
 });
 
-export const DeviantArt = makeOauthFactory({
+export const DeviantArt = makeOAuthFactory({
   id: "deviantart",
   name: "DeviantArt",
   authorization: {
@@ -511,7 +511,7 @@ export const DeviantArt = makeOauthFactory({
   version: "2",
 });
 
-export const DigitalOcean = makeOauthFactory({
+export const DigitalOcean = makeOAuthFactory({
   id: "digitalocean",
   name: "DigitalOcean",
   authorization: {
@@ -522,7 +522,7 @@ export const DigitalOcean = makeOauthFactory({
   version: "2",
 });
 
-export const Discogs = makeOauthFactory({
+export const Discogs = makeOAuthFactory({
   id: "discogs",
   name: "Discogs",
   requestTokenUrl: "https://api.discogs.com/oauth/request_token",
@@ -546,7 +546,7 @@ export const Discogs = makeOauthFactory({
 //
 // });
 
-export const Disqus = makeOauthFactory({
+export const Disqus = makeOAuthFactory({
   id: "disqus",
   name: "Disqus",
   authorization: {
@@ -557,7 +557,7 @@ export const Disqus = makeOauthFactory({
   version: "2",
 });
 
-export const Docusign = makeOauthFactory({
+export const Docusign = makeOAuthFactory({
   id: "docusign",
   name: "DocuSign",
   authorization: {
@@ -568,7 +568,7 @@ export const Docusign = makeOauthFactory({
   version: "2",
 });
 
-export const Dribbble = makeOauthFactory({
+export const Dribbble = makeOAuthFactory({
   id: "dribbble",
   name: "Dribbble",
   authorization: {
@@ -590,7 +590,7 @@ export const Dribbble = makeOauthFactory({
 //   version: "2",
 // });
 
-export const Ebay = makeOauthFactory({
+export const Ebay = makeOAuthFactory({
   id: "ebay",
   name: "eBay",
   authorization: {
@@ -601,7 +601,7 @@ export const Ebay = makeOauthFactory({
   version: "2",
 });
 
-export const Echosign = makeOauthFactory({
+export const Echosign = makeOAuthFactory({
   id: "echosign",
   name: "Adobe Sign",
   authorization: {
@@ -612,7 +612,7 @@ export const Echosign = makeOauthFactory({
   version: "2",
 });
 
-export const Ecwid = makeOauthFactory({
+export const Ecwid = makeOAuthFactory({
   id: "ecwid",
   name: "Ecwid",
   authorization: {
@@ -624,7 +624,7 @@ export const Ecwid = makeOauthFactory({
 });
 
 // Dead.
-// export const Edmodo = makeOauthFactory({
+// export const Edmodo = makeOAuthFactory({
 //   id: "edmodo",
 //   name: "Edmodo",
 //   authorization: {
@@ -636,7 +636,7 @@ export const Ecwid = makeOauthFactory({
 //
 // });
 
-export const Egnyte = makeOauthFactoryWithSubdomainArg({
+export const Egnyte = makeOAuthFactoryWithSubdomainArg({
   id: "egnyte",
   name: "Egnyte",
   authorization: {
@@ -647,7 +647,7 @@ export const Egnyte = makeOauthFactoryWithSubdomainArg({
   version: "2",
 });
 
-export const Etsy = makeOauthFactory({
+export const Etsy = makeOAuthFactory({
   id: "etsy",
   name: "Etsy",
   requestTokenUrl: "https://openapi.etsy.com/v2/oauth/request_token",
@@ -659,7 +659,7 @@ export const Etsy = makeOauthFactory({
   version: "1",
 });
 
-export const Eventbrite = makeOauthFactory({
+export const Eventbrite = makeOAuthFactory({
   id: "eventbrite",
   name: "Eventbrite",
   authorization: {
@@ -670,7 +670,7 @@ export const Eventbrite = makeOauthFactory({
   version: "2",
 });
 
-export const Evernote = makeOauthFactory({
+export const Evernote = makeOAuthFactory({
   id: "evernote",
   name: "Evernote",
   requestTokenUrl: "https://www.evernote.com/oauth",
@@ -682,7 +682,7 @@ export const Evernote = makeOauthFactory({
   version: "1",
 });
 
-export const EyeEm = makeOauthFactory({
+export const EyeEm = makeOAuthFactory({
   id: "eyeem",
   name: "EyeEm",
   authorization: {
@@ -705,7 +705,7 @@ export const EyeEm = makeOauthFactory({
 //
 // });
 
-export const FamilySearch = makeOauthFactory({
+export const FamilySearch = makeOAuthFactory({
   id: "familysearch",
   name: "FamilySearch",
   authorization: {
@@ -716,7 +716,7 @@ export const FamilySearch = makeOauthFactory({
   version: "2",
 });
 
-export const Feedly = makeOauthFactory({
+export const Feedly = makeOAuthFactory({
   id: "feedly",
   name: "Feedly",
   authorization: {
@@ -727,7 +727,7 @@ export const Feedly = makeOauthFactory({
   version: "2",
 });
 
-export const Figma = makeOauthFactory({
+export const Figma = makeOAuthFactory({
   id: "figma",
   name: "Figma",
   authorization: {
@@ -738,7 +738,7 @@ export const Figma = makeOauthFactory({
   version: "2",
 });
 
-export const Fitbit = makeOauthFactory({
+export const Fitbit = makeOAuthFactory({
   id: "fitbit",
   name: "Fitbit",
   authorization: {
@@ -749,7 +749,7 @@ export const Fitbit = makeOauthFactory({
   version: "2",
 });
 
-export const Flickr = makeOauthFactory({
+export const Flickr = makeOAuthFactory({
   id: "flickr",
   name: "Flickr",
   requestTokenUrl: "https://www.flickr.com/services/oauth/request_token",
@@ -761,7 +761,7 @@ export const Flickr = makeOauthFactory({
   version: "1",
 });
 
-export const Formstack = makeOauthFactory({
+export const Formstack = makeOAuthFactory({
   id: "formstack",
   name: "Formstack",
   authorization: {
@@ -783,7 +783,7 @@ export const Formstack = makeOauthFactory({
 //   version: "2",
 // });
 
-export const FreeAgent = makeOauthFactory({
+export const FreeAgent = makeOAuthFactory({
   id: "freeagent",
   name: "FreeAgent",
   authorization: {
@@ -794,7 +794,7 @@ export const FreeAgent = makeOauthFactory({
   version: "2",
 });
 
-export const Freelancer = makeOauthFactory({
+export const Freelancer = makeOAuthFactory({
   id: "freelancer",
   name: "Freelancer",
   authorization: {
@@ -805,7 +805,7 @@ export const Freelancer = makeOauthFactory({
   version: "2",
 });
 
-// export const Freshbooks = makeOauthFactoryWithSubdomainArg({
+// export const Freshbooks = makeOAuthFactoryWithSubdomainArg({
 //   id: "freshbooks",
 //   name: "",
 //   request_url: "https://[subdomain].freshbooks.com/oauth/oauth_request.php",
@@ -817,7 +817,7 @@ export const Freelancer = makeOauthFactory({
 //   version: "1",
 // });
 
-// export const Fusionauth = makeOauthFactoryWithSubdomainArg({
+// export const Fusionauth = makeOAuthFactoryWithSubdomainArg({
 //   id: "fusionauth",
 //   name: "",
 //   authorization: {
@@ -829,7 +829,7 @@ export const Freelancer = makeOauthFactory({
 //
 // });
 
-export const Garmin = makeOauthFactory({
+export const Garmin = makeOAuthFactory({
   id: "garmin",
   name: "Garmin",
   requestTokenUrl:
@@ -844,7 +844,7 @@ export const Garmin = makeOauthFactory({
   version: "1",
 });
 
-export const Geeklist = makeOauthFactory({
+export const Geeklist = makeOAuthFactory({
   id: "geeklist",
   name: "Geeklist",
   requestTokenUrl: "https://api.geekli.st/v1/oauth/request_token",
@@ -856,7 +856,7 @@ export const Geeklist = makeOauthFactory({
   version: "1",
 });
 
-export const Genius = makeOauthFactory({
+export const Genius = makeOAuthFactory({
   id: "genius",
   name: "Genius",
   authorization: {
@@ -868,7 +868,7 @@ export const Genius = makeOauthFactory({
 });
 
 // FIXME
-export const Getbase = makeOauthFactory({
+export const Getbase = makeOAuthFactory({
   id: "getbase",
   name: "Getbase",
   authorization: {
@@ -879,7 +879,7 @@ export const Getbase = makeOauthFactory({
   version: "2",
 });
 
-export const Pocket = makeOauthFactory({
+export const Pocket = makeOAuthFactory({
   id: "pocket",
   name: "Pocket",
   requestTokenUrl: "https://getpocket.com/v3/oauth/request",
@@ -891,7 +891,7 @@ export const Pocket = makeOauthFactory({
   version: "1",
 });
 
-export const Gitbook = makeOauthFactory({
+export const Gitbook = makeOAuthFactory({
   id: "gitbook",
   name: "GitBook",
   authorization: {
@@ -902,7 +902,7 @@ export const Gitbook = makeOauthFactory({
   version: "2",
 });
 
-// export const GitHub = makeOauthFactory({
+// export const GitHub = makeOAuthFactory({
 // 	id: 'github',
 // 	name: 'GitHub',
 // 	authorization: {
@@ -926,7 +926,7 @@ export const Gitbook = makeOauthFactory({
 // });
 
 // TODO use Matrix? https://spec.matrix.org/latest/client-server-api/
-// export const Gitter = makeOauthFactory({
+// export const Gitter = makeOAuthFactory({
 //   id: "gitter",
 //   name: "Gitter",
 //   authorization: {
@@ -937,7 +937,7 @@ export const Gitbook = makeOauthFactory({
 //   version: "2",
 // });
 
-export const Goodreads = makeOauthFactory({
+export const Goodreads = makeOAuthFactory({
   id: "goodreads",
   name: "Goodreads",
   requestTokenUrl: "https://www.goodreads.com/oauth/request_token",
@@ -961,7 +961,7 @@ export const Goodreads = makeOauthFactory({
 //
 // });
 
-export const Groove = makeOauthFactory({
+export const Groove = makeOAuthFactory({
   id: "groove",
   name: "Groove",
   authorization: {
@@ -972,7 +972,7 @@ export const Groove = makeOauthFactory({
   version: "2",
 });
 
-export const Gumroad = makeOauthFactory({
+export const Gumroad = makeOAuthFactory({
   id: "gumroad",
   name: "Gumroad",
   authorization: {
@@ -983,7 +983,7 @@ export const Gumroad = makeOauthFactory({
   version: "2",
 });
 
-export const Harvest = makeOauthFactory({
+export const Harvest = makeOAuthFactory({
   id: "harvest",
   name: "Harvest",
   authorization: {
@@ -994,7 +994,7 @@ export const Harvest = makeOauthFactory({
   version: "2",
 });
 
-export const HelloSign = makeOauthFactory({
+export const HelloSign = makeOAuthFactory({
   id: "hellosign",
   name: "HelloSign",
   authorization: {
@@ -1005,7 +1005,7 @@ export const HelloSign = makeOauthFactory({
   version: "2",
 });
 
-export const Heroku = makeOauthFactory({
+export const Heroku = makeOAuthFactory({
   id: "heroku",
   name: "Heroku",
   authorization: {
@@ -1016,7 +1016,7 @@ export const Heroku = makeOauthFactory({
   version: "2",
 });
 
-export const Homeaway = makeOauthFactory({
+export const Homeaway = makeOAuthFactory({
   id: "homeaway",
   name: "HomeAway",
   authorization: {
@@ -1027,7 +1027,7 @@ export const Homeaway = makeOauthFactory({
   version: "2",
 });
 
-export const Hootsuite = makeOauthFactory({
+export const Hootsuite = makeOAuthFactory({
   id: "hootsuite",
   name: "Hootsuite",
   authorization: {
@@ -1038,7 +1038,7 @@ export const Hootsuite = makeOauthFactory({
   version: "2",
 });
 
-export const Huddle = makeOauthFactory({
+export const Huddle = makeOAuthFactory({
   id: "huddle",
   name: "Huddle",
   authorization: {
@@ -1049,7 +1049,7 @@ export const Huddle = makeOauthFactory({
   version: "2",
 });
 
-export const IBM = makeOauthFactory({
+export const IBM = makeOAuthFactory({
   id: "ibm",
   name: "IBM",
   authorization: {
@@ -1060,7 +1060,7 @@ export const IBM = makeOauthFactory({
   version: "2",
 });
 
-export const Iconfinder = makeOauthFactory({
+export const Iconfinder = makeOAuthFactory({
   id: "iconfinder",
   name: "Iconfinder",
   authorization: {
@@ -1071,7 +1071,7 @@ export const Iconfinder = makeOauthFactory({
   version: "2",
 });
 
-export const IDme = makeOauthFactory({
+export const IDme = makeOAuthFactory({
   id: "idme",
   name: "ID.me",
   authorization: {
@@ -1082,7 +1082,7 @@ export const IDme = makeOauthFactory({
   version: "2",
 });
 
-export const IDoneThis = makeOauthFactory({
+export const IDoneThis = makeOAuthFactory({
   id: "idonethis",
   name: "I Done This",
   authorization: {
@@ -1093,7 +1093,7 @@ export const IDoneThis = makeOauthFactory({
   version: "2",
 });
 
-export const Imgur = makeOauthFactory({
+export const Imgur = makeOAuthFactory({
   id: "imgur",
   name: "Imgur",
   authorization: {
@@ -1104,7 +1104,7 @@ export const Imgur = makeOauthFactory({
   version: "2",
 });
 
-export const Infusionsoft = makeOauthFactory({
+export const Infusionsoft = makeOAuthFactory({
   id: "infusionsoft",
   name: "Infusionsoft",
   authorization: {
@@ -1127,7 +1127,7 @@ export const Infusionsoft = makeOauthFactory({
 //
 // });
 
-export const Intuit = makeOauthFactory({
+export const Intuit = makeOAuthFactory({
   id: "intuit",
   name: "Intuit",
   authorization: {
@@ -1138,7 +1138,7 @@ export const Intuit = makeOauthFactory({
   version: "2",
 });
 
-export const Jamendo = makeOauthFactory({
+export const Jamendo = makeOAuthFactory({
   id: "jamendo",
   name: "Jamendo",
   authorization: {
@@ -1150,7 +1150,7 @@ export const Jamendo = makeOauthFactory({
 });
 
 // Dead
-// export const Jumplead = makeOauthFactory({
+// export const Jumplead = makeOAuthFactory({
 //   id: "jumplead",
 //   name: "Jumplead",
 //   authorization: {
@@ -1172,7 +1172,7 @@ export const Jamendo = makeOauthFactory({
 //   version: "2",
 // });
 
-// export const Keycloak = makeOauthFactoryWithSubdomainArg({
+// export const Keycloak = makeOAuthFactoryWithSubdomainArg({
 //   id: "keycloak",
 //   name: "",
 //   authorization: {
@@ -1208,7 +1208,7 @@ export const Jamendo = makeOauthFactory({
 //
 // });
 
-export const MicrosoftLive = makeOauthFactory({
+export const MicrosoftLive = makeOAuthFactory({
   id: "live",
   name: "Microsoft Live",
   authorization: {
@@ -1219,7 +1219,7 @@ export const MicrosoftLive = makeOauthFactory({
   version: "2",
 });
 
-export const LiveChat = makeOauthFactory({
+export const LiveChat = makeOAuthFactory({
   id: "livechat",
   name: "LiveChat",
   authorization: {
@@ -1230,7 +1230,7 @@ export const LiveChat = makeOauthFactory({
   version: "2",
 });
 
-export const LoginGOV = makeOauthFactory({
+export const LoginGOV = makeOAuthFactory({
   id: "logingov",
   name: "Login.gov",
   authorization: {
@@ -1243,7 +1243,7 @@ export const LoginGOV = makeOauthFactory({
   version: "2",
 });
 
-export const Lyft = makeOauthFactory({
+export const Lyft = makeOAuthFactory({
   id: "lyft",
   name: "Lyft",
   authorization: {
@@ -1265,7 +1265,7 @@ export const Lyft = makeOauthFactory({
 //   version: "2",
 // });
 
-export const MailUp = makeOauthFactory({
+export const MailUp = makeOAuthFactory({
   id: "mailup",
   name: "MailUp",
   authorization: {
@@ -1276,7 +1276,7 @@ export const MailUp = makeOauthFactory({
   version: "2",
 });
 
-export const Mailxpert = makeOauthFactory({
+export const Mailxpert = makeOAuthFactory({
   id: "mailxpert",
   name: "Mailxpert",
   authorization: {
@@ -1287,7 +1287,7 @@ export const Mailxpert = makeOauthFactory({
   version: "2",
 });
 
-export const MapMyFitness = makeOauthFactory({
+export const MapMyFitness = makeOAuthFactory({
   id: "mapmyfitness",
   name: "MapMyFitness",
   authorization: {
@@ -1298,7 +1298,7 @@ export const MapMyFitness = makeOauthFactory({
   version: "2",
 });
 
-export const Mastodon = makeOauthFactoryWithSubdomainArg({
+export const Mastodon = makeOAuthFactoryWithSubdomainArg({
   id: "mastodon",
   name: "Mastodon",
   authorization: {
@@ -1320,7 +1320,7 @@ export const Mastodon = makeOauthFactoryWithSubdomainArg({
 //   version: "2",
 // });
 
-export const Meetup = makeOauthFactory({
+export const Meetup = makeOAuthFactory({
   id: "meetup",
   name: "Meetup",
   authorization: {
@@ -1331,7 +1331,7 @@ export const Meetup = makeOauthFactory({
   version: "2",
 });
 
-export const Mendeley = makeOauthFactory({
+export const Mendeley = makeOAuthFactory({
   id: "mendeley",
   name: "Mendeley",
   authorization: {
@@ -1342,7 +1342,7 @@ export const Mendeley = makeOauthFactory({
   version: "2",
 });
 
-export const Mention = makeOauthFactory({
+export const Mention = makeOAuthFactory({
   id: "mention",
   name: "Mention",
   authorization: {
@@ -1353,7 +1353,7 @@ export const Mention = makeOauthFactory({
   version: "2",
 });
 
-export const Microsoft = makeOauthFactory({
+export const Microsoft = makeOAuthFactory({
   id: "microsoft",
   name: "Microsoft",
   authorization: {
@@ -1364,7 +1364,7 @@ export const Microsoft = makeOauthFactory({
   version: "2",
 });
 
-export const Mixcloud = makeOauthFactory({
+export const Mixcloud = makeOAuthFactory({
   id: "mixcloud",
   name: "Mixcloud",
   authorization: {
@@ -1375,7 +1375,7 @@ export const Mixcloud = makeOauthFactory({
   version: "2",
 });
 
-export const Moxtra = makeOauthFactory({
+export const Moxtra = makeOAuthFactory({
   id: "moxtra",
   name: "Moxtra",
   authorization: {
@@ -1386,7 +1386,7 @@ export const Moxtra = makeOauthFactory({
   version: "2",
 });
 
-export const MYOB = makeOauthFactory({
+export const MYOB = makeOAuthFactory({
   id: "myob",
   name: "MYOB",
   authorization: {
@@ -1408,7 +1408,7 @@ export const MYOB = makeOauthFactory({
 //   version: "2",
 // });
 
-export const Nest = makeOauthFactory({
+export const Nest = makeOAuthFactory({
   id: "nest",
   name: "Nest",
   authorization: {
@@ -1430,7 +1430,7 @@ export const Nest = makeOauthFactory({
 //   version: "2",
 // });
 
-export const NokoTime = makeOauthFactory({
+export const NokoTime = makeOAuthFactory({
   id: "nokotime",
   name: "NokoTime",
   authorization: {
@@ -1441,7 +1441,7 @@ export const NokoTime = makeOauthFactory({
   version: "2",
 });
 
-export const Notion = makeOauthFactory({
+export const Notion = makeOAuthFactory({
   id: "notion",
   name: "Notion",
   authorization: {
@@ -1452,7 +1452,7 @@ export const Notion = makeOauthFactory({
   version: "2",
 });
 
-export const Nylas = makeOauthFactory({
+export const Nylas = makeOAuthFactory({
   id: "nylas",
   name: "Nylas",
   authorization: {
@@ -1463,7 +1463,7 @@ export const Nylas = makeOauthFactory({
   version: "2",
 });
 
-// export const Okta = makeOauthFactoryWithSubdomainArg({
+// export const Okta = makeOAuthFactoryWithSubdomainArg({
 //   id: "okta",
 //   name: "",
 //   authorization: {
@@ -1475,7 +1475,7 @@ export const Nylas = makeOauthFactory({
 //
 // });
 
-// export const Onelogin = makeOauthFactoryWithSubdomainArg({
+// export const Onelogin = makeOAuthFactoryWithSubdomainArg({
 //   id: "onelogin",
 //   name: "",
 //   authorization: {
@@ -1487,7 +1487,7 @@ export const Nylas = makeOauthFactory({
 //
 // });
 
-// export const OpenStreetMap = makeOauthFactory({
+// export const OpenStreetMap = makeOAuthFactory({
 //   id: "openstreetmap",
 //   name: "OpenStreetMap",
 //   requestTokenUrl: "https://www.openstreetmap.org/oauth/request_token",
@@ -1499,7 +1499,7 @@ export const Nylas = makeOauthFactory({
 //   version: "1",
 // });
 
-export const OpenStreetMap2 = makeOauthFactory({
+export const OpenStreetMap2 = makeOAuthFactory({
   id: "openstreetmap2",
   name: "OpenStreetMap",
   authorization: {
@@ -1510,7 +1510,7 @@ export const OpenStreetMap2 = makeOauthFactory({
   version: "2",
 });
 
-export const Optimizely = makeOauthFactory({
+export const Optimizely = makeOAuthFactory({
   id: "optimizely",
   name: "Optimizely",
   authorization: {
@@ -1545,7 +1545,7 @@ export const Optimizely = makeOauthFactory({
 //
 // });
 
-export const PayPal = makeOauthFactory({
+export const PayPal = makeOAuthFactory({
   id: "paypal",
   name: "PayPal",
   authorization: {
@@ -1560,7 +1560,7 @@ export const PayPal = makeOauthFactory({
 
 // What is this!?
 //
-// export const Phantauth = makeOauthFactory({
+// export const Phantauth = makeOAuthFactory({
 //   id: "phantauth",
 //   name: "Phantauth",
 //   authorization: {
@@ -1583,7 +1583,7 @@ export const PayPal = makeOauthFactory({
 //   version: "2",
 // });
 
-export const Plurk = makeOauthFactory({
+export const Plurk = makeOAuthFactory({
   id: "plurk",
   name: "Plurk",
   requestTokenUrl: "https://www.plurk.com/OAuth/request_token",
@@ -1595,7 +1595,7 @@ export const Plurk = makeOauthFactory({
   version: "1",
 });
 
-export const Podio = makeOauthFactory({
+export const Podio = makeOAuthFactory({
   id: "podio",
   name: "Podio",
   authorization: {
@@ -1606,7 +1606,7 @@ export const Podio = makeOauthFactory({
   version: "2",
 });
 
-export const Procore = makeOauthFactory({
+export const Procore = makeOAuthFactory({
   id: "procore",
   name: "Procore",
   authorization: {
@@ -1617,7 +1617,7 @@ export const Procore = makeOauthFactory({
   version: "2",
 });
 
-export const ProductHunt = makeOauthFactory({
+export const ProductHunt = makeOAuthFactory({
   id: "producthunt",
   name: "Product Hunt",
   authorization: {
@@ -1628,7 +1628,7 @@ export const ProductHunt = makeOauthFactory({
   version: "2",
 });
 
-// export const Projectplace = makeOauthFactory({
+// export const Projectplace = makeOAuthFactory({
 //   id: "projectplace",
 //   name: "Projectplace",
 //   requestTokenUrl: "https://api.projectplace.com/initiate",
@@ -1640,7 +1640,7 @@ export const ProductHunt = makeOauthFactory({
 //   version: "1",
 // });
 
-export const Projectplace = makeOauthFactory({
+export const Projectplace = makeOAuthFactory({
   id: "projectplace",
   name: "Projectplace",
   authorization: {
@@ -1651,7 +1651,7 @@ export const Projectplace = makeOauthFactory({
   version: "2",
 });
 
-export const Pushbullet = makeOauthFactory({
+export const Pushbullet = makeOAuthFactory({
   id: "pushbullet",
   name: "Pushbullet",
   authorization: {
@@ -1662,7 +1662,7 @@ export const Pushbullet = makeOauthFactory({
   version: "2",
 });
 
-export const Qq = makeOauthFactory({
+export const Qq = makeOAuthFactory({
   id: "qq",
   name: "Qq",
   authorization: {
@@ -1673,7 +1673,7 @@ export const Qq = makeOauthFactory({
   version: "2",
 });
 
-export const Ravelry = makeOauthFactory({
+export const Ravelry = makeOAuthFactory({
   id: "ravelry",
   name: "Ravelry",
   requestTokenUrl: "https://www.ravelry.com/oauth/request_token",
@@ -1685,7 +1685,7 @@ export const Ravelry = makeOauthFactory({
   version: "1",
 });
 
-export const Redbooth = makeOauthFactory({
+export const Redbooth = makeOAuthFactory({
   id: "redbooth",
   name: "Redbooth",
   authorization: {
@@ -1707,7 +1707,7 @@ export const Redbooth = makeOauthFactory({
 //   version: "2",
 // });
 
-export const Runkeeper = makeOauthFactory({
+export const Runkeeper = makeOAuthFactory({
   id: "runkeeper",
   name: "Runkeeper",
   authorization: {
@@ -1730,7 +1730,7 @@ export const Runkeeper = makeOauthFactory({
 //
 // });
 
-export const Sellsy = makeOauthFactory({
+export const Sellsy = makeOAuthFactory({
   id: "sellsy",
   name: "Sellsy",
   website: "https://sellsy.com",
@@ -1745,7 +1745,7 @@ export const Sellsy = makeOauthFactory({
   checks: ["pkce"],
 });
 
-export const Shoeboxed = makeOauthFactory({
+export const Shoeboxed = makeOAuthFactory({
   id: "shoeboxed",
   name: "Shoeboxed",
   authorization: {
@@ -1756,7 +1756,7 @@ export const Shoeboxed = makeOauthFactory({
   version: "2",
 });
 
-export const Shopify = makeOauthFactoryWithSubdomainArg({
+export const Shopify = makeOAuthFactoryWithSubdomainArg({
   id: "shopify",
   name: "Shopify",
   authorization: {
@@ -1779,7 +1779,7 @@ export const Shopify = makeOauthFactoryWithSubdomainArg({
 // });
 
 // Dead.
-// export const Slice = makeOauthFactory({
+// export const Slice = makeOAuthFactory({
 //   id: "slice",
 //   name: "Slice",
 //   authorization: {
@@ -1790,7 +1790,7 @@ export const Shopify = makeOauthFactoryWithSubdomainArg({
 //   version: "2",
 // });
 
-export const Smartsheet = makeOauthFactory({
+export const Smartsheet = makeOAuthFactory({
   id: "smartsheet",
   name: "Smartsheet",
   authorization: {
@@ -1802,7 +1802,7 @@ export const Smartsheet = makeOauthFactory({
 });
 
 // https://api.smugmug.com/api/v2/doc/tutorial/authorization.html
-export const Smugmug = makeOauthFactory({
+export const Smugmug = makeOAuthFactory({
   id: "smugmug",
   name: "Smugmug",
   requestTokenUrl:
@@ -1815,7 +1815,7 @@ export const Smugmug = makeOauthFactory({
   version: "1",
 });
 
-export const Snapchat = makeOauthFactory({
+export const Snapchat = makeOAuthFactory({
   id: "snapchat",
   name: "Snapchat",
   authorization: {
@@ -1826,7 +1826,7 @@ export const Snapchat = makeOauthFactory({
   version: "2",
 });
 
-export const Snowflake = makeOauthFactoryWithSubdomainArg({
+export const Snowflake = makeOAuthFactoryWithSubdomainArg({
   id: "snowflake",
   name: "Snowflake",
   authorization: {
@@ -1839,7 +1839,7 @@ export const Snowflake = makeOauthFactoryWithSubdomainArg({
   version: "2",
 });
 
-export const SocialPilot = makeOauthFactory({
+export const SocialPilot = makeOAuthFactory({
   id: "socialpilot",
   name: "SocialPilot",
   authorization: {
@@ -1850,7 +1850,7 @@ export const SocialPilot = makeOauthFactory({
   version: "2",
 });
 
-export const Socrata = makeOauthFactoryWithSubdomainArg({
+export const Socrata = makeOAuthFactoryWithSubdomainArg({
   id: "socrata",
   name: "Socrata",
   authorization: {
@@ -1861,7 +1861,7 @@ export const Socrata = makeOauthFactoryWithSubdomainArg({
   version: "2",
 });
 
-export const SoundCloud = makeOauthFactory({
+export const SoundCloud = makeOAuthFactory({
   id: "soundcloud",
   name: "SoundCloud",
   authorization: {
@@ -1884,7 +1884,7 @@ export const SoundCloud = makeOauthFactory({
 //
 // });
 
-export const Square = makeOauthFactory({
+export const Square = makeOAuthFactory({
   id: "square",
   name: "Square",
   authorization: {
@@ -1895,7 +1895,7 @@ export const Square = makeOauthFactory({
   version: "2",
 });
 
-export const StackExchange = makeOauthFactory({
+export const StackExchange = makeOAuthFactory({
   id: "stackexchange",
   name: "Stack Exchange",
   authorization: {
@@ -1906,7 +1906,7 @@ export const StackExchange = makeOauthFactory({
   version: "2",
 });
 
-export const Stocktwits = makeOauthFactory({
+export const Stocktwits = makeOAuthFactory({
   id: "stocktwits",
   name: "Stocktwits",
   authorization: {
@@ -1917,7 +1917,7 @@ export const Stocktwits = makeOauthFactory({
   version: "2",
 });
 
-export const Stormz = makeOauthFactory({
+export const Stormz = makeOAuthFactory({
   id: "stormz",
   name: "Stormz",
   authorization: {
@@ -1928,7 +1928,7 @@ export const Stormz = makeOauthFactory({
   version: "2",
 });
 
-export const Storyblok = makeOauthFactory({
+export const Storyblok = makeOAuthFactory({
   id: "storyblok",
   name: "Storyblok",
   authorization: {
@@ -1950,7 +1950,7 @@ export const Storyblok = makeOauthFactory({
 //   version: "2",
 // });
 
-export const Stripe = makeOauthFactory({
+export const Stripe = makeOAuthFactory({
   id: "stripe",
   name: "Stripe",
   authorization: {
@@ -1961,7 +1961,7 @@ export const Stripe = makeOauthFactory({
   version: "2",
 });
 
-export const SurveyMonkey = makeOauthFactory({
+export const SurveyMonkey = makeOAuthFactory({
   id: "surveymonkey",
   name: "SurveyMonkey",
   authorization: {
@@ -1972,7 +1972,7 @@ export const SurveyMonkey = makeOauthFactory({
   version: "2",
 });
 
-export const SurveysParrow = makeOauthFactory({
+export const SurveysParrow = makeOAuthFactory({
   id: "surveysparrow",
   name: "SurveySparrow",
   authorization: {
@@ -1983,7 +1983,7 @@ export const SurveysParrow = makeOauthFactory({
   version: "2",
 });
 
-export const Thingiverse = makeOauthFactory({
+export const Thingiverse = makeOAuthFactory({
   id: "thingiverse",
   name: "Thingiverse",
   authorization: {
@@ -1994,7 +1994,7 @@ export const Thingiverse = makeOauthFactory({
   version: "2",
 });
 
-export const Ticketbud = makeOauthFactory({
+export const Ticketbud = makeOAuthFactory({
   id: "ticketbud",
   name: "Ticketbud",
   authorization: {
@@ -2005,7 +2005,7 @@ export const Ticketbud = makeOauthFactory({
   version: "2",
 });
 
-export const TikTok = makeOauthFactory({
+export const TikTok = makeOAuthFactory({
   id: "tiktok",
   name: "TikTok",
   authorization: {
@@ -2016,7 +2016,7 @@ export const TikTok = makeOauthFactory({
   version: "2",
 });
 
-export const Timely = makeOauthFactory({
+export const Timely = makeOAuthFactory({
   id: "timely",
   name: "Timely",
   authorization: {
@@ -2049,7 +2049,7 @@ export const Timely = makeOauthFactory({
 //   version: "2",
 // });
 
-export const Traxo = makeOauthFactory({
+export const Traxo = makeOAuthFactory({
   id: "traxo",
   name: "Traxo",
   authorization: {
@@ -2060,7 +2060,7 @@ export const Traxo = makeOauthFactory({
   version: "2",
 });
 
-export const Trello = makeOauthFactory({
+export const Trello = makeOAuthFactory({
   id: "trello",
   name: "Trello",
   requestTokenUrl: "https://trello.com/1/OAuthGetRequestToken",
@@ -2072,7 +2072,7 @@ export const Trello = makeOauthFactory({
   version: "1",
 });
 
-export const TripIt = makeOauthFactory({
+export const TripIt = makeOAuthFactory({
   id: "tripit",
   name: "TripIt",
   requestTokenUrl: "https://api.tripit.com/oauth/request_token",
@@ -2084,7 +2084,7 @@ export const TripIt = makeOauthFactory({
   version: "1",
 });
 
-export const Trustpilot = makeOauthFactory({
+export const Trustpilot = makeOAuthFactory({
   id: "trustpilot",
   name: "Trustpilot",
   authorization: {
@@ -2097,7 +2097,7 @@ export const Trustpilot = makeOauthFactory({
   version: "2",
 });
 
-export const Tumblr = makeOauthFactory({
+export const Tumblr = makeOAuthFactory({
   id: "tumblr",
   name: "Tumblr",
   website: "https://tumblr.com",
@@ -2135,7 +2135,7 @@ export const Tumblr = makeOauthFactory({
 //   version: "1",
 // });
 
-export const Twitter = makeOauthFactory({
+export const Twitter = makeOAuthFactory({
   id: "twitter",
   name: "Twitter",
   website: "https://twitter.com",
@@ -2149,7 +2149,7 @@ export const Twitter = makeOauthFactory({
   checks: ["pkce"],
 });
 
-export const Typeform = makeOauthFactory({
+export const Typeform = makeOAuthFactory({
   id: "typeform",
   name: "Typeform",
   authorization: {
@@ -2160,7 +2160,7 @@ export const Typeform = makeOauthFactory({
   version: "2",
 });
 
-export const Uber = makeOauthFactory({
+export const Uber = makeOAuthFactory({
   id: "uber",
   name: "Uber",
   authorization: {
@@ -2171,7 +2171,7 @@ export const Uber = makeOauthFactory({
   version: "2",
 });
 
-export const Unbounce = makeOauthFactory({
+export const Unbounce = makeOAuthFactory({
   id: "unbounce",
   name: "Unbounce",
   authorization: {
@@ -2182,7 +2182,7 @@ export const Unbounce = makeOauthFactory({
   version: "2",
 });
 
-export const UnderArmour = makeOauthFactory({
+export const UnderArmour = makeOAuthFactory({
   id: "underarmour",
   name: "Under Armour",
   authorization: {
@@ -2194,7 +2194,7 @@ export const UnderArmour = makeOauthFactory({
 });
 
 // Scope delimiter for Unsplash is 2.
-export const Unsplash = makeOauthFactory({
+export const Unsplash = makeOAuthFactory({
   id: "unsplash",
   name: "Unsplash",
   authorization: {
@@ -2206,7 +2206,7 @@ export const Unsplash = makeOauthFactory({
   // scopeDelimiter: "+",
 });
 
-export const Untappd = makeOauthFactory({
+export const Untappd = makeOAuthFactory({
   id: "untappd",
   name: "Untappd",
   authorization: {
@@ -2217,7 +2217,7 @@ export const Untappd = makeOauthFactory({
   version: "2",
 });
 
-export const Upwork = makeOauthFactory({
+export const Upwork = makeOAuthFactory({
   id: "upwork",
   name: "Upwork",
   requestTokenUrl: "https://www.upwork.com/api/auth/v1/oauth/token/request",
@@ -2229,7 +2229,7 @@ export const Upwork = makeOauthFactory({
   version: "1",
 });
 
-export const UserVoice = makeOauthFactory({
+export const UserVoice = makeOAuthFactory({
   id: "uservoice",
   name: "UserVoice",
   requestTokenUrl: "https://outofindex.uservoice.com/oauth/request_token",
@@ -2241,7 +2241,7 @@ export const UserVoice = makeOauthFactory({
   version: "1",
 });
 
-export const Vend = makeOauthFactoryWithSubdomainArg({
+export const Vend = makeOAuthFactoryWithSubdomainArg({
   id: "vend",
   name: "Vend",
   authorization: {
@@ -2252,7 +2252,7 @@ export const Vend = makeOauthFactoryWithSubdomainArg({
   version: "2",
 });
 
-export const Venmo = makeOauthFactory({
+export const Venmo = makeOAuthFactory({
   id: "venmo",
   name: "Venmo",
   authorization: {
@@ -2263,7 +2263,7 @@ export const Venmo = makeOauthFactory({
   version: "2",
 });
 
-export const Vercel = makeOauthFactory({
+export const Vercel = makeOAuthFactory({
   id: "vercel",
   name: "Vercel",
   authorization: {
@@ -2274,7 +2274,7 @@ export const Vercel = makeOauthFactory({
   version: "2",
 });
 
-export const VerticalResponse = makeOauthFactory({
+export const VerticalResponse = makeOAuthFactory({
   id: "verticalresponse",
   name: "VerticalResponse",
   authorization: {
@@ -2287,7 +2287,7 @@ export const VerticalResponse = makeOauthFactory({
   version: "2",
 });
 
-export const Viadeo = makeOauthFactory({
+export const Viadeo = makeOAuthFactory({
   id: "viadeo",
   name: "Viadeo",
   authorization: {
@@ -2298,7 +2298,7 @@ export const Viadeo = makeOauthFactory({
   version: "2",
 });
 
-export const Vimeo = makeOauthFactory({
+export const Vimeo = makeOAuthFactory({
   id: "vimeo",
   name: "Vimeo",
   authorization: {
@@ -2309,7 +2309,7 @@ export const Vimeo = makeOauthFactory({
   version: "2",
 });
 
-export const VisualStudio = makeOauthFactory({
+export const VisualStudio = makeOAuthFactory({
   id: "visualstudio",
   name: "Visual Studio",
   authorization: {
@@ -2331,7 +2331,7 @@ export const VisualStudio = makeOauthFactory({
 //   version: "2",
 // });
 
-export const WeChat = makeOauthFactory({
+export const WeChat = makeOAuthFactory({
   id: "wechat",
   name: "WeChat",
   authorization: {
@@ -2342,7 +2342,7 @@ export const WeChat = makeOauthFactory({
   version: "2",
 });
 
-export const Weekdone = makeOauthFactory({
+export const Weekdone = makeOAuthFactory({
   id: "weekdone",
   name: "Weekdone",
   authorization: {
@@ -2353,7 +2353,7 @@ export const Weekdone = makeOauthFactory({
   version: "2",
 });
 
-export const Weibo = makeOauthFactory({
+export const Weibo = makeOAuthFactory({
   id: "weibo",
   name: "Weibo",
   authorization: {
@@ -2364,7 +2364,7 @@ export const Weibo = makeOauthFactory({
   version: "2",
 });
 
-export const Withings = makeOauthFactory({
+export const Withings = makeOAuthFactory({
   id: "withings",
   name: "Withings",
   authorization: {
@@ -2397,7 +2397,7 @@ export const Withings = makeOauthFactory({
 //   version: "2",
 // });
 
-export const Wrike = makeOauthFactory({
+export const Wrike = makeOAuthFactory({
   id: "wrike",
   name: "Wrike",
   authorization: {
@@ -2408,7 +2408,7 @@ export const Wrike = makeOauthFactory({
   version: "2",
 });
 
-export const Xero = makeOauthFactory({
+export const Xero = makeOAuthFactory({
   id: "xero",
   name: "Xero",
   requestTokenUrl: "https://api.xero.com/oauth/RequestToken",
@@ -2420,7 +2420,7 @@ export const Xero = makeOauthFactory({
   version: "1",
 });
 
-export const Xing = makeOauthFactory({
+export const Xing = makeOAuthFactory({
   id: "xing",
   name: "Xing",
   requestTokenUrl: "https://api.xing.com/v1/request_token",
@@ -2432,7 +2432,7 @@ export const Xing = makeOauthFactory({
   version: "1",
 });
 
-export const Yahoo = makeOauthFactory({
+export const Yahoo = makeOAuthFactory({
   id: "yahoo",
   name: "Yahoo",
   authorization: {
@@ -2443,7 +2443,7 @@ export const Yahoo = makeOauthFactory({
   version: "2",
 });
 
-export const Yammer = makeOauthFactory({
+export const Yammer = makeOAuthFactory({
   id: "yammer",
   name: "Yammer",
   authorization: {
@@ -2465,7 +2465,7 @@ export const Yammer = makeOauthFactory({
 //   version: "2",
 // });
 
-export const Zendesk = makeOauthFactoryWithSubdomainArg({
+export const Zendesk = makeOAuthFactoryWithSubdomainArg({
   id: "zendesk",
   name: "Zendesk",
   authorization: {

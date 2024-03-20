@@ -4,7 +4,7 @@
 import chalk from "chalk";
 
 export function debug(...args: any[]) {
-  console.log(chalk.dim("[🤝]", ...args));
+  console.log(chalk.dim("[🤝]"), ...args);
 }
 
 export function info(...args: any[]) {
@@ -12,5 +12,5 @@ export function info(...args: any[]) {
 }
 
 export function error(...args: any[]) {
-  console.error(chalk.red("[🤝]", ...args));
+  console.error(chalk.red("[🤝]"), ...args);
 }

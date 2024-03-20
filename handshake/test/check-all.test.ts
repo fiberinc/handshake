@@ -1,7 +1,7 @@
 import assert from "assert";
 import { OAuthCallbackError } from "~/core/errors";
 import { Handler, HandlerFactory } from "~/core/types";
-import { TypicalOAuthArgs } from "~/providers/lib/makeOauthFactory";
+import { TypicalOAuthArgs } from "~/providers/lib/makeOAuthFactory";
 import * as allFactories from "../src/providers";
 
 const FLAG_HOST = "flag_17439";

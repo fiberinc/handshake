@@ -91,8 +91,9 @@ export const Faire: HandlerFactory<Args> = (args) => {
       authUrl.searchParams.set("applicationId", args.clientId);
       authUrl.searchParams.set("redirectUrl", callbackHandlerUrl);
       for (const scope of args.scopes) {
-        authUrl.searchParams.set("scope", scope);
+        authUrl.searchParams.append("scope", scope);
       }
+
       authUrl.searchParams.set("state", state);
       return { url: authUrl.toString(), persist: { state } };
     },
@@ -170,25 +171,42 @@ async function exchangeToken(
 
   if (!res.ok) {
     error("Faire exchange failed", { json });
-
-    if (json.message?.includes("Authorization code is expired")) {
-      // https://datatracker.ietf.org/doc/html/rfc6749#section-5.2
-      throw new OAuthCallbackError("invalid_grant", "Token is expired.", {
-        json,
-        body: {
-          ...body,
-          application_secret: undefined,
-        },
-      });
-    }
-
-    throw new OAuthCallbackError("invalid_request", "Unexpected Faire error.", {
+    const context = {
       json,
       body: {
         ...body,
-        application_secret: undefined,
+        application_secret: "hidden",
       },
-    });
+    };
+
+    if (json.message?.includes("Permissions in the request are not matching")) {
+      // https://datatracker.ietf.org/doc/html/rfc6749#section-5.2
+      throw new OAuthCallbackError(
+        "invalid_grant",
+        `Faire error: ${json.message}`,
+        context,
+      );
+    }
+    // if (json.message?.includes("Permissions in the request are not matching")) {
+    //   // https://datatracker.ietf.org/doc/html/rfc6749#section-5.2
+    //   throw new OAuthCallbackError(
+    //     "invalid_grant",
+    //     "Token is expired.",
+    //     context,
+    //   );
+    // }
+    if (json.message?.includes("Authorization code is expired")) {
+      // https://datatracker.ietf.org/doc/html/rfc6749#section-5.2
+      throw new OAuthCallbackError("invalid_scope", json.message, context);
+    }
+
+    throw new OAuthCallbackError(
+      "invalid_request",
+      json.message
+        ? `Unexpected Faire error: ${json.message}`
+        : "Unexpected Faire error.",
+      context,
+    );
   }
 
   return json.access_token;

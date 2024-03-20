@@ -27,6 +27,11 @@ interface Args {
   scopes: FaireScope[];
 }
 
+export interface FaireCredential {
+  accessToken: string;
+  scopes: FaireScope[];
+}
+
 const CallbackParamsStruct = z
   .object({
     state: z.string(),
@@ -118,6 +123,7 @@ export const Faire: HandlerFactory<Args> = (args) => {
       return {
         tokens: {
           accessToken,
+          scopes: args.scopes,
         },
       };
     },

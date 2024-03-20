@@ -3,7 +3,7 @@ export * from "./grant-oauth-providers";
 
 export { AmazonSeller } from "./amazon-seller";
 export { Faire } from "./faire";
-export type { FaireScope } from "./faire";
+export type { FaireCredential, FaireScope } from "./faire";
 export { Monday } from "./monday";
 export { Salesforce } from "./salesforce";
 export type { SalesforceScope } from "./salesforce";

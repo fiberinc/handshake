@@ -1,6 +1,14 @@
 import assert from "assert";
+import crypto from "crypto";
+import fetch, { Response } from "node-fetch";
+import { z } from "zod";
+import {
+  InvalidRequest,
+  OAuthCallbackError,
+  UnknownProviderError,
+} from "~/core/errors";
+import { error } from "~/core/logger";
 import { HandlerFactory } from "~/core/types";
-import { makeOauthFactory } from "./lib/makeOauthFactory";
 
 export type FaireScope =
   | "READ_PRODUCTS" //	Fetch product information.
@@ -19,6 +27,15 @@ interface Args {
   scopes: FaireScope[];
 }
 
+const CallbackParamsStruct = z
+  .object({
+    state: z.string(),
+    authorization_code: z.string(),
+  })
+  .strict();
+
+type CallbackParams = z.infer<typeof CallbackParamsStruct>;
+
 /**
  * Connect to your customers' [Faire](https://faire.com) accounts.
  *
@@ -34,7 +51,7 @@ interface Args {
  *     Faire({
  *       clientId: process.env.FAIRE_CLIENT_ID!, // string
  *       clientSecret: process.env.FAIRE_CLIENT_SECRET!, // string
- *       scopes: ["account:read"]!, // FaireScope[]
+ *       scopes: ["READ_BRAND"], // FaireScope[]
  *     }),
  *   ],
  *   // ...
@@ -54,16 +71,110 @@ export const Faire: HandlerFactory<Args> = (args) => {
   assert(args.clientId, "clientId is empty or missing");
   assert(args.clientSecret, "clientSecret is empty or missing");
 
-  return makeOauthFactory({
+  return {
     id: "faire",
     name: "Faire",
-    website: "https://faire.com",
-    authorization: {
-      url: `https://faire.com/oauth2/authorize?applicationId=${args.clientId}`,
+    provider: {
+      id: "faire",
+      name: "Faire",
+      type: "oauth2",
+      website: "https://faire.com",
     },
-    token: {
-      url: `https://www.faire.com/api/external-api-oauth2/token?applicationId=${args.clientId}`,
+    async getAuthorizationUrl(callbackHandlerUrl) {
+      const state = crypto.randomBytes(16).toString("hex");
+
+      const authUrl = new URL(`https://faire.com/oauth2/authorize`);
+      authUrl.searchParams.set("applicationId", args.clientId);
+      authUrl.searchParams.set("redirectUrl", callbackHandlerUrl);
+      authUrl.searchParams.set("scope", args.scopes.join(","));
+      authUrl.searchParams.set("state", state);
+
+      return { url: authUrl.toString(), persist: { state } };
     },
-    checks: ["state"],
-  })(args);
+    async exchange(
+      searchParams,
+      _,
+      __,
+      { valuesFromHandler, handshakeCallbackUrl },
+    ) {
+      let params: CallbackParams;
+      try {
+        params = CallbackParamsStruct.parse(
+          Object.fromEntries(searchParams.entries()),
+        );
+      } catch (e) {
+        error(e);
+        throw new InvalidRequest(`Unexpected query parameter shape.`);
+      }
+
+      assert(valuesFromHandler?.state === params.state, "State mismatch.");
+
+      const accessToken = await exchangeToken(
+        args,
+        params.authorization_code,
+        handshakeCallbackUrl,
+      );
+
+      return {
+        tokens: {
+          accessToken,
+        },
+      };
+    },
+  };
 };
+
+// https://www.faire.com/oauth2/authorize?applicationId=apa_fajfug96ab&redirectUrl=http%3A%2F%2Flocalhost%3A3000%2Fauth%2Ffaire%2Fcallback&scope=READ_BRAND&response_type=code&state=DZ-TWDKSNZY13KXdHcJNaiyn2zQGAFxuqmaS6kwRjw8
+
+async function exchangeToken(
+  args: Args,
+  authorizationCode: string,
+  previousRedirectUrl: string,
+) {
+  const body = {
+    application_token: args.clientId,
+    application_secret: args.clientSecret,
+    grant_type: "AUTHORIZATION_CODE",
+    scope: args.scopes,
+    authorization_code: authorizationCode,
+    redirect_url: previousRedirectUrl,
+  };
+
+  let res: Response;
+  try {
+    res = await fetch(`https://www.faire.com/api/external-api-oauth2/token`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    });
+  } catch (e: any) {
+    throw new UnknownProviderError(`Faire FETCH failed ${e.message}`);
+  }
+
+  const json = await res.json();
+
+  if (!res.ok) {
+    if (json.message?.includes("Authorization code is expired")) {
+      // https://datatracker.ietf.org/doc/html/rfc6749#section-5.2
+      throw new OAuthCallbackError("invalid_grant", "Token is expired.", {
+        json,
+        body: {
+          ...body,
+          application_secret: undefined,
+        },
+      });
+    }
+
+    throw new OAuthCallbackError("invalid_request", "Unexpected Faire error.", {
+      json,
+      body: {
+        ...body,
+        application_secret: undefined,
+      },
+    });
+  }
+
+  return json.access_token;
+}

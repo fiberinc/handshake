@@ -42,7 +42,7 @@ interface Args {
  *     Monday({
  *       clientId: process.env.MONDAY_CLIENT_ID!, // string
  *       clientSecret: process.env.MONDAY_CLIENT_SECRET!, // string
- *       scopes: ["account:read"]!, // MondayScope[]
+ *       scopes: ["account:read"], // MondayScope[]
  *     }),
  *   ],
  *   // ...

@@ -1,5 +1,5 @@
 import assert from "assert";
-import { Faire, HandshakeOptions } from "handshake";
+import { HandshakeOptions } from "handshake";
 
 const ALLOWED_REDIRECT_HOST = process.env.ALLOWED_REDIRECT_HOST || "";
 assert(ALLOWED_REDIRECT_HOST, "Specify a value for ALLOWED_REDIRECT_HOST.");
@@ -10,11 +10,11 @@ export const options: HandshakeOptions = {
   handlers: [
     // TODO add your handlers here...
     //
-    Faire({
-      clientId: process.env.FAIRE_CLIENT_ID!,
-      clientSecret: process.env.FAIRE_CLIENT_SECRET!,
-      scopes: ["me:read"],
-    }),
+    // Faire({
+    //   clientId: process.env.FAIRE_CLIENT_ID!,
+    //   clientSecret: process.env.FAIRE_CLIENT_SECRET!,
+    //   scopes: ["READ_BRAND"],
+    // }),
   ],
   /**
    * This is where you'll handle forwarding the acquired credentials back to

@@ -70,6 +70,8 @@ type CallbackParams = z.infer<typeof CallbackParamsStruct>;
  *
  * [Documentation](https://faire.github.io/external-api-v2-docs/#using-oauth)
  *
+ * [Support article](https://www.faire.com/support/articles/4409994540571)
+ *
  * ![faire-credentials](DOC_IMAGES/faire-creds.png)
  */
 export const Faire: HandlerFactory<Args> = (args) => {

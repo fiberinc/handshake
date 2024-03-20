@@ -57,7 +57,7 @@ export class OAuthCallbackError extends Error {
     public errorDescription: string,
     public extras?: any,
   ) {
-    const message = `${error} (${errorDescription}). Read more at ${REPO_URL}`;
+    const message = `${error} (${errorDescription}).`;
 
     super(message);
   }

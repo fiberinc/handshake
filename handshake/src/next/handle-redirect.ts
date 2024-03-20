@@ -62,11 +62,15 @@ export async function handleRedirect(
   try {
     new URL(url);
   } catch (e) {
-    throw new InternalServerError(`Provider returned an invalid URL: '${url}'`);
+    throw new InternalServerError(
+      `Provider ${handler.id} returned invalid authorization URL: '${url}'`,
+    );
   }
 
   if (!url) {
-    throw new BadRequest("Provider error: no authorization URL returned.");
+    throw new BadRequest(
+      `Provider ${handler.id} error: no authorization URL returned.`,
+    );
   }
 
   const partialSession = getSessionValueToSave(

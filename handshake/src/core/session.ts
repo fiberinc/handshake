@@ -81,6 +81,13 @@ export function getSessionValueToSave(
     );
   }
 
+  // We could check if the developer callback_uri we're saving is valid here.
+  // But I've only ever seen OAuth providers check this AFTER the user has
+  // authorized the app. Maybe there's a good reason for that?
+  //
+  // const isValid = isValidDeveloperCallbackUri(callbackUri, options);
+  // assert(isValid, `${callbackUri} isn't valid callback url`);
+
   // 2.
   // Get account id, if present.
   const accountId = searchParams.get(ACCOUNT_ID_PARAM) ?? undefined;

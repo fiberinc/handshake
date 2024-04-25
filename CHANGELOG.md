@@ -1,5 +1,9 @@
 # handshake
 
+## 1.2.0
+
+- Added support for Faire.
+
 ## 0.1.6
 
 - Added support for Monday.

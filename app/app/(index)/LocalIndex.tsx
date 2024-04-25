@@ -66,7 +66,7 @@ export async function LocalIndex() {
         <h3 className="mb-3">
           Add the following code to your <code>app/options.ts</code>
         </h3>
-        <pre className="block rounded-md border p-3 text-sm">
+        <pre className="block rounded-md border p-3 text-sm md:min-w-[600px]">
           <code>{MARKDOWN_CODE}</code>
         </pre>
         <p>
@@ -95,7 +95,9 @@ export async function LocalIndex() {
         </a>
         .
       </p>
-      <p>This page only appears in development mode.</p>
+      {/* <p className="text-default">
+        This page only appears in development mode.
+      </p> */}
     </main>
   );
 }

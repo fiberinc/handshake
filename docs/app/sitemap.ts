@@ -1,5 +1,6 @@
 import { MetadataRoute } from "next";
 import { headers } from "next/headers";
+import { getGuides } from "./guides/[slug]/loaders";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const headersList = headers();
@@ -14,5 +15,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: `https://${domain}/providers`,
       lastModified: new Date(),
     },
+    {
+      url: `https://${domain}/changelog`,
+      lastModified: new Date(),
+    },
+    ...(await getGuides()).map((f) => ({
+      url: `https://${domain}/guides/${f.slug}`,
+      lastModified: new Date(),
+    })),
   ];
 }

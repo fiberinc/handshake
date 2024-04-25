@@ -20,10 +20,10 @@ export default function RootLayout({
           href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤝</text></svg>"
         />
       </head>
-      <body className="bg-background text-default m-auto flex w-full flex-col gap-20 selection:bg-fuchsia-300 selection:text-fuchsia-900 ">
+      <body className="bg-background text-default m-auto flex w-full flex-col gap-20 selection:bg-fuchsia-300 selection:text-fuchsia-900 lg:min-h-screen">
         <Toaster />
         <Nav />
-        <div className="m-auto w-full px-3 md:px-5 lg:w-[900px] lg:px-0">
+        <div className="m-auto w-full flex-1 justify-start px-3 md:px-5  lg:w-[900px] lg:px-0">
           {children}
         </div>
         <Footer />

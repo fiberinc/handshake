@@ -114,6 +114,11 @@ export const Shopify: HandlerFactory<Args, ShopifyCredential> = ({
       website: "https://shopify.com",
     },
     getAuthorizationUrl(callbackHandlerUrl, extras: { shop?: string }) {
+      // In `abcd.myshopify.com`, Shopify sometimes calls the "abcd" part "shop"
+      // [1] and other times "store".
+      // 1. https://shopify.dev/docs/apps/auth/get-access-tokens/token-exchange#token-exchange-api
+      // 2. https://shopify.dev/docs/api/admin-rest#endpoints
+
       if (!extras?.shop) {
         throw new InvalidRequest(
           "Shopify redirects requires an extra `shop` query parameter.",

@@ -1,10 +1,12 @@
 import { Metadata } from "next";
 import Link from "next/link";
+import { BiBookAlt } from "react-icons/bi";
 import { FaExternalLinkAlt } from "react-icons/fa";
 import { twMerge } from "tailwind-merge";
 import { Banner } from "~/ui/Banner";
 import { GithubLogoMark } from "~/ui/GithubLogoMark";
 import { getProviderInfos } from "../getProviderInfos";
+import { getGuides } from "../guides/[slug]/loaders";
 import { REPO_URL } from "../routes";
 import { GitCloneCopyButton } from "./GitCloneCopyButton";
 import { ProviderGrid } from "./ProviderGrid";
@@ -24,7 +26,7 @@ export default async function Page() {
       <header className="flex flex-col gap-3">
         <Link href="/providers/#stripe" className="w-fit">
           <Banner>
-            <span className="mr-2">🎉</span>New Stripe provider
+            <span className="mr-2">🎉</span>New Faire provider
             <span className="text-default ml-2 opacity-60">&rarr;</span>&nbsp;
           </Banner>
         </Link>
@@ -139,7 +141,37 @@ export default async function Page() {
             </a>
           </div>
         </section>
+        <div className="mt-5 w-full border-t " />
+        <section className="flex flex-col gap-6">
+          <div>
+            <h2 className="text-subheader text-contrast mb-3">Guides</h2>
+          </div>
+          <LatestGuides />
+        </section>
       </div>
     </div>
+  );
+}
+
+export async function LatestGuides() {
+  const guides = await getGuides();
+
+  return (
+    <ul className="flex list-none flex-col gap-4">
+      {guides.map((guide) => {
+        return (
+          <li key={guide.slug}>
+            <Link href={`/guides/${guide.slug}`}>
+              <div className="text-contrast hover:border-stronger flex h-[50px] w-full flex-row items-center justify-between rounded-md border px-4 transition">
+                <h2 className="text-contrast text-md">{guide.title}</h2>
+                <div>
+                  <BiBookAlt className="w-5" />
+                </div>
+              </div>
+            </Link>
+          </li>
+        );
+      })}
+    </ul>
   );
 }

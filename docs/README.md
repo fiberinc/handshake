@@ -1,6 +1,7 @@
 # Handshake docs
 
-Landing page and documentation for Handshake.
+Landing page and documentation for Handshake. We recommend deleting this folder
+from your Handshake instance.
 
 ## Development
 
@@ -29,4 +30,5 @@ Deploy:
 vercel --prod
 ```
 
-Or fork this repo, create a Next.js project inside Vercel and set this folder as root.
+Or fork this repo, create a Next.js project inside Vercel and set this folder as
+root.

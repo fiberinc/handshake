@@ -2,8 +2,9 @@ import fs from "fs";
 import { MDXRemoteSerializeResult } from "next-mdx-remote";
 import { serialize } from "next-mdx-remote/serialize";
 import path from "path";
+import rehypePrettyCode from "rehype-pretty-code";
 import { z } from "zod";
-import { BLOG_POST_DIR, Guide, mdxOptions } from "./types";
+import { BLOG_POST_DIR, Guide } from "./types";
 
 export const isTruthy = <T>(n?: T | null): n is T => Boolean(n);
 
@@ -136,3 +137,18 @@ export async function getPost(slug: string): Promise<Guide | null> {
     serialized,
   };
 }
+
+export const mdxOptions: any = {
+  // SerializeOptions
+  parseFrontmatter: true,
+  mdxOptions: {
+    rehypePlugins: [
+      [
+        rehypePrettyCode,
+        {
+          theme: "github-dark-dimmed",
+        },
+      ],
+    ],
+  },
+};

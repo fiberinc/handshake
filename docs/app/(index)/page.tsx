@@ -153,7 +153,7 @@ export default async function Page() {
   );
 }
 
-export async function LatestGuides() {
+async function LatestGuides() {
   const guides = await getGuides();
 
   return (

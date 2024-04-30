@@ -4,6 +4,7 @@ import { serialize } from "next-mdx-remote/serialize";
 import path from "path";
 import rehypePrettyCode from "rehype-pretty-code";
 import { z } from "zod";
+import { getNotionPost, getNotionPosts } from "./notion";
 import { BLOG_POST_DIR, Guide } from "./types";
 
 export const isTruthy = <T>(n?: T | null): n is T => Boolean(n);
@@ -52,7 +53,9 @@ export function parseArticleMetadata({
  *
  * FIXME this is getting called once per page. There must be a way to do this.
  */
-export async function getBlogMdxs() {
+export async function getBlogMdxs(): Promise<Guide[]> {
+  return await getNotionPosts();
+
   const filesInFolder = fs.readdirSync(BLOG_POST_DIR);
 
   const slugToPath: Record<string, string> = {};
@@ -113,29 +116,31 @@ export async function getBlogMdxs() {
 }
 
 export async function getPost(slug: string): Promise<Guide | null> {
-  const filesNames = fs.readdirSync(BLOG_POST_DIR);
-  const fileName = filesNames.find((n) => {
-    return n.replace(/^\d{8}[-_]/, "") === slug + ".mdx";
-  });
-  // console.log('filename', filesNames, fileName)
-  if (!fileName) {
-    return null;
-  }
+  return await getNotionPost(slug);
 
-  const filepath = path.join(BLOG_POST_DIR, fileName);
-  if (!fs.existsSync(filepath)) {
-    throw Error("very much");
-  }
+  // const filesNames = fs.readdirSync(BLOG_POST_DIR);
+  // const fileName = filesNames.find((n) => {
+  //   return n.replace(/^\d{8}[-_]/, "") === slug + ".mdx";
+  // });
+  // // console.log('filename', filesNames, fileName)
+  // if (!fileName) {
+  //   return null;
+  // }
 
-  const contents = fs.readFileSync(filepath, "utf8");
-  const serialized = await serialize(contents, mdxOptions);
+  // const filepath = path.join(BLOG_POST_DIR, fileName);
+  // if (!fs.existsSync(filepath)) {
+  //   throw Error("very much");
+  // }
 
-  return {
-    ...parseArticleMetadata(serialized),
-    slug,
-    frontmatter: serialized.frontmatter,
-    serialized,
-  };
+  // const contents = fs.readFileSync(filepath, "utf8");
+  // const serialized = await serialize(contents, mdxOptions);
+
+  // return {
+  //   ...parseArticleMetadata(serialized),
+  //   slug,
+  //   frontmatter: serialized.frontmatter,
+  //   serialized,
+  // };
 }
 
 export const mdxOptions: any = {

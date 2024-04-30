@@ -3,7 +3,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { constructMetadata } from "~/app/construct-metadata";
 import { PostRender } from "./PostRender";
-import { getBlogMdxs, getPost } from "./loaders";
+import { getBlogMdxs } from "./loaders";
+import { getNotionPost } from "./notion";
 
 interface Props {
   params: {
@@ -12,7 +13,7 @@ interface Props {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const post = await getPost(params.slug);
+  const post = await getNotionPost(params.slug);
 
   if (!post) {
     throw Error(`Can't fetch metadata for post ${params.slug}`);
@@ -28,7 +29,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function Page({ params }: Props) {
-  const post = await getPost(params.slug);
+  const post = await getNotionPost(params.slug, true);
   if (!post) {
     return notFound();
   }
@@ -68,7 +69,7 @@ export default async function Page({ params }: Props) {
       </header>
       <div className="grid-col-wi grid gap-10">
         <PostRender {...post.serialized} />
-        <aside></aside>
+        {/* <aside></aside> */}
       </div>
     </>
   );

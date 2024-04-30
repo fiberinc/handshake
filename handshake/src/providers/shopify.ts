@@ -121,12 +121,12 @@ export const Shopify: HandlerFactory<Args, ShopifyCredential> = ({
 
       if (!extras?.shop) {
         throw new InvalidRequest(
-          "Shopify redirects requires an extra `shop` query parameter.",
+          "Shopify redirects requires an `extras.shop=?` query parameter.",
         );
       }
 
       // TODO validate shop value.
-      if (!extras.shop.match(/^[a-zA-Z_-]*\.myshopify.com$/)) {
+      if (!extras.shop.match(/^[a-zA-Z][a-zA-Z_-]*\.myshopify.com$/)) {
         throw Error("Invalid shop value.");
       }
 

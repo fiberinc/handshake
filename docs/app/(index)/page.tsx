@@ -5,8 +5,8 @@ import { FaExternalLinkAlt } from "react-icons/fa";
 import { twMerge } from "tailwind-merge";
 import { Banner } from "~/ui/Banner";
 import { GithubLogoMark } from "~/ui/GithubLogoMark";
+import { getGuides } from "../__guides/[slug]/loaders";
 import { getProviderInfos } from "../getProviderInfos";
-import { getGuides } from "../guides/[slug]/loaders";
 import { REPO_URL } from "../routes";
 import { GitCloneCopyButton } from "./GitCloneCopyButton";
 import { ProviderGrid } from "./ProviderGrid";
@@ -22,7 +22,7 @@ export default async function Page() {
   const infos = await getProviderInfos();
 
   return (
-    <div className="m-auto flex flex-col gap-16">
+    <div className="m-auto flex flex-col gap-16 ">
       <header className="flex flex-col gap-3">
         <Link href="/providers/#stripe" className="w-fit">
           <Banner>
@@ -142,12 +142,12 @@ export default async function Page() {
           </div>
         </section>
         <div className="mt-5 w-full border-t " />
-        <section className="flex flex-col gap-6">
+        {/* <section className="flex hidden flex-col gap-6">
           <div>
             <h2 className="text-subheader text-contrast mb-3">Guides</h2>
           </div>
           <LatestGuides />
-        </section>
+        </section> */}
       </div>
     </div>
   );

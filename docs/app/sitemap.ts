@@ -1,6 +1,6 @@
 import { MetadataRoute } from "next";
 import { headers } from "next/headers";
-import { getGuides } from "./guides/[slug]/loaders";
+import { getGuides } from "./__guides/[slug]/loaders";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const headersList = headers();

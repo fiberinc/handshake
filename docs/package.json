@@ -12,6 +12,7 @@
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.5",
     "@notionhq/client": "^2.2.15",
+    "@tailwindcss/typography": "^0.5.13",
     "@vercel/analytics": "^1.2.2",
     "next": "^14.1.4",
     "next-mdx": "^0.6.2",

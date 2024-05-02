@@ -1,0 +1,111 @@
+---
+title: How to handle OAuth for a Shopify app
+subtitle: Learn how to acquire access tokens to read and write data into your customers' Shopify stores.
+---
+
+This guide will teach you everything you need to know about Shopify access
+tokens, how to obtain and use them, as well as security best practices.
+
+## Talking to the API
+
+
+
+In this guide we will walk you through how to obtain access tokens to your
+client's ecommerce stores.
+
+This is for the Admin REST API. Shopify has other API flavors that require
+different authentication methods.
+
+Looking for a simpler way to do this? Use [Handshake](https://handshake.cool).
+
+# Step-by-step guide
+
+Shopify follows a flavor of Auth 2.0. The process is as follows:
+
+## 0. Create a Shopify app
+
+<Image src="/images/guides/shopify/app-directory.png" alt="Shopify app
+directory" />
+
+<Image src="/images/guides/shopify/create-new-app.png" alt="Shopify's Create a
+new app page" />
+
+Click "Create app manually", enter an app name and then click "Create".
+
+{/* <Image src="/images/guides/shopify/create-new-app-name.png" alt="Shopify app
+creation" /> */}
+
+## 1. Ask users for their shop URL
+
+Shopify is special because it.
+
+<Image src="/images/guides/shopify/ask-shop-dialog.png" alt="Shopify app
+creation" />
+
+## 2. Send your users to the Authorization URL
+
+The authorization URL is made up of the following:
+
+<Image src="/images/guides/shopify/allow-callback.png" alt="Shopify app
+creation" />
+
+## Side: Shopify scopes
+
+## 3. Send your users there
+
+## Your users will be sent to a page like this:
+
+## 4. Receive a callback
+
+If everything goes well and the user decides to install your app.
+
+## 4. Hmac verification
+
+In the app you created.
+
+
+
+<Image src="/images/guides/shopify/credentials.png" alt="Shopify app creation"
+/>
+
+## 5. Exchange for access token
+
+We'll be making the request against `{shop}.myshopify.com/admin` because that's
+the API.
+
+```curl title="typescript.ts"
+POST https://{shop}.myshopify.com/admin/oauth/access_token
+Authorization: Basic {base64(CLIENT_ID:CLIENT_SECRET)}
+```
+
+Replacing `CLIENT_ID` and `CLIENT_SECRET` for the values you got when creating
+the app.
+
+Remember to store it in a safe place.
+
+## What else?
+
+You can check the scopes tied to each access token using:
+
+```typescript
+curl -X GET "https://hahvaleu.myshopify.com/admin/oauth/access_scopes.json" \
+  -H "X-Shopify-Access-Token: ACCESS_TOKEN" \
+  -H "Content-Type: application/json"
+```
+
+Replacing `ACCESS_TOKEN` for the token you just got.
+
+## Troubleshooting
+
+{/* This is where we hit lots of Google keywords! */}
+
+### "The redirect_uri is not whitelisted"
+
+<Image src="/images/guides/shopify/trouble-unauthorized-callback.png"
+alt="Shopify app creation" />
+
+# CTA
+
+With Handshake you get to skip all of this.
+
+<Comment>Relevant: https://www.npmjs.com/package/shopify-token</Comment>

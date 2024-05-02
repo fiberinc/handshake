@@ -1,0 +1,152 @@
+/* We also have tailwind.config.cjs typography styling the Markdown. */
+
+.markdown {
+  line-height: 1.8 !important;
+  display: flex;
+  flex-direction: column;
+  /* font-weight: 400; */
+  /* font-size: 17px; */
+  /* color: rgb(var(--text-contrast)); */
+
+  :where(a):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+    text-decoration: none;
+    /* text-decoration: underline;
+		text-underline-offset: 4px; */
+    border-bottom: 1px solid rgb(var(--text-contrast) / 0.5);
+    border-bottom-style: dashed;
+    padding-bottom: 1px;
+    color: rgb(var(--text-contrast));
+  }
+
+  strong {
+    font-weight: 600;
+  }
+
+  :where(ul):not(:where([class~="not-prose"], [class~="not-prose"] *)) > li {
+    list-style-type: "–    ";
+    padding-left: 0 !important;
+    /* list-style-position: inside; */
+    margin-left: 25px;
+  }
+
+  blockquote,
+	iframe,
+	.twitter-tweet,
+	/* & > p, */
+	& > ul,
+	& > div,
+	& > ol {
+    margin-bottom: 1.5em !important;
+  }
+
+  .twitter-tweet {
+    align-self: center;
+  }
+
+  hr {
+    border: none;
+    border-bottom: 3px solid #aaaaaa22;
+    margin: 2em 0;
+  }
+
+  iframe {
+    margin: 0 auto;
+  }
+
+  NOT :where(h1):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+    font-size: 1.5em;
+    font-weight: 500;
+    /* margin-bottom: 1em; */
+  }
+
+  NOT :where(h2):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+    font-size: 1.3em;
+    font-weight: 500;
+    /* margin-bottom: 0.8em; */
+  }
+
+  NOT :where(h3):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+    font-size: 1em;
+    font-weight: 500;
+    /* margin-bottom: 0.5em; */
+  }
+
+  NOT
+    :where(blockquote):not(
+      :where([class~="not-prose"], [class~="not-prose"] *)
+    ) {
+    border-left: 4px solid #f3f4f6;
+    padding-left: 1em;
+  }
+
+  /* SHOW LINE NUMBERS */
+
+  NOT code {
+    counter-reset: line;
+  }
+
+  NOT code > [data-line]::before {
+    counter-increment: line;
+    content: counter(line);
+
+    /* Other styling */
+    display: inline-block;
+    width: 1rem;
+    margin-right: 1rem;
+    text-align: right;
+    color: gray;
+  }
+
+  img {
+    border: 1px solid var(--border-primary);
+  }
+
+  NOT code[data-line-numbers-max-digits="2"] > [data-line]::before {
+    width: 2rem;
+  }
+
+  NOT code[data-line-numbers-max-digits="3"] > [data-line]::before {
+    width: 3rem;
+  }
+
+  /* SHOW TAB TITLE */
+
+  NOT figure[data-rehype-pretty-code-figure] {
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 30px;
+
+    figcaption {
+      border-top-right-radius: 5px;
+      border-top-left-radius: 5px;
+      background: var(--background-primary);
+      font-size: 13px;
+      display: flex;
+      height: 40px;
+      align-items: center;
+      justify-content: center;
+      color: rgb(var(--text-contrast));
+      background: rgb(var(--bg-foreground));
+      border: 1px solid var(--border-primary);
+    }
+  }
+
+  NOT *:not(pre) > code {
+    color: rgb(var(--text-contrast));
+    border: 1px solid var(--border-primary);
+    border-radius: 4px;
+    font-size: 0.95rem;
+    padding: 3px 5px;
+    background: rgb(var(--color-foreground));
+  }
+
+  NOT pre > code {
+    overflow-x: scroll;
+    border-radius: 4px;
+    /* background-color: var(--border-primary); */
+    padding: 20px;
+    font-size: 0.86rem;
+    background: rgb(var(--color-foreground));
+    tab-size: 300px;
+  }
+}

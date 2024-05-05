@@ -1,7 +1,7 @@
 <br />
 
 <p align="left">
-  <img src="/docs/public/images/github-banner.png" width="100%"/>
+  <img src="https://handshake.cool/images/github-banner.png" width="100%"/>
 
   <h1 align="left">Handshake</h1>
 
@@ -148,7 +148,7 @@ You must call `vercel deploy` **from the root folder**, even though the Next.js
 app folder lives within `app/`. The app code needs the `handshake/` folder,
 which otherwise won't be available.
 
-<img src="docs/public/images/vercel-deploy.gif" width="400" />
+<img src="https://handshake.cool/images/vercel-deploy.gif" width="400" />
 
 The command may tell you "No framework detected" instead of detecting Next.js as
 your framework. Steps to fix this are outlined below.

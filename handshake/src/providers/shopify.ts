@@ -56,10 +56,7 @@ export interface ShopifyCredential {
 }
 
 /**
- * ## Usage
- *
- * Provide the following arguments:
- *
+ * @setup
  * ```ts title="app/options.ts"
  * import { HandshakeOptions, Shopify } from "handshake";
  *
@@ -71,29 +68,58 @@ export interface ShopifyCredential {
  *       scopes: ["read_orders", "read_products"],
  *     }),
  *   ],
- *   // ...
  * };
+ *
+ * // ...
  * ```
  *
- * ## Redirection
+ * @usage
+ * You must include an `extras.shop` parameter to identify the shop that you're
+ * trying to take through the OAuth flow.
  *
- * Include an `extras.shop` parameter when redirecting users to Handshake:
+ * The final URL might look something like this:
  *
- * ```ts
- * https://HANDSHAKE_HOST/auth/shopify/redirect?
+ * ```bash
+ * https://YOUR_HANDSHAKE_INSTANCE_URL/auth/shopify/redirect?
  *   state=12345
- *   &extras.shop=hahvaleu.myshopify.com
- *   &callback_uri=http://YOUR_APP_HOST/shopifySyncSuccess
+ *   &extras.shop=example.myshopify.com
+ *   &callback_uri=http://YOUR_APP_URL/shopify-integration/done
  * ```
  *
- * ## Configure the Callback URL
+ * @provider
+ *
+ * The `clientId` and `clientSecret` arguments to the `Shopify()` handler come
+ * from your Shopify app.
+ *
+ * ## 1. Create a Shopify app
+ *
+ * You must have a Shopify app to take users through the OAuth flow. Check out this [in-depth tutorial on how authentication works in the
+ * Shopify ecosystem](https://fiber.dev/blog/shopify-oauth-guide).
+ *
+ * Within your app, you'll find the client ID and secret:
+ *
+ * ![Find client ID and secret in the admin of your Shopify
+ * app.](DOC_IMAGES/shopify/app-keys.png)
+ *
+ * ## 2. Configure the Callback URL
  *
  * Make sure your Handshake URL is allowed within your Shopify app's
  * Configuration tab:
  *
- * ![shopify-redirection](DOC_IMAGES/shopify-redirect.png)
+ * ![](DOC_IMAGES/shopify/app-redirect.png)
  *
  * Follow the format: `https://HANDSHAKE_URL/auth/shopify/callback`
+ *
+ * @troubleshoot
+ *
+ * ### "The redirect_uri is not whitelisted"
+ *
+ * If you see this, the Handshake callback URL you asked Shopify to send users
+ * back to wasn't added to the list of allowed URLs in your Shopify app
+ * settings.
+ *
+ * ![Shopify error page saying "The redirect_uri is not
+ * whitelisted"](DOC_IMAGES/shopify/trouble-unauthorized-redirect.png)
  */
 export const Shopify: HandlerFactory<Args, ShopifyCredential> = ({
   id,

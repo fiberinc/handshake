@@ -183,8 +183,8 @@ Yes! Please open an issue or reach out to us at
 
 Libraries like [next-auth](https://github.com/nextauthjs/next-auth) and
 [passport](https://github.com/jaredhanson/passport) help you sign users into
-your app using their third-party identities. You use them to implement the "Sign
-In With Google" or "Sign In With Github" buttons.
+your app using their third-party identities. You implement buttons
+that say "Sign In With Google" or "Sign In With Github".
 
 In contrast, Handshake help you acquire access tokens to your users' accounts in
 other apps. It's authorization instead of authentication. Handshake actually

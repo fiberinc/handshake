@@ -102,16 +102,16 @@ export const Alchemer = makeOAuthFactory({
   version: "1",
 });
 
-export const Amazon = makeOAuthFactory({
-  id: "amazon",
-  name: "Amazon",
-  authorization: {
-    url: "https://www.amazon.com/ap/oa",
-  },
-  token: { url: "https://api.amazon.com/auth/o2/token" },
-  website: "https://www.amazon.com",
-  version: "2",
-});
+// export const Amazon = makeOAuthFactory({
+//   id: "amazon",
+//   name: "Amazon",
+//   authorization: {
+//     url: "https://www.amazon.com/ap/oa",
+//   },
+//   token: { url: "https://api.amazon.com/auth/o2/token" },
+//   website: "https://www.amazon.com",
+//   version: "2",
+// });
 
 export const AngelList = makeOAuthFactory({
   id: "angellist",

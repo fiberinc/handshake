@@ -21,16 +21,11 @@ export interface Credential {
 export const PROVIDER_ID = "amazon-seller";
 
 /**
- * ["Website authorization workflow"
- * documentation](https://developer-docs.amazon.com/sp-api/docs/website-authorization-workflow)
+ * @title Amazon Seller Central
+ * @reference https://developer-docs.amazon.com/sp-api/docs/website-authorization-workflow
  *
- * ## Usage
- *
- * Provide the following arguments:
- *
+ * @setup
  * ```ts title="app/options.ts"
- * import { Amazon } from "handshake";
- *
  * import { HandshakeOptions, Amazon } from "handshake";
  *
  * const options: HandshakeOptions = {
@@ -46,7 +41,7 @@ export const PROVIDER_ID = "amazon-seller";
  * };
  * ```
  *
- * ## Troubleshooting
+ * @troubleshoot
  *
  * Need to "set up your “Authorize” buttons so that selling partners are
  * redirected to the Seller Central (for sellers) or Vendor Central (for
@@ -72,10 +67,7 @@ export const PROVIDER_ID = "amazon-seller";
  *
  * ### Not setup for OAuth
  *
- * ![amazon-not-setup](DOC_IMAGES/amazon-not-setup-oauth.png)
- *
- * @param param0
- * @returns
+ * ![Error shows up when OAuth hasn't been enabled for application](DOC_IMAGES/amazon/not-setup-oauth.png)
  */
 export const AmazonSeller: HandlerFactory<Args, Credential> = ({
   id,

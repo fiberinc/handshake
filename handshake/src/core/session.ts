@@ -108,7 +108,7 @@ export function getSessionValueToSave(
 }
 
 export function parseSessionFromStringValue(value: string): SessionValue {
-  let parsed: any;
+  let parsed: unknown;
   try {
     parsed = JSON.parse(value);
   } catch (e) {

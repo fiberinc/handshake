@@ -44,13 +44,12 @@ export function FiberHook({ clientId, clientSecret }: Args) {
     credentials: unknown,
     handlerId: string,
     extras: any,
-  ): Promise<{ externalId: string } | null> => {
+  ): Promise<{ externalId: string }> => {
     const sourceName = FIBER_SOURCES[handlerId];
     if (!sourceName) {
-      console.warn(
-        `WARNING: Handler with id ${handlerId} not in "FIBER_SOURCES". Will skip.`,
+      throw Error(
+        `Handler with id ${handlerId} not in "FIBER_SOURCES". Will skip.`,
       );
-      return null;
     }
 
     let fiberExternalId = "";

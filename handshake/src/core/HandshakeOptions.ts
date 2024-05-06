@@ -37,7 +37,7 @@ export interface HandshakeOptions {
    * @returns Returns a list of params to send back to the redirect URL.
    */
   onSuccess(
-    credentials: any,
+    credentials: unknown,
     handlerId: string,
     linkParams: { account_id?: string },
   ): Promise<{ forwardParams?: Record<string, string> } | undefined>;

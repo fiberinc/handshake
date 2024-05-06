@@ -1,6 +1,6 @@
 import { JsonObject } from "type-fest";
 
-const REPO_URL = "https://github.com/fiberinc/handshake";
+// const REPO_URL = "https://github.com/fiberinc/handshake";
 
 /**
  * Errors that inherit from this class are considered "known errors" and improve

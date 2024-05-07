@@ -6,7 +6,7 @@ import { ExtendedConfig } from "~/core/HandshakeOptions";
 import { debug, error, info } from "~/core/logger";
 import { SessionValue, getSessionValueToSave } from "~/core/session";
 import { Handler } from "~/core/types";
-import { getNextHost } from "./handle-callback";
+import { getNextHost, isValidDeveloperCallbackUri } from "./handle-callback";
 
 export async function handleRedirect(
   options: ExtendedConfig,
@@ -70,6 +70,20 @@ export async function handleRedirect(
   if (!url) {
     throw new BadRequest(
       `Provider ${handler.id} error: no authorization URL returned.`,
+    );
+  }
+
+  // Check that the callback URI to send users back to is allowed. If the
+  // exchange fails, we might want to send users back to this
+  const isValid = isValidDeveloperCallbackUri(handshakeCallbackUrl, options);
+  if (!isValid) {
+    // FIXME this could be a React page.
+
+    return new Response(
+      `Callback URI ${handshakeCallbackUrl} is not whitelisted in the Handshake settings.`,
+      {
+        status: 400,
+      },
     );
   }
 

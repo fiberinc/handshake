@@ -10,10 +10,10 @@ export const options: HandshakeOptions = {
   handlers: [
     // TODO add your handlers here...
     //
-    // Faire({
-    //   clientId: process.env.FAIRE_CLIENT_ID!,
-    //   clientSecret: process.env.FAIRE_CLIENT_SECRET!,
-    //   scopes: ["READ_BRAND"],
+    // Shopify({
+    //   clientId: process.env.SHOPIFY_CLIENT_ID!,
+    //   clientSecret: process.env.SHOPIFY_CLIENT_SECRET!,
+    //   scopes: ["read_orders"],
     // }),
   ],
   /**

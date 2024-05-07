@@ -1448,6 +1448,7 @@ export const Notion = makeOAuthFactory({
     url: "https://api.notion.com/v1/oauth/authorize",
   },
   token: { url: "https://api.notion.com/v1/oauth/token" },
+  checks: ["state"],
   website: "https://www.notion.so",
   version: "2",
 });

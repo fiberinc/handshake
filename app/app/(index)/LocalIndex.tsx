@@ -39,24 +39,25 @@ export async function LocalIndex() {
         >
           id: {handler.id}
         </div>
-        <p className="">
-          Send users to:
-          <br />
+        <div className="">
+          <p>Send users to:</p>
           <code className="text-sm">
             <a href={`${base}?${args}`} target="blank" className="group">
-              <span>https://YOUR_HANDSHAKE_INSTANCE{base}</span>
-              <br />
-              <div className="ml-6 block w-fit opacity-70 transition group-hover:opacity-100">
-                {args.split("&").map((arg, index) => (
-                  <div key={index}>
-                    {index > 0 ? "&" : "?"}
-                    {arg}
-                  </div>
-                ))}
+              <div>
+                <div>https://YOUR_HANDSHAKE_INSTANCE{base}</div>
+
+                <div className="ml-6 block w-fit opacity-70 transition group-hover:opacity-100">
+                  {args.split("&").map((arg, index) => (
+                    <div key={index}>
+                      {index > 0 ? "&" : "?"}
+                      {arg}
+                    </div>
+                  ))}
+                </div>
               </div>
             </a>
           </code>
-        </p>
+        </div>
         <p>
           Authorize this callback URL in the Notion console:
           <br />

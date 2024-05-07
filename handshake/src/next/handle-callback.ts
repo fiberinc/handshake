@@ -55,7 +55,7 @@ export async function handleCallback(
     // FIXME this could be a React page.
 
     return new Response(
-      `Callback URI ${session.developerCallbackUri} is not allowed by settings.`,
+      `Callback URI ${session.developerCallbackUri} is not whitelisted in the Handshake settings.`,
       {
         status: 400,
       },

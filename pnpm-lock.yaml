@@ -76,7 +76,7 @@ importers:
         version: 2.2.1
       zod:
         specifier: ^3.22.4
-        version: 3.22.4
+        version: 3.23.6
     devDependencies:
       '@types/cookie':
         specifier: ^0.6.0
@@ -131,7 +131,7 @@ importers:
         version: 4.10.3
       zod:
         specifier: ^3.22.4
-        version: 3.22.4
+        version: 3.23.6
     devDependencies:
       '@types/http-errors':
         specifier: ^2.0.4
@@ -6060,6 +6060,6 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /zod@3.22.4:
-    resolution: {integrity: sha512-iC+8Io04lddc+mVqQ9AZ7OQ2MrUKGN+oIQyq1vemgt46jwCwLfhq7/pwnBnNXXXZb8VTVLKwp9EDkx+ryxIWmg==}
+  /zod@3.23.6:
+    resolution: {integrity: sha512-RTHJlZhsRbuA8Hmp/iNL7jnfc4nZishjsanDAfEY1QpDQZCahUp3xDzl+zfweE9BklxMUcgBgS1b7Lvie/ZVwA==}
     dev: false

@@ -8,7 +8,7 @@ import {
   generators,
 } from "openid-client";
 import { InvalidCheck, OAuthCallbackError } from "~/core/errors";
-import { error, info } from "~/core/logger";
+import { debug, error, info } from "~/core/logger";
 import { SessionValue } from "~/core/session";
 import { Handler, HandlerFactory } from "~/core/types";
 import { OAuthProvider } from "./OAuthProvider";
@@ -177,6 +177,7 @@ export function makeOAuthFactory<
           });
           tokens = new TokenSet(response.tokens);
         } else if (provider.idToken) {
+          debug("Using client.callback() because provider.idToken is set");
           tokens = await client.callback(callbackHandlerUrl, params, checks);
         } else {
           // This seems to fail silently sometimes, which is shit.

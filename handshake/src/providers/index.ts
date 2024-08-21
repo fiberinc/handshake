@@ -11,3 +11,5 @@ export type { SalesforceScope } from "./salesforce";
 export { Shopify } from "./shopify";
 export type { ShopifyCredential, ShopifyScope } from "./shopify";
 export { Stripe } from "./stripe";
+export { Xero } from "./xero";
+export type { XeroCredential, XeroScope } from "./xero";

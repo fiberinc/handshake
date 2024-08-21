@@ -30,7 +30,7 @@ export async function handleCallback(
   const savedCookie = cookieStore.get(options.sessionCookieName);
   if (!savedCookie) {
     return new Response(
-      `Session cookie not found ("${options.sessionCookieName}"). Authentication might have taken too long or you arrived from a bad link.`,
+      `Session cookie not found ("${options.sessionCookieName}"). You may have taken too long to authorize or you arrived from a bad link.`,
       {
         status: 400,
       },

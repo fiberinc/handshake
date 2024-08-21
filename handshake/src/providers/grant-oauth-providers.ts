@@ -2409,18 +2409,6 @@ export const Wrike = makeOAuthFactory({
   version: "2",
 });
 
-export const Xero = makeOAuthFactory({
-  id: "xero",
-  name: "Xero",
-  requestTokenUrl: "https://api.xero.com/oauth/RequestToken",
-  authorization: {
-    url: "https://api.xero.com/oauth/Authorize",
-  },
-  website: "https://www.xero.com",
-  token: { url: "https://api.xero.com/oauth/AccessToken" },
-  version: "1",
-});
-
 export const Xing = makeOAuthFactory({
   id: "xing",
   name: "Xing",

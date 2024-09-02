@@ -65,7 +65,15 @@ interface Args {
  * };
  * ```
  *
- * [Scope documentation](https://help.salesforce.com/s/articleView?id=sf.remoteaccess_oauth_tokens_scopes.htm&type=5)
+ * [Scope
+ * documentation](https://help.salesforce.com/s/articleView?id=sf.remoteaccess_oauth_tokens_scopes.htm&type=5)
+ *
+ * ## Troubleshooting
+ *
+ * ### Not getting refresh token
+ *
+ * Make sure you have the `refresh_token` scope in the `scopes` array. Make sure
+ * it's also in the `Connected App` settings in Salesforce.
  *
  */
 export const Salesforce: HandlerFactory<Args> = (args) => {
@@ -77,8 +85,8 @@ export const Salesforce: HandlerFactory<Args> = (args) => {
 
   return makeOAuthFactory({
     id: "salesforce",
-    website: "https://salesforce.com",
     name: "Salesforce",
+    website: "https://salesforce.com",
     wellKnown: `${issuer}/.well-known/openid-configuration`,
     issuer,
     checks: ["pkce"],

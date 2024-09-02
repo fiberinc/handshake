@@ -34,7 +34,6 @@ export type XeroScope =
   | "projects.read"
   | "paymentservices"
   | "bankfeeds"
-  | "bankfeeds.read"
   | "finance.accountingactivity.read"
   | "finance.cashvalidation.read"
   | "finance.statements.read"
@@ -96,6 +95,6 @@ export const Xero: HandlerFactory<Args, Credential> = makeOAuthFactory<
   name: "Xero",
   website: "https://xero.com",
   wellKnown: "https://identity.xero.com/.well-known/openid-configuration",
-  idToken: true,
+  // idToken: true,
   checks: ["pkce", "state"],
 });

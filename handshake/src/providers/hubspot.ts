@@ -95,13 +95,8 @@ interface Args {
 /**
  * Connect to your customers' [HubSpot](https://hubspot.com) accounts.
  *
- * ## Usage
- *
- * Provide the following arguments:
- *
- * ```ts
- * // Inside app/options.ts
- *
+ * @options
+ * ```ts title="app/options.ts"
  * import { HubSpot } from "handshake";
  *
  * HubSpot({
@@ -115,7 +110,9 @@ interface Args {
  * });
  * ```
  *
- * ### Configure the Callback URL
+ * @providersetup
+ *
+ * ## Configure the Callback URL
  *
  * Make sure your Handshake URL is allowed within your HubSpot app's Auth tab:
  *
@@ -123,8 +120,7 @@ interface Args {
  *
  * Follow the format: `https://HANDSHAKE_URL/auth/hubspot/callback`
  *
- * ## Troubleshooting
- *
+ * @troubleshoot
  * ### "provided scopes are insufficient"
  *
  * You MUST pass ALL the scopes you configured for your to the `scopes` array.

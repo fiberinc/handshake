@@ -56,36 +56,27 @@ export type XeroCredential = {
 };
 
 /**
- * ## Usage
- *
- * Provide the following arguments:
- *
+ * @options
  * ```ts title="app/options.ts"
  *
- * import { Xero } from "handshake";
+ *import { Xero } from "handshake";
  *
- * Xero({
- *   clientId: process.env.XERO_CLIENT_ID,
- *   clientSecret: process.env.XERO_CLIENT_SECRET,
- *   scopes: ["offline_access", "accounting.transactions"],
- * });
- * ```
+ *Xero({
+ *  clientId: process.env.XERO_CLIENT_ID,
+ *  clientSecret: process.env.XERO_CLIENT_SECRET,
+ *  scopes: ["offline_access", "accounting.transactions"],
+ *});
+ *```
  *
  * The `offline_access` scope is required to get a `refresh_token` in your
  * response.
  *
- * ### Allow your Handshake callback URL
+ * @troubleshoot
  *
- * In your Xero app settings.
+ * You may see an "Error: invalid_scope : Invalid scope" error if the only scope
+ * you provide is `offline_access`.
  *
- * You can set up a localhost callback by toggling the "View test data" switch.
- *
- * ![xero-callback-settings](DOC_IMAGES/xero-redirect.png)
- *
- * ### Troubleshooting
- *
- * You may see an "Error: invalid_scope : Invalid scope" error if the only
- * scope you provide is `offline_access`.
+ * !["Invalid scope" error](DOC_IMAGES/xero/invalid-scopes.png)
  */
 export const Xero: HandlerFactory<Args, Credential> = makeOAuthFactory<
   TypicalOAuthArgs,

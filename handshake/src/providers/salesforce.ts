@@ -45,10 +45,7 @@ interface Args {
 }
 
 /**
- * ## Usage
- *
- * Provide the following arguments:
- *
+ * @options
  * ```ts title="app/options.ts"
  * import { HandshakeOptions, Salesforce } from "handshake";
  *
@@ -65,10 +62,9 @@ interface Args {
  * };
  * ```
  *
- * [Scope
- * documentation](https://help.salesforce.com/s/articleView?id=sf.remoteaccess_oauth_tokens_scopes.htm&type=5)
+ * [Read about valid scopes.](https://help.salesforce.com/s/articleView?id=sf.remoteaccess_oauth_tokens_scopes.htm&type=5)
  *
- * ## Troubleshooting
+ * @troubleshoot
  *
  * ### Not getting refresh token
  *

@@ -28,12 +28,8 @@ interface Args {
 }
 
 /**
- * Connect to your customers' [Monday](https://monday.com) accounts.
- *
- * ## Usage
- *
- * Provide the following arguments:
- *
+ * @reference https://developer.monday.com/apps/docs/oauth
+ * @options
  * ```ts title="app/options.ts"
  * import { HandshakeOptions, Monday } from "handshake";
  *
@@ -49,14 +45,11 @@ interface Args {
  * };
  * ```
  *
- * ## Setup
- *
- * [Documentation](https://developer.monday.com/apps/docs/oauth)
- *
+ * @providersetup
  * ![monday-credentials](DOC_IMAGES/monday-creds.png)
  * ![monday-credentials](DOC_IMAGES/monday-allow-redirect.png)
  *
- * ## Troubleshooting
+ * @troubleshoot
  *
  * ### "invalid_scope: Invalid scope param"
  *

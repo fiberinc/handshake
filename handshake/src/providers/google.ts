@@ -11,12 +11,8 @@ interface Args {
 }
 
 /**
- * Connect to your customers' [Google](https://google.com) accounts.
- *
- * ## Usage
- *
- * Provide the following arguments:
- *
+ * @reference https://developer.monday.com/apps/docs/oauth
+ * @options
  * ```ts title="app/options.ts"
  * import { HandshakeOptions, Google } from "handshake";
  *
@@ -31,10 +27,6 @@ interface Args {
  *   // ...
  * };
  * ```
- *
- * ## Setup
- *
- * [Documentation](https://developer.monday.com/apps/docs/oauth)
  */
 export const Google: HandlerFactory<Args> = (args) => {
   // assert(args.scopes, "scopes is empty or missing");

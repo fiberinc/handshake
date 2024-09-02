@@ -150,7 +150,19 @@ export interface ShopifyAppCredential {
 }
 
 /**
- * @setup
+ * @redirect
+ * For Shopify, you must include an `extras.shop` parameter to identify the shop
+ * that you're trying to take through the OAuth flow. The final URL might look
+ * something like this:
+ *
+ * ```bash
+ * https://YOUR_HANDSHAKE_INSTANCE_URL/auth/shopify/redirect?
+ *   state=12345
+ *   &extras.shop=example.myshopify.com
+ *   &callback_uri=http://YOUR_APP_URL/shopify-integration/done # example
+ * ```
+ *
+ * @options
  * ```ts title="app/options.ts"
  * import { HandshakeOptions, Shopify } from "handshake";
  *
@@ -167,28 +179,16 @@ export interface ShopifyAppCredential {
  * // ...
  * ```
  *
- * @usage
- * You must include an `extras.shop` parameter to identify the shop that you're
- * trying to take through the OAuth flow.
- *
- * The final URL might look something like this:
- *
- * ```bash
- * https://YOUR_HANDSHAKE_INSTANCE_URL/auth/shopify/redirect?
- *   state=12345
- *   &extras.shop=example.myshopify.com
- *   &callback_uri=http://YOUR_APP_URL/shopify-integration/done
- * ```
- *
- * @provider
+ * @providersetup
  *
  * The `clientId` and `clientSecret` arguments to the `Shopify()` handler come
  * from your Shopify app.
  *
  * ## 1. Create a Shopify app
  *
- * You must have a Shopify app to take users through the OAuth flow. Check out this [in-depth tutorial on how authentication works in the
- * Shopify ecosystem](https://fiber.dev/blog/shopify-oauth-guide).
+ * You must have a Shopify app to take users through the OAuth flow. Check out
+ * this [in-depth tutorial on how authentication works in the Shopify
+ * ecosystem](https://fiber.dev/blog/shopify-oauth-guide).
  *
  * Within your app, you'll find the client ID and secret:
  *

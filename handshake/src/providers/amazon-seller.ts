@@ -24,7 +24,7 @@ export const PROVIDER_ID = "amazon-seller";
  * @title Amazon Seller Central
  * @reference https://developer-docs.amazon.com/sp-api/docs/website-authorization-workflow
  *
- * @setup
+ * @options
  * ```ts title="app/options.ts"
  * import { HandshakeOptions, Amazon } from "handshake";
  *

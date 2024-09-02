@@ -143,7 +143,7 @@ interface Args {
   scopes: ShopifyScope[];
 }
 
-export interface ShopifyCredential {
+export interface ShopifyAppCredential {
   shop: string;
   accessToken: string;
   scopes: string[];
@@ -215,7 +215,7 @@ export interface ShopifyCredential {
  * ![Shopify error page saying "The redirect_uri is not
  * whitelisted"](DOC_IMAGES/shopify/trouble-unauthorized-redirect.png)
  */
-export const Shopify: HandlerFactory<Args, ShopifyCredential> = ({
+export const Shopify: HandlerFactory<Args, ShopifyAppCredential> = ({
   id,
   ...args
 }) => {

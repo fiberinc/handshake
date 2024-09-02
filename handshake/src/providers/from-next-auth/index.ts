@@ -106,38 +106,8 @@ export const Gitlab = makeFromNextAuth(GitlabNextAuth);
 // const GoogleNextAuth = require("next-auth/providers/google").default;
 // export const Google = makeFromNextAuth(GoogleNextAuth);
 
-const HubspotNextAuth = require("next-auth/providers/hubspot").default;
-/**
- *
- * ## Usage
- *
- * Provide the following arguments:
- *
- * ```ts
- * // Inside app/options.ts
- *
- * import { Hubspot } from "handshake";
- *
- * Hubspot({
- *   clientId: string,
- *   clientSecret: string,
- *   scopes: [
- *     "e-commerce",
- *     "crm.schemas.contacts.read",
- *     "crm.objects.contacts.read",
- *   ],
- * });
- * ```
- *
- * ### Configure the Callback URL
- *
- * Make sure your Handshake URL is allowed within your Hubspot app's Auth tab:
- *
- * ![hubspot-redirect-settings](DOC_IMAGES/hubspot-redirect.png)
- *
- * Follow the format: `https://HANDSHAKE_URL/auth/hubspot/callback`
- */
-export const Hubspot = makeFromNextAuth(HubspotNextAuth);
+// const HubspotNextAuth = require("next-auth/providers/hubspot").default;
+// export const Hubspot = makeFromNextAuth(HubspotNextAuth);
 
 // const IdentityServer4NextAuth =
 //   require("next-auth/providers/identity-server4").default;

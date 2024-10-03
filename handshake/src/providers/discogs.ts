@@ -6,7 +6,7 @@ import {
   OAuthCallbackError,
   UnknownProviderError,
 } from "~/core/errors";
-import { debug, error } from "~/core/logger";
+import { debug, error, info } from "~/core/logger";
 import { HandlerFactory } from "~/core/types";
 
 interface Args {
@@ -63,12 +63,11 @@ export const Discogs: HandlerFactory<Args> = (args) => {
         // TODO handle
       }
 
-      console.log(
-        "requestToken",
+      info("requestToken", {
         requestToken,
         requestTokenSecret,
         callbackConfirmed,
-      );
+      });
 
       const authUrl = `https://discogs.com/oauth/authorize?oauth_token=${requestToken}`;
       return {

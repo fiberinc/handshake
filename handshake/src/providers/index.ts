@@ -3,6 +3,7 @@ export * from "./grant-oauth-providers";
 
 export { AmazonSeller } from "./amazon-seller";
 export { BigCommerce } from "./bigcommerce";
+export { Discogs } from "./discogs";
 export { Faire } from "./faire";
 export type { FaireCredential, FaireScope } from "./faire";
 export { Google } from "./google";

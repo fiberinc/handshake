@@ -175,8 +175,6 @@ export interface ShopifyAppCredential {
  *     }),
  *   ],
  * };
- *
- * // ...
  * ```
  *
  * @providersetup

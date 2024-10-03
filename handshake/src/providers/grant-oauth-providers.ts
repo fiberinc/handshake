@@ -531,7 +531,7 @@ export const Discogs = makeOAuthFactory({
   },
   website: "https://www.discogs.com",
   token: { url: "https://api.discogs.com/oauth/access_token" },
-  version: "1",
+  version: "2",
 });
 
 // export const Discord = make({

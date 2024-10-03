@@ -106,8 +106,8 @@ export const Gitlab = makeFromNextAuth(GitlabNextAuth);
 // const GoogleNextAuth = require("next-auth/providers/google").default;
 // export const Google = makeFromNextAuth(GoogleNextAuth);
 
-// const HubspotNextAuth = require("next-auth/providers/hubspot").default;
-// export const Hubspot = makeFromNextAuth(HubspotNextAuth);
+// const HubSpotNextAuth = require("next-auth/providers/hubspot").default;
+// export const HubSpot = makeFromNextAuth(HubSpotNextAuth);
 
 // const IdentityServer4NextAuth =
 //   require("next-auth/providers/identity-server4").default;

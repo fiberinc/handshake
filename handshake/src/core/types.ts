@@ -7,7 +7,6 @@ export type HandlerFactory<Args, Credential = unknown> = (
 
 export interface Handler<Credential = unknown> {
   id: string;
-
   provider: {
     id: string;
     name: string;

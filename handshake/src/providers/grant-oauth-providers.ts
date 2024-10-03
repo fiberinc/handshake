@@ -522,18 +522,6 @@ export const DigitalOcean = makeOAuthFactory({
   version: "2",
 });
 
-export const Discogs = makeOAuthFactory({
-  id: "discogs",
-  name: "Discogs",
-  requestTokenUrl: "https://api.discogs.com/oauth/request_token",
-  authorization: {
-    url: "https://discogs.com/oauth/authorize",
-  },
-  website: "https://www.discogs.com",
-  token: { url: "https://api.discogs.com/oauth/access_token" },
-  version: "2",
-});
-
 // export const Discord = make({
 //   id: "discord",
 //   name: "",

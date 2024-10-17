@@ -12,7 +12,7 @@
     "@floating-ui/react": "^0.26.6",
     "@radix-ui/react-icons": "^1.3.0",
     "chalk": "4",
-    "cookie": "^0.6.0",
+    "cookie": "^0.7.0",
     "handshake": "workspace:*",
     "http-errors": "^2.0.0",
     "jose": "^5.2.2",

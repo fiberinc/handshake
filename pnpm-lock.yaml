@@ -45,11 +45,11 @@ importers:
         specifier: '4'
         version: 4.1.2
       cookie:
-        specifier: ^0.6.0
-        version: 0.6.0
+        specifier: ^0.7.0
+        version: 0.7.0
       handshake:
         specifier: workspace:*
-        version: link:../handshake
+        version: link:..
       http-errors:
         specifier: ^2.0.0
         version: 2.0.0
@@ -2261,8 +2261,8 @@ packages:
     engines: {node: '>= 0.6'}
     dev: false
 
-  /cookie@0.6.0:
-    resolution: {integrity: sha512-U71cyTamuh1CRNCfpGY6to28lxvNwPG4Guz/EVjgf3Jmzv0vlDp1atT9eS5dDjMYHucpHbWns6Lwf3BKz6svdw==}
+  /cookie@0.7.0:
+    resolution: {integrity: sha512-qCf+V4dtlNhSRXGAZatc1TasyFO6GjohcOul807YOb5ik3+kQSnb4d7iajeCL8QHaJ4uZEjCgiCJerKXwdRVlQ==}
     engines: {node: '>= 0.6'}
     dev: false
 

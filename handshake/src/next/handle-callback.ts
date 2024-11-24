@@ -129,7 +129,7 @@ export async function handleCallback(
   }
 
   // Call onSuccess (eg. so the caller can register account with Fiber).
-  let forwardParams;
+  let result;
   try {
     const accountId = session.accountId;
     const linkParams: { account_id?: string } = {};
@@ -137,8 +137,7 @@ export async function handleCallback(
       linkParams.account_id = accountId;
     }
 
-    const result = await options.onSuccess(tokens, handler.id, linkParams);
-    forwardParams = result?.forwardParams;
+    result = await options.onSuccess(tokens, handler.id, linkParams);
   } catch (err: unknown) {
     if (!(err instanceof Error)) {
       throw new TypeError("Not an error");
@@ -149,7 +148,9 @@ export async function handleCallback(
     // Sentry.captureException(err);
     const url = new URL(session.developerCallbackUri);
     url.searchParams.set("state", session.developerState);
-    url.searchParams.set("error", `${err.message ? ": " + err.message : ""}.`);
+    // Dangerous to expose the error message to the user, but perhaps we can
+    // send a trace ID.
+    url.searchParams.set("error", `success_handler_error`);
     redirect(url.href);
   }
 
@@ -157,12 +158,19 @@ export async function handleCallback(
   url.searchParams.set("state", session.developerState);
 
   // Add the `successParams` we received from `onSuccess` to the URL.
-  if (forwardParams) {
-    for (const [key, value] of Object.entries(forwardParams)) {
-      if (url.searchParams.has(key)) {
-        throw new Error(`onSuccess handler returned a reserved param: ${key}`);
+  if (result) {
+    if ("error" in result) {
+      url.searchParams.set("error", result.error);
+    } else if ("forwardParams" in result && result.forwardParams) {
+      const forwardParams = result.forwardParams;
+      for (const [key, value] of Object.entries(forwardParams)) {
+        if (url.searchParams.has(key)) {
+          throw new Error(
+            `onSuccess handler returned a reserved param: ${key}`,
+          );
+        }
+        url.searchParams.set(key, value);
       }
-      url.searchParams.set(key, value);
     }
   }
 

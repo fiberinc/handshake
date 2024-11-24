@@ -40,7 +40,9 @@ export interface HandshakeOptions {
     credentials: unknown,
     handlerId: string,
     linkParams: { account_id?: string },
-  ): Promise<{ forwardParams?: Record<string, string> } | undefined>;
+  ): Promise<
+    { forwardParams?: Record<string, string> } | { error: string } | undefined
+  >;
 
   /**
    * The secret used to encrypt and decrypt the session cookie.

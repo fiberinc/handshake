@@ -244,8 +244,8 @@ export const Shopify: HandlerFactory<Args, ShopifyAppCredential> = ({
       }
 
       // TODO validate shop value.
-      if (!extras.shop.match(/^[a-zA-Z][a-zA-Z_-]*\.myshopify.com$/)) {
-        throw Error("Invalid shop value.");
+      if (!extras.shop.match(/^[a-zA-Z][-a-zA-Z_0-9]*\.myshopify.com$/)) {
+        throw Error("Invalid extras.shop value.");
       }
 
       const authUrl = new URL(`https://${extras.shop}/admin/oauth/authorize`);

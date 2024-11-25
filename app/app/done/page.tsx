@@ -76,7 +76,7 @@ function FailurePage() {
         OAuth Failed
       </h2>
       <p>Received params:</p>
-      <pre>
+      <pre className="max-w-[700px] text-wrap text-red-400">
         {JSON.stringify(Object.fromEntries(searchParams.entries()), null, 2)}
       </pre>
     </>

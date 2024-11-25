@@ -8,6 +8,7 @@ export { Faire } from "./faire";
 export type { FaireCredential, FaireScope } from "./faire";
 export { Google } from "./google";
 export { HubSpot } from "./hubspot";
+export { MicrosoftEntra } from "./microsoft-entra";
 export { Monday } from "./monday";
 export { Salesforce } from "./salesforce";
 export type { SalesforceScope } from "./salesforce";
